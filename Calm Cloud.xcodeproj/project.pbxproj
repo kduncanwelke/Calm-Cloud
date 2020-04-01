@@ -10,13 +10,22 @@
 		2D41EF28242D5CE20058C443 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D41EF27242D5CE20058C443 /* PhotoManager.swift */; };
 		2D41EF2A242D5DCF0058C443 /* Favorites+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D41EF29242D5DCF0058C443 /* Favorites+CollectionView.swift */; };
 		2D41EF2F242D5EBB0058C443 /* DocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D41EF2E242D5EBB0058C443 /* DocumentsManager.swift */; };
-		2D41EF31242D607C0058C443 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D41EF30242D607C0058C443 /* FavoritesViewController.swift */; };
+		2D41EF31242D607C0058C443 /* FavoriteThingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D41EF30242D607C0058C443 /* FavoriteThingsViewController.swift */; };
 		2D48CC3A242548B200D0FBBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48CC39242548B200D0FBBB /* AppDelegate.swift */; };
 		2D48CC3C242548B200D0FBBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48CC3B242548B200D0FBBB /* SceneDelegate.swift */; };
 		2D48CC3E242548B200D0FBBB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48CC3D242548B200D0FBBB /* ViewController.swift */; };
 		2D48CC41242548B200D0FBBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48CC3F242548B200D0FBBB /* Main.storyboard */; };
 		2D48CC43242548B400D0FBBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D48CC42242548B400D0FBBB /* Assets.xcassets */; };
 		2D48CC46242548B400D0FBBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48CC44242548B400D0FBBB /* LaunchScreen.storyboard */; };
+		2D7FCAB824324F2F00E2DEC4 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCAB724324F2F00E2DEC4 /* PhotoViewController.swift */; };
+		2D7FCABA2432506100E2DEC4 /* Photo+ScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCAB92432506100E2DEC4 /* Photo+ScrollViewDelegate.swift */; };
+		2D7FCABC243263E800E2DEC4 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCABB243263E800E2DEC4 /* ReminderViewController.swift */; };
+		2D7FCABE2432918C00E2DEC4 /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCABD2432918C00E2DEC4 /* ReminderListViewController.swift */; };
+		2D7FCAC02432968F00E2DEC4 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCABF2432968F00E2DEC4 /* ReminderTableViewCell.swift */; };
+		2D7FCAC224329CDE00E2DEC4 /* ReminderList+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCAC124329CDE00E2DEC4 /* ReminderList+TableView.swift */; };
+		2D7FCAC424329D5800E2DEC4 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCAC324329D5800E2DEC4 /* Reminder.swift */; };
+		2D8C838D2433CBB2006711F2 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C838B2433CBB2006711F2 /* Data.xcdatamodeld */; };
+		2D8C838F2433CDD9006711F2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C838E2433CDD9006711F2 /* CoreDataManager.swift */; };
 		2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C1A242D47B200073B49 /* AnimationExtensions.swift */; };
 		2DD50C1D242D535F00073B49 /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C1C242D535F00073B49 /* JournalViewController.swift */; };
 		2DD50C21242D58F600073B49 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */; };
@@ -27,7 +36,7 @@
 		2D41EF27242D5CE20058C443 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		2D41EF29242D5DCF0058C443 /* Favorites+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Favorites+CollectionView.swift"; sourceTree = "<group>"; };
 		2D41EF2E242D5EBB0058C443 /* DocumentsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsManager.swift; sourceTree = "<group>"; };
-		2D41EF30242D607C0058C443 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		2D41EF30242D607C0058C443 /* FavoriteThingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteThingsViewController.swift; sourceTree = "<group>"; };
 		2D48CC36242548B200D0FBBB /* Calm Cloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calm Cloud.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D48CC39242548B200D0FBBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D48CC3B242548B200D0FBBB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +45,15 @@
 		2D48CC42242548B400D0FBBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D48CC45242548B400D0FBBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D48CC47242548B400D0FBBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D7FCAB724324F2F00E2DEC4 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		2D7FCAB92432506100E2DEC4 /* Photo+ScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+ScrollViewDelegate.swift"; sourceTree = "<group>"; };
+		2D7FCABB243263E800E2DEC4 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
+		2D7FCABD2432918C00E2DEC4 /* ReminderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListViewController.swift; sourceTree = "<group>"; };
+		2D7FCABF2432968F00E2DEC4 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
+		2D7FCAC124329CDE00E2DEC4 /* ReminderList+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderList+TableView.swift"; sourceTree = "<group>"; };
+		2D7FCAC324329D5800E2DEC4 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		2D8C838C2433CBB2006711F2 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
+		2D8C838E2433CDD9006711F2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		2DD50C1A242D47B200073B49 /* AnimationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtensions.swift; sourceTree = "<group>"; };
 		2DD50C1C242D535F00073B49 /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -58,6 +76,7 @@
 			children = (
 				2D41EF2E242D5EBB0058C443 /* DocumentsManager.swift */,
 				2D41EF27242D5CE20058C443 /* PhotoManager.swift */,
+				2D7FCAC324329D5800E2DEC4 /* Reminder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -86,6 +105,8 @@
 				2D41EF2D242D5EAF0058C443 /* Models */,
 				2DD50C1E242D58CC00073B49 /* Views */,
 				2D48CC3F242548B200D0FBBB /* Main.storyboard */,
+				2D8C838B2433CBB2006711F2 /* Data.xcdatamodeld */,
+				2D8C838E2433CDD9006711F2 /* CoreDataManager.swift */,
 				2DD50C1F242D58D800073B49 /* Animation */,
 				2D48CC42242548B400D0FBBB /* Assets.xcassets */,
 				2D48CC44242548B400D0FBBB /* LaunchScreen.storyboard */,
@@ -99,9 +120,15 @@
 			children = (
 				2D48CC3D242548B200D0FBBB /* ViewController.swift */,
 				2DD50C1C242D535F00073B49 /* JournalViewController.swift */,
+				2D7FCABB243263E800E2DEC4 /* ReminderViewController.swift */,
+				2D7FCABF2432968F00E2DEC4 /* ReminderTableViewCell.swift */,
+				2D7FCABD2432918C00E2DEC4 /* ReminderListViewController.swift */,
+				2D7FCAC124329CDE00E2DEC4 /* ReminderList+TableView.swift */,
 				2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */,
-				2D41EF30242D607C0058C443 /* FavoritesViewController.swift */,
+				2D41EF30242D607C0058C443 /* FavoriteThingsViewController.swift */,
 				2D41EF29242D5DCF0058C443 /* Favorites+CollectionView.swift */,
+				2D7FCAB724324F2F00E2DEC4 /* PhotoViewController.swift */,
+				2D7FCAB92432506100E2DEC4 /* Photo+ScrollViewDelegate.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -188,15 +215,24 @@
 			files = (
 				2DDEA32B242A98E800717E8C /* AnimationManager.swift in Sources */,
 				2D48CC3E242548B200D0FBBB /* ViewController.swift in Sources */,
+				2D7FCABC243263E800E2DEC4 /* ReminderViewController.swift in Sources */,
 				2D41EF28242D5CE20058C443 /* PhotoManager.swift in Sources */,
 				2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */,
 				2D41EF2A242D5DCF0058C443 /* Favorites+CollectionView.swift in Sources */,
+				2D7FCAB824324F2F00E2DEC4 /* PhotoViewController.swift in Sources */,
 				2D48CC3A242548B200D0FBBB /* AppDelegate.swift in Sources */,
 				2D41EF2F242D5EBB0058C443 /* DocumentsManager.swift in Sources */,
+				2D8C838D2433CBB2006711F2 /* Data.xcdatamodeld in Sources */,
 				2DD50C21242D58F600073B49 /* PhotoCollectionViewCell.swift in Sources */,
 				2DD50C1D242D535F00073B49 /* JournalViewController.swift in Sources */,
-				2D41EF31242D607C0058C443 /* FavoritesViewController.swift in Sources */,
+				2D41EF31242D607C0058C443 /* FavoriteThingsViewController.swift in Sources */,
 				2D48CC3C242548B200D0FBBB /* SceneDelegate.swift in Sources */,
+				2D7FCABE2432918C00E2DEC4 /* ReminderListViewController.swift in Sources */,
+				2D7FCABA2432506100E2DEC4 /* Photo+ScrollViewDelegate.swift in Sources */,
+				2D7FCAC424329D5800E2DEC4 /* Reminder.swift in Sources */,
+				2D7FCAC224329CDE00E2DEC4 /* ReminderList+TableView.swift in Sources */,
+				2D8C838F2433CDD9006711F2 /* CoreDataManager.swift in Sources */,
+				2D7FCAC02432968F00E2DEC4 /* ReminderTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +430,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2D8C838B2433CBB2006711F2 /* Data.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2D8C838C2433CBB2006711F2 /* Data.xcdatamodel */,
+			);
+			currentVersion = 2D8C838C2433CBB2006711F2 /* Data.xcdatamodel */;
+			path = Data.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2D48CC2E242548B200D0FBBB /* Project object */;
 }

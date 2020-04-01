@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
     
@@ -21,6 +22,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(stopMoving), name: NSNotification.Name(rawValue: "stopMoving"), object: nil)
         
+        loadPhotos()
         
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
@@ -40,6 +42,35 @@ class ViewController: UIViewController {
     }
     
     // MARK: Custom functions
+    
+    func loadPhotos() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        var fetchRequest = NSFetchRequest<Photo>(entityName: "Photo")
+        
+        do {
+            PhotoManager.loadedPhotos = try managedContext.fetch(fetchRequest)
+            print("photos loaded")
+            PhotoManager.photos.removeAll()
+            DocumentsManager.filePaths.removeAll()
+            
+            for photoItem in PhotoManager.loadedPhotos {
+                guard let filePath = photoItem.path else { return }
+                let path = DocumentsManager.documentsURL.appendingPathComponent(filePath).path
+                if FileManager.default.fileExists(atPath: path) {
+                    if let contents = UIImage(contentsOfFile: path) {
+                        PhotoManager.photos.append(contents)
+                        DocumentsManager.filePaths.append(filePath)
+                    }
+                } else {
+                    print("not found")
+                }
+            }
+        } catch let error as NSError {
+            //showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
+        }
+    }
+    
+    // MARK: Animations
     
     func randomMoveFromCenterAnimation() {
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
@@ -135,6 +166,10 @@ class ViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func remindersTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "visitReminders", sender: Any?.self)
+    }
     
     @IBAction func favoritesTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "visitFavorites", sender: Any?.self)

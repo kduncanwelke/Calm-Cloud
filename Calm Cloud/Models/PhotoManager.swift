@@ -10,5 +10,7 @@ import Foundation
 import UIKit
 
 struct PhotoManager {
+    static var loadedPhotos: [Photo] = []
     static var photos: [UIImage] = []
+    static var currentPhotoIndex = 0
 }
