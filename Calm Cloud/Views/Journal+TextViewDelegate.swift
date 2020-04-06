@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension JournalViewController: UITextViewDelegate {
+extension ContentViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "Start typing . . ." {
             textView.text = nil

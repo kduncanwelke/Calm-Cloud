@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D11FD6824367EA900EC89D9 /* Journal+TextViewDelegate.swift */; };
+		2D384C1D243BBBE600D0FFEB /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C1C243BBBE600D0FFEB /* PageViewController.swift */; };
+		2D384C1F243BC2B700D0FFEB /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C1E243BC2B700D0FFEB /* ContentViewController.swift */; };
+		2D384C21243BCA3B00D0FFEB /* PageControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C20243BCA3B00D0FFEB /* PageControllerManager.swift */; };
+		2D384C23243BCB5E00D0FFEB /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C22243BCB5E00D0FFEB /* EntryManager.swift */; };
 		2D41EF28242D5CE20058C443 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D41EF27242D5CE20058C443 /* PhotoManager.swift */; };
 		2D41EF2A242D5DCF0058C443 /* Favorites+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D41EF29242D5DCF0058C443 /* Favorites+CollectionView.swift */; };
 		2D41EF2F242D5EBB0058C443 /* DocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D41EF2E242D5EBB0058C443 /* DocumentsManager.swift */; };
@@ -35,6 +39,10 @@
 
 /* Begin PBXFileReference section */
 		2D11FD6824367EA900EC89D9 /* Journal+TextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+TextViewDelegate.swift"; sourceTree = "<group>"; };
+		2D384C1C243BBBE600D0FFEB /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		2D384C1E243BC2B700D0FFEB /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		2D384C20243BCA3B00D0FFEB /* PageControllerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControllerManager.swift; sourceTree = "<group>"; };
+		2D384C22243BCB5E00D0FFEB /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
 		2D41EF27242D5CE20058C443 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		2D41EF29242D5DCF0058C443 /* Favorites+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Favorites+CollectionView.swift"; sourceTree = "<group>"; };
 		2D41EF2E242D5EBB0058C443 /* DocumentsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsManager.swift; sourceTree = "<group>"; };
@@ -79,6 +87,8 @@
 				2D41EF2E242D5EBB0058C443 /* DocumentsManager.swift */,
 				2D41EF27242D5CE20058C443 /* PhotoManager.swift */,
 				2D7FCAC324329D5800E2DEC4 /* Reminder.swift */,
+				2D384C20243BCA3B00D0FFEB /* PageControllerManager.swift */,
+				2D384C22243BCB5E00D0FFEB /* EntryManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -123,6 +133,8 @@
 				2D48CC3D242548B200D0FBBB /* ViewController.swift */,
 				2DD50C1C242D535F00073B49 /* JournalViewController.swift */,
 				2D11FD6824367EA900EC89D9 /* Journal+TextViewDelegate.swift */,
+				2D384C1C243BBBE600D0FFEB /* PageViewController.swift */,
+				2D384C1E243BC2B700D0FFEB /* ContentViewController.swift */,
 				2D7FCABB243263E800E2DEC4 /* ReminderViewController.swift */,
 				2D7FCABF2432968F00E2DEC4 /* ReminderTableViewCell.swift */,
 				2D7FCABD2432918C00E2DEC4 /* ReminderListViewController.swift */,
@@ -218,6 +230,7 @@
 			files = (
 				2DDEA32B242A98E800717E8C /* AnimationManager.swift in Sources */,
 				2D48CC3E242548B200D0FBBB /* ViewController.swift in Sources */,
+				2D384C1F243BC2B700D0FFEB /* ContentViewController.swift in Sources */,
 				2D7FCABC243263E800E2DEC4 /* ReminderViewController.swift in Sources */,
 				2D41EF28242D5CE20058C443 /* PhotoManager.swift in Sources */,
 				2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */,
@@ -228,10 +241,13 @@
 				2D41EF2F242D5EBB0058C443 /* DocumentsManager.swift in Sources */,
 				2D8C838D2433CBB2006711F2 /* Data.xcdatamodeld in Sources */,
 				2DD50C21242D58F600073B49 /* PhotoCollectionViewCell.swift in Sources */,
+				2D384C23243BCB5E00D0FFEB /* EntryManager.swift in Sources */,
 				2DD50C1D242D535F00073B49 /* JournalViewController.swift in Sources */,
+				2D384C1D243BBBE600D0FFEB /* PageViewController.swift in Sources */,
 				2D41EF31242D607C0058C443 /* FavoriteThingsViewController.swift in Sources */,
 				2D48CC3C242548B200D0FBBB /* SceneDelegate.swift in Sources */,
 				2D7FCABE2432918C00E2DEC4 /* ReminderListViewController.swift in Sources */,
+				2D384C21243BCA3B00D0FFEB /* PageControllerManager.swift in Sources */,
 				2D7FCABA2432506100E2DEC4 /* Photo+ScrollViewDelegate.swift in Sources */,
 				2D7FCAC424329D5800E2DEC4 /* Reminder.swift in Sources */,
 				2D7FCAC224329CDE00E2DEC4 /* ReminderList+TableView.swift in Sources */,

@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(stopMoving), name: NSNotification.Name(rawValue: "stopMoving"), object: nil)
         
         loadPhotos()
+        loadEntries()
         
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
@@ -65,6 +66,18 @@ class ViewController: UIViewController {
                     print("not found")
                 }
             }
+        } catch let error as NSError {
+            //showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
+        }
+    }
+    
+    func loadEntries() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        var fetchRequest = NSFetchRequest<JournalEntry>(entityName: "JournalEntry")
+        
+        do {
+            EntryManager.loadedEntries = try managedContext.fetch(fetchRequest)
+            print("entries loaded")
         } catch let error as NSError {
             //showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
         }

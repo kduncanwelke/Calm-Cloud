@@ -13,61 +13,21 @@ class JournalViewController: UIViewController {
     
     // MARK: IBOutlets
     
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        textView.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(sectionChanged), name: NSNotification.Name(rawValue: "sectionChanged"), object: nil)
         
-        let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        pageControl.numberOfPages = EntryManager.loadedEntries.count
     }
 
-    // MARK: Custom functions
-    
-    @objc func adjustForKeyboard(notification: Notification) {
-        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        
-        let keyboardScreenEndFrame = keyboardValue.cgRectValue
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            textView.contentInset = .zero
-        } else {
-            // test on different size devices to make sure it works
-            textView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: (0.66*keyboardViewEndFrame.height) - view.safeAreaInsets.bottom, right: 0)
-        }
-        
-        textView.scrollIndicatorInsets = textView.contentInset
-        
-        let selectedRange = textView.selectedRange
-        textView.scrollRangeToVisible(selectedRange)
+    @objc func sectionChanged() {
+        pageControl.currentPage = PageControllerManager.currentPage
     }
     
-    func saveEntry() {
-        if textView.text != nil && textView.text != "" {
-        
-            var managedContext = CoreDataManager.shared.managedObjectContext
-            
-            let newJournalSave = JournalEntry(context: managedContext)
-            newJournalSave.date = Date()
-            newJournalSave.text = textView.text
-            
-            do {
-                try managedContext.save()
-                print("saved entry")
-            } catch {
-                // this should never be displayed but is here to cover the possibility
-                //showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
-            }
-        } else {
-            print("text view was empty or nil")
-        }
-    }
-
     /*
     // MARK: - Navigation
 
@@ -79,11 +39,6 @@ class JournalViewController: UIViewController {
     */
     
     // MARK: IBActions
-    
-    @IBAction func savePressed(_ sender: UIButton) {
-        saveEntry()
-    }
-    
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
