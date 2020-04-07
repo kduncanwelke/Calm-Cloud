@@ -13,6 +13,7 @@ class PageViewController: UIPageViewController {
     // MARK: Variables
     
     var pendingIndex: Int?
+    let calendar = Calendar.current
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,17 +30,38 @@ class PageViewController: UIPageViewController {
         var contentController = getContentViewController(withIndex: PageControllerManager.currentPage)!
         var contentControllers = [contentController]
             
-        // if no entry exists for current day, add blank page
         self.setViewControllers(contentControllers, direction: UIPageViewController.NavigationDirection.forward, animated: true, completion: nil)
     }
     
     // create content view
     func getContentViewController(withIndex index: Int) -> ContentViewController? {
-        var contentVC = self.storyboard?.instantiateViewController(withIdentifier: "contentVC") as! ContentViewController
-        contentVC.itemIndex = index
-        contentVC.entry = EntryManager.loadedEntries[index]
-            
-        return contentVC
+        if index == 0 {
+            if EntryManager.loadedEntries.isEmpty {
+                // if there are no entries add a blank one
+                var managedContext = CoreDataManager.shared.managedObjectContext
+                EntryManager.loadedEntries.insert(JournalEntry(context: managedContext), at: 0)
+            } else {
+                // if there are enrties first item does not match the current date there is no entry for today, so add a blank one
+                if let firstEntry = EntryManager.loadedEntries.first, let dateofEntry = firstEntry.date {
+                    let entryIsForToday = calendar.isDate(dateofEntry, inSameDayAs: Date())
+                    
+                    if entryIsForToday == false {
+                        var managedContext = CoreDataManager.shared.managedObjectContext
+                        EntryManager.loadedEntries.insert(JournalEntry(context: managedContext), at: 0)
+                    }
+                }
+            }
+        }
+        
+        if EntryManager.loadedEntries.count > 0 {
+            var contentVC = self.storyboard?.instantiateViewController(withIdentifier: "contentVC") as! ContentViewController
+            contentVC.itemIndex = index
+            contentVC.entry = EntryManager.loadedEntries[index]
+                
+            return contentVC
+        } else {
+            return nil
+        }
     }
     
     /*

@@ -13,13 +13,16 @@ class ContentViewController: UIViewController {
     
     // MARK: IBOutlets
     
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var savedLabel: UILabel!
     
     // MARK: Variables
     
     var itemIndex = PageControllerManager.currentPage
     var entry: JournalEntry?
+    let dateFormatter = DateFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,20 +33,25 @@ class ContentViewController: UIViewController {
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
+        savedLabel.alpha = 0.0
         textView.delegate = self
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
         loadUI()
     }
     
     // MARK: Custom functions
     
     func loadUI() {
-        guard let currentEntry = entry else {
+        guard let currentEntry = entry, let chosenDate = currentEntry.date else {
             saveButton.isHidden = false
+            dateLabel.text = dateFormatter.string(from: Date())
             
             return
         }
         
         textView.text = currentEntry.text
+        dateLabel.text = dateFormatter.string(from: chosenDate)
         saveButton.isHidden = true
     }
     
@@ -67,18 +75,25 @@ class ContentViewController: UIViewController {
     }
     
     func saveEntry() {
-        if textView.text != nil && textView.text != "" {
+        if textView.text != nil && textView.text != "Start typing . . ." {
             
             var managedContext = CoreDataManager.shared.managedObjectContext
             
-            let newJournalSave = JournalEntry(context: managedContext)
-            newJournalSave.date = Date()
-            newJournalSave.text = textView.text
-            EntryManager.loadedEntries.append(newJournalSave)
+            entry?.date = Date()
+            entry?.text = textView.text
+            
+            // remove empty placeholder
+            EntryManager.loadedEntries.remove(at: 0)
+            
+            guard let newEntry = entry else { return }
+            
+            EntryManager.loadedEntries.insert(newEntry, at: 0)
             
             do {
                 try managedContext.save()
                 print("saved entry")
+                saveButton.isHidden = true
+                savedLabel.animateFadeIn()
             } catch {
                 // this should never be displayed but is here to cover the possibility
                 //showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")

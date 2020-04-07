@@ -16,6 +16,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var cloudKitty: UIImageView!
+    
+    // MARK: Variables
+    
+   
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +42,6 @@ class ViewController: UIViewController {
         cloudKitty.move(to: bedDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .bed
         //cloudKitty.move(to: bowlsDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        
-        
     }
     
     // MARK: Custom functions
@@ -78,6 +80,7 @@ class ViewController: UIViewController {
         do {
             EntryManager.loadedEntries = try managedContext.fetch(fetchRequest)
             print("entries loaded")
+            EntryManager.loadedEntries.reverse()
         } catch let error as NSError {
             //showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
         }

@@ -729,7 +729,7 @@
                                 <rect key="frame" x="187.5" y="764" width="39" height="37"/>
                             </pageControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qNk-O3-uzT">
-                                <rect key="frame" x="0.0" y="175" width="414" height="591"/>
+                                <rect key="frame" x="0.0" y="174.5" width="414" height="591.5"/>
                                 <connections>
                                     <segue destination="lLY-9U-DnL" kind="embed" id="z4R-CT-JRz"/>
                                 </connections>
@@ -776,7 +776,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Start typing . . ." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gkF-2n-KEE">
-                                <rect key="frame" x="20" y="69" width="374" height="730"/>
+                                <rect key="frame" x="20" y="76.5" width="374" height="722.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -789,20 +789,38 @@
                                     <action selector="savePressed:" destination="em3-iq-Z2f" eventType="touchUpInside" id="nZo-px-iNe"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ny-T0-0Uo">
+                                <rect key="frame" x="190" y="49" width="34.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QmU-X3-MS5">
+                                <rect key="frame" x="162" y="430" width="90" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.88149459279999998" blue="0.95206307000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="gkF-2n-KEE" firstAttribute="top" secondItem="3lM-xy-jaG" secondAttribute="top" constant="25" id="0si-RH-fl3"/>
+                            <constraint firstItem="gkF-2n-KEE" firstAttribute="top" secondItem="0Ny-T0-0Uo" secondAttribute="bottom" constant="8" id="1HD-Ce-9Up"/>
                             <constraint firstItem="gkF-2n-KEE" firstAttribute="leading" secondItem="3lM-xy-jaG" secondAttribute="leading" constant="20" id="1lS-ww-9MX"/>
+                            <constraint firstItem="QmU-X3-MS5" firstAttribute="centerY" secondItem="eqt-Vm-hAb" secondAttribute="centerY" id="O4H-7x-ZaX"/>
                             <constraint firstItem="3lM-xy-jaG" firstAttribute="bottom" secondItem="mlV-f0-S6Q" secondAttribute="bottom" constant="25" id="OxJ-EQ-F8i"/>
+                            <constraint firstItem="0Ny-T0-0Uo" firstAttribute="top" secondItem="3lM-xy-jaG" secondAttribute="top" constant="5" id="QWt-OY-Ggr"/>
                             <constraint firstItem="mlV-f0-S6Q" firstAttribute="top" secondItem="gkF-2n-KEE" secondAttribute="bottom" constant="8" id="QgN-7I-20w"/>
+                            <constraint firstItem="0Ny-T0-0Uo" firstAttribute="centerX" secondItem="eqt-Vm-hAb" secondAttribute="centerX" id="UyM-m9-rYQ"/>
                             <constraint firstItem="mlV-f0-S6Q" firstAttribute="centerX" secondItem="eqt-Vm-hAb" secondAttribute="centerX" id="aRq-KZ-mxu"/>
+                            <constraint firstItem="QmU-X3-MS5" firstAttribute="centerX" secondItem="eqt-Vm-hAb" secondAttribute="centerX" id="kMs-Kf-esF"/>
                             <constraint firstItem="3lM-xy-jaG" firstAttribute="trailing" secondItem="gkF-2n-KEE" secondAttribute="trailing" constant="20" id="zbo-Rf-Vrp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3lM-xy-jaG"/>
                     </view>
                     <connections>
+                        <outlet property="dateLabel" destination="0Ny-T0-0Uo" id="iIJ-gW-GEy"/>
                         <outlet property="saveButton" destination="mlV-f0-S6Q" id="l1M-3N-vsU"/>
+                        <outlet property="savedLabel" destination="QmU-X3-MS5" id="6Yo-D1-jlf"/>
                         <outlet property="textView" destination="gkF-2n-KEE" id="71K-QC-fzy"/>
                     </connections>
                 </viewController>
