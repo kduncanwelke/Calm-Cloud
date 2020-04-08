@@ -82,7 +82,7 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
             print("saved")
         } catch {
             // this should never be displayed but is here to cover the possibility
-            //showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
+            showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
         }
     }
     

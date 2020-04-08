@@ -14,21 +14,30 @@ import UIKit
 extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return remindersList.count
+        return ReminderManager.remindersList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reminderCell", for: indexPath) as! ReminderTableViewCell
     
-        print("table")
-        let reminder = remindersList[indexPath.row]
+        let reminder = ReminderManager.remindersList[indexPath.row]
         
         cell.cellName.text = reminder.name
-        cell.cellTime.text = "\(reminder.hour):\(reminder.minute)"
+        
+        let minute: String = {
+            if reminder.minute < 10 {
+                return "0\(reminder.minute)"
+            } else {
+                return "\(reminder.minute)"
+            }
+        }()
+        
+        cell.cellTime.text = "\(reminder.hour):\(minute)"
+        
         cell.cellDateOrRepeat.text = {
-            if reminder.reminderDate == nil {
+            if reminder.date == nil {
                 return "Daily"
-            } else if let day = reminder.reminderDate {
+            } else if let day = reminder.date {
                 return "\(day)"
             } else {
                 return ""
@@ -41,11 +50,11 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            var reminderToDelete = remindersList[indexPath.row]
+            var reminderToDelete = ReminderManager.remindersList[indexPath.row]
           
             // also delete notification and from core data
             
-            remindersList.remove(at: indexPath.row)
+            ReminderManager.remindersList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

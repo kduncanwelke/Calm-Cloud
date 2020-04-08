@@ -69,7 +69,7 @@ class ViewController: UIViewController {
                 }
             }
         } catch let error as NSError {
-            //showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
+            showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
         }
     }
     
@@ -82,7 +82,7 @@ class ViewController: UIViewController {
             print("entries loaded")
             EntryManager.loadedEntries.reverse()
         } catch let error as NSError {
-            //showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
+            showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
         }
     }
     

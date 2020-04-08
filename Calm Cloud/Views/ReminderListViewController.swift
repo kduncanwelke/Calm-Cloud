@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ReminderListViewController: UIViewController {
 
@@ -16,18 +17,37 @@ class ReminderListViewController: UIViewController {
     
     // MARK: Variables
    
-    var remindersList: [Reminder] = [Reminder(name: "Feed cat", hour: 5, minute: 00, reminderDate: nil)]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTable), name: NSNotification.Name(rawValue: "reloadTable"), object: nil)
+        
+        loadReminders()
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = UIColor(red:1.00, green:0.88, blue:0.95, alpha:1.00)
     }
     
+    // MARK: Custom functions
+    
+    @objc func reloadTable() {
+        tableView.reloadData()
+    }
+    
+    func loadReminders() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        var fetchRequest = NSFetchRequest<Reminder>(entityName: "Reminder")
+        
+        do {
+            ReminderManager.remindersList = try managedContext.fetch(fetchRequest)
+            print("reminders loaded")
+        } catch let error as NSError {
+            showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
+        }
+    }
 
     /*
     // MARK: - Navigation

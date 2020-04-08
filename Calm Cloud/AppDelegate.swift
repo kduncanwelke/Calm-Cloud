@@ -9,12 +9,20 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.delegate = self
+        
+        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { didAllow, error in
+            if let error = error {
+                print("Error found: \(error)")
+            }
+        })
+        
         return true
     }
 
@@ -33,5 +41,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    // MARK: Notifications
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("Notifications successfully registered for")
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register for notifications")
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
 }
 
