@@ -17,6 +17,8 @@ class ReminderViewController: UIViewController {
     @IBOutlet weak var dailySwitch: UISwitch!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var timePicker: UIDatePicker!
+    @IBOutlet weak var savedLabel: UILabel!
+    
     
     // MARK: Variables
     
@@ -26,6 +28,7 @@ class ReminderViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        savedLabel.alpha = 0.0
         datePicker.minimumDate = Date()
     }
     
@@ -61,6 +64,13 @@ class ReminderViewController: UIViewController {
         }
     }
     
+    func resetUI() {
+        dailySwitch.isOn = false
+        datePicker.date = Date()
+        timePicker.date = Date()
+        messageTextField.text = ""
+    }
+    
     func getTime(reminder: Reminder) {
         let date = timePicker.date
         
@@ -93,6 +103,8 @@ class ReminderViewController: UIViewController {
             do {
                 try managedContext.save()
                 print("saved entry")
+                savedLabel.animateFadeIn()
+                resetUI()
             } catch {
                 // this should never be displayed but is here to cover the possibility
                 showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")

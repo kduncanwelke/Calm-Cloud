@@ -191,6 +191,10 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "visitFavorites", sender: Any?.self)
     }
     
+    @IBAction func activitiesTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "visitActivities", sender: Any?.self)
+    }
+    
     @IBAction func journalTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "visitJournal", sender: Any?.self)
     }

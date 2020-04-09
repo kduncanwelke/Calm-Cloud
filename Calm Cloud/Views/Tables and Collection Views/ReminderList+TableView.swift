@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-// MARK: - Table view data source
-
 extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,7 +36,7 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
             if reminder.date == nil {
                 return "Daily"
             } else if let day = reminder.date {
-                return "\(day)"
+                return dateFormatter.string(from: day)
             } else {
                 return ""
             }
@@ -52,7 +50,7 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
         if editingStyle == .delete {
             var reminderToDelete = ReminderManager.remindersList[indexPath.row]
           
-            // also delete notification and from core data
+            fullDelete(reminder: reminderToDelete)
             
             ReminderManager.remindersList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
