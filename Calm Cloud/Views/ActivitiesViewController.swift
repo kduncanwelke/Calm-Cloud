@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import CoreData
 
 class ActivitiesViewController: UIViewController {
 
     // MARK: IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var completion: [Int : Bool] = [:]
+    var loaded: [ActivityId] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +26,59 @@ class ActivitiesViewController: UIViewController {
         tableView.dataSource = self
         
         tableView.backgroundColor = UIColor.white
+        
+        loadCompleted()
     }
     
+    func loadCompleted() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        var fetchRequest = NSFetchRequest<ActivityId>(entityName: "ActivityId")
+        
+        do {
+            loaded = try managedContext.fetch(fetchRequest)
+            
+            for item in loaded {
+                completion[Int(item.id)] = true
+            }
+            print("entries loaded")
+        } catch let error as NSError {
+            showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
+        }
+    }
+    
+    func saveCompletedActivity(id: Int) {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        let activitySave = ActivityId(context: managedContext)
+        
+        activitySave.id = Int16(id)
+        
+        do {
+            try managedContext.save()
+            print("saved activity")
+        } catch {
+            // this should never be displayed but is here to cover the possibility
+            showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
+        }
+    }
+    
+    func deleteIncompleteActivity(id: Int) {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        var toDelete: ActivityId
+        
+        for item in loaded {
+            if item.id == Int16(id) {
+                toDelete = item
+                managedContext.delete(toDelete)
+            }
+        }
+        
+        do {
+            try managedContext.save()
+            print("delete successful")
+        } catch {
+            print("Failed to save")
+        }
+    }
 
     /*
     // MARK: - Navigation

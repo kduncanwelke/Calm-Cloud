@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G4032" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ActivityId" representedClassName="ActivityId" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="JournalEntry" representedClassName="JournalEntry" syncable="YES" codeGenerationType="class">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="text" attributeType="String"/>
@@ -18,5 +21,6 @@
         <element name="JournalEntry" positionX="-63" positionY="-9" width="128" height="73"/>
         <element name="Photo" positionX="-63" positionY="-18" width="128" height="58"/>
         <element name="Reminder" positionX="-63" positionY="0" width="128" height="118"/>
+        <element name="ActivityId" positionX="-63" positionY="27" width="128" height="58"/>
     </elements>
 </model>

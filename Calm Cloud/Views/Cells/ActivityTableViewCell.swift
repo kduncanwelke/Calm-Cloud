@@ -16,6 +16,10 @@ class ActivityTableViewCell: UITableViewCell {
     @IBOutlet weak var cellCategoryLabel: UILabel!
     @IBOutlet weak var cellCheckButton: UIButton!
     
+    // MARK: Variables
+    
+    weak var cellDelegate: CellCheckDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,4 +31,20 @@ class ActivityTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    
+    // MARK: IBActions
+    
+    @IBAction func checkTapped(_ sender: UIButton) {
+        var isChecked = false
+        
+        if sender.imageView?.image?.pngData() == UIImage(named: "incomplete")?.pngData() {
+            sender.setImage(UIImage(named: "complete"), for: .normal)
+            isChecked = true
+        } else {
+            sender.setImage(UIImage(named: "incomplete"), for: .normal)
+            isChecked = false
+        }
+        
+        self.cellDelegate?.didChangeSelectedState(sender: self, isChecked: isChecked)
+    }
 }

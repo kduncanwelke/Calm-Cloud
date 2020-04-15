@@ -20,7 +20,6 @@ class ViewController: UIViewController {
     // MARK: Variables
     
    
-  
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -37,7 +36,6 @@ class ViewController: UIViewController {
         cloudKitty.startAnimating()
         
         let bedDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/2)
-        
         
         cloudKitty.move(to: bedDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .bed
@@ -180,6 +178,10 @@ class ViewController: UIViewController {
             cloudKitty.image = UIImage(named: "cloudkitty")
             container.subviews.last?.removeFromSuperview()
         }
+    }
+    
+    @IBAction func doorTapped(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "goOutside", sender: Any?.self)
     }
     
     
