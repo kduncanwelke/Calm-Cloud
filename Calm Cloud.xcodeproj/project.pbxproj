@@ -146,10 +146,10 @@
 				2D48CC3F242548B200D0FBBB /* Main.storyboard */,
 				2D8C838B2433CBB2006711F2 /* Data.xcdatamodeld */,
 				2D8C838E2433CDD9006711F2 /* CoreDataManager.swift */,
+				2D7E2AF224477CFA006C76BD /* Assets.xcassets */,
 				2D26545F2441164600FBFF74 /* Helpers */,
 				2DD50C1F242D58D800073B49 /* Animation */,
 				2D48CC44242548B400D0FBBB /* LaunchScreen.storyboard */,
-				2D7E2AF224477CFA006C76BD /* Assets.xcassets */,
 				2D48CC47242548B400D0FBBB /* Info.plist */,
 			);
 			path = "Calm Cloud";

@@ -15,8 +15,11 @@ class ActivitiesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: Variables
+    
     var completion: [Int : Bool] = [:]
     var loaded: [ActivityId] = []
+    let userDefaultDate = "userDefaultDate"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,21 @@ class ActivitiesViewController: UIViewController {
         loadCompleted()
     }
     
+    func isSameDay() -> Bool {
+        let date = Date()
+        let calendar = Calendar.current
+        let dateToCompare = calendar.component(.day , from: date)
+        
+        let userDefaultDate = UserDefaults.standard.integer(forKey: "userDefaultDate")
+        
+        if userDefaultDate != dateToCompare {
+            UserDefaults.standard.set(dateToCompare, forKey: self.userDefaultDate)
+            return false
+        } else {
+            return true
+        }
+    }
+    
     func loadCompleted() {
         var managedContext = CoreDataManager.shared.managedObjectContext
         var fetchRequest = NSFetchRequest<ActivityId>(entityName: "ActivityId")
@@ -37,9 +55,23 @@ class ActivitiesViewController: UIViewController {
         do {
             loaded = try managedContext.fetch(fetchRequest)
             
-            for item in loaded {
-                completion[Int(item.id)] = true
+            if isSameDay() {
+                for item in loaded {
+                    completion[Int(item.id)] = true
+                }
+            } else {
+                for item in loaded {
+                    managedContext.delete(item)
+                }
+                
+                do {
+                    try managedContext.save()
+                    print("deleted all")
+                } catch {
+                    print("Failed to save")
+                }
             }
+            
             print("entries loaded")
         } catch let error as NSError {
             showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")

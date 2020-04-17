@@ -33,9 +33,6 @@ extension UIView {
         })
     }
     
-    
-    
-    // animate box style buttons with press animation
     func animateImageRight() {
         UIView.animate(withDuration: 0.2, animations: {
             self.transform = CGAffineTransform(translationX: -150.0, y: 0.0)
