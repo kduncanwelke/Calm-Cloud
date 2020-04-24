@@ -42,6 +42,7 @@
 		2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C1A242D47B200073B49 /* AnimationExtensions.swift */; };
 		2DD50C1D242D535F00073B49 /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C1C242D535F00073B49 /* JournalViewController.swift */; };
 		2DD50C21242D58F600073B49 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */; };
+		2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */; };
 		2DDEA32B242A98E800717E8C /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEA32A242A98E800717E8C /* AnimationManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -207,6 +208,7 @@
 		2DD50C1F242D58D800073B49 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */,
 				2DDEA32A242A98E800717E8C /* AnimationManager.swift */,
 				2DD50C1A242D47B200073B49 /* AnimationExtensions.swift */,
 			);
@@ -314,6 +316,7 @@
 				2D7FCABE2432918C00E2DEC4 /* ReminderListViewController.swift in Sources */,
 				2D384C21243BCA3B00D0FFEB /* PageControllerManager.swift in Sources */,
 				2D7FCABA2432506100E2DEC4 /* Photo+ScrollViewDelegate.swift in Sources */,
+				2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */,
 				2D7FCAC224329CDE00E2DEC4 /* ReminderList+TableView.swift in Sources */,
 				2D8C838F2433CDD9006711F2 /* CoreDataManager.swift in Sources */,
 				2D7FCAC02432968F00E2DEC4 /* ReminderTableViewCell.swift in Sources */,

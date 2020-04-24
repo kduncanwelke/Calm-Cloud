@@ -19,7 +19,7 @@ extension UIView {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "stopMoving"), object: nil)
         })
     }
-    
+
     func floatMove(to destination: CGPoint, returnTo: CGPoint, duration: TimeInterval,
                    options: UIView.AnimationOptions) {
         UIView.animate(withDuration: duration, delay: 0, options: options, animations: {

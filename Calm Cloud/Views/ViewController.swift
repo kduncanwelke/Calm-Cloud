@@ -18,14 +18,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var cloudKitty: UIImageView!
     @IBOutlet weak var waterImage: UIImageView!
     @IBOutlet weak var foodImage: UIImageView!
+    @IBOutlet weak var toyImage: UIImageView!
     
     
     // MARK: Variables
     
     var hasFood = false
     var hasWater = false
-    var observation: NSKeyValueObservation?
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -40,7 +40,9 @@ class ViewController: UIViewController {
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
         
-        cloudKitty.image = AnimationManager.startImage
+        sleep()
+        AnimationManager.location = .middle
+        /*cloudKitty.image = AnimationManager.startImage
         
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.animationDuration = 1.0
@@ -49,16 +51,7 @@ class ViewController: UIViewController {
         let bedDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/2)
         
         cloudKitty.move(to: bedDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .bed
-        
-        observation = cloudKitty.observe(\.isAnimating) { [weak self] imageView, change in
-            if self?.cloudKitty.isAnimating == false {
-                print("ended")
-                self?.stopMoving()
-                //self?.observation = nil
-            }
-            print("observe")
-        }
+        AnimationManager.location = .bed*/
     }
     
     // MARK: Custom functions
@@ -104,7 +97,7 @@ class ViewController: UIViewController {
     }
     
     func randomRepeatCount() -> Int {
-        var randomRepeatCount = Int.random(in: 1...6)
+        var randomRepeatCount = Int.random(in: 2...6)
         return randomRepeatCount
     }
     
@@ -113,6 +106,7 @@ class ViewController: UIViewController {
     // right to left movemenet
     
     func moveLeftToBed() {
+        print("left to bed")
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.startAnimating()
         let bedDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/2)
@@ -120,7 +114,17 @@ class ViewController: UIViewController {
         AnimationManager.location = .bed
     }
     
+    func moveLeftToFood() {
+        print("left to food")
+        cloudKitty.animationImages = AnimationManager.movingLeftAnimation
+        cloudKitty.startAnimating()
+        let foodBowlDestination = CGPoint(x: container.frame.width/1.66, y: (container.frame.height/3)*2.33)
+        cloudKitty.move(to: foodBowlDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
+        AnimationManager.location = .food
+    }
+
     func moveLeftToWater() {
+        print("left to water")
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.startAnimating()
         let waterBowlDestination = CGPoint(x: container.frame.width/2.45, y: (container.frame.height/3)*2.33)
@@ -131,6 +135,7 @@ class ViewController: UIViewController {
     // left to right movement
     
     func moveRightToFood() {
+         print("right to food")
          cloudKitty.animationImages = AnimationManager.movingRightAnimation
          cloudKitty.startAnimating()
          let foodBowlDestination = CGPoint(x: container.frame.width/1.66, y: (container.frame.height/3)*2.33)
@@ -139,6 +144,7 @@ class ViewController: UIViewController {
     }
 
     func moveRightToWater() {
+        print("right to water")
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
         let waterBowlDestination = CGPoint(x: container.frame.width/2.45, y: (container.frame.height/3)*2.33)
@@ -146,16 +152,28 @@ class ViewController: UIViewController {
         AnimationManager.location = .water
     }
     
+    func moveRightToToy() {
+        print("right to food")
+        cloudKitty.animationImages = AnimationManager.movingRightAnimation
+        cloudKitty.startAnimating()
+        let toyDestination = CGPoint(x: container.frame.width/1.4, y: (container.frame.height/3)*2.4)
+        cloudKitty.move(to: toyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
+        AnimationManager.location = .toy
+    }
+    
     // bed animations
     
     func sleep() {
+        print("sleep")
         cloudKitty.animationImages = AnimationManager.sleepAnimation
         cloudKitty.animationDuration = 2.0
-        cloudKitty.animationRepeatCount = randomRepeatCount()
+        cloudKitty.animationRepeatCount = 0
         cloudKitty.startAnimating()
+        AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
     }
     
     func bounce() {
+        print("bounce")
         cloudKitty.animationImages = AnimationManager.bouncingAnimation
         cloudKitty.animationDuration = 2.0
         cloudKitty.startAnimating()
@@ -168,50 +186,86 @@ class ViewController: UIViewController {
     // food bowl animation
     
     func eat() {
+        print("eat")
         cloudKitty.animationImages = AnimationManager.eatAnimation
         cloudKitty.animationDuration = 1.0
+        cloudKitty.animationRepeatCount = 0
         cloudKitty.startAnimating()
-        cloudKitty.animationRepeatCount = randomRepeatCount()
+        AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
         AnimationManager.mood = .happy
     }
     
     func bounceNextToFood() {
+        print("bounce at food")
         cloudKitty.animationImages = AnimationManager.bouncingAnimation
         cloudKitty.animationDuration = 1.0
         cloudKitty.startAnimating()
-        
         let floatDestination = CGPoint(x: container.frame.width/1.66, y: (container.frame.height/3)*2.33-20)
+        let foodBowlDestination = CGPoint(x: container.frame.width/1.66, y: (container.frame.height/3)*2.33)
         
-        cloudKitty.move(to: floatDestination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
+        cloudKitty.floatMove(to: floatDestination, returnTo: foodBowlDestination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
     }
     
     // water bowl animations
     
     func drink() {
+        print("drink")
         cloudKitty.animationImages = AnimationManager.drinkAnimation
         cloudKitty.animationDuration = 1.0
+        cloudKitty.animationRepeatCount = 0
         cloudKitty.startAnimating()
-        cloudKitty.animationRepeatCount = randomRepeatCount()
+        AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
         AnimationManager.mood = .hungry
     }
     
     func bounceNextToWater() {
+        print("bounce at water")
         cloudKitty.animationImages = AnimationManager.bouncingAnimation
         cloudKitty.animationDuration = 3.0
         cloudKitty.startAnimating()
-        let floatDestination = CGPoint(x: container.frame.width/2, y: ((container.frame.height/3)*2)-20)
+        let floatDestination = CGPoint(x: container.frame.width/2.45, y: (container.frame.height/3)*2.33-20)
+        let waterBowlDestination = CGPoint(x: container.frame.width/2.45, y: (container.frame.height/3)*2.33)
         
-        cloudKitty.move(to: floatDestination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
+        cloudKitty.floatMove(to: floatDestination, returnTo: waterBowlDestination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
+    }
+    
+    // toy animations
+    
+    func play() {
+        print("play")
+        cloudKitty.animationImages = AnimationManager.playAnimation
+        toyImage.animationImages = AnimationManager.toyAnimation
+        cloudKitty.animationDuration = 1.0
+        toyImage.animationDuration = 1.0
+        cloudKitty.animationRepeatCount = 0
+        toyImage.animationRepeatCount = 0
+        cloudKitty.startAnimating()
+        toyImage.startAnimating()
+        AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
+    }
+    
+    func bounceNextToToy() {
+        print("bounce at food")
+        cloudKitty.animationImages = AnimationManager.bouncingAnimation
+        cloudKitty.animationDuration = 1.0
+        cloudKitty.startAnimating()
+        let floatDestination = CGPoint(x: container.frame.width/1.5, y: (container.frame.height/3)*2.4-20)
+        let toyDestination = CGPoint(x: container.frame.width/1.4, y: (container.frame.height/3)*2.4)
+        
+        cloudKitty.floatMove(to: floatDestination, returnTo: toyDestination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
     }
     
     // center animations
     
     func bounceAtCenter() {
+        print("bounce at center")
         cloudKitty.animationImages = AnimationManager.bouncingAnimation
         cloudKitty.animationDuration = 3.0
         cloudKitty.startAnimating()
         let floatDestination = CGPoint(x: container.frame.width/5, y: ((container.frame.height/3)*2)-20)
-        cloudKitty.move(to: floatDestination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
+        let centerDestination = CGPoint(x: container.frame.width/5, y: (container.frame.height/3)*2)
+        
+        cloudKitty.floatMove(to: floatDestination, returnTo: centerDestination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
     }
     
     // random location-specific animations
@@ -249,6 +303,17 @@ class ViewController: UIViewController {
         }
     }
     
+    func randomToyAnimation() {
+        let range = [1,2]
+        let animation = range.randomElement()
+        
+        if animation == 1 {
+            play()
+        } else {
+            bounceNextToToy()
+        }
+    }
+    
     func randomCenterAnimation() {
         bounceAtCenter()
     }
@@ -256,18 +321,33 @@ class ViewController: UIViewController {
     // location change animations
     
     func randomMoveFromBedAnimation() {
-        let range = [1,2]
+        let range = [1,2,3]
         let animation = range.randomElement()
         
         if animation == 1 {
             moveRightToWater()
-        } else {
+        } else if animation == 2 {
             moveRightToFood()
+        } else {
+            moveRightToToy()
+        }
+    }
+    
+    func randomMoveFromToy() {
+        let range = [1,2,3]
+        let animation = range.randomElement()
+        
+        if animation == 1 {
+            moveLeftToBed()
+        } else if animation == 2 {
+            moveLeftToWater()
+        } else {
+            moveLeftToFood()
         }
     }
     
     func randomMoveFromCenterAnimation() {
-        let range = [1,2,3]
+        let range = [1,2,3,4]
         let animation = range.randomElement()
         
         if animation == 1 {
@@ -276,36 +356,45 @@ class ViewController: UIViewController {
             moveRightToFood()
         } else if animation == 3 {
             moveLeftToBed()
+        } else {
+            moveRightToToy()
         }
     }
     
     func moveFromWater() {
-        let range = [1,2]
+        let range = [1,2,3]
         let animation = range.randomElement()
         
         if animation == 1 {
             moveRightToFood()
-        } else {
+        } else if animation == 2 {
             moveLeftToBed()
+        } else {
+            moveRightToToy()
         }
     }
     
     func moveFromFood() {
-        let range = [1,2]
+        let range = [1,2,3]
         let animation = range.randomElement()
         
         if animation == 1 {
             moveLeftToWater()
-        } else {
+        } else if animation == 2 {
             moveLeftToBed()
+        } else {
+            moveRightToToy()
         }
     }
     
     @objc func stopMoving() {
-        var movement = Bool.random()
+        print("stop moving called")
+        let range = [1,2,3]
+        let animation = range.randomElement()
         cloudKitty.stopAnimating()
+        toyImage.stopAnimating()
         
-        if movement {
+        if animation == 1 {
             print("move")
             switch AnimationManager.location {
             case .bed:
@@ -317,9 +406,9 @@ class ViewController: UIViewController {
             case .middle:
                 randomMoveFromCenterAnimation()
             case .toy:
-                print("toy")
+                randomMoveFromToy()
             }
-        } else {
+        } else if animation == 2 {
             print("place animation")
             switch AnimationManager.location {
             case .bed:
@@ -331,8 +420,11 @@ class ViewController: UIViewController {
             case .middle:
                 randomCenterAnimation()
             case .toy:
-                print("toy")
+                randomToyAnimation()
             }
+        } else {
+            print("sleep from stopmoving")
+            sleep()
         }
     }
     
@@ -356,6 +448,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func giveWater(_ sender: UITapGestureRecognizer) {
+        print("tap")
         if waterImage.isHidden {
             waterImage.isHidden = false
             hasWater = true
