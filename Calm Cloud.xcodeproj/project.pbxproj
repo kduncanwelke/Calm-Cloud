@@ -39,6 +39,8 @@
 		2D8F9045243FC2EF00211802 /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F9044243FC2EF00211802 /* ActivitiesViewController.swift */; };
 		2D8F9049243FC51800211802 /* Activities+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F9048243FC51800211802 /* Activities+TableView.swift */; };
 		2D8F904B243FC5B900211802 /* ActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F904A243FC5B900211802 /* ActivityManager.swift */; };
+		2DB1D48924573DDD00512E4F /* CareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48824573DDD00512E4F /* CareManager.swift */; };
+		2DB1D48B2457415000512E4F /* ViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */; };
 		2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C1A242D47B200073B49 /* AnimationExtensions.swift */; };
 		2DD50C1D242D535F00073B49 /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C1C242D535F00073B49 /* JournalViewController.swift */; };
 		2DD50C21242D58F600073B49 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */; };
@@ -81,6 +83,8 @@
 		2D8F9044243FC2EF00211802 /* ActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
 		2D8F9048243FC51800211802 /* Activities+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activities+TableView.swift"; sourceTree = "<group>"; };
 		2D8F904A243FC5B900211802 /* ActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		2DB1D48824573DDD00512E4F /* CareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareManager.swift; sourceTree = "<group>"; };
+		2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CoreData.swift"; sourceTree = "<group>"; };
 		2DD50C1A242D47B200073B49 /* AnimationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtensions.swift; sourceTree = "<group>"; };
 		2DD50C1C242D535F00073B49 /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 				2D14EBDD243E7740004CB7E2 /* NotificationManager.swift */,
 				2D8F904A243FC5B900211802 /* ActivityManager.swift */,
 				2D14EBDB243E752B004CB7E2 /* ReminderManager.swift */,
+				2DB1D48824573DDD00512E4F /* CareManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 				2D8F9047243FC32100211802 /* Tables and Collection Views */,
 				2D8F9040243F9DE800211802 /* Cells */,
 				2D48CC3D242548B200D0FBBB /* ViewController.swift */,
+				2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */,
 				2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */,
 				2D7FCABB243263E800E2DEC4 /* ReminderViewController.swift */,
 				2D7FCABD2432918C00E2DEC4 /* ReminderListViewController.swift */,
@@ -292,6 +298,7 @@
 				2D384C1F243BC2B700D0FFEB /* ContentViewController.swift in Sources */,
 				2D7FCABC243263E800E2DEC4 /* ReminderViewController.swift in Sources */,
 				2D41EF28242D5CE20058C443 /* PhotoManager.swift in Sources */,
+				2DB1D48B2457415000512E4F /* ViewController+CoreData.swift in Sources */,
 				2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */,
 				2D14EBDE243E7740004CB7E2 /* NotificationManager.swift in Sources */,
 				2D14EBDC243E752B004CB7E2 /* ReminderManager.swift in Sources */,
@@ -301,6 +308,7 @@
 				2D8F904B243FC5B900211802 /* ActivityManager.swift in Sources */,
 				2D7FCAB824324F2F00E2DEC4 /* PhotoViewController.swift in Sources */,
 				2D48CC3A242548B200D0FBBB /* AppDelegate.swift in Sources */,
+				2DB1D48924573DDD00512E4F /* CareManager.swift in Sources */,
 				2D41EF2F242D5EBB0058C443 /* DocumentsManager.swift in Sources */,
 				2D8C838D2433CBB2006711F2 /* Data.xcdatamodeld in Sources */,
 				2DD50C21242D58F600073B49 /* PhotoCollectionViewCell.swift in Sources */,

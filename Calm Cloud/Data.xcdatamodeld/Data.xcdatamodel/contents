@@ -3,6 +3,11 @@
     <entity name="ActivityId" representedClassName="ActivityId" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="Care" representedClassName="Care" syncable="YES" codeGenerationType="class">
+        <attribute name="lastCleaned" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastFed" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastWatered" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
     <entity name="JournalEntry" representedClassName="JournalEntry" syncable="YES" codeGenerationType="class">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="text" attributeType="String"/>
@@ -18,9 +23,10 @@
         <attribute name="name" attributeType="String"/>
     </entity>
     <elements>
+        <element name="ActivityId" positionX="-63" positionY="27" width="128" height="58"/>
         <element name="JournalEntry" positionX="-63" positionY="-9" width="128" height="73"/>
         <element name="Photo" positionX="-63" positionY="-18" width="128" height="58"/>
         <element name="Reminder" positionX="-63" positionY="0" width="128" height="118"/>
-        <element name="ActivityId" positionX="-63" positionY="27" width="128" height="58"/>
+        <element name="Care" positionX="-63" positionY="27" width="128" height="88"/>
     </elements>
 </model>

@@ -20,6 +20,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var foodImage: UIImageView!
     @IBOutlet weak var toyImage: UIImageView!
     @IBOutlet weak var pottyBox: UIImageView!
+    @IBOutlet weak var door: UIImageView!
+    @IBOutlet weak var openDoor: UIImageView!
+    
     
     // MARK: Variables
     
@@ -30,17 +33,22 @@ class ViewController: UIViewController {
     var hasDrunk = false
     var hasBeenPet = false
     var hasPlayed = false
+    var summonedToToy = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(stopMoving), name: NSNotification.Name(rawValue: "stopMoving"), object: nil)
         
-        waterImage.isHidden = true
-        foodImage.isHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(returnIndoors), name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
+        
+        openDoor.isHidden = true
         
         loadPhotos()
         loadEntries()
+        loadCare()
+        
+        loadUI()
         
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
@@ -62,127 +70,49 @@ class ViewController: UIViewController {
     
     // MARK: Custom functions
     
-    func loadPhotos() {
-        var managedContext = CoreDataManager.shared.managedObjectContext
-        var fetchRequest = NSFetchRequest<Photo>(entityName: "Photo")
+    func loadUI() {
+        if hasFood {
+            foodImage.isHidden = false
+        } else {
+            foodImage.isHidden = true
+        }
         
-        do {
-            PhotoManager.loadedPhotos = try managedContext.fetch(fetchRequest)
-            print("photos loaded")
-            PhotoManager.photos.removeAll()
-            DocumentsManager.filePaths.removeAll()
-            
-            for photoItem in PhotoManager.loadedPhotos {
-                guard let filePath = photoItem.path else { return }
-                let path = DocumentsManager.documentsURL.appendingPathComponent(filePath).path
-                if FileManager.default.fileExists(atPath: path) {
-                    if let contents = UIImage(contentsOfFile: path) {
-                        PhotoManager.photos.append(contents)
-                        DocumentsManager.filePaths.append(filePath)
-                    }
-                } else {
-                    print("not found")
-                }
-            }
-        } catch let error as NSError {
-            showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
+        if hasWater {
+            waterImage.isHidden = false
+        } else {
+            waterImage.isHidden = true
+        }
+        
+        if hasCleanPotty {
+            pottyBox.image = UIImage(named: "litterbox")
         }
     }
     
-    func loadEntries() {
-        var managedContext = CoreDataManager.shared.managedObjectContext
-        var fetchRequest = NSFetchRequest<JournalEntry>(entityName: "JournalEntry")
-        
-        do {
-            EntryManager.loadedEntries = try managedContext.fetch(fetchRequest)
-            print("entries loaded")
-            EntryManager.loadedEntries.reverse()
-        } catch let error as NSError {
-            showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
-        }
+    @objc func returnIndoors() {
+        door.isHidden = false
+        openDoor.isHidden = true
     }
     
     func randomRepeatCount() -> Int {
-        var randomRepeatCount = Int.random(in: 2...6)
+        var randomRepeatCount = Int.random(in: 4...8)
         return randomRepeatCount
     }
     
     func setMood() {
-        if hasDrunk == false {
-            AnimationManager.mood = .thirsty
-        } else if hasEaten == false {
-            AnimationManager.mood = .hungry
-        } else if hasPlayed || hasBeenPet {
-            AnimationManager.mood = .unhappy
-        } else if hasEaten && hasDrunk {
-            AnimationManager.mood = .happy
-        } else {
+        if hasFood == false && hasWater == false && hasCleanPotty == false {
             AnimationManager.mood = .sad
-        }
-    }
-    
-    func adjustMood() {
-        switch AnimationManager.mood {
-        case .happy:
-            if hasEaten && hasDrunk {
-                // no change
-            } else if hasEaten && hasDrunk == false {
-                AnimationManager.mood = .thirsty
-            } else if hasDrunk && hasEaten == false {
-                AnimationManager.mood = .hungry
-            } else if hasBeenPet || hasPlayed {
-                AnimationManager.mood = .unhappy
-            } else {
-                AnimationManager.mood = .sad
-            }
-        case .hungry:
-            if hasEaten && hasDrunk {
-                AnimationManager.mood = .happy
-            } else if hasEaten && hasDrunk == false {
-                AnimationManager.mood = .thirsty
-            } else if hasEaten == false && hasDrunk == false {
-                AnimationManager.mood = .sad
-            } else if hasBeenPet || hasPlayed {
-                AnimationManager.mood = .unhappy
-            } else {
-                // no change
-            }
-        case .thirsty:
-            if hasDrunk && hasEaten {
-                AnimationManager.mood = .happy
-            } else if hasDrunk && hasEaten == false {
-                AnimationManager.mood = .hungry
-            } else if hasEaten == false && hasDrunk == false {
-                AnimationManager.mood = .sad
-            } else if hasBeenPet || hasPlayed {
-                AnimationManager.mood = .unhappy
-            } else {
-                // no change
-            }
-        case .sad:
-            if hasEaten && hasDrunk {
-                AnimationManager.mood = .happy
-            } else if hasEaten && hasDrunk == false {
-                AnimationManager.mood = .thirsty
-            } else if hasEaten == false && hasDrunk {
-                AnimationManager.mood = .hungry
-            } else if hasBeenPet || hasPlayed {
-                AnimationManager.mood = .unhappy
-            } else {
-                // no change
-            }
-        case .unhappy:
-            if hasEaten && hasDrunk {
-                AnimationManager.mood = .happy
-            } else if hasEaten && hasDrunk == false {
-                AnimationManager.mood = .thirsty
-            } else if hasEaten == false && hasDrunk {
-                AnimationManager.mood = .hungry
-            } else if hasBeenPet || hasPlayed {
-                // no change
-            } else {
-                AnimationManager.mood = .sad
-            }
+        } else if hasFood == true && hasWater == false {
+            AnimationManager.mood = .thirsty
+        } else if hasWater == true && hasFood == false {
+            AnimationManager.mood = .hungry
+        } else if hasCleanPotty == false {
+            AnimationManager.mood = .unhappy
+        } else if hasCleanPotty && hasFood == false && hasWater == false {
+            AnimationManager.mood = .unhappy
+        } else if (hasPlayed || hasBeenPet) && hasFood == false && hasWater == false {
+            AnimationManager.mood = .unhappy
+        } else if hasFood && hasWater {
+            AnimationManager.mood = .happy
         }
     }
     
@@ -280,10 +210,24 @@ class ViewController: UIViewController {
         cloudKitty.animationImages = AnimationManager.bouncingAnimation
         cloudKitty.animationDuration = 2.0
         cloudKitty.startAnimating()
-        let floatDestination = CGPoint(x: container.frame.width/8, y: (container.frame.height/2)-20)
-        let bedDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/2)
         
-        cloudKitty.floatMove(to: floatDestination, returnTo: bedDestination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
+        let destination: CGPoint
+        
+        switch AnimationManager.location {
+        case .bed:
+            destination = CGPoint(x: container.frame.width/8, y: container.frame.height/2)
+        case .food:
+            destination = CGPoint(x: container.frame.width/1.66, y: (container.frame.height/3)*2.33)
+        case .water:
+            destination = CGPoint(x: container.frame.width/2.45, y: (container.frame.height/3)*2.33)
+        case .middle:
+            destination = CGPoint(x: container.frame.width/2, y: (container.frame.height/3)*2)
+        case .toy:
+            destination = CGPoint(x: container.frame.width/1.4, y: (container.frame.height/3)*2.4)
+        }
+        
+        let floatDestination = CGPoint(x: destination.x, y: destination.y-20)
+        cloudKitty.floatMove(to: floatDestination, returnTo: destination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
     }
     
     // food bowl animation
@@ -296,18 +240,7 @@ class ViewController: UIViewController {
         cloudKitty.startAnimating()
         AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
         hasEaten = true
-        adjustMood()
-    }
-    
-    func bounceNextToFood() {
-        print("bounce at food")
-        cloudKitty.animationImages = AnimationManager.bouncingAnimation
-        cloudKitty.animationDuration = 1.0
-        cloudKitty.startAnimating()
-        let floatDestination = CGPoint(x: container.frame.width/1.66, y: (container.frame.height/3)*2.33-20)
-        let foodBowlDestination = CGPoint(x: container.frame.width/1.66, y: (container.frame.height/3)*2.33)
-        
-        cloudKitty.floatMove(to: floatDestination, returnTo: foodBowlDestination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
+        setMood()
     }
     
     // water bowl animations
@@ -320,18 +253,7 @@ class ViewController: UIViewController {
         cloudKitty.startAnimating()
         AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
         hasDrunk = true
-        adjustMood()
-    }
-    
-    func bounceNextToWater() {
-        print("bounce at water")
-        cloudKitty.animationImages = AnimationManager.bouncingAnimation
-        cloudKitty.animationDuration = 3.0
-        cloudKitty.startAnimating()
-        let floatDestination = CGPoint(x: container.frame.width/2.45, y: (container.frame.height/3)*2.33-20)
-        let waterBowlDestination = CGPoint(x: container.frame.width/2.45, y: (container.frame.height/3)*2.33)
-        
-        cloudKitty.floatMove(to: floatDestination, returnTo: waterBowlDestination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
+        setMood()
     }
     
     // toy animations
@@ -348,32 +270,10 @@ class ViewController: UIViewController {
         toyImage.startAnimating()
         AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
         hasPlayed = true
-        adjustMood()
-    }
-    
-    func bounceNextToToy() {
-        print("bounce at toy")
-        cloudKitty.animationImages = AnimationManager.bouncingAnimation
-        cloudKitty.animationDuration = 1.0
-        cloudKitty.startAnimating()
-        let floatDestination = CGPoint(x: container.frame.width/1.4, y: (container.frame.height/3)*2.4-20)
-        let toyDestination = CGPoint(x: container.frame.width/1.4, y: (container.frame.height/3)*2.4)
-        
-        cloudKitty.floatMove(to: floatDestination, returnTo: toyDestination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
+        setMood()
     }
     
     // center animations
-    
-    func bounceAtCenter() {
-        print("bounce at center")
-        cloudKitty.animationImages = AnimationManager.bouncingAnimation
-        cloudKitty.animationDuration = 3.0
-        cloudKitty.startAnimating()
-        let floatDestination = CGPoint(x: container.frame.width/2, y: ((container.frame.height/3)*2)-20)
-        let centerDestination = CGPoint(x: container.frame.width/2, y: (container.frame.height/3)*2)
-        
-        cloudKitty.floatMove(to: floatDestination, returnTo: centerDestination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
-    }
     
     func pause() {
         cloudKitty.image = AnimationManager.startImage
@@ -402,7 +302,7 @@ class ViewController: UIViewController {
         } else if animation == 1 && hasFood {
             eat()
         } else {
-            bounceNextToFood()
+            bounce()
         }
     }
     
@@ -415,7 +315,7 @@ class ViewController: UIViewController {
         } else if animation == 1 && hasWater {
             drink()
         } else {
-            bounceNextToWater()
+            bounce()
         }
     }
     
@@ -423,91 +323,78 @@ class ViewController: UIViewController {
         let range = [1,2]
         let animation = range.randomElement()
         
-        if animation == 1 {
+        if summonedToToy {
+            play()
+            summonedToToy = false
+        } else if animation == 1 {
             play()
         } else {
-            bounceNextToToy()
+            bounce()
         }
     }
     
     func randomCenterAnimation() {
-        bounceAtCenter()
+        bounce()
     }
     
     // location change animations
     
-    func randomMoveFromBedAnimation() {
+    func randomMove() {
         let range = [1,2,3,4]
         let animation = range.randomElement()
         
         if animation == 1 {
-            moveRightToWater()
+            switch AnimationManager.location {
+            case .bed:
+                moveRightToWater()
+            case .food:
+                moveLeftToWater()
+            case .water:
+                moveRightToFood()
+            case .middle:
+                moveLeftToBed()
+            case .toy:
+                moveLeftToBed()
+            }
         } else if animation == 2 {
-            moveRightToFood()
-        } else if animation == 3{
-            moveRightToToy()
-        } else {
-            moveRightToCenter()
-        }
-    }
-    
-    func randomMoveFromToy() {
-        let range = [1,2,3,4]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            moveLeftToBed()
-        } else if animation == 2 {
-            moveLeftToWater()
+            switch AnimationManager.location {
+            case .bed:
+                moveRightToFood()
+            case .food:
+                moveLeftToBed()
+            case .water:
+               moveLeftToBed()
+            case .middle:
+               moveRightToFood()
+            case .toy:
+                moveLeftToWater()
+            }
         } else if animation == 3 {
-            moveLeftToFood()
+            switch AnimationManager.location {
+            case .bed:
+                moveRightToToy()
+            case .food:
+                 moveRightToToy()
+            case .water:
+                moveRightToToy()
+            case .middle:
+                moveLeftToBed()
+            case .toy:
+                moveLeftToFood()
+            }
         } else {
-            moveLeftToCenter()
-        }
-    }
-    
-    func randomMoveFromCenterAnimation() {
-        let range = [1,2,3,4]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            moveLeftToBed()
-        } else if animation == 2 {
-            moveRightToFood()
-        } else if animation == 3 {
-            moveLeftToBed()
-        } else {
-            moveRightToToy()
-        }
-    }
-    
-    func moveFromWater() {
-        let range = [1,2,3,4]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            moveRightToFood()
-        } else if animation == 2 {
-            moveLeftToBed()
-        } else if animation == 3 {
-            moveRightToToy()
-        } else {
-            moveRightToCenter()
-        }
-    }
-    
-    func moveFromFood() {
-        let range = [1,2,3,4]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            moveLeftToWater()
-        } else if animation == 2 {
-            moveLeftToBed()
-        } else if animation == 3 {
-            moveRightToToy()
-        } else {
-            moveLeftToCenter()
+            switch AnimationManager.location {
+            case .bed:
+                moveRightToCenter()
+            case .food:
+                moveLeftToCenter()
+            case .water:
+                moveRightToCenter()
+            case .middle:
+                moveRightToToy()
+            case .toy:
+                moveLeftToCenter()
+            }
         }
     }
     
@@ -522,20 +409,19 @@ class ViewController: UIViewController {
         
         if animation == 1 {
             print("move")
-            switch AnimationManager.location {
-            case .bed:
-                randomMoveFromBedAnimation()
-            case .food:
-                moveFromFood()
-            case .water:
-                moveFromWater()
-            case .middle:
-                randomMoveFromCenterAnimation()
-            case .toy:
-                randomMoveFromToy()
+            AnimationManager.movement = .moving
+            if summonedToToy && AnimationManager.location != .toy {
+                if Bool.random() {
+                    moveRightToToy()
+                } else {
+                    randomMove()
+                }
+            } else {
+                randomMove()
             }
         } else if animation == 2 {
             print("place animation")
+            AnimationManager.movement = .staying
             switch AnimationManager.location {
             case .bed:
                 randomBedAnimation()
@@ -549,11 +435,29 @@ class ViewController: UIViewController {
                 randomToyAnimation()
             }
         } else if animation == 3 {
+            AnimationManager.movement = .staying
             print("sleep from stopmoving")
-            sleep()
+            if summonedToToy && AnimationManager.location == .toy {
+                if Bool.random() {
+                    play()
+                } else {
+                    sleep()
+                }
+            } else {
+                sleep()
+            }
         } else {
+            AnimationManager.movement = .staying
             print("pause")
-            pause()
+            if summonedToToy && AnimationManager.location == .toy {
+                if Bool.random() {
+                    play()
+                } else {
+                    pause()
+                }
+            } else {
+                pause()
+            }
         }
     }
     
@@ -573,21 +477,31 @@ class ViewController: UIViewController {
     }
     
     @IBAction func giveWater(_ sender: UITapGestureRecognizer) {
-        if waterImage.isHidden {
+        if hasWater {
+            // do nothing
+        } else {
             waterImage.isHidden = false
             hasWater = true
-        } else {
-            // do nothing
+            saveCare(food: nil, water: Date(), potty: nil)
         }
     }
     
     @IBAction func giveFood(_ sender: UITapGestureRecognizer) {
-        if foodImage.isHidden {
+        if hasFood {
+            // do nothing
+        } else {
             foodImage.isHidden = false
             hasFood = true
-        } else {
-            // do nothing
+            saveCare(food: Date(), water: nil, potty: nil)
         }
+    }
+    
+    @IBAction func tapOnToy(_ sender: UITapGestureRecognizer) {
+        toyImage.animationImages = AnimationManager.toyAnimation
+        toyImage.animationDuration = 0.3
+        toyImage.animationRepeatCount = 2
+        toyImage.startAnimating()
+        summonedToToy = true
     }
     
     @IBAction func cleanPotty(_ sender: UITapGestureRecognizer) {
@@ -596,11 +510,14 @@ class ViewController: UIViewController {
         } else {
             hasCleanPotty = true
             pottyBox.image = UIImage(named: "litterbox")
+            saveCare(food: nil, water: nil, potty: Date())
         }
     }
     
     
     @IBAction func doorTapped(_ sender: UITapGestureRecognizer) {
+        door.isHidden = true
+        openDoor.isHidden = false
         performSegue(withIdentifier: "goOutside", sender: Any?.self)
     }
     

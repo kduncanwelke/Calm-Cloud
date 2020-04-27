@@ -37,6 +37,7 @@ class OutsideViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func returnPressed(_ sender: UIButton) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
     

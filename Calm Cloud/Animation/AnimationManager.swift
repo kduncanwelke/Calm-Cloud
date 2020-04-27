@@ -64,11 +64,23 @@ struct AnimationManager {
     
     static let eatAnimation: [UIImage] = [#imageLiteral(resourceName: "eat1.png"),#imageLiteral(resourceName: "eat2.png")]
     static let drinkAnimation: [UIImage] = [#imageLiteral(resourceName: "drink1.png"),#imageLiteral(resourceName: "drink2.png")]
-    static let sleepAnimation: [UIImage] = [#imageLiteral(resourceName: "sleep.png"),#imageLiteral(resourceName: "sleep2.png")]
     static let playAnimation: [UIImage] = [#imageLiteral(resourceName: "play1.png"),#imageLiteral(resourceName: "play2.png")]
     static let heartsAnimation: [UIImage] = [#imageLiteral(resourceName: "purr.png"),#imageLiteral(resourceName: "purr2.png"),#imageLiteral(resourceName: "purr3.png"),#imageLiteral(resourceName: "purr4.png")]
     
-    static var status: Movement = .staying
+    static var sleepAnimation: [UIImage] {
+        get {
+            let range = [1,2]
+            let animation = range.randomElement()
+            
+            if animation == 1 {
+                return [#imageLiteral(resourceName: "sleep.png"),#imageLiteral(resourceName: "sleep2.png")]
+            } else {
+                return [#imageLiteral(resourceName: "sleepright.png"),#imageLiteral(resourceName: "sleepright2.png")]
+            }
+        }
+    }
+    
+    static var movement: Movement = .staying
     static var location: Location = .middle
     static var mood: Mood = .happy
     
@@ -93,8 +105,7 @@ struct AnimationManager {
 }
 
 enum Movement {
-    case movingLeft
-    case movingRight
+    case moving
     case staying
 }
 
