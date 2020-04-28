@@ -15,10 +15,11 @@ extension ViewController {
     func isRecentEnough(date: Date?, recentness: Int) -> Bool {
         if let chosenDate = date {
             let calendar = Calendar.current
-            let components = calendar.dateComponents([.hour], from: Date(), to: chosenDate)
+            let components = calendar.dateComponents([.hour], from: chosenDate, to: Date())
             let diff = components.hour
             
             if let difference = diff {
+                print(difference)
                 if difference < recentness {
                     return true
                 } else {

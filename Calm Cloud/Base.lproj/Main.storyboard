@@ -34,25 +34,22 @@
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="door" translatesAutoresizingMaskIntoConstraints="NO" id="rGj-KD-21u">
                                                         <rect key="frame" x="0.0" y="0.0" width="268" height="400"/>
                                                     </imageView>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="opendoor" translatesAutoresizingMaskIntoConstraints="NO" id="RKV-4h-ml0">
-                                                        <rect key="frame" x="-197.5" y="-35" width="626" height="500"/>
-                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstItem="rGj-KD-21u" firstAttribute="top" secondItem="NI6-1i-Dvv" secondAttribute="top" id="Emx-0f-670"/>
-                                                    <constraint firstItem="RKV-4h-ml0" firstAttribute="height" secondItem="NI6-1i-Dvv" secondAttribute="height" multiplier="1.25" id="Gm4-V7-RBY"/>
                                                     <constraint firstAttribute="bottom" secondItem="rGj-KD-21u" secondAttribute="bottom" id="HPR-ZS-TSG"/>
-                                                    <constraint firstItem="RKV-4h-ml0" firstAttribute="bottom" secondItem="NI6-1i-Dvv" secondAttribute="bottom" multiplier="1:0.86" id="IV9-QH-Jog"/>
                                                     <constraint firstItem="rGj-KD-21u" firstAttribute="leading" secondItem="NI6-1i-Dvv" secondAttribute="leading" id="XIV-S3-iWp"/>
                                                     <constraint firstAttribute="trailing" secondItem="rGj-KD-21u" secondAttribute="trailing" id="cDv-aV-NVG"/>
-                                                    <constraint firstItem="RKV-4h-ml0" firstAttribute="trailing" secondItem="NI6-1i-Dvv" secondAttribute="trailing" multiplier="1:0.625" id="yKO-cW-KFa"/>
                                                 </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="HhZ-Ui-wxA" appends="YES" id="yZy-Do-Vvx"/>
                                                 </connections>
                                             </view>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="opendoor" translatesAutoresizingMaskIntoConstraints="NO" id="RKV-4h-ml0">
+                                                <rect key="frame" x="544" y="0.0" width="223" height="500"/>
+                                            </imageView>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloudkitty" translatesAutoresizingMaskIntoConstraints="NO" id="AJU-aT-XbG">
                                                 <rect key="frame" x="536" y="358.5" width="209" height="142"/>
                                                 <gestureRecognizers/>
@@ -101,17 +98,21 @@
                                             <constraint firstItem="AJU-aT-XbG" firstAttribute="width" secondItem="718-af-Qot" secondAttribute="width" multiplier="0.195054" id="0B1-SY-k3L"/>
                                             <constraint firstItem="CZq-FQ-u9r" firstAttribute="leading" secondItem="2cz-L7-5Y0" secondAttribute="leading" multiplier="1:0.976" id="3ZV-UD-bZh"/>
                                             <constraint firstAttribute="trailing" secondItem="CF1-PQ-wsI" secondAttribute="trailing" id="4jG-4B-6mo"/>
+                                            <constraint firstItem="RKV-4h-ml0" firstAttribute="top" secondItem="718-af-Qot" secondAttribute="top" multiplier="1:1" id="5AS-Pw-YUU"/>
                                             <constraint firstItem="dW0-n7-p0C" firstAttribute="height" secondItem="718-af-Qot" secondAttribute="height" multiplier="0.198296" id="6aV-nM-Hd9"/>
                                             <constraint firstItem="2cz-L7-5Y0" firstAttribute="top" secondItem="718-af-Qot" secondAttribute="baseline" multiplier="1:1.2" id="8h8-LD-f4X"/>
                                             <constraint firstItem="AJU-aT-XbG" firstAttribute="height" secondItem="718-af-Qot" secondAttribute="height" multiplier="0.219985" id="8zm-ie-r5J"/>
                                             <constraint firstAttribute="bottom" secondItem="718-af-Qot" secondAttribute="bottom" id="As3-F1-er6"/>
+                                            <constraint firstItem="RKV-4h-ml0" firstAttribute="height" secondItem="718-af-Qot" secondAttribute="height" multiplier="0.774593" id="CBr-Ra-Xcv"/>
                                             <constraint firstItem="718-af-Qot" firstAttribute="leading" secondItem="R5A-fZ-Dls" secondAttribute="leading" id="Cy3-lT-rdP"/>
                                             <constraint firstItem="CZq-FQ-u9r" firstAttribute="height" secondItem="2cz-L7-5Y0" secondAttribute="height" multiplier="0.52459" id="EO9-t2-vM6"/>
                                             <constraint firstItem="YEn-SQ-dz0" firstAttribute="leading" secondItem="O4B-fY-aWc" secondAttribute="leading" multiplier="1:0.98" id="FA6-RA-2VR"/>
                                             <constraint firstItem="O4B-fY-aWc" firstAttribute="height" secondItem="718-af-Qot" secondAttribute="height" multiplier="0.109992" id="H3D-dL-w1d"/>
                                             <constraint firstItem="0xW-kf-q15" firstAttribute="top" secondItem="718-af-Qot" secondAttribute="baseline" multiplier="1:1.33" id="KBE-ed-Awm"/>
+                                            <constraint firstItem="RKV-4h-ml0" firstAttribute="leading" secondItem="718-af-Qot" secondAttribute="trailing" multiplier="1:1.97" id="MUO-xm-1zY"/>
                                             <constraint firstItem="O4B-fY-aWc" firstAttribute="leading" secondItem="718-af-Qot" secondAttribute="trailing" multiplier="1:1.96" id="NDY-nU-KsZ"/>
                                             <constraint firstItem="YEn-SQ-dz0" firstAttribute="top" secondItem="O4B-fY-aWc" secondAttribute="top" multiplier="1:0.98" id="NPs-J6-gjJ"/>
+                                            <constraint firstItem="RKV-4h-ml0" firstAttribute="width" secondItem="718-af-Qot" secondAttribute="width" multiplier="0.208119" id="Ny5-p7-5v0"/>
                                             <constraint firstItem="2cz-L7-5Y0" firstAttribute="leading" secondItem="718-af-Qot" secondAttribute="trailing" multiplier="1:2.4" id="Qfs-SS-uWn"/>
                                             <constraint firstItem="NI6-1i-Dvv" firstAttribute="top" secondItem="718-af-Qot" secondAttribute="baseline" multiplier="1:20" id="QxF-Yi-4IC"/>
                                             <constraint firstItem="CZq-FQ-u9r" firstAttribute="width" secondItem="2cz-L7-5Y0" secondAttribute="width" multiplier="0.747475" id="TMI-PK-nZH"/>

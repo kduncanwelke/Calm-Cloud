@@ -23,7 +23,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var door: UIImageView!
     @IBOutlet weak var openDoor: UIImageView!
     
-    
     // MARK: Variables
     
     var hasFood = false
@@ -33,6 +32,8 @@ class ViewController: UIViewController {
     var hasDrunk = false
     var hasBeenPet = false
     var hasPlayed = false
+    var summonedToFood = false
+    var summonedToWater = false
     var summonedToToy = false
     
     override func viewDidLoad() {
@@ -297,6 +298,10 @@ class ViewController: UIViewController {
         let range = [1,2]
         let animation = range.randomElement()
         
+        if summonedToFood {
+            summonedToFood = false
+        }
+        
         if hasEaten == false && hasFood {
             eat()
         } else if animation == 1 && hasFood {
@@ -309,6 +314,10 @@ class ViewController: UIViewController {
     func randomWaterAnimation() {
         let range = [1,2]
         let animation = range.randomElement()
+        
+        if summonedToWater {
+            summonedToWater = false
+        }
         
         if hasDrunk == false && hasWater {
             drink()
@@ -398,6 +407,52 @@ class ViewController: UIViewController {
         }
     }
     
+    func summoned() {
+        if summonedToToy && AnimationManager.location != .toy {
+            if Bool.random() {
+                moveRightToToy()
+            } else {
+                randomMove()
+            }
+        } else if summonedToWater {
+             if Bool.random() {
+                switch AnimationManager.location {
+                case .water:
+                    drink()
+                case .bed:
+                    moveRightToWater()
+                case .food:
+                    moveLeftToWater()
+                case .middle:
+                    moveLeftToWater()
+                case .toy:
+                    moveLeftToWater()
+                }
+             } else {
+                randomMove()
+            }
+        } else if summonedToFood {
+            if Bool.random() {
+                switch AnimationManager.location {
+                case .food:
+                    eat()
+                case .bed:
+                    moveRightToFood()
+                case .water:
+                    moveRightToFood()
+                case .middle:
+                    moveRightToFood()
+                case .toy:
+                    moveLeftToFood()
+                }
+            } else {
+                randomMove()
+            }
+        } else {
+            randomMove()
+        }
+    }
+    
     @objc func stopMoving() {
         print("stop moving called")
         let range = [1,2,3,4]
@@ -410,15 +465,7 @@ class ViewController: UIViewController {
         if animation == 1 {
             print("move")
             AnimationManager.movement = .moving
-            if summonedToToy && AnimationManager.location != .toy {
-                if Bool.random() {
-                    moveRightToToy()
-                } else {
-                    randomMove()
-                }
-            } else {
-                randomMove()
-            }
+            summoned()
         } else if animation == 2 {
             print("place animation")
             AnimationManager.movement = .staying
@@ -437,27 +484,11 @@ class ViewController: UIViewController {
         } else if animation == 3 {
             AnimationManager.movement = .staying
             print("sleep from stopmoving")
-            if summonedToToy && AnimationManager.location == .toy {
-                if Bool.random() {
-                    play()
-                } else {
-                    sleep()
-                }
-            } else {
-                sleep()
-            }
+            summoned()
         } else {
             AnimationManager.movement = .staying
             print("pause")
-            if summonedToToy && AnimationManager.location == .toy {
-                if Bool.random() {
-                    play()
-                } else {
-                    pause()
-                }
-            } else {
-                pause()
-            }
+            summoned()
         }
     }
     
@@ -465,6 +496,7 @@ class ViewController: UIViewController {
 
     @IBAction func catTouched(_ sender: UIPanGestureRecognizer) {
         if sender.state == .began {
+            cloudKitty.stopAnimating()
             cloudKitty.animationImages = AnimationManager.heartsAnimation
             cloudKitty.animationDuration = 0.5
             cloudKitty.startAnimating()
@@ -477,6 +509,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func giveWater(_ sender: UITapGestureRecognizer) {
+        summonedToWater = true
+        
         if hasWater {
             // do nothing
         } else {
@@ -487,6 +521,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func giveFood(_ sender: UITapGestureRecognizer) {
+        summonedToFood = true
+        
         if hasFood {
             // do nothing
         } else {

@@ -47,17 +47,40 @@ struct AnimationManager {
     
     static var bouncingAnimation: [UIImage] {
         get {
+            let range = [1,2]
+            let animation = range.randomElement()
+            
             switch AnimationManager.mood {
             case .happy:
-                return [#imageLiteral(resourceName: "bounce1.png"),#imageLiteral(resourceName: "bounce2.png")]
+                if animation == 1 {
+                    return [#imageLiteral(resourceName: "bounce1.png"),#imageLiteral(resourceName: "bounce2.png")]
+                } else {
+                    return [#imageLiteral(resourceName: "bounceright1.png"),#imageLiteral(resourceName: "bounceright2.png")]
+                }
             case .unhappy:
-                return [#imageLiteral(resourceName: "unhappybounce.png"),#imageLiteral(resourceName: "unhappybounce2.png")]
+                if animation == 1 {
+                    return [#imageLiteral(resourceName: "unhappybounce.png"),#imageLiteral(resourceName: "unhappybounce2.png")]
+                } else {
+                    return [#imageLiteral(resourceName: "unhappybounceright1.png"),#imageLiteral(resourceName: "unhappybounceright2.png")]
+                }
             case .sad:
-                return [#imageLiteral(resourceName: "sadbounce.png"),#imageLiteral(resourceName: "sadbounce2.png")]
+                if animation == 1 {
+                    return [#imageLiteral(resourceName: "sadbounce.png"),#imageLiteral(resourceName: "sadbounce2.png")]
+                } else {
+                    return [#imageLiteral(resourceName: "sadbounceright1.png"),#imageLiteral(resourceName: "sadbounceright2.png")]
+                }
             case .thirsty:
-                return [#imageLiteral(resourceName: "thirstybounce.png"),#imageLiteral(resourceName: "thirstybounce2.png")]
+                if animation == 1 {
+                    return [#imageLiteral(resourceName: "thirstybounce.png"),#imageLiteral(resourceName: "thirstybounce2.png")]
+                } else {
+                    return [#imageLiteral(resourceName: "thirstybounceright1.png"),#imageLiteral(resourceName: "thirstybounceright2.png")]
+                }
             case .hungry:
-                return [#imageLiteral(resourceName: "hungrybounce.png"),#imageLiteral(resourceName: "hungrybounce2.png")]
+                if animation == 1 {
+                    return [#imageLiteral(resourceName: "hungrybounce.png"),#imageLiteral(resourceName: "hungrybounce2.png")]
+                } else {
+                    return [#imageLiteral(resourceName: "hungrybounceright1.png"),#imageLiteral(resourceName: "hungrybounceright2.png")]
+                }
             }
         }
     }
