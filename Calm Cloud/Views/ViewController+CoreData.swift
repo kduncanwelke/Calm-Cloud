@@ -70,17 +70,11 @@ extension ViewController {
         guard let currentCare = CareManager.loaded else {
             let careSave = Care(context: managedContext)
             
-            if food != nil {
-                careSave.lastFed = food
-            }
+            careSave.lastFed = food
+            careSave.lastWatered = water
+            careSave.lastCleaned = potty
             
-            if water != nil {
-                careSave.lastWatered = water
-            }
-            
-            if potty != nil {
-                careSave.lastCleaned = Date()
-            }
+            CareManager.loaded = careSave
             
             do {
                 try managedContext.save()

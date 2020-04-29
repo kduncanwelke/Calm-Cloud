@@ -24,6 +24,8 @@ struct AnimationManager {
                 return [#imageLiteral(resourceName: "thirsty.png"),#imageLiteral(resourceName: "thirsty2.png")]
             case .hungry:
                 return [#imageLiteral(resourceName: "hungry.png"),#imageLiteral(resourceName: "hungry2.png")]
+            case .embarrassed:
+                return [#imageLiteral(resourceName: "embarrassed.png"),#imageLiteral(resourceName: "embarrassed2.png")]
             }
         }
     }
@@ -41,6 +43,27 @@ struct AnimationManager {
                 return [#imageLiteral(resourceName: "thirstyright.png"),#imageLiteral(resourceName: "thirstyright2.png")]
             case .hungry:
                 return [#imageLiteral(resourceName: "hungryright.png"),#imageLiteral(resourceName: "hungryright2.png")]
+            case .embarrassed:
+                return [#imageLiteral(resourceName: "embarrassedright1.png"),#imageLiteral(resourceName: "embarrassedright2.png")]
+            }
+        }
+    }
+    
+    static var lingerAnimation: [UIImage] {
+        get {
+            switch AnimationManager.mood {
+            case .happy:
+                return [#imageLiteral(resourceName: "cloudkitty.png"),#imageLiteral(resourceName: "cloudkittyright.png")]
+            case .unhappy:
+                return [#imageLiteral(resourceName: "unhappy.png"),#imageLiteral(resourceName: "unhappyright.png")]
+            case .sad:
+                return [#imageLiteral(resourceName: "sad.png"),#imageLiteral(resourceName: "sadright.png")]
+            case .thirsty:
+                return [#imageLiteral(resourceName: "thirsty.png"),#imageLiteral(resourceName: "thirstyright.png")]
+            case .hungry:
+                return [#imageLiteral(resourceName: "hungry.png"),#imageLiteral(resourceName: "hungryright.png")]
+            case .embarrassed:
+                return [#imageLiteral(resourceName: "embarrassed.png"),#imageLiteral(resourceName: "embarrassedright1.png")]
             }
         }
     }
@@ -81,6 +104,12 @@ struct AnimationManager {
                 } else {
                     return [#imageLiteral(resourceName: "hungrybounceright1.png"),#imageLiteral(resourceName: "hungrybounceright2.png")]
                 }
+            case .embarrassed:
+                if animation == 1 {
+                    return [#imageLiteral(resourceName: "embarrassedbounce1.png"),#imageLiteral(resourceName: "embarrassedbounce2.png")]
+                } else {
+                    return [#imageLiteral(resourceName: "embarrassedbounceright1.png"),#imageLiteral(resourceName: "embarrassedbounceright2.png")]
+                }
             }
         }
     }
@@ -88,6 +117,7 @@ struct AnimationManager {
     static let eatAnimation: [UIImage] = [#imageLiteral(resourceName: "eat1.png"),#imageLiteral(resourceName: "eat2.png")]
     static let drinkAnimation: [UIImage] = [#imageLiteral(resourceName: "drink1.png"),#imageLiteral(resourceName: "drink2.png")]
     static let playAnimation: [UIImage] = [#imageLiteral(resourceName: "play1.png"),#imageLiteral(resourceName: "play2.png")]
+    static let digAnimation: [UIImage] = [#imageLiteral(resourceName: "dig.png"),#imageLiteral(resourceName: "dig2.png"),#imageLiteral(resourceName: "dig3.png"),#imageLiteral(resourceName: "dig4.png")]
     static let heartsAnimation: [UIImage] = [#imageLiteral(resourceName: "purr.png"),#imageLiteral(resourceName: "purr2.png"),#imageLiteral(resourceName: "purr3.png"),#imageLiteral(resourceName: "purr4.png")]
     
     static var sleepAnimation: [UIImage] {
@@ -120,6 +150,8 @@ struct AnimationManager {
                 return #imageLiteral(resourceName: "thirsty.png")
             case .hungry:
                 return #imageLiteral(resourceName: "hungry.png")
+            case .embarrassed:
+                return #imageLiteral(resourceName: "embarrassed.png")
             }
         }
     }
@@ -138,6 +170,7 @@ enum Mood {
     case sad
     case thirsty
     case hungry
+    case embarrassed
 }
 
 enum Location {
@@ -146,4 +179,5 @@ enum Location {
     case water
     case bed
     case toy
+    case potty
 }
