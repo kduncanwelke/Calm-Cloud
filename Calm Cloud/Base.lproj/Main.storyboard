@@ -153,33 +153,57 @@
                                     <constraint firstItem="718-af-Qot" firstAttribute="height" secondItem="w8B-fX-lrW" secondAttribute="height" id="qmD-Aa-f1C"/>
                                 </constraints>
                             </scrollView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="oMb-cM-fN7">
-                                <rect key="frame" x="40" y="733.5" width="334" height="104.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="oMb-cM-fN7">
+                                <rect key="frame" x="20" y="739.5" width="374" height="93.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGz-9O-3yK">
-                                        <rect key="frame" x="0.0" y="0.0" width="68.5" height="104.5"/>
-                                        <state key="normal" title="Reminders"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGz-9O-3yK">
+                                        <rect key="frame" x="0.0" y="0.0" width="93.5" height="93.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="IGz-9O-3yK" secondAttribute="height" multiplier="1:1" id="RXh-sO-Kbn"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <state key="normal" title="Reminders" backgroundImage="reminders">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="remindersTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ig0-PU-cem"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fu4-BL-Jk7">
-                                        <rect key="frame" x="88.5" y="0.0" width="68.5" height="104.5"/>
-                                        <state key="normal" title="Favorites"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fu4-BL-Jk7">
+                                        <rect key="frame" x="93.5" y="0.0" width="93.5" height="93.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Fu4-BL-Jk7" secondAttribute="height" multiplier="1:1" id="pGQ-pQ-lTx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <state key="normal" title="Favorites" backgroundImage="favorites">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="favoritesTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VY5-DT-9Ja"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xzQ-me-v4h">
-                                        <rect key="frame" x="177" y="0.0" width="68.5" height="104.5"/>
-                                        <state key="normal" title="Activities"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xzQ-me-v4h">
+                                        <rect key="frame" x="187" y="0.0" width="93.5" height="93.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="xzQ-me-v4h" secondAttribute="height" multiplier="1:1" id="4bk-WX-AaW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <state key="normal" title="Activities" backgroundImage="activities">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="activitiesTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VDe-hc-YaO"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vD3-vj-5sU">
-                                        <rect key="frame" x="265.5" y="0.0" width="68.5" height="104.5"/>
-                                        <state key="normal" title="Journal"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vD3-vj-5sU">
+                                        <rect key="frame" x="280.5" y="0.0" width="93.5" height="93.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="vD3-vj-5sU" secondAttribute="height" multiplier="1:1" id="jDZ-I5-Auq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <state key="normal" title="Journal" backgroundImage="journal">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="journalTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cIk-Ho-bbq"/>
                                         </connections>
@@ -189,13 +213,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.88149459284835496" blue="0.95206306997172496" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oMb-cM-fN7" secondAttribute="bottom" constant="24" id="1s2-3R-lXH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oMb-cM-fN7" secondAttribute="bottom" constant="24" id="1s2-3R-lXH"/>
                             <constraint firstItem="w8B-fX-lrW" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="3eO-4K-Qx7"/>
                             <constraint firstItem="w8B-fX-lrW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4XT-tV-i4s"/>
-                            <constraint firstItem="oMb-cM-fN7" firstAttribute="top" secondItem="w8B-fX-lrW" secondAttribute="bottom" constant="24" id="Dsl-4Z-0Uq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oMb-cM-fN7" secondAttribute="trailing" constant="40" id="Er6-Ke-QKV"/>
+                            <constraint firstItem="oMb-cM-fN7" firstAttribute="top" secondItem="w8B-fX-lrW" secondAttribute="bottom" constant="30" id="Dsl-4Z-0Uq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oMb-cM-fN7" secondAttribute="trailing" constant="20" id="Er6-Ke-QKV"/>
                             <constraint firstItem="w8B-fX-lrW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="FYf-Sf-Kbj"/>
-                            <constraint firstItem="oMb-cM-fN7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="k3k-0v-UAu"/>
+                            <constraint firstItem="oMb-cM-fN7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="k3k-0v-UAu"/>
                             <constraint firstItem="w8B-fX-lrW" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.78912" id="toq-xX-2QP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -940,17 +964,38 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloudkitty" translatesAutoresizingMaskIntoConstraints="NO" id="Es5-lZ-EHS">
                                                 <rect key="frame" x="536" y="358.5" width="209" height="142"/>
                                             </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tallpot" translatesAutoresizingMaskIntoConstraints="NO" id="gCe-of-jIg">
+                                                <rect key="frame" x="878.5" y="451.5" width="189" height="188"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smallpot" translatesAutoresizingMaskIntoConstraints="NO" id="WDa-DZ-E1M">
+                                                <rect key="frame" x="754.5" y="522.5" width="133" height="116"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lowpot" translatesAutoresizingMaskIntoConstraints="NO" id="eqd-wc-SL9">
+                                                <rect key="frame" x="10.5" y="508.5" width="197" height="128"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="0.88235294119999996" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="gtY-D3-WJv" firstAttribute="top" secondItem="nls-e6-ziC" secondAttribute="top" multiplier="1:1.8" id="1YO-Zo-F71"/>
+                                            <constraint firstItem="gCe-of-jIg" firstAttribute="height" secondItem="gtY-D3-WJv" secondAttribute="height" multiplier="0.291247" id="1op-z8-MNs"/>
+                                            <constraint firstItem="eqd-wc-SL9" firstAttribute="top" secondItem="gtY-D3-WJv" secondAttribute="baseline" multiplier="1:1.27" id="2Ru-WM-iUF"/>
+                                            <constraint firstItem="WDa-DZ-E1M" firstAttribute="top" secondItem="gtY-D3-WJv" secondAttribute="baseline" multiplier="1:1.235" id="6Bh-7h-tlC"/>
                                             <constraint firstAttribute="trailing" secondItem="gtY-D3-WJv" secondAttribute="trailing" id="80H-qG-AoQ"/>
+                                            <constraint firstItem="eqd-wc-SL9" firstAttribute="leading" secondItem="gtY-D3-WJv" secondAttribute="trailing" multiplier="1:100" id="A4t-ei-sx2"/>
+                                            <constraint firstItem="gCe-of-jIg" firstAttribute="top" secondItem="gtY-D3-WJv" secondAttribute="baseline" multiplier="1:1.43" id="EaY-rP-9lL"/>
+                                            <constraint firstItem="gCe-of-jIg" firstAttribute="leading" secondItem="gtY-D3-WJv" secondAttribute="trailing" multiplier="1:1.22" id="G89-GQ-Q7f"/>
                                             <constraint firstAttribute="bottom" secondItem="gtY-D3-WJv" secondAttribute="bottom" id="IuB-BD-G3a"/>
+                                            <constraint firstItem="gCe-of-jIg" firstAttribute="width" secondItem="gtY-D3-WJv" secondAttribute="width" multiplier="0.176388" id="JZa-DF-YPe"/>
                                             <constraint firstItem="gtY-D3-WJv" firstAttribute="leading" secondItem="nls-e6-ziC" secondAttribute="leading" id="JoD-v4-zKw"/>
                                             <constraint firstItem="Es5-lZ-EHS" firstAttribute="top" secondItem="gtY-D3-WJv" secondAttribute="baseline" multiplier="1:1.8" id="Lfk-Ug-Bw8"/>
                                             <constraint firstItem="Es5-lZ-EHS" firstAttribute="height" secondItem="gtY-D3-WJv" secondAttribute="height" multiplier="0.219985" id="Rkg-8y-Qf9"/>
                                             <constraint firstAttribute="width" secondItem="nls-e6-ziC" secondAttribute="height" multiplier="1.66:1" id="Sql-Gz-H02"/>
                                             <constraint firstItem="Es5-lZ-EHS" firstAttribute="width" secondItem="gtY-D3-WJv" secondAttribute="width" multiplier="0.195054" id="U9L-yu-lqb"/>
+                                            <constraint firstItem="eqd-wc-SL9" firstAttribute="width" secondItem="gtY-D3-WJv" secondAttribute="width" multiplier="0.183854" id="YEo-G3-ghR"/>
+                                            <constraint firstItem="WDa-DZ-E1M" firstAttribute="height" secondItem="gtY-D3-WJv" secondAttribute="height" multiplier="0.179706" id="a9h-pz-iVm"/>
+                                            <constraint firstItem="eqd-wc-SL9" firstAttribute="height" secondItem="gtY-D3-WJv" secondAttribute="height" multiplier="0.198296" id="g7P-2N-pde"/>
+                                            <constraint firstItem="WDa-DZ-E1M" firstAttribute="width" secondItem="gtY-D3-WJv" secondAttribute="width" multiplier="0.124125" id="gol-B0-nzZ"/>
+                                            <constraint firstItem="WDa-DZ-E1M" firstAttribute="leading" secondItem="gtY-D3-WJv" secondAttribute="trailing" multiplier="1:1.42" id="iNz-P9-a6b"/>
                                             <constraint firstItem="Es5-lZ-EHS" firstAttribute="leading" secondItem="gtY-D3-WJv" secondAttribute="trailing" multiplier="1:2" id="sFm-kM-eZf"/>
                                         </constraints>
                                     </view>
@@ -992,7 +1037,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ArC-lU-lMY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="-561"/>
+            <point key="canvasLocation" x="131.8840579710145" y="-561.16071428571422"/>
         </scene>
         <!--Journal View Controller-->
         <scene sceneID="sDa-gT-oZn">
@@ -1153,17 +1198,24 @@
         </scene>
     </scenes>
     <resources>
+        <image name="activities" width="300" height="300"/>
         <image name="checkmark.circle" catalog="system" width="64" height="60"/>
         <image name="cloudkitty" width="1518" height="1039"/>
         <image name="door" width="708" height="1107"/>
+        <image name="favorites" width="300" height="300"/>
         <image name="food" width="200" height="64"/>
         <image name="foodbowl" width="252" height="131"/>
         <image name="idea" width="3000" height="1800"/>
         <image name="incomplete" width="50" height="50"/>
+        <image name="journal" width="300" height="300"/>
         <image name="litterboxwithpoos" width="672" height="229"/>
+        <image name="lowpot" width="539" height="349"/>
         <image name="opendoor" width="626" height="1434"/>
         <image name="outside" width="3000" height="1800"/>
         <image name="outsidebackground" width="3000" height="1800"/>
+        <image name="reminders" width="300" height="300"/>
+        <image name="smallpot" width="366" height="320"/>
+        <image name="tallpot" width="503" height="533"/>
         <image name="toy" width="613" height="427"/>
         <image name="water" width="200" height="64"/>
         <image name="waterbowl" width="252" height="131"/>

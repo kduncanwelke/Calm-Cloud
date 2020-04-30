@@ -76,9 +76,17 @@ struct AnimationManager {
             switch AnimationManager.mood {
             case .happy:
                 if animation == 1 {
-                    return [#imageLiteral(resourceName: "bounce1.png"),#imageLiteral(resourceName: "bounce2.png")]
+                    if AnimationManager.location == .ceiling {
+                        return [#imageLiteral(resourceName: "upsidedownbounce1.png"),#imageLiteral(resourceName: "upsidedownbounce2.png")]
+                    } else {
+                        return [#imageLiteral(resourceName: "bounce1.png"),#imageLiteral(resourceName: "bounce2.png")]
+                    }
                 } else {
-                    return [#imageLiteral(resourceName: "bounceright1.png"),#imageLiteral(resourceName: "bounceright2.png")]
+                    if AnimationManager.location == .ceiling {
+                        return [#imageLiteral(resourceName: "upsidedownbounceright1.png"),#imageLiteral(resourceName: "upsidedownbounceright2.png")]
+                    } else {
+                        return [#imageLiteral(resourceName: "bounceright1.png"),#imageLiteral(resourceName: "bounceright2.png")]
+                    }
                 }
             case .unhappy:
                 if animation == 1 {
@@ -118,7 +126,10 @@ struct AnimationManager {
     static let drinkAnimation: [UIImage] = [#imageLiteral(resourceName: "drink1.png"),#imageLiteral(resourceName: "drink2.png")]
     static let playAnimation: [UIImage] = [#imageLiteral(resourceName: "play1.png"),#imageLiteral(resourceName: "play2.png")]
     static let digAnimation: [UIImage] = [#imageLiteral(resourceName: "dig.png"),#imageLiteral(resourceName: "dig2.png"),#imageLiteral(resourceName: "dig3.png"),#imageLiteral(resourceName: "dig4.png")]
-    static let heartsAnimation: [UIImage] = [#imageLiteral(resourceName: "purr.png"),#imageLiteral(resourceName: "purr2.png"),#imageLiteral(resourceName: "purr3.png"),#imageLiteral(resourceName: "purr4.png")]
+    static let petAnimation: [UIImage] = [#imageLiteral(resourceName: "purr.png"),#imageLiteral(resourceName: "purr2.png")]
+    
+    static let upsideDownLeft: [UIImage] = [#imageLiteral(resourceName: "upsidedown1.png"),#imageLiteral(resourceName: "upsidedown2.png")]
+    static let upsideDownRight: [UIImage] = [#imageLiteral(resourceName: "upsidedownright1.png"),#imageLiteral(resourceName: "upsidedownright2.png")]
     
     static var sleepAnimation: [UIImage] {
         get {
@@ -180,4 +191,5 @@ enum Location {
     case bed
     case toy
     case potty
+    case ceiling
 }

@@ -123,7 +123,24 @@ class ViewController: UIViewController {
     
     // MARK: Animations
     
-    // right to left movemenet
+    func floatUp() {
+        print("float")
+        cloudKitty.animationImages = AnimationManager.bouncingAnimation
+        cloudKitty.startAnimating()
+        let ceilingDestination = CGPoint(x: container.frame.width/2, y: container.frame.height/6)
+        cloudKitty.move(to: ceilingDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
+        AnimationManager.location = .ceiling
+    }
+    
+    // left movemenet
+    
+    func floatLeft() {
+        print("float left")
+        cloudKitty.animationImages = AnimationManager.upsideDownLeft
+        cloudKitty.startAnimating()
+        let ceilingDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/6)
+        cloudKitty.move(to: ceilingDestination, duration: 4.0, options: UIView.AnimationOptions.curveEaseOut)
+    }
     
     func moveLeftToBed() {
         print("left to bed")
@@ -161,7 +178,24 @@ class ViewController: UIViewController {
         AnimationManager.location = .middle
     }
     
-    // left to right movement
+    func moveLeftToToy() {
+        print("right to toy")
+        cloudKitty.animationImages = AnimationManager.movingLeftAnimation
+        cloudKitty.startAnimating()
+        let toyDestination = CGPoint(x: container.frame.width/1.4, y: (container.frame.height/3)*2.4)
+        cloudKitty.move(to: toyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
+        AnimationManager.location = .toy
+    }
+    
+    // right movement
+    
+    func floatRight() {
+        print("float right")
+        cloudKitty.animationImages = AnimationManager.upsideDownRight
+        cloudKitty.startAnimating()
+        let ceilingDestination = CGPoint(x: container.frame.width/1.12, y: container.frame.height/6)
+        cloudKitty.move(to: ceilingDestination, duration: 4.0, options: UIView.AnimationOptions.curveEaseOut)
+    }
     
     func moveRightToFood() {
          print("right to food")
@@ -185,7 +219,7 @@ class ViewController: UIViewController {
         print("right to potty")
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
-        let pottyDestination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*1.9)
+        let pottyDestination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*2)
         cloudKitty.move(to: pottyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .potty
     }
@@ -249,7 +283,9 @@ class ViewController: UIViewController {
         case .toy:
             destination = CGPoint(x: container.frame.width/1.4, y: (container.frame.height/3)*2.4)
         case .potty:
-            destination = CGPoint(x: container.frame.width/1.15, y: (container.frame.height/3)*1.9)
+            destination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*2)
+        case .ceiling:
+            destination = CGPoint(x: container.frame.width/2, y: container.frame.height/1.2)
         }
         
         let floatDestination = CGPoint(x: destination.x, y: destination.y-20)
@@ -416,10 +452,21 @@ class ViewController: UIViewController {
         bounce()
     }
     
+    func randomCeilingAnimation() {
+        let range = [1,2]
+        let animation = range.randomElement()
+        
+        if animation == 1 {
+            floatLeft()
+        } else {
+            floatRight()
+        }
+    }
+    
     // location change animations
     
     func randomMove() {
-        let range = [1,2,3,4]
+        let range = [1,2,3,4,5]
         let animation = range.randomElement()
         
         if animation == 1 {
@@ -436,6 +483,8 @@ class ViewController: UIViewController {
                 moveLeftToBed()
             case .potty:
                 moveLeftToBed()
+            case .ceiling:
+                moveLeftToBed()
             }
         } else if animation == 2 {
             switch AnimationManager.location {
@@ -451,6 +500,8 @@ class ViewController: UIViewController {
                 moveLeftToWater()
             case .potty:
                 moveLeftToFood()
+            case .ceiling:
+               moveRightToToy()
             }
         } else if animation == 3 {
             switch AnimationManager.location {
@@ -466,8 +517,10 @@ class ViewController: UIViewController {
                 moveLeftToFood()
             case .potty:
                 moveLeftToWater()
+            case .ceiling:
+                moveLeftToWater()
             }
-        } else {
+        } else if animation == 4 {
             switch AnimationManager.location {
             case .bed:
                 moveRightToCenter()
@@ -480,7 +533,15 @@ class ViewController: UIViewController {
             case .toy:
                 moveLeftToCenter()
             case .potty:
-                moveRightToToy()
+                moveLeftToToy()
+            case .ceiling:
+                moveRightToFood()
+            }
+        } else {
+            if AnimationManager.mood == .happy {
+                floatUp()
+            } else {
+                randomMove()
             }
         }
     }
@@ -502,6 +563,8 @@ class ViewController: UIViewController {
                 moveLeftToWater()
             case .potty:
                 moveLeftToWater()
+            case .ceiling:
+                moveLeftToWater()
             }
         } else if summonedToFood && hasEaten == false {
             switch AnimationManager.location {
@@ -517,6 +580,8 @@ class ViewController: UIViewController {
                 moveLeftToFood()
             case .potty:
                 moveLeftToFood()
+            case .ceiling:
+                moveRightToFood()
             }
         } else if hasFood == false {
             switch AnimationManager.location {
@@ -532,6 +597,8 @@ class ViewController: UIViewController {
                 moveLeftToFood()
             case .potty:
                 moveLeftToFood()
+            case .ceiling:
+                moveRightToFood()
             }
         } else if hasCleanPotty == false {
             moveRightToPotty()
@@ -575,6 +642,8 @@ class ViewController: UIViewController {
                 randomToyAnimation()
             case .potty:
                 randomPottyAnimation()
+            case .ceiling:
+                randomCeilingAnimation()
             }
         } else if animation == 3 {
             AnimationManager.movement = .staying
@@ -594,8 +663,8 @@ class ViewController: UIViewController {
             if AnimationManager.movement == .staying {
                 AnimationTimer.stop()
                 cloudKitty.stopAnimating()
-                cloudKitty.animationImages = AnimationManager.heartsAnimation
-                cloudKitty.animationDuration = 0.5
+                cloudKitty.animationImages = AnimationManager.petAnimation
+                cloudKitty.animationDuration = 1.0
                 cloudKitty.startAnimating()
                 hasBeenPet = true
             }
