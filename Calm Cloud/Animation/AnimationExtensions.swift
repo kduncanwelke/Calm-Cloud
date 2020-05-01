@@ -33,6 +33,15 @@ extension UIView {
         })
     }
     
+    func outsideMove(to destination: CGPoint, duration: TimeInterval,
+              options: UIView.AnimationOptions) {
+        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+            self.center = destination
+        }, completion: {(finished: Bool) in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "stopMovingOutside"), object: nil)
+        })
+    }
+    
     func animateImageRight() {
         UIView.animate(withDuration: 0.2, animations: {
             self.transform = CGAffineTransform(translationX: -150.0, y: 0.0)

@@ -14,15 +14,48 @@ class OutsideViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var container: UIView!
+    @IBOutlet weak var cloudKitty: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+         NotificationCenter.default.addObserver(self, selector: #selector(stopMovingOutside), name: NSNotification.Name(rawValue: "stopMovingOutside"), object: nil)
+        
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
+        
+        sleep()
     }
     
+    // MARK: Custom functions
+    
+    func randomRepeatCount() -> Int {
+        var randomRepeatCount = Int.random(in: 4...8)
+        return randomRepeatCount
+    }
+    
+    func moveLeftToPlanter() {
+        print("left to planter")
+        cloudKitty.animationImages = AnimationManager.movingLeftAnimation
+        cloudKitty.startAnimating()
+        let planterDestination = CGPoint(x: container.frame.width/8, y: (container.frame.height/3)*2)
+        cloudKitty.outsideMove(to: planterDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
+    }
+    
+    func sleep() {
+        print("sleep")
+        cloudKitty.animationImages = AnimationManager.sleepAnimation
+        cloudKitty.animationDuration = 2.0
+        cloudKitty.animationRepeatCount = 0
+        cloudKitty.startAnimating()
+        AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
+    }
+    
+    @objc func stopMovingOutside() {
+        cloudKitty.stopAnimating()
+        moveLeftToPlanter()
+    }
 
     /*
     // MARK: - Navigation

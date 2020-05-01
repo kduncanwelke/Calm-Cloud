@@ -9,17 +9,20 @@
 import UIKit
 import CoreData
 
-class ActivitiesViewController: UIViewController {
+class ActivitiesViewController: UIViewController, UISearchBarDelegate {
 
     // MARK: IBOutlets
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     // MARK: Variables
     
     var completion: [Int : Bool] = [:]
     var loaded: [ActivityId] = []
     let userDefaultDate = "userDefaultDate"
+    var searchResults: [Activity] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,7 @@ class ActivitiesViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
         
         tableView.backgroundColor = UIColor.white
         
@@ -111,7 +115,31 @@ class ActivitiesViewController: UIViewController {
             print("Failed to save")
         }
     }
+    
 
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterSearch(searchText)
+    }
+    
+    // return search results based on title and entry body text
+    func filterSearch(_ searchText: String) {
+        var activities: [Activity]
+        
+        searchResults = ActivityManager.activities.filter({(activity: Activity) -> Bool in
+            return (activity.title.lowercased().contains(searchText.lowercased())) || (activity.category.rawValue.lowercased().contains(searchText.lowercased()))
+        })
+        
+        tableView.reloadData()
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchBar.text?.isEmpty ?? true
+    }
+   
+    func isFilteringBySearch() -> Bool {
+        return !searchBarIsEmpty()
+    }
+    
     /*
     // MARK: - Navigation
 

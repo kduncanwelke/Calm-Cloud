@@ -31,6 +31,7 @@ class AnimationTimer {
         timer?.invalidate()
         seconds = 0
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "stopMoving"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "stopMovingOutside"), object: nil)
     }
     
     static func stop() {

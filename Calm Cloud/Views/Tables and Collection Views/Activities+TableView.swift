@@ -12,13 +12,23 @@ import UIKit
 extension ActivitiesViewController: UITableViewDelegate, UITableViewDataSource, CellCheckDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ActivityManager.activities.count
+        if isFilteringBySearch() {
+            return searchResults.count
+        } else {
+            return ActivityManager.activities.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath) as! ActivityTableViewCell
         
-        let activity = ActivityManager.activities[indexPath.row]
+        let activity: Activity
+        
+        if isFilteringBySearch() {
+            activity = searchResults[indexPath.row]
+        } else {
+            activity = ActivityManager.activities[indexPath.row]
+        }
         
         cell.cellLabel.text = activity.title
         cell.cellCategoryLabel.text = activity.category.rawValue
@@ -33,6 +43,8 @@ extension ActivitiesViewController: UITableViewDelegate, UITableViewDataSource, 
             
         cell.cellDelegate = self
         
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         return cell
     }
     

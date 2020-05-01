@@ -37,6 +37,7 @@ class ViewController: UIViewController {
     var summonedToToy = false
     var summonedToPotty = false
     var inPotty = false
+    var stopped = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,16 +60,6 @@ class ViewController: UIViewController {
         sleep()
         AnimationManager.location = .middle
         setMood()
-        /*cloudKitty.image = AnimationManager.startImage
-        
-        cloudKitty.animationImages = AnimationManager.movingLeftAnimation
-        cloudKitty.animationDuration = 1.0
-        cloudKitty.startAnimating()
-        
-        let bedDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/2)
-        
-        cloudKitty.move(to: bedDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .bed*/
     }
     
     // MARK: Custom functions
@@ -96,6 +87,8 @@ class ViewController: UIViewController {
     @objc func returnIndoors() {
         door.isHidden = false
         openDoor.isHidden = true
+        stopped = false
+        stopMoving()
     }
     
     func randomRepeatCount() -> Int {
@@ -613,6 +606,10 @@ class ViewController: UIViewController {
         let animation = range.randomElement()
         cloudKitty.stopAnimating()
         
+        if stopped {
+            return
+        }
+        
         if toyImage.isAnimating {
             toyImage.stopAnimating()
         }
@@ -716,10 +713,11 @@ class ViewController: UIViewController {
         }
     }
     
-    
     @IBAction func doorTapped(_ sender: UITapGestureRecognizer) {
         door.isHidden = true
         openDoor.isHidden = false
+        AnimationTimer.stop()
+        stopped = true
         performSegue(withIdentifier: "goOutside", sender: Any?.self)
     }
     
