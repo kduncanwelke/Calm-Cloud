@@ -959,25 +959,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJB-y1-oCG">
-                                <rect key="frame" x="0.0" y="64" width="414" height="645.5"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="695.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nls-e6-ziC">
-                                        <rect key="frame" x="0.0" y="0.0" width="1071.5" height="645.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1154" height="695.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outside" translatesAutoresizingMaskIntoConstraints="NO" id="gtY-D3-WJv">
-                                                <rect key="frame" x="0.0" y="0.0" width="1071.5" height="645.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="1154" height="695.5"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloudkitty" translatesAutoresizingMaskIntoConstraints="NO" id="Es5-lZ-EHS">
-                                                <rect key="frame" x="536" y="358.5" width="209" height="142"/>
+                                                <rect key="frame" x="577" y="278" width="225" height="153"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tallpot" translatesAutoresizingMaskIntoConstraints="NO" id="gCe-of-jIg">
-                                                <rect key="frame" x="878.5" y="451.5" width="189" height="188"/>
+                                                <rect key="frame" x="946" y="486" width="203.5" height="202.5"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smallpot" translatesAutoresizingMaskIntoConstraints="NO" id="WDa-DZ-E1M">
-                                                <rect key="frame" x="754.5" y="522.5" width="133" height="116"/>
+                                                <rect key="frame" x="813" y="563" width="143" height="125"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lowpot" translatesAutoresizingMaskIntoConstraints="NO" id="eqd-wc-SL9">
-                                                <rect key="frame" x="10.5" y="508.5" width="197" height="128"/>
+                                                <rect key="frame" x="11.5" y="547.5" width="212" height="138"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="0.88235294119999996" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -993,7 +993,7 @@
                                             <constraint firstAttribute="bottom" secondItem="gtY-D3-WJv" secondAttribute="bottom" id="IuB-BD-G3a"/>
                                             <constraint firstItem="gCe-of-jIg" firstAttribute="width" secondItem="gtY-D3-WJv" secondAttribute="width" multiplier="0.176388" id="JZa-DF-YPe"/>
                                             <constraint firstItem="gtY-D3-WJv" firstAttribute="leading" secondItem="nls-e6-ziC" secondAttribute="leading" id="JoD-v4-zKw"/>
-                                            <constraint firstItem="Es5-lZ-EHS" firstAttribute="top" secondItem="gtY-D3-WJv" secondAttribute="baseline" multiplier="1:1.8" id="Lfk-Ug-Bw8"/>
+                                            <constraint firstItem="Es5-lZ-EHS" firstAttribute="top" secondItem="gtY-D3-WJv" secondAttribute="baseline" multiplier="1:2.5" id="Lfk-Ug-Bw8"/>
                                             <constraint firstItem="Es5-lZ-EHS" firstAttribute="height" secondItem="gtY-D3-WJv" secondAttribute="height" multiplier="0.219985" id="Rkg-8y-Qf9"/>
                                             <constraint firstAttribute="width" secondItem="nls-e6-ziC" secondAttribute="height" multiplier="1.66:1" id="Sql-Gz-H02"/>
                                             <constraint firstItem="Es5-lZ-EHS" firstAttribute="width" secondItem="gtY-D3-WJv" secondAttribute="width" multiplier="0.195054" id="U9L-yu-lqb"/>
@@ -1027,7 +1027,7 @@
                         <color key="backgroundColor" red="1" green="0.88149459279999998" blue="0.95206307000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="D0Z-1c-AQh" firstAttribute="centerX" secondItem="OVt-B1-YHB" secondAttribute="centerX" id="9ra-qH-1CU"/>
-                            <constraint firstItem="BJB-y1-oCG" firstAttribute="height" secondItem="K4w-br-9dW" secondAttribute="height" multiplier="0.78912" id="S6W-Dt-x8X"/>
+                            <constraint firstItem="BJB-y1-oCG" firstAttribute="height" secondItem="K4w-br-9dW" secondAttribute="height" multiplier="0.85" id="S6W-Dt-x8X"/>
                             <constraint firstItem="BJB-y1-oCG" firstAttribute="top" secondItem="K4w-br-9dW" secondAttribute="top" constant="20" id="dJJ-Ze-ffK"/>
                             <constraint firstItem="BJB-y1-oCG" firstAttribute="leading" secondItem="K4w-br-9dW" secondAttribute="leading" id="rv2-WZ-9hf"/>
                             <constraint firstItem="K4w-br-9dW" firstAttribute="bottom" secondItem="D0Z-1c-AQh" secondAttribute="bottom" constant="20" id="vfo-nU-Sit"/>

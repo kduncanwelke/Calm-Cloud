@@ -35,13 +35,75 @@ class OutsideViewController: UIViewController {
         return randomRepeatCount
     }
     
+    func floatUp() {
+        print("float")
+        cloudKitty.animationImages = AnimationManager.bouncingAnimation
+        cloudKitty.startAnimating()
+        let ceilingDestination = CGPoint(x: container.frame.width/2, y: container.frame.height/6)
+        cloudKitty.outsideMove(to: ceilingDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
+    }
+    
+    // left movement
+    
+    func floatLeft() {
+        print("float left")
+        cloudKitty.animationImages = AnimationManager.upsideDownLeft
+        cloudKitty.startAnimating()
+        let ceilingDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/6)
+        cloudKitty.outsideMove(to: ceilingDestination, duration: 4.0, options: UIView.AnimationOptions.curveEaseOut)
+    }
+    
     func moveLeftToPlanter() {
         print("left to planter")
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.startAnimating()
-        let planterDestination = CGPoint(x: container.frame.width/8, y: (container.frame.height/3)*2)
+        let planterDestination = CGPoint(x: container.frame.width/4, y: (container.frame.height/3)*2)
         cloudKitty.outsideMove(to: planterDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
     }
+    
+    func moveLeftToWidePot() {
+        print("left to wide pot")
+        cloudKitty.animationImages = AnimationManager.movingLeftAnimation
+        cloudKitty.startAnimating()
+        let potDestination = CGPoint(x: container.frame.width/4, y: (container.frame.height/3)*2.4)
+        cloudKitty.outsideMove(to: potDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
+    }
+    
+    func moveLeftToCenter() {
+        print("left to center")
+        cloudKitty.animationImages = AnimationManager.movingLeftAnimation
+        cloudKitty.startAnimating()
+        let centerDestination = CGPoint(x: container.frame.width/3, y: (container.frame.height/3)*2.35)
+        cloudKitty.outsideMove(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
+    }
+    
+    // right movement
+    
+    func floatRight() {
+        print("float right")
+        cloudKitty.animationImages = AnimationManager.upsideDownRight
+        cloudKitty.startAnimating()
+        let ceilingDestination = CGPoint(x: container.frame.width/1.12, y: container.frame.height/6)
+        cloudKitty.outsideMove(to: ceilingDestination, duration: 4.0, options: UIView.AnimationOptions.curveEaseOut)
+    }
+    
+    func moveRightToBack() {
+        print("right to back")
+        cloudKitty.animationImages = AnimationManager.movingLeftAnimation
+        cloudKitty.startAnimating()
+        let centerDestination = CGPoint(x: container.frame.width/2, y: (container.frame.height/3)*1.52)
+        cloudKitty.outsideMove(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
+    }
+    
+    func moveRightToGate() {
+        print("right to gate")
+        cloudKitty.animationImages = AnimationManager.movingRightAnimation
+        cloudKitty.startAnimating()
+        let gateDestination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*1.5)
+        cloudKitty.outsideMove(to: gateDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
+    }
+    
+    // in-place movements
     
     func sleep() {
         print("sleep")
@@ -54,7 +116,16 @@ class OutsideViewController: UIViewController {
     
     @objc func stopMovingOutside() {
         cloudKitty.stopAnimating()
-        moveLeftToPlanter()
+        let range = [1,2]
+        let animation = range.randomElement()
+        cloudKitty.stopAnimating()
+        
+        if animation == 1 {
+            floatUp()
+            
+        } else {
+            sleep()
+        }
     }
 
     /*
@@ -71,6 +142,8 @@ class OutsideViewController: UIViewController {
     
     @IBAction func returnPressed(_ sender: UIButton) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
+        cloudKitty.stopAnimating()
+        AnimationTimer.stop()
         self.dismiss(animated: true, completion: nil)
     }
     

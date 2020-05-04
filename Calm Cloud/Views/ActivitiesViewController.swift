@@ -35,6 +35,9 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
         tableView.backgroundColor = UIColor.white
         
         loadCompleted()
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     func isSameDay() -> Bool {
@@ -119,6 +122,15 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filterSearch(searchText)
+        
+        if isFilteringBySearch() == false {
+            let indexPath = IndexPath(row: 0, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("dismiss")
     }
     
     // return search results based on title and entry body text

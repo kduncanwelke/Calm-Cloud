@@ -43,8 +43,6 @@ extension ActivitiesViewController: UITableViewDelegate, UITableViewDataSource, 
             
         cell.cellDelegate = self
         
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         return cell
     }
     
