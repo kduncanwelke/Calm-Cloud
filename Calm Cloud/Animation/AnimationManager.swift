@@ -146,6 +146,8 @@ struct AnimationManager {
     
     static var movement: Movement = .staying
     static var location: Location = .middle
+    static var outsideLocation: OutsideLocation = .back
+    
     static var mood: Mood = .happy
     
     static var startImage: UIImage {
@@ -192,4 +194,14 @@ enum Location {
     case toy
     case potty
     case ceiling
+}
+
+enum OutsideLocation {
+    case ceiling
+    case planter
+    case front
+    case back
+    case gate
+    case pot
+    case pots
 }

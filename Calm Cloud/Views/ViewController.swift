@@ -22,6 +22,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var pottyBox: UIImageView!
     @IBOutlet weak var door: UIImageView!
     @IBOutlet weak var openDoor: UIImageView!
+    @IBOutlet weak var nightOverlay: UIView!
+    @IBOutlet weak var lightsOffButton: UIButton!
+    @IBOutlet weak var darkOutside: UIView!
+    
     
     // MARK: Variables
     
@@ -38,6 +42,7 @@ class ViewController: UIViewController {
     var summonedToPotty = false
     var inPotty = false
     var stopped = false
+    var lightsOff = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +51,12 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(returnIndoors), name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(goToSleep), name: NSNotification.Name(rawValue: "goToSleep"), object: nil)
+        
         openDoor.isHidden = true
+       
+        // load sounds
+        Sound.loadSound(resourceName: Sounds.calmMusic.resourceName, type: Sounds.calmMusic.type)
         
         loadPhotos()
         loadEntries()
@@ -60,6 +70,10 @@ class ViewController: UIViewController {
         sleep()
         AnimationManager.location = .middle
         setMood()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .darkContent
     }
     
     // MARK: Custom functions
@@ -89,6 +103,13 @@ class ViewController: UIViewController {
         openDoor.isHidden = true
         stopped = false
         stopMoving()
+    }
+    
+    @objc func goToSleep() {
+        cloudKitty.animationImages = AnimationManager.sleepAnimation
+        cloudKitty.animationDuration = 2.0
+        cloudKitty.animationRepeatCount = 0
+        cloudKitty.startAnimating()
     }
     
     func randomRepeatCount() -> Int {
@@ -278,7 +299,7 @@ class ViewController: UIViewController {
         case .potty:
             destination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*2)
         case .ceiling:
-            destination = CGPoint(x: container.frame.width/2, y: container.frame.height/1.2)
+            destination = CGPoint(x: cloudKitty.frame.midX, y: cloudKitty.frame.midY)
         }
         
         let floatDestination = CGPoint(x: destination.x, y: destination.y-20)
@@ -337,6 +358,19 @@ class ViewController: UIViewController {
         cloudKitty.animationRepeatCount = 0
         cloudKitty.startAnimating()
         AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
+    }
+    
+    // ceiling animations
+    
+    func floatSleep() {
+        print("float sleep")
+        cloudKitty.animationImages = AnimationManager.sleepAnimation
+        cloudKitty.animationDuration = 2.0
+        cloudKitty.animationRepeatCount = 0
+        cloudKitty.startAnimating()
+        let destination = CGPoint(x: cloudKitty.frame.midX, y: cloudKitty.frame.midY)
+        let floatDestination = CGPoint(x: destination.x, y: destination.y-20)
+        cloudKitty.floatMove(to: floatDestination, returnTo: destination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
     }
     
     // place non-specific animations
@@ -531,7 +565,7 @@ class ViewController: UIViewController {
                 moveRightToFood()
             }
         } else {
-            if AnimationManager.mood == .happy {
+            if AnimationManager.mood == .happy && AnimationManager.location != .ceiling {
                 floatUp()
             } else {
                 randomMove()
@@ -645,11 +679,21 @@ class ViewController: UIViewController {
         } else if animation == 3 {
             AnimationManager.movement = .staying
             print("sleep from stopmoving")
-            sleep()
+            switch AnimationManager.location {
+            case .ceiling:
+                floatSleep()
+            default:
+                sleep()
+            }
         } else {
             AnimationManager.movement = .staying
             print("pause")
-            pause()
+            switch AnimationManager.location {
+            case .ceiling:
+                bounce()
+            default:
+                pause()
+            }
         }
     }
     
@@ -666,7 +710,11 @@ class ViewController: UIViewController {
                 hasBeenPet = true
             }
         } else if sender.state == .ended || sender.state == .cancelled {
-            stopMoving()
+            if lightsOff {
+                goToSleep()
+            } else {
+                stopMoving()
+            }
         }
     }
     
@@ -720,6 +768,40 @@ class ViewController: UIViewController {
         stopped = true
         performSegue(withIdentifier: "goOutside", sender: Any?.self)
     }
+    
+    @IBAction func lightsOffTapped(_ sender: UIButton) {
+        if lightsOff {
+            darkOutside.fadeOut()
+            nightOverlay.fadeOut()
+            lightsOffButton.setBackgroundImage(UIImage(named: "lightsoff"), for: .normal)
+            lightsOffButton.setTitle("  Lights Off", for: .normal)
+            lightsOffButton.setTitleColor(UIColor.white, for: .normal)
+            lightsOff = false
+            stopped = false
+            Sound.stopPlaying()
+            stopMoving()
+        } else {
+            cloudKitty.stopAnimating()
+            AnimationTimer.stop()
+            stopped = true
+            
+            print("left to bed")
+            cloudKitty.animationImages = AnimationManager.movingLeftAnimation
+            cloudKitty.startAnimating()
+            let bedDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/2)
+            cloudKitty.goToSleep(to: bedDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
+            AnimationManager.location = .bed
+            
+            nightOverlay.fadeIn()
+            darkOutside.fadeIn()
+            lightsOffButton.setBackgroundImage(UIImage(named: "lightson"), for: .normal)
+            lightsOffButton.setTitle("  Lights On", for: .normal)
+            lightsOffButton.setTitleColor(UIColor.black, for: .normal)
+            lightsOff = true
+            Sound.startPlaying()
+        }
+    }
+    
     
     @IBAction func remindersTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "visitReminders", sender: Any?.self)

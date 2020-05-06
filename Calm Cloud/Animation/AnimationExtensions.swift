@@ -19,6 +19,15 @@ extension UIView {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "stopMoving"), object: nil)
         })
     }
+    
+    func goToSleep(to destination: CGPoint, duration: TimeInterval,
+              options: UIView.AnimationOptions) {
+        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+            self.center = destination
+        }, completion: {(finished: Bool) in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "goToSleep"), object: nil)
+        })
+    }
 
     func floatMove(to destination: CGPoint, returnTo: CGPoint, duration: TimeInterval,
                    options: UIView.AnimationOptions) {
@@ -39,6 +48,19 @@ extension UIView {
             self.center = destination
         }, completion: {(finished: Bool) in
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "stopMovingOutside"), object: nil)
+        })
+    }
+    
+    func floatMoveOutside(to destination: CGPoint, returnTo: CGPoint, duration: TimeInterval,
+                   options: UIView.AnimationOptions) {
+        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+            self.center = destination
+        }, completion: {(finished: Bool) in
+            UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+                self.center = returnTo
+            }, completion: {(finished: Bool) in
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "stopMovingOutside"), object: nil)
+            })
         })
     }
     
@@ -77,6 +99,18 @@ extension UIView {
             UIView.animate(withDuration: 0.5) {
                 self.alpha = 0.0
             }
+        })
+    }
+    
+    func fadeIn() {
+        UIView.animate(withDuration: 2.0, animations: {
+            self.alpha = 1.0
+        })
+    }
+    
+    func fadeOut() {
+        UIView.animate(withDuration: 2.0, animations: {
+            self.alpha = 0.0
         })
     }
     
