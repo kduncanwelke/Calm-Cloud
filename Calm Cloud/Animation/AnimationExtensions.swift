@@ -114,4 +114,13 @@ extension UIView {
         })
     }
     
+    func animateBounce() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        }, completion: { [unowned self] _ in
+            UIView.animate(withDuration: 0.2) {
+                self.transform = CGAffineTransform.identity
+            }
+        })
+    }
 }

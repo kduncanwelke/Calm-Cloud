@@ -170,6 +170,7 @@ struct AnimationManager {
     }
     
     static let toyAnimation: [UIImage] = [#imageLiteral(resourceName: "toy.png"),#imageLiteral(resourceName: "toy2.png")]
+    static let revealAnimation: [UIImage] = [#imageLiteral(resourceName: "cloudkittyright.png"),#imageLiteral(resourceName: "play2.png")]
 }
 
 enum Movement {

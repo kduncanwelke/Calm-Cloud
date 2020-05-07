@@ -25,6 +25,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var nightOverlay: UIView!
     @IBOutlet weak var lightsOffButton: UIButton!
     @IBOutlet weak var darkOutside: UIView!
+    @IBOutlet weak var containerView: UIView!
     
     
     // MARK: Variables
@@ -52,6 +53,9 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(returnIndoors), name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(goToSleep), name: NSNotification.Name(rawValue: "goToSleep"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(closeMiniGame), name: NSNotification.Name(rawValue: "closeMiniGame"), object: nil)
+        
         
         openDoor.isHidden = true
        
@@ -110,6 +114,12 @@ class ViewController: UIViewController {
         cloudKitty.animationDuration = 2.0
         cloudKitty.animationRepeatCount = 0
         cloudKitty.startAnimating()
+    }
+    
+    @objc func closeMiniGame() {
+        containerView.isHidden = true
+        stopped = false
+        stopMoving()
     }
     
     func randomRepeatCount() -> Int {
@@ -767,6 +777,15 @@ class ViewController: UIViewController {
         AnimationTimer.stop()
         stopped = true
         performSegue(withIdentifier: "goOutside", sender: Any?.self)
+    }
+    
+    
+    @IBAction func miniGameTapped(_ sender: UIButton) {
+        cloudKitty.stopAnimating()
+        AnimationTimer.stop()
+        stopped = true
+        containerView.isHidden = false
+        containerView.animateBounce()
     }
     
     @IBAction func lightsOffTapped(_ sender: UIButton) {

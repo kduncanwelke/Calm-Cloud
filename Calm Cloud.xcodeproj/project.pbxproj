@@ -25,6 +25,7 @@
 		2D48CC3E242548B200D0FBBB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48CC3D242548B200D0FBBB /* ViewController.swift */; };
 		2D48CC41242548B200D0FBBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48CC3F242548B200D0FBBB /* Main.storyboard */; };
 		2D48CC46242548B400D0FBBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48CC44242548B400D0FBBB /* LaunchScreen.storyboard */; };
+		2D5D6F362464830C00993969 /* MiniGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5D6F352464830C00993969 /* MiniGameViewController.swift */; };
 		2D7E2AF324477CFA006C76BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D7E2AF224477CFA006C76BD /* Assets.xcassets */; };
 		2D7FCAB824324F2F00E2DEC4 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCAB724324F2F00E2DEC4 /* PhotoViewController.swift */; };
 		2D7FCABA2432506100E2DEC4 /* Photo+ScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCAB92432506100E2DEC4 /* Photo+ScrollViewDelegate.swift */; };
@@ -71,6 +72,7 @@
 		2D48CC40242548B200D0FBBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2D48CC45242548B400D0FBBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D48CC47242548B400D0FBBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D5D6F352464830C00993969 /* MiniGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniGameViewController.swift; sourceTree = "<group>"; };
 		2D7E2AF224477CFA006C76BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D7FCAB724324F2F00E2DEC4 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		2D7FCAB92432506100E2DEC4 /* Photo+ScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+ScrollViewDelegate.swift"; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				2D48CC3D242548B200D0FBBB /* ViewController.swift */,
 				2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */,
 				2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */,
+				2D5D6F352464830C00993969 /* MiniGameViewController.swift */,
 				2D7FCABB243263E800E2DEC4 /* ReminderViewController.swift */,
 				2D7FCABD2432918C00E2DEC4 /* ReminderListViewController.swift */,
 				2D41EF30242D607C0058C443 /* FavoriteThingsViewController.swift */,
@@ -343,6 +346,7 @@
 				2D7FCABA2432506100E2DEC4 /* Photo+ScrollViewDelegate.swift in Sources */,
 				2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */,
 				2D7FCAC224329CDE00E2DEC4 /* ReminderList+TableView.swift in Sources */,
+				2D5D6F362464830C00993969 /* MiniGameViewController.swift in Sources */,
 				2D8C838F2433CDD9006711F2 /* CoreDataManager.swift in Sources */,
 				2D7FCAC02432968F00E2DEC4 /* ReminderTableViewCell.swift in Sources */,
 			);
