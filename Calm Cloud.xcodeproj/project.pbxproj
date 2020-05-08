@@ -12,6 +12,9 @@
 		2D14EBDE243E7740004CB7E2 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EBDD243E7740004CB7E2 /* NotificationManager.swift */; };
 		2D26545E2440F6EE00FBFF74 /* OutsideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */; };
 		2D2654612441165800FBFF74 /* CellCheckDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2654602441165800FBFF74 /* CellCheckDelegate.swift */; };
+		2D2EF6A22465F2EE00E497DC /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */; };
+		2D2EF6A4246600FF00E497DC /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EF6A3246600FF00E497DC /* InventoryViewController.swift */; };
+		2D2EF6A62466017E00E497DC /* InventoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EF6A52466017E00E497DC /* InventoryCollectionViewCell.swift */; };
 		2D384C1D243BBBE600D0FFEB /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C1C243BBBE600D0FFEB /* PageViewController.swift */; };
 		2D384C1F243BC2B700D0FFEB /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C1E243BC2B700D0FFEB /* ContentViewController.swift */; };
 		2D384C21243BCA3B00D0FFEB /* PageControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C20243BCA3B00D0FFEB /* PageControllerManager.swift */; };
@@ -49,6 +52,7 @@
 		2DD50C21242D58F600073B49 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */; };
 		2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */; };
 		2DDEA32B242A98E800717E8C /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEA32A242A98E800717E8C /* AnimationManager.swift */; };
+		2DFD54B124660B100096FD5C /* Seedling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFD54B024660B100096FD5C /* Seedling.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +61,9 @@
 		2D14EBDD243E7740004CB7E2 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutsideViewController.swift; sourceTree = "<group>"; };
 		2D2654602441165800FBFF74 /* CellCheckDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellCheckDelegate.swift; sourceTree = "<group>"; };
+		2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		2D2EF6A3246600FF00E497DC /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
+		2D2EF6A52466017E00E497DC /* InventoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D384C1C243BBBE600D0FFEB /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		2D384C1E243BC2B700D0FFEB /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		2D384C20243BCA3B00D0FFEB /* PageControllerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControllerManager.swift; sourceTree = "<group>"; };
@@ -96,6 +103,7 @@
 		2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTimer.swift; sourceTree = "<group>"; };
 		2DDEA32A242A98E800717E8C /* AnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
+		2DFD54B024660B100096FD5C /* Seedling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seedling.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +137,7 @@
 				2D8F904A243FC5B900211802 /* ActivityManager.swift */,
 				2D14EBDB243E752B004CB7E2 /* ReminderManager.swift */,
 				2DB1D48824573DDD00512E4F /* CareManager.swift */,
+				2DFD54B024660B100096FD5C /* Seedling.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -175,6 +184,7 @@
 				2D7FCABF2432968F00E2DEC4 /* ReminderTableViewCell.swift */,
 				2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */,
 				2D8F9041243F9E8F00211802 /* ActivityTableViewCell.swift */,
+				2D2EF6A52466017E00E497DC /* InventoryCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -214,8 +224,10 @@
 				2D8F9040243F9DE800211802 /* Cells */,
 				2D48CC3D242548B200D0FBBB /* ViewController.swift */,
 				2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */,
-				2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */,
 				2D5D6F352464830C00993969 /* MiniGameViewController.swift */,
+				2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */,
+				2D2EF6A3246600FF00E497DC /* InventoryViewController.swift */,
+				2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */,
 				2D7FCABB243263E800E2DEC4 /* ReminderViewController.swift */,
 				2D7FCABD2432918C00E2DEC4 /* ReminderListViewController.swift */,
 				2D41EF30242D607C0058C443 /* FavoriteThingsViewController.swift */,
@@ -318,8 +330,10 @@
 				2D41EF28242D5CE20058C443 /* PhotoManager.swift in Sources */,
 				2DB1D48B2457415000512E4F /* ViewController+CoreData.swift in Sources */,
 				2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */,
+				2D2EF6A22465F2EE00E497DC /* PopUpViewController.swift in Sources */,
 				2DD2C31B246353310070934D /* Sounds.swift in Sources */,
 				2D14EBDE243E7740004CB7E2 /* NotificationManager.swift in Sources */,
+				2DFD54B124660B100096FD5C /* Seedling.swift in Sources */,
 				2D14EBDC243E752B004CB7E2 /* ReminderManager.swift in Sources */,
 				2D8F9049243FC51800211802 /* Activities+TableView.swift in Sources */,
 				2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */,
@@ -338,6 +352,7 @@
 				2DD50C1D242D535F00073B49 /* JournalViewController.swift in Sources */,
 				2D8F9042243F9E8F00211802 /* ActivityTableViewCell.swift in Sources */,
 				2D384C1D243BBBE600D0FFEB /* PageViewController.swift in Sources */,
+				2D2EF6A62466017E00E497DC /* InventoryCollectionViewCell.swift in Sources */,
 				2D41EF31242D607C0058C443 /* FavoriteThingsViewController.swift in Sources */,
 				2D8F9045243FC2EF00211802 /* ActivitiesViewController.swift in Sources */,
 				2D48CC3C242548B200D0FBBB /* SceneDelegate.swift in Sources */,
@@ -347,6 +362,7 @@
 				2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */,
 				2D7FCAC224329CDE00E2DEC4 /* ReminderList+TableView.swift in Sources */,
 				2D5D6F362464830C00993969 /* MiniGameViewController.swift in Sources */,
+				2D2EF6A4246600FF00E497DC /* InventoryViewController.swift in Sources */,
 				2D8C838F2433CDD9006711F2 /* CoreDataManager.swift in Sources */,
 				2D7FCAC02432968F00E2DEC4 /* ReminderTableViewCell.swift in Sources */,
 			);
@@ -495,6 +511,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A8R365GJ52;
 				INFOPLIST_FILE = "Calm Cloud/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -513,6 +530,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A8R365GJ52;
 				INFOPLIST_FILE = "Calm Cloud/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

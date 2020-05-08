@@ -77,7 +77,7 @@ class ViewController: UIViewController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .darkContent
+        return .default
     }
     
     // MARK: Custom functions
@@ -803,6 +803,7 @@ class ViewController: UIViewController {
             cloudKitty.stopAnimating()
             AnimationTimer.stop()
             stopped = true
+            stopMoving()
             
             print("left to bed")
             cloudKitty.animationImages = AnimationManager.movingLeftAnimation

@@ -21,7 +21,11 @@ extension FavoriteThingsViewController: UICollectionViewDataSource, UICollection
             cell.checkButton.isHidden = true
         } else if finishedDeleting {
             cell.checkButton.isHidden = false
-            cell.checkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+            if #available(iOS 13.0, *) {
+                cell.checkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+            } else {
+                // Fallback on earlier versions
+            }
             cell.image.alpha = 1.0
         } else if editingPhotos {
             cell.checkButton.isHidden = false
@@ -41,7 +45,11 @@ extension FavoriteThingsViewController: UICollectionViewDataSource, UICollection
             finishedDeleting = false
             if let indexList = collectionView.indexPathsForSelectedItems {
                 if indexList.contains(indexPath) {
-                    tappedCell.checkButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+                    if #available(iOS 13.0, *) {
+                        tappedCell.checkButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+                    } else {
+                        // Fallback on earlier versions
+                    }
                     tappedCell.image.alpha = 0.7
                     print("selected")
                 }
@@ -58,7 +66,11 @@ extension FavoriteThingsViewController: UICollectionViewDataSource, UICollection
         let tappedCell = collectionView.cellForItem(at:indexPath) as! PhotoCollectionViewCell
         
         if editingPhotos {
-            tappedCell.checkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+            if #available(iOS 13.0, *) {
+                tappedCell.checkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+            } else {
+                // Fallback on earlier versions
+            }
             tappedCell.image.alpha = 1.0
             print("not selected")
         }

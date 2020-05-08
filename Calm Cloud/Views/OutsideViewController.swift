@@ -15,6 +15,9 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var cloudKitty: UIImageView!
+    @IBOutlet weak var flower1: UIImageView!
+    @IBOutlet weak var messageContainer: UIView!
+    @IBOutlet weak var inventoryContainer: UIView!
     
     // MARK: Variables
     
@@ -23,7 +26,16 @@ class OutsideViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-         NotificationCenter.default.addObserver(self, selector: #selector(stopMovingOutside), name: NSNotification.Name(rawValue: "stopMovingOutside"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(stopMovingOutside), name: NSNotification.Name(rawValue: "stopMovingOutside"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(closePopUp), name: NSNotification.Name(rawValue: "closePopUp"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(showInventory), name: NSNotification.Name(rawValue: "showInventory"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(closeInventory), name: NSNotification.Name(rawValue: "closeInventory"), object: nil)
+        
+         NotificationCenter.default.addObserver(self, selector: #selector(plant), name: NSNotification.Name(rawValue: "plant"), object: nil)
+        
         
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
@@ -33,6 +45,23 @@ class OutsideViewController: UIViewController {
     }
     
     // MARK: Custom functions
+    
+    @objc func closePopUp() {
+        messageContainer.isHidden = true
+    }
+    
+    @objc func showInventory() {
+        messageContainer.isHidden = true
+        inventoryContainer.isHidden = false
+    }
+    
+    @objc func closeInventory() {
+        inventoryContainer.isHidden = true
+    }
+    
+    @objc func plant() {
+        flower1.image = Planting.selected
+    }
     
     func randomRepeatCount() -> Int {
         var randomRepeatCount = Int.random(in: 4...8)
@@ -415,6 +444,10 @@ class OutsideViewController: UIViewController {
     */
     
     // MARK: IBActions
+    
+    @IBAction func fenceStripTapped(_ sender: UITapGestureRecognizer) {
+        messageContainer.isHidden = false
+    }
     
     @IBAction func returnPressed(_ sender: UIButton) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
