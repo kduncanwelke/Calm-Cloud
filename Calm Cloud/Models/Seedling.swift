@@ -13,7 +13,3 @@ struct Seedling {
     let name: String
     let image: UIImage
 }
-
-struct Planting {
-    static var selected: UIImage?
-}

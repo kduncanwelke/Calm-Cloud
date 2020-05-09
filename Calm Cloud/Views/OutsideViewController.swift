@@ -15,12 +15,19 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var cloudKitty: UIImageView!
-    @IBOutlet weak var flower1: UIImageView!
     @IBOutlet weak var messageContainer: UIView!
     @IBOutlet weak var inventoryContainer: UIView!
+    @IBOutlet weak var fencePlot1: UIImageView!
+    @IBOutlet weak var fencePlot2: UIImageView!
+    @IBOutlet weak var fencePlot3: UIImageView!
+    @IBOutlet weak var fencePlot4: UIImageView!
+    @IBOutlet weak var fencePlot5: UIImageView!
+    @IBOutlet weak var fencePlot6: UIImageView!
+    
     
     // MARK: Variables
     
+    var selectedPlot = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +67,27 @@ class OutsideViewController: UIViewController {
     }
     
     @objc func plant() {
-        flower1.image = Planting.selected
+        if selectedPlot == 1 {
+            fencePlot1.image = PlantManager.redTulip
+        } else if selectedPlot == 2 {
+            fencePlot2.image = PlantManager.redTulip
+        } else if selectedPlot == 3 {
+            fencePlot3.image = PlantManager.redTulip
+        } else if selectedPlot == 4 {
+            fencePlot4.image = PlantManager.redTulip
+        } else if selectedPlot == 5 {
+            fencePlot5.image = PlantManager.redTulip
+        } else if selectedPlot == 6 {
+            fencePlot6.image = PlantManager.redTulip
+        }
+        
+        inventoryContainer.isHidden = true
+    }
+    
+    func tappedPlant(image: UIImageView) {
+        if image.image?.pngData() == UIImage(named: "emptyplot")?.pngData() {
+             messageContainer.isHidden = false
+        }
     }
     
     func randomRepeatCount() -> Int {
@@ -445,9 +472,40 @@ class OutsideViewController: UIViewController {
     
     // MARK: IBActions
     
-    @IBAction func fenceStripTapped(_ sender: UITapGestureRecognizer) {
-        messageContainer.isHidden = false
+    @IBAction func inventoryTapped(_ sender: UIButton) {
+        inventoryContainer.isHidden = false
     }
+    
+    @IBAction func fencePlot1Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 1
+        tappedPlant(image: fencePlot1)
+    }
+    
+    @IBAction func fencePlot2Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 2
+        tappedPlant(image: fencePlot2)
+    }
+    
+    @IBAction func fencePlot3Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 3
+        tappedPlant(image: fencePlot3)
+    }
+    
+    @IBAction func fencePlot4Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 4
+        tappedPlant(image: fencePlot4)
+    }
+    
+    @IBAction func fencePlot5Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 5
+        tappedPlant(image: fencePlot5)
+    }
+    
+    @IBAction func fencePlot6Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 6
+        tappedPlant(image: fencePlot6)
+    }
+    
     
     @IBAction func returnPressed(_ sender: UIButton) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)

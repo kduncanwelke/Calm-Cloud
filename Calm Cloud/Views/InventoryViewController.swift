@@ -14,7 +14,7 @@ class InventoryViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var seeds = [Seedling(name: "Red Tulip", image: UIImage(named: "redtulip7")!)]
+    var seeds = [Seedling(name: "Red Tulip", image: UIImage(named: "redtulip7")!),Seedling(name: "Red Tulip", image: UIImage(named: "redtulip7")!)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,15 @@ class InventoryViewController: UIViewController {
         collectionView.dataSource = self
     }
     
+    func clearSelections() {
+        if let selections = collectionView.indexPathsForSelectedItems {
+            for index in selections {
+                collectionView.deselectItem(at: index, animated: false)
+            }
+        }
+        
+        collectionView.reloadData()
+    }
 
     /*
     // MARK: - Navigation
@@ -37,8 +46,14 @@ class InventoryViewController: UIViewController {
 
     // MARK: IBActions
     
+    @IBAction func confirmPlanting(_ sender: UIButton) {
+        clearSelections()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "plant"), object: nil)
+    }
+    
     @IBAction func close(_ sender: UIButton) {
-         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "closeInventory"), object: nil)
+        clearSelections()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "closeInventory"), object: nil)
     }
     
 }
@@ -53,14 +68,19 @@ extension InventoryViewController: UICollectionViewDataSource, UICollectionViewD
         
         cell.cellLabel.text = seeds[indexPath.row].name
         cell.cellImage.image = seeds[indexPath.row].image
+        cell.backgroundColor = UIColor.white
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let tappedCell = collectionView.cellForItem(at:indexPath) as! InventoryCollectionViewCell
-        
-        Planting.selected = tappedCell.cellImage.image
-         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "plant"), object: nil)
+        tappedCell.backgroundColor = UIColor(red: 0.66, green: 0.89, blue: 0.91, alpha: 1.00)
+        // set plant selection or whatever
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let tappedCell = collectionView.cellForItem(at:indexPath) as! InventoryCollectionViewCell
+        tappedCell.backgroundColor = UIColor.white
     }
 }
