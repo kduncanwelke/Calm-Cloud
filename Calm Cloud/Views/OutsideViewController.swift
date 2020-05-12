@@ -17,12 +17,22 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var cloudKitty: UIImageView!
     @IBOutlet weak var messageContainer: UIView!
     @IBOutlet weak var inventoryContainer: UIView!
+    
     @IBOutlet weak var fencePlot1: UIImageView!
     @IBOutlet weak var fencePlot2: UIImageView!
     @IBOutlet weak var fencePlot3: UIImageView!
     @IBOutlet weak var fencePlot4: UIImageView!
     @IBOutlet weak var fencePlot5: UIImageView!
     @IBOutlet weak var fencePlot6: UIImageView!
+    
+    @IBOutlet weak var frontPlot1: UIImageView!
+    @IBOutlet weak var frontPlot2: UIImageView!
+    @IBOutlet weak var frontPlot3: UIImageView!
+    @IBOutlet weak var frontPlot4: UIImageView!
+    @IBOutlet weak var frontPlot5: UIImageView!
+    @IBOutlet weak var frontPlot6: UIImageView!
+    @IBOutlet weak var frontPlot7: UIImageView!
+    @IBOutlet weak var frontPlot8: UIImageView!
     
     
     // MARK: Variables
@@ -49,6 +59,8 @@ class OutsideViewController: UIViewController {
         
         AnimationManager.outsideLocation = .back
         sleep()
+        
+        loadPlots()
     }
     
     // MARK: Custom functions
@@ -67,18 +79,37 @@ class OutsideViewController: UIViewController {
     }
     
     @objc func plant() {
+        // change based on selected species
+        savePlanting(id: selectedPlot, plant: PlantManager.selected.rawValue)
+        
         if selectedPlot == 1 {
-            fencePlot1.image = PlantManager.redTulip
+            fencePlot1.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
         } else if selectedPlot == 2 {
-            fencePlot2.image = PlantManager.redTulip
+            fencePlot2.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
         } else if selectedPlot == 3 {
-            fencePlot3.image = PlantManager.redTulip
+            fencePlot3.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
         } else if selectedPlot == 4 {
-            fencePlot4.image = PlantManager.redTulip
+            fencePlot4.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
         } else if selectedPlot == 5 {
-            fencePlot5.image = PlantManager.redTulip
+            fencePlot5.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
         } else if selectedPlot == 6 {
-            fencePlot6.image = PlantManager.redTulip
+            fencePlot6.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 7 {
+            frontPlot1.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 8 {
+            frontPlot2.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 9 {
+            frontPlot3.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 10 {
+            frontPlot4.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 11 {
+            frontPlot5.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 12 {
+            frontPlot6.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 13 {
+            frontPlot7.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 14 {
+            frontPlot8.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
         }
         
         inventoryContainer.isHidden = true
@@ -506,7 +537,47 @@ class OutsideViewController: UIViewController {
         tappedPlant(image: fencePlot6)
     }
     
+    @IBAction func frontPlot1Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 7
+        tappedPlant(image: frontPlot1)
+    }
     
+    @IBAction func frontPlot2Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 8
+        tappedPlant(image: frontPlot2)
+    }
+    
+    @IBAction func frontPlot3Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 9
+        tappedPlant(image: frontPlot3)
+    }
+    
+    @IBAction func frontPlot4Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 10
+        tappedPlant(image: frontPlot4)
+    }
+    
+    @IBAction func frontPlot5Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 11
+        tappedPlant(image: frontPlot5)
+    }
+    
+    @IBAction func frontPlot6Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 12
+        tappedPlant(image: frontPlot6)
+    }
+    
+    @IBAction func frontPlot7Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 13
+        tappedPlant(image: frontPlot7)
+    }
+    
+    @IBAction func frontPlot8Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 14
+        tappedPlant(image: frontPlot8)
+    }
+    
+
     @IBAction func returnPressed(_ sender: UIButton) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         cloudKitty.stopAnimating()

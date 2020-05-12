@@ -29,6 +29,7 @@
 		2D48CC41242548B200D0FBBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48CC3F242548B200D0FBBB /* Main.storyboard */; };
 		2D48CC46242548B400D0FBBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48CC44242548B400D0FBBB /* LaunchScreen.storyboard */; };
 		2D5D6F362464830C00993969 /* MiniGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5D6F352464830C00993969 /* MiniGameViewController.swift */; };
+		2D7DF67D2469FCEE009B9291 /* Outside+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7DF67C2469FCEE009B9291 /* Outside+CoreData.swift */; };
 		2D7E2AF324477CFA006C76BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D7E2AF224477CFA006C76BD /* Assets.xcassets */; };
 		2D7FCAB824324F2F00E2DEC4 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCAB724324F2F00E2DEC4 /* PhotoViewController.swift */; };
 		2D7FCABA2432506100E2DEC4 /* Photo+ScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCAB92432506100E2DEC4 /* Photo+ScrollViewDelegate.swift */; };
@@ -53,7 +54,7 @@
 		2DD50C21242D58F600073B49 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */; };
 		2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */; };
 		2DDEA32B242A98E800717E8C /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEA32A242A98E800717E8C /* AnimationManager.swift */; };
-		2DFD54B124660B100096FD5C /* Seedling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFD54B024660B100096FD5C /* Seedling.swift */; };
+		2DFD54B124660B100096FD5C /* Plantings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFD54B024660B100096FD5C /* Plantings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		2D48CC45242548B400D0FBBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D48CC47242548B400D0FBBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D5D6F352464830C00993969 /* MiniGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniGameViewController.swift; sourceTree = "<group>"; };
+		2D7DF67C2469FCEE009B9291 /* Outside+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Outside+CoreData.swift"; sourceTree = "<group>"; };
 		2D7E2AF224477CFA006C76BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D7FCAB724324F2F00E2DEC4 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		2D7FCAB92432506100E2DEC4 /* Photo+ScrollViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+ScrollViewDelegate.swift"; sourceTree = "<group>"; };
@@ -105,7 +107,7 @@
 		2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTimer.swift; sourceTree = "<group>"; };
 		2DDEA32A242A98E800717E8C /* AnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
-		2DFD54B024660B100096FD5C /* Seedling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seedling.swift; sourceTree = "<group>"; };
+		2DFD54B024660B100096FD5C /* Plantings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plantings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +141,7 @@
 				2D8F904A243FC5B900211802 /* ActivityManager.swift */,
 				2D14EBDB243E752B004CB7E2 /* ReminderManager.swift */,
 				2DB1D48824573DDD00512E4F /* CareManager.swift */,
-				2DFD54B024660B100096FD5C /* Seedling.swift */,
+				2DFD54B024660B100096FD5C /* Plantings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -229,6 +231,7 @@
 				2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */,
 				2D5D6F352464830C00993969 /* MiniGameViewController.swift */,
 				2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */,
+				2D7DF67C2469FCEE009B9291 /* Outside+CoreData.swift */,
 				2D2EF6A3246600FF00E497DC /* InventoryViewController.swift */,
 				2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */,
 				2D7FCABB243263E800E2DEC4 /* ReminderViewController.swift */,
@@ -337,11 +340,12 @@
 				2D2EF6A22465F2EE00E497DC /* PopUpViewController.swift in Sources */,
 				2DD2C31B246353310070934D /* Sounds.swift in Sources */,
 				2D14EBDE243E7740004CB7E2 /* NotificationManager.swift in Sources */,
-				2DFD54B124660B100096FD5C /* Seedling.swift in Sources */,
+				2DFD54B124660B100096FD5C /* Plantings.swift in Sources */,
 				2D14EBDC243E752B004CB7E2 /* ReminderManager.swift in Sources */,
 				2D8F9049243FC51800211802 /* Activities+TableView.swift in Sources */,
 				2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */,
 				2D41EF2A242D5DCF0058C443 /* Favorites+CollectionView.swift in Sources */,
+				2D7DF67D2469FCEE009B9291 /* Outside+CoreData.swift in Sources */,
 				2D8F904B243FC5B900211802 /* ActivityManager.swift in Sources */,
 				2D7FCAB824324F2F00E2DEC4 /* PhotoViewController.swift in Sources */,
 				2D48CC3A242548B200D0FBBB /* AppDelegate.swift in Sources */,

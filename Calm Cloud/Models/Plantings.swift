@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-struct Seedling {
-    let name: String
-    let image: UIImage
+struct Plantings {
+    static var plantings: [Plot] = []
 }

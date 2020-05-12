@@ -14,7 +14,7 @@ class InventoryViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var seeds = [Seedling(name: "Red Tulip", image: UIImage(named: "redtulip7")!),Seedling(name: "Red Tulip", image: UIImage(named: "redtulip7")!)]
+    var seeds = [Seedling(name: "Red Tulip", image: UIImage(named: "redtulip7")!, plant: .redTulip),Seedling(name: "Red Tulip", image: UIImage(named: "redtulip7")!, plant: .redTulip)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +76,8 @@ extension InventoryViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let tappedCell = collectionView.cellForItem(at:indexPath) as! InventoryCollectionViewCell
         tappedCell.backgroundColor = UIColor(red: 0.66, green: 0.89, blue: 0.91, alpha: 1.00)
-        // set plant selection or whatever
+        // set plant selection
+        PlantManager.selected = seeds[indexPath.row].plant
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

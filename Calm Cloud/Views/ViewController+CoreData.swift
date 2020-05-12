@@ -97,7 +97,7 @@ extension ViewController {
         }
         
         if potty != nil {
-            currentCare.lastCleaned = Date()
+            currentCare.lastCleaned = potty
         }
         
         do {

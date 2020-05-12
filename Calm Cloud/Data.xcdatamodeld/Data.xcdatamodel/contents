@@ -15,6 +15,11 @@
     <entity name="Photo" representedClassName="Photo" syncable="YES" codeGenerationType="class">
         <attribute name="path" attributeType="String" customClassName="[String]"/>
     </entity>
+    <entity name="Plot" representedClassName="Plot" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="plant" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <entity name="Reminder" representedClassName="Reminder" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="hour" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -24,9 +29,10 @@
     </entity>
     <elements>
         <element name="ActivityId" positionX="-63" positionY="27" width="128" height="58"/>
+        <element name="Care" positionX="-63" positionY="27" width="128" height="88"/>
+        <element name="Plot" positionX="-63" positionY="27" width="128" height="88"/>
         <element name="JournalEntry" positionX="-63" positionY="-9" width="128" height="73"/>
         <element name="Photo" positionX="-63" positionY="-18" width="128" height="58"/>
         <element name="Reminder" positionX="-63" positionY="0" width="128" height="118"/>
-        <element name="Care" positionX="-63" positionY="27" width="128" height="88"/>
     </elements>
 </model>
