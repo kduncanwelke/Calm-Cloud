@@ -41,10 +41,19 @@ struct PlantManager {
                 return nil
             }
             
+            PlantManager.currentStage = Stage.init(rawValue: stage)!
+            
             switch plant {
             case .redTulip:
-                PlantManager.currentStage = Stage.init(rawValue: stage)!
                 return redTulip
+            case .jade:
+                return jade
+            case .chard:
+                return chard
+            case .lemon:
+                return lemon
+            case .pumpkin:
+                return pumpkin
             }
         } else {
             return nil
@@ -53,6 +62,7 @@ struct PlantManager {
     
     static var currentStage: Stage = .one
     static var selected: Plant = .redTulip
+    static var area: Area = .none
     
     static var redTulip: UIImage {
         get {
@@ -76,18 +86,124 @@ struct PlantManager {
             }
         }
     }
+    
+    static var jade: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                return #imageLiteral(resourceName: "jade1.png")
+            case .two:
+                return #imageLiteral(resourceName: "jade2.png")
+            case .three:
+                return #imageLiteral(resourceName: "jade3.png")
+            case .four:
+                return #imageLiteral(resourceName: "jade4.png")
+            case .five:
+                return #imageLiteral(resourceName: "jade5.png")
+            case .six:
+                return #imageLiteral(resourceName: "jade6.png")
+            case .seven:
+                return #imageLiteral(resourceName: "jade7.png")
+            }
+        }
+    }
+    
+    static var chard: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                return #imageLiteral(resourceName: "chard1.png")
+            case .two:
+                return #imageLiteral(resourceName: "chard2.png")
+            case .three:
+                return #imageLiteral(resourceName: "chard3.png")
+            case .four:
+                return #imageLiteral(resourceName: "chard4.png")
+            case .five:
+                return #imageLiteral(resourceName: "chard5.png")
+            case .six:
+                return #imageLiteral(resourceName: "chard6.png")
+            case .seven:
+                return #imageLiteral(resourceName: "chard7.png")
+            }
+        }
+    }
+    
+    static var lemon: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                return #imageLiteral(resourceName: "lemon1.png")
+            case .two:
+                return #imageLiteral(resourceName: "lemon2.png")
+            case .three:
+                return #imageLiteral(resourceName: "lemon3.png")
+            case .four:
+                return #imageLiteral(resourceName: "lemon4.png")
+            case .five:
+                return #imageLiteral(resourceName: "lemon5.png")
+            case .six:
+                return #imageLiteral(resourceName: "lemon6.png")
+            case .seven:
+                return #imageLiteral(resourceName: "lemon7.png")
+            }
+        }
+    }
+    
+    static var pumpkin: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                return #imageLiteral(resourceName: "pumpkin1.png")
+            case .two:
+                return #imageLiteral(resourceName: "pumpkin2.png")
+            case .three:
+                return #imageLiteral(resourceName: "pumpkin3.png")
+            case .four:
+                return #imageLiteral(resourceName: "pumpkin4.png")
+            case .five:
+                return #imageLiteral(resourceName: "pumpkin5.png")
+            case .six:
+                return #imageLiteral(resourceName: "pumpkin6.png")
+            case .seven:
+                return #imageLiteral(resourceName: "pumpkin7.png")
+            }
+        }
+    }
 }
 
 enum Plant: Int {
     case redTulip
+    case jade
+    case chard
+    case lemon
+    case pumpkin
 }
 
 enum Stage: Int {
     case zero, one, two, three, four, five, six, seven
+}
+ 
+enum Area {
+    case flowerStrips
+    case lowPot
+    case planter
+    case tallPot
+    case vegetablePlot
+    case none
 }
 
 struct Seedling {
     let name: String
     let image: UIImage
     let plant: Plant
+    let allowedArea: Area
 }

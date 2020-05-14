@@ -25,6 +25,12 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var fencePlot5: UIImageView!
     @IBOutlet weak var fencePlot6: UIImageView!
     
+    @IBOutlet weak var vegetablePlot1: UIImageView!
+    
+    @IBOutlet weak var planterPlot1: UIImageView!
+    @IBOutlet weak var planterPlot2: UIImageView!
+    @IBOutlet weak var planterPlot3: UIImageView!
+    
     @IBOutlet weak var frontPlot1: UIImageView!
     @IBOutlet weak var frontPlot2: UIImageView!
     @IBOutlet weak var frontPlot3: UIImageView!
@@ -34,6 +40,11 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var frontPlot7: UIImageView!
     @IBOutlet weak var frontPlot8: UIImageView!
     
+    @IBOutlet weak var succulentPot1: UIImageView!
+    @IBOutlet weak var succulentPot2: UIImageView!
+    @IBOutlet weak var succulentPot3: UIImageView!
+    
+    @IBOutlet weak var tallPotPlot: UIImageView!
     
     // MARK: Variables
     
@@ -51,7 +62,7 @@ class OutsideViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(closeInventory), name: NSNotification.Name(rawValue: "closeInventory"), object: nil)
         
-         NotificationCenter.default.addObserver(self, selector: #selector(plant), name: NSNotification.Name(rawValue: "plant"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(plant), name: NSNotification.Name(rawValue: "plant"), object: nil)
         
         
         let offset = container.frame.width / 5
@@ -66,16 +77,17 @@ class OutsideViewController: UIViewController {
     // MARK: Custom functions
     
     @objc func closePopUp() {
-        messageContainer.isHidden = true
+        view.sendSubviewToBack(messageContainer)
     }
     
     @objc func showInventory() {
-        messageContainer.isHidden = true
-        inventoryContainer.isHidden = false
+        view.sendSubviewToBack(messageContainer)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
+        view.bringSubviewToFront(inventoryContainer)
     }
     
     @objc func closeInventory() {
-        inventoryContainer.isHidden = true
+        view.sendSubviewToBack(inventoryContainer)
     }
     
     @objc func plant() {
@@ -110,14 +122,46 @@ class OutsideViewController: UIViewController {
             frontPlot7.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
         } else if selectedPlot == 14 {
             frontPlot8.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 15 {
+            succulentPot1.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 16 {
+            succulentPot2.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 17 {
+            succulentPot3.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 18 {
+            planterPlot1.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 19 {
+            planterPlot2.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 20 {
+            planterPlot3.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 21 {
+            tallPotPlot.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 22 {
+            vegetablePlot1.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
         }
         
-        inventoryContainer.isHidden = true
+        view.sendSubviewToBack(inventoryContainer)
     }
     
     func tappedPlant(image: UIImageView) {
-        if image.image?.pngData() == UIImage(named: "emptyplot")?.pngData() {
-             messageContainer.isHidden = false
+        if image.image?.pngData() == UIImage(named: "emptyplot")?.pngData() || image.image?.pngData() == UIImage(named: "emptyplotbig")?.pngData()  {
+            if selectedPlot < 15 {
+                PlantManager.area = .flowerStrips
+                print("flower strip")
+            } else if selectedPlot > 15 && selectedPlot < 18 {
+                PlantManager.area = .lowPot
+                print("bowl")
+            } else if selectedPlot > 17 && selectedPlot < 21 {
+                PlantManager.area = .planter
+                print("planter")
+            } else if selectedPlot == 21 {
+                PlantManager.area = .tallPot
+                print("tall pot")
+            } else {
+                PlantManager.area = .vegetablePlot
+            }
+            
+            view.bringSubviewToFront(messageContainer)
         }
     }
     
@@ -504,7 +548,9 @@ class OutsideViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func inventoryTapped(_ sender: UIButton) {
-        inventoryContainer.isHidden = false
+        PlantManager.area = .none
+        view.bringSubviewToFront(inventoryContainer)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
     }
     
     @IBAction func fencePlot1Tapped(_ sender: UITapGestureRecognizer) {
@@ -575,6 +621,46 @@ class OutsideViewController: UIViewController {
     @IBAction func frontPlot8Tapped(_ sender: UITapGestureRecognizer) {
         selectedPlot = 14
         tappedPlant(image: frontPlot8)
+    }
+    
+    @IBAction func succulentPot1Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 15
+        tappedPlant(image: succulentPot1)
+    }
+    
+    @IBAction func succulentPot2Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 16
+        tappedPlant(image: succulentPot2)
+    }
+    
+    @IBAction func succulentPot3Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 17
+        tappedPlant(image: succulentPot3)
+    }
+    
+    @IBAction func planterPlot1Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 18
+        tappedPlant(image: planterPlot1)
+    }
+    
+    @IBAction func planterPlot2Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 19
+        tappedPlant(image: planterPlot2)
+    }
+    
+    @IBAction func planterPlot3Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 20
+        tappedPlant(image: planterPlot3)
+    }
+    
+    @IBAction func tallPotPlotTapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 21
+        tappedPlant(image: tallPotPlot)
+    }
+    
+    @IBAction func vegetablePlot1Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 22
+        tappedPlant(image: vegetablePlot1)
     }
     
 

@@ -13,15 +13,44 @@ class InventoryViewController: UIViewController {
     // MARK: IBOutlets
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var plantSeedlingButton: UIButton!
     
-    var seeds = [Seedling(name: "Red Tulip", image: UIImage(named: "redtulip7")!, plant: .redTulip),Seedling(name: "Red Tulip", image: UIImage(named: "redtulip7")!, plant: .redTulip)]
+    let seedlings = [Seedling(name: "Red Tulip", image: UIImage(named: "redtulip")!, plant: .redTulip, allowedArea: .flowerStrips), Seedling(name: "Jade", image: UIImage(named: "jade")!, plant: .jade, allowedArea: .lowPot), Seedling(name: "Rainbow Chard", image: UIImage(named: "chard")!, plant: .chard, allowedArea: .planter), Seedling(name: "Lemon Tree", image: UIImage(named: "lemon")!, plant: .lemon, allowedArea: .tallPot), Seedling(name: "Pumpkin", image: UIImage(named: "pumpkin")!, plant: .pumpkin, allowedArea: .vegetablePlot)]
+    var validSeedlings: [Seedling] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: NSNotification.Name(rawValue: "reload"), object: nil)
+        
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        setSeedlings()
+    }
+    
+    @objc func reload() {
+        validSeedlings.removeAll()
+        setSeedlings()
+        collectionView.reloadData()
+    }
+    
+    func setSeedlings() {
+        print(PlantManager.area)
+        if PlantManager.area == .none {
+            plantSeedlingButton.isHidden = true
+            for seedling in seedlings {
+                validSeedlings.append(seedling)
+            }
+        } else {
+            plantSeedlingButton.isHidden = false
+            for seedling in seedlings {
+                if seedling.allowedArea == PlantManager.area {
+                    validSeedlings.append(seedling)
+                }
+            }
+        }
     }
     
     func clearSelections() {
@@ -47,6 +76,12 @@ class InventoryViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func confirmPlanting(_ sender: UIButton) {
+        if let selections = collectionView.indexPathsForSelectedItems {
+            if selections.isEmpty {
+                return
+            }
+        }
+        
         clearSelections()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "plant"), object: nil)
     }
@@ -60,14 +95,14 @@ class InventoryViewController: UIViewController {
 
 extension InventoryViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return seeds.count
+        return validSeedlings.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "inventoryCell", for: indexPath) as! InventoryCollectionViewCell
         
-        cell.cellLabel.text = seeds[indexPath.row].name
-        cell.cellImage.image = seeds[indexPath.row].image
+        cell.cellLabel.text = validSeedlings[indexPath.row].name
+        cell.cellImage.image = validSeedlings[indexPath.row].image
         cell.backgroundColor = UIColor.white
         
         return cell
@@ -77,11 +112,24 @@ extension InventoryViewController: UICollectionViewDataSource, UICollectionViewD
         let tappedCell = collectionView.cellForItem(at:indexPath) as! InventoryCollectionViewCell
         tappedCell.backgroundColor = UIColor(red: 0.66, green: 0.89, blue: 0.91, alpha: 1.00)
         // set plant selection
-        PlantManager.selected = seeds[indexPath.row].plant
+        PlantManager.selected = validSeedlings[indexPath.row].plant
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let tappedCell = collectionView.cellForItem(at:indexPath) as! InventoryCollectionViewCell
         tappedCell.backgroundColor = UIColor.white
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let availableWidth = collectionView.frame.width
+        let maxNumColumns = 3
+        let cellWidth = (availableWidth / CGFloat(maxNumColumns)).rounded(.down)
+        
+        return CGSize(width: cellWidth, height: cellWidth)
     }
 }
