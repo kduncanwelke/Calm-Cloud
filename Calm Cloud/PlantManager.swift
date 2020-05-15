@@ -54,6 +54,8 @@ struct PlantManager {
                 return lemon
             case .pumpkin:
                 return pumpkin
+            case .geranium:
+                return geranium
             }
         } else {
             return nil
@@ -137,7 +139,7 @@ struct PlantManager {
         get {
             switch PlantManager.currentStage {
             case .zero:
-                return #imageLiteral(resourceName: "emptyplot.png")
+                return #imageLiteral(resourceName: "emptyplottree.png")
             case .one:
                 return #imageLiteral(resourceName: "lemon1.png")
             case .two:
@@ -160,7 +162,7 @@ struct PlantManager {
         get {
             switch PlantManager.currentStage {
             case .zero:
-                return #imageLiteral(resourceName: "emptyplot.png")
+                return #imageLiteral(resourceName: "emptyplotbig.png")
             case .one:
                 return #imageLiteral(resourceName: "pumpkin1.png")
             case .two:
@@ -178,6 +180,29 @@ struct PlantManager {
             }
         }
     }
+    
+    static var geranium: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplotsmallpot.png")
+            case .one:
+                return #imageLiteral(resourceName: "geranium1.png")
+            case .two:
+                return #imageLiteral(resourceName: "geranium2.png")
+            case .three:
+                return #imageLiteral(resourceName: "geranium3.png")
+            case .four:
+                return #imageLiteral(resourceName: "geranium4.png")
+            case .five:
+                return #imageLiteral(resourceName: "geranium5.png")
+            case .six:
+                return #imageLiteral(resourceName: "geranium6.png")
+            case .seven:
+                return #imageLiteral(resourceName: "geranium7.png")
+            }
+        }
+    }
 }
 
 enum Plant: Int {
@@ -186,6 +211,7 @@ enum Plant: Int {
     case chard
     case lemon
     case pumpkin
+    case geranium
 }
 
 enum Stage: Int {
@@ -198,6 +224,7 @@ enum Area {
     case planter
     case tallPot
     case vegetablePlot
+    case smallPot
     case none
 }
 

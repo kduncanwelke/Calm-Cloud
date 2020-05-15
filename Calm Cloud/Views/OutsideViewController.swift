@@ -26,6 +26,11 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var fencePlot6: UIImageView!
     
     @IBOutlet weak var vegetablePlot1: UIImageView!
+    @IBOutlet weak var vegetablePlot2: UIImageView!
+    @IBOutlet weak var vegetablePlot3: UIImageView!
+    @IBOutlet weak var vegetablePlot4: UIImageView!
+    @IBOutlet weak var vegetablePlot5: UIImageView!
+    @IBOutlet weak var vegetablePlot6: UIImageView!
     
     @IBOutlet weak var planterPlot1: UIImageView!
     @IBOutlet weak var planterPlot2: UIImageView!
@@ -45,6 +50,8 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var succulentPot3: UIImageView!
     
     @IBOutlet weak var tallPotPlot: UIImageView!
+    @IBOutlet weak var smallPotPlot: UIImageView!
+    
     
     // MARK: Variables
     
@@ -138,17 +145,29 @@ class OutsideViewController: UIViewController {
             tallPotPlot.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
         } else if selectedPlot == 22 {
             vegetablePlot1.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 23 {
+            vegetablePlot2.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 24 {
+            vegetablePlot3.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 25 {
+            vegetablePlot4.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 26 {
+            vegetablePlot5.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 27 {
+            vegetablePlot6.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+        } else if selectedPlot == 28 {
+            smallPotPlot.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
         }
         
         view.sendSubviewToBack(inventoryContainer)
     }
     
     func tappedPlant(image: UIImageView) {
-        if image.image?.pngData() == UIImage(named: "emptyplot")?.pngData() || image.image?.pngData() == UIImage(named: "emptyplotbig")?.pngData()  {
+        if image.image?.pngData() == UIImage(named: "emptyplot")?.pngData() || image.image?.pngData() == UIImage(named: "emptyplotbig")?.pngData() || image.image?.pngData() == UIImage(named: "emptyplottree")?.pngData() || image.image?.pngData() == UIImage(named: "emptyplotsmallpot")?.pngData() {
             if selectedPlot < 15 {
                 PlantManager.area = .flowerStrips
                 print("flower strip")
-            } else if selectedPlot > 15 && selectedPlot < 18 {
+            } else if selectedPlot > 14 && selectedPlot < 18 {
                 PlantManager.area = .lowPot
                 print("bowl")
             } else if selectedPlot > 17 && selectedPlot < 21 {
@@ -157,8 +176,12 @@ class OutsideViewController: UIViewController {
             } else if selectedPlot == 21 {
                 PlantManager.area = .tallPot
                 print("tall pot")
+            } else if selectedPlot == 28 {
+                PlantManager.area = .smallPot
+                print("small pot")
             } else {
                 PlantManager.area = .vegetablePlot
+                print("vegetable plot")
             }
             
             view.bringSubviewToFront(messageContainer)
@@ -663,7 +686,37 @@ class OutsideViewController: UIViewController {
         tappedPlant(image: vegetablePlot1)
     }
     
-
+    @IBAction func vegetablePlot2Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 23
+        tappedPlant(image: vegetablePlot2)
+    }
+    
+    @IBAction func vegetablePlot3Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 24
+        tappedPlant(image: vegetablePlot3)
+    }
+    
+    @IBAction func vegetablePlot4Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 25
+        tappedPlant(image: vegetablePlot4)
+    }
+    
+    @IBAction func vegetablePlot5Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 26
+        tappedPlant(image: vegetablePlot5)
+    }
+    
+    @IBAction func vegetablePlot6Tapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 27
+        tappedPlant(image: vegetablePlot6)
+    }
+    
+    @IBAction func smallPotPlotTapped(_ sender: UITapGestureRecognizer) {
+        selectedPlot = 28
+        tappedPlant(image: smallPotPlot)
+    }
+    
+    
     @IBAction func returnPressed(_ sender: UIButton) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         cloudKitty.stopAnimating()
