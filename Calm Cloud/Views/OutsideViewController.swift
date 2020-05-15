@@ -53,6 +53,7 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var smallPotPlot: UIImageView!
     
     
+    
     // MARK: Variables
     
     var selectedPlot = 0

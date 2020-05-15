@@ -26,6 +26,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var lightsOffButton: UIButton!
     @IBOutlet weak var darkOutside: UIView!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var boxComingIn: UIImageView!
+    @IBOutlet weak var boxInside: UIImageView!
+    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var expLabel: UILabel!
     
     
     // MARK: Variables
@@ -44,6 +48,9 @@ class ViewController: UIViewController {
     var inPotty = false
     var stopped = false
     var lightsOff = false
+    var exp = 0
+    var level = 1
+    var levelMax = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +109,11 @@ class ViewController: UIViewController {
         }
     }
     
+    func updateEXP(with amount: Int) {
+        exp += amount
+        expLabel.text = "\(amount)/\(levelMax)"
+    }
+    
     @objc func returnIndoors() {
         door.isHidden = false
         openDoor.isHidden = true
@@ -117,7 +129,7 @@ class ViewController: UIViewController {
     }
     
     @objc func closeMiniGame() {
-        containerView.isHidden = true
+        view.sendSubviewToBack(containerView)
         stopped = false
         stopMoving()
     }
@@ -146,6 +158,28 @@ class ViewController: UIViewController {
     }
     
     // MARK: Animations
+    
+    func receivePackage() {
+        door.isHidden = true
+        openDoor.isHidden = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { [unowned self] in
+            self.boxComingIn.isHidden = false
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
+            self.boxComingIn.isHidden = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
+            self.boxInside.isHidden = false
+        }
+       
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { [unowned self] in
+            self.door.isHidden = false
+            self.openDoor.isHidden = true
+        }
+    }
     
     func floatUp() {
         print("float")
@@ -718,6 +752,7 @@ class ViewController: UIViewController {
                 cloudKitty.animationDuration = 1.0
                 cloudKitty.startAnimating()
                 hasBeenPet = true
+                // add EXP?
             }
         } else if sender.state == .ended || sender.state == .cancelled {
             if lightsOff {
@@ -737,6 +772,7 @@ class ViewController: UIViewController {
             waterImage.isHidden = false
             hasWater = true
             saveCare(food: nil, water: Date(), potty: nil)
+            updateEXP(with: 5)
         }
     }
     
@@ -749,6 +785,7 @@ class ViewController: UIViewController {
             foodImage.isHidden = false
             hasFood = true
             saveCare(food: Date(), water: nil, potty: nil)
+            updateEXP(with: 5)
         }
     }
     
@@ -768,6 +805,7 @@ class ViewController: UIViewController {
             pottyBox.image = UIImage(named: "litterbox")
             saveCare(food: nil, water: nil, potty: Date())
             setMood()
+            updateEXP(with: 10)
         }
     }
     
@@ -784,7 +822,7 @@ class ViewController: UIViewController {
         cloudKitty.stopAnimating()
         AnimationTimer.stop()
         stopped = true
-        containerView.isHidden = false
+        view.bringSubviewToFront(containerView)
         containerView.animateBounce()
     }
     
