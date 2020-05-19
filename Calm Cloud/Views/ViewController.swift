@@ -31,7 +31,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var expLabel: UILabel!
     
-    
     // MARK: Variables
     
     var hasFood = false
@@ -48,9 +47,6 @@ class ViewController: UIViewController {
     var inPotty = false
     var stopped = false
     var lightsOff = false
-    var exp = 0
-    var level = 1
-    var levelMax = 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +59,9 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(closeMiniGame), name: NSNotification.Name(rawValue: "closeMiniGame"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(saveLevelFromOutside), name: NSNotification.Name(rawValue: "saveLevelFromOutside"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(levelUp), name: NSNotification.Name(rawValue: "levelUp"), object: nil)
         
         openDoor.isHidden = true
        
@@ -72,7 +71,7 @@ class ViewController: UIViewController {
         loadPhotos()
         loadEntries()
         loadCare()
-        
+        loadLevel()
         loadUI()
         
         let offset = container.frame.width / 5
@@ -107,18 +106,38 @@ class ViewController: UIViewController {
         if hasCleanPotty {
             pottyBox.image = UIImage(named: "litterbox")
         }
+        
+        levelLabel.text = "\(LevelManager.currentLevel)"
+        expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
     }
     
     func updateEXP(with amount: Int) {
-        exp += amount
-        expLabel.text = "\(amount)/\(levelMax)"
+        LevelManager.currentEXP += amount
+        
+        if LevelManager.currentEXP >= LevelManager.maxEXP {
+            LevelManager.currentLevel += 1
+            levelLabel.text = "\(LevelManager.currentLevel)"
+            LevelManager.calculateLevel()
+            receivePackage()
+        }
+        
+        expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
+        saveLevel()
+    }
+    
+    @objc func saveLevelFromOutside() {
+        saveLevel()
+    }
+    
+    @objc func levelUp() {
+        boxInside.isHidden = false
     }
     
     @objc func returnIndoors() {
         door.isHidden = false
         openDoor.isHidden = true
         stopped = false
-        stopMoving()
+        randomMove()
     }
     
     @objc func goToSleep() {
@@ -162,19 +181,13 @@ class ViewController: UIViewController {
     func receivePackage() {
         door.isHidden = true
         openDoor.isHidden = false
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { [unowned self] in
-            self.boxComingIn.isHidden = false
-        }
+        boxComingIn.isHidden = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
             self.boxComingIn.isHidden = true
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
             self.boxInside.isHidden = false
         }
-       
+     
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { [unowned self] in
             self.door.isHidden = false
             self.openDoor.isHidden = true
@@ -787,6 +800,7 @@ class ViewController: UIViewController {
             saveCare(food: Date(), water: nil, potty: nil)
             updateEXP(with: 5)
         }
+        updateEXP(with: 5)
     }
     
     @IBAction func tapOnToy(_ sender: UITapGestureRecognizer) {

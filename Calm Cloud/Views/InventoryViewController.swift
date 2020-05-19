@@ -110,7 +110,7 @@ extension InventoryViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let tappedCell = collectionView.cellForItem(at:indexPath) as! InventoryCollectionViewCell
-        tappedCell.backgroundColor = UIColor(red: 0.66, green: 0.89, blue: 0.91, alpha: 1.00)
+        tappedCell.backgroundColor = Colors.cellSelection
         // set plant selection
         PlantManager.selected = validSeedlings[indexPath.row].plant
     }

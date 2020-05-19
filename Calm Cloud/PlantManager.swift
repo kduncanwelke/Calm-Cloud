@@ -10,7 +10,27 @@ import Foundation
 import UIKit
 
 struct PlantManager {
-    static func getStage(date: Date?, plant: Plant) -> UIImage? {
+    static func needsWatering(date: Date?) -> Bool {
+        if let chosenDate = date {
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.hour], from: chosenDate, to: Date())
+            let diff = components.hour
+            
+            if let difference = diff {
+                if difference < 25 {
+                    return false
+                } else {
+                    return true
+                }
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+    
+    static func getStage(date: Date?, plant: Plant, lastWatered: Date?) -> UIImage? {
         if let chosenDate = date {
             let calendar = Calendar.current
             let components = calendar.dateComponents([.hour], from: chosenDate, to: Date())
@@ -19,7 +39,6 @@ struct PlantManager {
             
             var stage: Int
             if let difference = diff {
-                print(difference)
                 if difference < 25 {
                     stage = 1
                 } else if difference < 49 {
@@ -42,6 +61,7 @@ struct PlantManager {
             }
             
             PlantManager.currentStage = Stage.init(rawValue: stage)!
+            PlantManager.needsWater = PlantManager.needsWatering(date: lastWatered)
             
             switch plant {
             case .redTulip:
@@ -63,6 +83,7 @@ struct PlantManager {
     }
     
     static var currentStage: Stage = .one
+    static var needsWater = false
     static var selected: Plant = .redTulip
     static var area: Area = .none
     

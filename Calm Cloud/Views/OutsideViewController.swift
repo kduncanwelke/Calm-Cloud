@@ -52,11 +52,16 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var tallPotPlot: UIImageView!
     @IBOutlet weak var smallPotPlot: UIImageView!
     
+    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var expLabel: UILabel!
+    
+    @IBOutlet weak var backgroundView: UIView!
     
     
     // MARK: Variables
     
     var selectedPlot = 0
+    var wateringModeOn = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,17 +77,35 @@ class OutsideViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(plant), name: NSNotification.Name(rawValue: "plant"), object: nil)
         
-        
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
         
         AnimationManager.outsideLocation = .back
         sleep()
-        
+        loadUI()
         loadPlots()
     }
     
     // MARK: Custom functions
+    
+    func loadUI() {
+        levelLabel.text = "\(LevelManager.currentLevel)"
+        expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
+    }
+    
+    func updateEXP(with amount: Int) {
+        LevelManager.currentEXP += amount
+        
+        if LevelManager.currentEXP >= LevelManager.maxEXP {
+            LevelManager.currentLevel += 1
+            levelLabel.text = "\(LevelManager.currentLevel)"
+            LevelManager.calculateLevel()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "levelUp"), object: nil)
+        }
+        
+        expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "saveLevelFromOutside"), object: nil)
+    }
     
     @objc func closePopUp() {
         view.sendSubviewToBack(messageContainer)
@@ -101,64 +124,68 @@ class OutsideViewController: UIViewController {
     @objc func plant() {
         // change based on selected species
         savePlanting(id: selectedPlot, plant: PlantManager.selected.rawValue)
+        updateEXP(with: 10)
+        var imageToUpdate: UIImageView
         
         if selectedPlot == 1 {
-            fencePlot1.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = fencePlot1
         } else if selectedPlot == 2 {
-            fencePlot2.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = fencePlot2
         } else if selectedPlot == 3 {
-            fencePlot3.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = fencePlot3
         } else if selectedPlot == 4 {
-            fencePlot4.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = fencePlot4
         } else if selectedPlot == 5 {
-            fencePlot5.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+           imageToUpdate = fencePlot5
         } else if selectedPlot == 6 {
-            fencePlot6.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = fencePlot6
         } else if selectedPlot == 7 {
-            frontPlot1.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = frontPlot1
         } else if selectedPlot == 8 {
-            frontPlot2.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = frontPlot2
         } else if selectedPlot == 9 {
-            frontPlot3.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = frontPlot3
         } else if selectedPlot == 10 {
-            frontPlot4.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = frontPlot4
         } else if selectedPlot == 11 {
-            frontPlot5.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = frontPlot5
         } else if selectedPlot == 12 {
-            frontPlot6.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = frontPlot6
         } else if selectedPlot == 13 {
-            frontPlot7.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = frontPlot7
         } else if selectedPlot == 14 {
-            frontPlot8.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = frontPlot8
         } else if selectedPlot == 15 {
-            succulentPot1.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = succulentPot1
         } else if selectedPlot == 16 {
-            succulentPot2.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = succulentPot2
         } else if selectedPlot == 17 {
-            succulentPot3.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = succulentPot3
         } else if selectedPlot == 18 {
-            planterPlot1.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = planterPlot1
         } else if selectedPlot == 19 {
-            planterPlot2.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = planterPlot2
         } else if selectedPlot == 20 {
-            planterPlot3.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = planterPlot3
         } else if selectedPlot == 21 {
-            tallPotPlot.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = tallPotPlot
         } else if selectedPlot == 22 {
-            vegetablePlot1.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = vegetablePlot1
         } else if selectedPlot == 23 {
-            vegetablePlot2.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = vegetablePlot2
         } else if selectedPlot == 24 {
-            vegetablePlot3.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = vegetablePlot3
         } else if selectedPlot == 25 {
-            vegetablePlot4.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = vegetablePlot4
         } else if selectedPlot == 26 {
-            vegetablePlot5.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = vegetablePlot5
         } else if selectedPlot == 27 {
-            vegetablePlot6.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
-        } else if selectedPlot == 28 {
-            smallPotPlot.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected)
+            imageToUpdate = vegetablePlot6
+        } else {
+            imageToUpdate = smallPotPlot
         }
+        
+        imageToUpdate.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected, lastWatered: nil)
         
         view.sendSubviewToBack(inventoryContainer)
     }
@@ -186,6 +213,10 @@ class OutsideViewController: UIViewController {
             }
             
             view.bringSubviewToFront(messageContainer)
+        } else {
+            if wateringModeOn {
+                saveWatering(id: selectedPlot)
+            }
         }
     }
     
@@ -575,6 +606,16 @@ class OutsideViewController: UIViewController {
         PlantManager.area = .none
         view.bringSubviewToFront(inventoryContainer)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
+    }
+    
+    @IBAction func waterModeTapped(_ sender: UIButton) {
+        if wateringModeOn == false {
+            wateringModeOn = true
+            backgroundView.backgroundColor = Colors.blue
+        } else {
+            wateringModeOn = false
+            backgroundView.backgroundColor = Colors.pink
+        }
     }
     
     @IBAction func fencePlot1Tapped(_ sender: UITapGestureRecognizer) {

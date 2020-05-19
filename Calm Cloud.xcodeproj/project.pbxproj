@@ -44,8 +44,10 @@
 		2D8F9045243FC2EF00211802 /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F9044243FC2EF00211802 /* ActivitiesViewController.swift */; };
 		2D8F9049243FC51800211802 /* Activities+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F9048243FC51800211802 /* Activities+TableView.swift */; };
 		2D8F904B243FC5B900211802 /* ActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F904A243FC5B900211802 /* ActivityManager.swift */; };
+		2DAA52292472FDDA00171A7D /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA52282472FDDA00171A7D /* LevelManager.swift */; };
 		2DB1D48924573DDD00512E4F /* CareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48824573DDD00512E4F /* CareManager.swift */; };
 		2DB1D48B2457415000512E4F /* ViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */; };
+		2DC5EBCB2474886300741E5E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC5EBCA2474886300741E5E /* Colors.swift */; };
 		2DCC9C7B24672031006834B0 /* PlantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC9C7A24672031006834B0 /* PlantManager.swift */; };
 		2DD2C319246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD2C318246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 */; };
 		2DD2C31B246353310070934D /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD2C31A246353310070934D /* Sounds.swift */; };
@@ -97,8 +99,10 @@
 		2D8F9044243FC2EF00211802 /* ActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
 		2D8F9048243FC51800211802 /* Activities+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activities+TableView.swift"; sourceTree = "<group>"; };
 		2D8F904A243FC5B900211802 /* ActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		2DAA52282472FDDA00171A7D /* LevelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
 		2DB1D48824573DDD00512E4F /* CareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareManager.swift; sourceTree = "<group>"; };
 		2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CoreData.swift"; sourceTree = "<group>"; };
+		2DC5EBCA2474886300741E5E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2DCC9C7A24672031006834B0 /* PlantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantManager.swift; sourceTree = "<group>"; };
 		2DD2C318246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "audio_hero_NightAmbienceCalm+PE011801.mp3"; sourceTree = "<group>"; };
 		2DD2C31A246353310070934D /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 				2D14EBDB243E752B004CB7E2 /* ReminderManager.swift */,
 				2DB1D48824573DDD00512E4F /* CareManager.swift */,
 				2DFD54B024660B100096FD5C /* Plantings.swift */,
+				2DAA52282472FDDA00171A7D /* LevelManager.swift */,
+				2DC5EBCA2474886300741E5E /* Colors.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -342,6 +348,7 @@
 				2D14EBDE243E7740004CB7E2 /* NotificationManager.swift in Sources */,
 				2DFD54B124660B100096FD5C /* Plantings.swift in Sources */,
 				2D14EBDC243E752B004CB7E2 /* ReminderManager.swift in Sources */,
+				2DC5EBCB2474886300741E5E /* Colors.swift in Sources */,
 				2D8F9049243FC51800211802 /* Activities+TableView.swift in Sources */,
 				2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */,
 				2D41EF2A242D5DCF0058C443 /* Favorites+CollectionView.swift in Sources */,
@@ -357,6 +364,7 @@
 				2D26545E2440F6EE00FBFF74 /* OutsideViewController.swift in Sources */,
 				2D867DAE243E80B7005BE38F /* Alerts.swift in Sources */,
 				2D2654612441165800FBFF74 /* CellCheckDelegate.swift in Sources */,
+				2DAA52292472FDDA00171A7D /* LevelManager.swift in Sources */,
 				2DD50C1D242D535F00073B49 /* JournalViewController.swift in Sources */,
 				2D8F9042243F9E8F00211802 /* ActivityTableViewCell.swift in Sources */,
 				2D384C1D243BBBE600D0FFEB /* PageViewController.swift in Sources */,

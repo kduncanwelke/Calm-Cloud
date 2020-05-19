@@ -19,7 +19,6 @@ extension ViewController {
             let diff = components.hour
             
             if let difference = diff {
-                print(difference)
                 if difference < recentness {
                     return true
                 } else {
@@ -66,7 +65,7 @@ extension ViewController {
     func saveCare(food: Date?, water: Date?, potty: Date?) {
         var managedContext = CoreDataManager.shared.managedObjectContext
         
-        // save currency anew if it doesn't exist (like on app initial launch)
+        // save anew if it doesn't exist (like on app initial launch)
         guard let currentCare = CareManager.loaded else {
             let careSave = Care(context: managedContext)
             
@@ -99,6 +98,64 @@ extension ViewController {
         if potty != nil {
             currentCare.lastCleaned = potty
         }
+        
+        do {
+            try managedContext.save()
+            print("resave successful")
+        } catch {
+            // this should never be displayed but is here to cover the possibility
+            showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
+        }
+    }
+    
+    func loadLevel() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        var fetchRequest = NSFetchRequest<Level>(entityName: "Level")
+        
+        do {
+            var result = try managedContext.fetch(fetchRequest)
+            if let level = result.first {
+                LevelManager.loaded = level
+                LevelManager.currentEXP = Int(level.currentEXP)
+                LevelManager.currentLevel = Int(level.level)
+                LevelManager.maxEXP = Int(level.expToNextLevel)
+            }
+            print("level loaded")
+        } catch let error as NSError {
+            showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
+        }
+    }
+    
+    func saveLevel() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        
+        // save anew if it doesn't exist (like on app initial launch)
+        guard let currentLevel = LevelManager.loaded else {
+            let levelSave = Level(context: managedContext)
+            
+            levelSave.currentEXP = Int16(LevelManager.currentEXP)
+            levelSave.expToNextLevel = Int16(LevelManager.maxEXP)
+            levelSave.level = Int16(LevelManager.currentLevel)
+            
+            LevelManager.loaded = levelSave
+            
+            do {
+                try managedContext.save()
+                print("saved level")
+            } catch {
+                // this should never be displayed but is here to cover the possibility
+                showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
+            }
+            
+            return
+        }
+        
+        // otherwise rewrite data
+        currentLevel.currentEXP = Int16(LevelManager.currentEXP)
+        currentLevel.expToNextLevel = Int16(LevelManager.maxEXP)
+        currentLevel.level = Int16(LevelManager.currentLevel)
+        
+        LevelManager.loaded = currentLevel
         
         do {
             try managedContext.save()
