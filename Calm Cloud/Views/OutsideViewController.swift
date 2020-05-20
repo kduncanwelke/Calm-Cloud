@@ -54,9 +54,9 @@ class OutsideViewController: UIViewController {
     
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var expLabel: UILabel!
+    @IBOutlet weak var levelUpImage: UIImageView!
     
     @IBOutlet weak var backgroundView: UIView!
-    
     
     // MARK: Variables
     
@@ -100,11 +100,22 @@ class OutsideViewController: UIViewController {
             LevelManager.currentLevel += 1
             levelLabel.text = "\(LevelManager.currentLevel)"
             LevelManager.calculateLevel()
+            levelLabel.animateBounce()
+            showLevelUp()
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "levelUp"), object: nil)
         }
         
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "saveLevelFromOutside"), object: nil)
+    }
+    
+    func showLevelUp() {
+        view.bringSubviewToFront(levelUpImage)
+        levelUpImage.animateBounce()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
+            self.view.sendSubviewToBack(self.levelUpImage)
+        }
     }
     
     @objc func closePopUp() {
@@ -124,6 +135,7 @@ class OutsideViewController: UIViewController {
     @objc func plant() {
         // change based on selected species
         savePlanting(id: selectedPlot, plant: PlantManager.selected.rawValue)
+        
         updateEXP(with: 10)
         var imageToUpdate: UIImageView
         
@@ -185,7 +197,7 @@ class OutsideViewController: UIViewController {
             imageToUpdate = smallPotPlot
         }
         
-        imageToUpdate.image = PlantManager.getStage(date: Date(), plant: PlantManager.selected, lastWatered: nil)
+        imageToUpdate.image = PlantManager.getStage(daysOfCare: 0, plant: PlantManager.selected, lastWatered: nil)
         
         view.sendSubviewToBack(inventoryContainer)
     }
@@ -615,6 +627,22 @@ class OutsideViewController: UIViewController {
         } else {
             wateringModeOn = false
             backgroundView.backgroundColor = Colors.pink
+        }
+    }
+    
+    @IBAction func catTouched(_ sender: UIPanGestureRecognizer) {
+        if sender.state == .began {
+            if AnimationManager.movement == .staying {
+                AnimationTimer.stop()
+                cloudKitty.stopAnimating()
+                cloudKitty.animationImages = AnimationManager.petAnimation
+                cloudKitty.animationDuration = 1.0
+                cloudKitty.startAnimating()
+                // hasBeenPet = true
+                // add EXP?
+            }
+        } else if sender.state == .ended || sender.state == .cancelled {
+            stopMovingOutside()
         }
     }
     

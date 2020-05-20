@@ -17,6 +17,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="levelup" translatesAutoresizingMaskIntoConstraints="NO" id="Hkx-6A-JMn">
+                                <rect key="frame" x="62" y="219" width="290" height="193"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Hkx-6A-JMn" secondAttribute="height" multiplier="3:2" id="amO-hJ-zGG"/>
+                                </constraints>
+                            </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ni-dB-KId">
                                 <rect key="frame" x="51.5" y="187" width="311" height="532"/>
                                 <connections>
@@ -312,8 +318,11 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0b4-op-WCt" secondAttribute="trailing" constant="10" id="mUk-9g-GKo"/>
                             <constraint firstItem="IGz-9O-3yK" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.05" id="pAb-yI-Ek5"/>
                             <constraint firstItem="c4o-rR-DCU" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="qId-cg-3nG"/>
+                            <constraint firstItem="Hkx-6A-JMn" firstAttribute="width" secondItem="w8B-fX-lrW" secondAttribute="width" multiplier="0.7" id="s9z-VG-g4c"/>
                             <constraint firstItem="w8B-fX-lrW" firstAttribute="height" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.83" id="toq-xX-2QP"/>
                             <constraint firstItem="c4o-rR-DCU" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="u3d-ee-Bc9"/>
+                            <constraint firstItem="Hkx-6A-JMn" firstAttribute="top" secondItem="w8B-fX-lrW" secondAttribute="top" constant="130" id="uNc-Pe-xl1"/>
+                            <constraint firstItem="Hkx-6A-JMn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vAm-f2-RO4"/>
                             <constraint firstItem="jDO-ff-ZYO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bwv-Wv-eGX" secondAttribute="trailing" constant="5" id="zmf-lO-eXF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -329,6 +338,7 @@
                         <outlet property="expLabel" destination="bwv-Wv-eGX" id="bQ7-Zu-BgI"/>
                         <outlet property="foodImage" destination="YEn-SQ-dz0" id="cfc-cj-cDf"/>
                         <outlet property="levelLabel" destination="x2e-Zd-1In" id="D31-k7-vGx"/>
+                        <outlet property="levelUpImage" destination="Hkx-6A-JMn" id="fkP-ZL-UAR"/>
                         <outlet property="lightsOffButton" destination="0b4-op-WCt" id="SB9-6d-kQ7"/>
                         <outlet property="nightOverlay" destination="c4o-rR-DCU" id="80v-hh-GPF"/>
                         <outlet property="openDoor" destination="RKV-4h-ml0" id="uZ3-se-yjY"/>
@@ -1075,6 +1085,12 @@
                                     <segue destination="CtT-PG-k3a" kind="embed" id="UZw-Mp-mOn"/>
                                 </connections>
                             </containerView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="levelup" translatesAutoresizingMaskIntoConstraints="NO" id="8Ni-W6-bGV">
+                                <rect key="frame" x="62" y="219" width="290" height="193"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8Ni-W6-bGV" secondAttribute="height" multiplier="3:2" id="rvM-Se-dAG"/>
+                                </constraints>
+                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJB-y1-oCG">
                                 <rect key="frame" x="0.0" y="89" width="414" height="695.5"/>
                                 <subviews>
@@ -1189,8 +1205,12 @@
                                                     <outletCollection property="gestureRecognizers" destination="LKg-bi-JGp" appends="YES" id="SQX-JM-Je3"/>
                                                 </connections>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloudkitty" translatesAutoresizingMaskIntoConstraints="NO" id="Es5-lZ-EHS">
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloudkitty" translatesAutoresizingMaskIntoConstraints="NO" id="Es5-lZ-EHS">
                                                 <rect key="frame" x="577" y="278" width="225" height="153"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="tw2-cC-DTF" appends="YES" id="rp8-IZ-8Vd"/>
+                                                </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tallpot" translatesAutoresizingMaskIntoConstraints="NO" id="gCe-of-jIg">
                                                 <rect key="frame" x="946" y="486" width="203.5" height="202.5"/>
@@ -1510,13 +1530,16 @@
                             <constraint firstItem="BJB-y1-oCG" firstAttribute="height" secondItem="K4w-br-9dW" secondAttribute="height" multiplier="0.85" id="S6W-Dt-x8X"/>
                             <constraint firstItem="FGl-vr-VET" firstAttribute="top" secondItem="K4w-br-9dW" secondAttribute="top" id="UFE-72-k6X"/>
                             <constraint firstItem="8SL-Jx-3c1" firstAttribute="centerY" secondItem="Ebh-Cx-HLT" secondAttribute="centerY" id="Z4D-bp-tjc"/>
+                            <constraint firstItem="8Ni-W6-bGV" firstAttribute="width" secondItem="BJB-y1-oCG" secondAttribute="width" multiplier="0.7" id="bXk-SG-weL"/>
                             <constraint firstItem="BJB-y1-oCG" firstAttribute="top" secondItem="K4w-br-9dW" secondAttribute="top" constant="45" id="dJJ-Ze-ffK"/>
                             <constraint firstItem="FGl-vr-VET" firstAttribute="leading" secondItem="mb6-0Z-KdM" secondAttribute="trailing" constant="10" id="dUq-e3-zdD"/>
+                            <constraint firstItem="8Ni-W6-bGV" firstAttribute="top" secondItem="BJB-y1-oCG" secondAttribute="top" constant="130" id="glo-ir-Gqo"/>
                             <constraint firstItem="SzU-m7-Iwb" firstAttribute="centerX" secondItem="OVt-B1-YHB" secondAttribute="centerX" id="hcx-2S-mTd"/>
                             <constraint firstItem="aWS-Hh-Rfp" firstAttribute="height" secondItem="BJB-y1-oCG" secondAttribute="height" multiplier="0.9" id="ljq-gt-zEN"/>
                             <constraint firstItem="BJB-y1-oCG" firstAttribute="top" secondItem="mb6-0Z-KdM" secondAttribute="bottom" constant="3" id="lsI-Lo-Ymu"/>
                             <constraint firstItem="aWS-Hh-Rfp" firstAttribute="centerX" secondItem="BJB-y1-oCG" secondAttribute="centerX" id="ob0-Bm-Qb8"/>
                             <constraint firstItem="BJB-y1-oCG" firstAttribute="top" secondItem="FGl-vr-VET" secondAttribute="bottom" constant="3" id="owt-qg-VqD"/>
+                            <constraint firstItem="8Ni-W6-bGV" firstAttribute="centerX" secondItem="OVt-B1-YHB" secondAttribute="centerX" id="rhj-B0-vRU"/>
                             <constraint firstItem="BJB-y1-oCG" firstAttribute="leading" secondItem="K4w-br-9dW" secondAttribute="leading" id="rv2-WZ-9hf"/>
                             <constraint firstItem="FqL-GY-HeN" firstAttribute="top" secondItem="K4w-br-9dW" secondAttribute="top" constant="15" id="vIc-jb-PfF"/>
                             <constraint firstItem="K4w-br-9dW" firstAttribute="bottom" secondItem="D0Z-1c-AQh" secondAttribute="bottom" constant="20" id="vfo-nU-Sit"/>
@@ -1547,6 +1570,7 @@
                         <outlet property="frontPlot8" destination="Khd-eO-9CX" id="rMR-eb-aH8"/>
                         <outlet property="inventoryContainer" destination="aWS-Hh-Rfp" id="WxI-6I-9bD"/>
                         <outlet property="levelLabel" destination="Ebh-Cx-HLT" id="uPH-WI-NXL"/>
+                        <outlet property="levelUpImage" destination="8Ni-W6-bGV" id="EAO-ce-rip"/>
                         <outlet property="messageContainer" destination="SzU-m7-Iwb" id="Kf9-a2-a4n"/>
                         <outlet property="planterPlot1" destination="giO-gd-bt9" id="F1M-G6-mWB"/>
                         <outlet property="planterPlot2" destination="uQw-Us-U97" id="ABe-dp-qUn"/>
@@ -1706,6 +1730,11 @@
                         <action selector="smallPotPlotTapped:" destination="5Xa-cm-e5B" id="2wN-Hl-cAd"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="tw2-cC-DTF">
+                    <connections>
+                        <action selector="catTouched:" destination="5Xa-cm-e5B" id="Adn-SF-q4j"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="-558.48214285714278"/>
         </scene>
@@ -2195,6 +2224,7 @@
         <image name="idea" width="3000" height="1800"/>
         <image name="incomplete" width="50" height="50"/>
         <image name="inventory" width="900" height="300"/>
+        <image name="levelup" width="714" height="381"/>
         <image name="lightsoff" width="900" height="300"/>
         <image name="litterboxwithpoos" width="672" height="229"/>
         <image name="lower" width="900" height="300"/>

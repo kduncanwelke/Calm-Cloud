@@ -13,72 +13,64 @@ struct PlantManager {
     static func needsWatering(date: Date?) -> Bool {
         if let chosenDate = date {
             let calendar = Calendar.current
-            let components = calendar.dateComponents([.hour], from: chosenDate, to: Date())
-            let diff = components.hour
-            
-            if let difference = diff {
-                if difference < 25 {
-                    return false
-                } else {
-                    return true
-                }
-            } else {
+            let isSameDay = calendar.isDate(chosenDate, inSameDayAs: Date())
+           
+            if isSameDay {
+                // plant has been watered within this day
+                print("same day no need for water")
                 return false
+            } else {
+                // plant has not been watered within this day
+                print("new day needs water")
+                return true
             }
         } else {
-            return false
+            // date is nil so plant has never been watered
+            print("never watered, needs water")
+            return true
         }
     }
     
-    static func getStage(date: Date?, plant: Plant, lastWatered: Date?) -> UIImage? {
-        if let chosenDate = date {
-            let calendar = Calendar.current
-            let components = calendar.dateComponents([.hour], from: chosenDate, to: Date())
-            let diff = components.hour
-            // 24 48 72 96 120 144 168
-            
-            var stage: Int
-            if let difference = diff {
-                if difference < 25 {
-                    stage = 1
-                } else if difference < 49 {
-                    stage = 2
-                } else if difference < 73 {
-                    stage = 3
-                } else if difference < 97 {
-                    stage = 4
-                } else if difference < 121 {
-                    stage = 5
-                } else if difference < 145 {
-                    stage = 6
-                } else if difference < 169 {
-                    stage = 7
-                } else {
-                    stage = 0
-                }
+    static func getStage(daysOfCare: Int?, plant: Plant, lastWatered: Date?) -> UIImage? {
+        var stage: Int
+        if let daysCaredFor = daysOfCare {
+            if daysCaredFor == 0 {
+                stage = 1
+            } else if daysCaredFor == 1 {
+                stage = 2
+            } else if daysCaredFor == 2 {
+                stage = 3
+            } else if daysCaredFor == 3 {
+                stage = 4
+            } else if daysCaredFor == 4 {
+                stage = 5
+            } else if daysCaredFor == 5 {
+                stage = 6
+            } else if daysCaredFor >= 6 {
+                stage = 7
             } else {
-                return nil
-            }
-            
-            PlantManager.currentStage = Stage.init(rawValue: stage)!
-            PlantManager.needsWater = PlantManager.needsWatering(date: lastWatered)
-            
-            switch plant {
-            case .redTulip:
-                return redTulip
-            case .jade:
-                return jade
-            case .chard:
-                return chard
-            case .lemon:
-                return lemon
-            case .pumpkin:
-                return pumpkin
-            case .geranium:
-                return geranium
+                stage = 0
             }
         } else {
             return nil
+        }
+            
+        PlantManager.currentStage = Stage.init(rawValue: stage)!
+        PlantManager.needsWater = PlantManager.needsWatering(date: lastWatered)
+        
+        switch plant {
+        case .redTulip:
+            return redTulip
+        case .jade:
+            return jade
+        case .chard:
+            return chard
+        case .lemon:
+            return lemon
+        case .pumpkin:
+            return pumpkin
+        case .geranium:
+            return geranium
         }
     }
     
@@ -93,19 +85,47 @@ struct PlantManager {
             case .zero:
                 return #imageLiteral(resourceName: "emptyplot.png")
             case .one:
-                return #imageLiteral(resourceName: "redtulip1.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip1.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip1water.png")
+                }
             case .two:
-                return #imageLiteral(resourceName: "redtulip2.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip2.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip2water.png")
+                }
             case .three:
-                return #imageLiteral(resourceName: "redtulip3.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip3.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip3water.png")
+                }
             case .four:
-                return #imageLiteral(resourceName: "redtulip4.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip4.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip4water.png")
+                }
             case .five:
-                return #imageLiteral(resourceName: "redtulip5.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip5.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip5water.png")
+                }
             case .six:
-                return #imageLiteral(resourceName: "redtulip6.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip6.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip6water.png")
+                }
             case .seven:
-                return #imageLiteral(resourceName: "redtulip7.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip7.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip7water.png")
+                }
             }
         }
     }
@@ -116,19 +136,47 @@ struct PlantManager {
             case .zero:
                 return #imageLiteral(resourceName: "emptyplot.png")
             case .one:
-                return #imageLiteral(resourceName: "jade1.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "jade1.png")
+                } else {
+                    return #imageLiteral(resourceName: "jade1water.png")
+                }
             case .two:
-                return #imageLiteral(resourceName: "jade2.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "jade2.png")
+                } else {
+                    return #imageLiteral(resourceName: "jade2water.png")
+                }
             case .three:
-                return #imageLiteral(resourceName: "jade3.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "jade3.png")
+                } else {
+                    return #imageLiteral(resourceName: "jade3water.png")
+                }
             case .four:
-                return #imageLiteral(resourceName: "jade4.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "jade4.png")
+                } else {
+                    return #imageLiteral(resourceName: "jade4water.png")
+                }
             case .five:
-                return #imageLiteral(resourceName: "jade5.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "jade5.png")
+                } else {
+                    return #imageLiteral(resourceName: "jade5water.png")
+                }
             case .six:
-                return #imageLiteral(resourceName: "jade6.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "jade6.png")
+                } else {
+                    return #imageLiteral(resourceName: "jade6water.png")
+                }
             case .seven:
-                return #imageLiteral(resourceName: "jade7.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "jade7.png")
+                } else {
+                    return #imageLiteral(resourceName: "jade7water.png")
+                }
             }
         }
     }
@@ -139,19 +187,47 @@ struct PlantManager {
             case .zero:
                 return #imageLiteral(resourceName: "emptyplot.png")
             case .one:
-                return #imageLiteral(resourceName: "chard1.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "chard1.png")
+                } else {
+                    return #imageLiteral(resourceName: "chard1water.png")
+                }
             case .two:
-                return #imageLiteral(resourceName: "chard2.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "chard2.png")
+                } else {
+                    return #imageLiteral(resourceName: "chard2water.png")
+                }
             case .three:
-                return #imageLiteral(resourceName: "chard3.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "chard3.png")
+                } else {
+                    return #imageLiteral(resourceName: "chard3water.png")
+                }
             case .four:
-                return #imageLiteral(resourceName: "chard4.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "chard4.png")
+                } else {
+                    return #imageLiteral(resourceName: "chard4water.png")
+                }
             case .five:
-                return #imageLiteral(resourceName: "chard5.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "chard5.png")
+                } else {
+                    return #imageLiteral(resourceName: "chard5water.png")
+                }
             case .six:
-                return #imageLiteral(resourceName: "chard6.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "chard6.png")
+                } else {
+                    return #imageLiteral(resourceName: "chard6water.png")
+                }
             case .seven:
-                return #imageLiteral(resourceName: "chard7.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "chard7.png")
+                } else {
+                    return #imageLiteral(resourceName: "chard7water.png")
+                }
             }
         }
     }
@@ -162,19 +238,47 @@ struct PlantManager {
             case .zero:
                 return #imageLiteral(resourceName: "emptyplottree.png")
             case .one:
-                return #imageLiteral(resourceName: "lemon1.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "lemon1.png")
+                } else {
+                    return #imageLiteral(resourceName: "lemon1water.png")
+                }
             case .two:
-                return #imageLiteral(resourceName: "lemon2.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "lemon2.png")
+                } else {
+                    return #imageLiteral(resourceName: "lemon2water.png")
+                }
             case .three:
-                return #imageLiteral(resourceName: "lemon3.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "lemon3.png")
+                } else {
+                    return #imageLiteral(resourceName: "lemon3water.png")
+                }
             case .four:
-                return #imageLiteral(resourceName: "lemon4.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "lemon4.png")
+                } else {
+                    return #imageLiteral(resourceName: "lemon4water.png")
+                }
             case .five:
-                return #imageLiteral(resourceName: "lemon5.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "lemon5.png")
+                } else {
+                    return #imageLiteral(resourceName: "lemon5water.png")
+                }
             case .six:
-                return #imageLiteral(resourceName: "lemon6.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "lemon6.png")
+                } else {
+                    return #imageLiteral(resourceName: "lemon6water.png")
+                }
             case .seven:
-                return #imageLiteral(resourceName: "lemon7.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "lemon7.png")
+                } else {
+                    return #imageLiteral(resourceName: "lemon7water.png")
+                }
             }
         }
     }
@@ -185,19 +289,47 @@ struct PlantManager {
             case .zero:
                 return #imageLiteral(resourceName: "emptyplotbig.png")
             case .one:
-                return #imageLiteral(resourceName: "pumpkin1.png")
+                if needsWater {
+                 return #imageLiteral(resourceName: "pumpkin1.png")
+                } else {
+                    return #imageLiteral(resourceName: "pumpkin1water.png")
+                }
             case .two:
-                return #imageLiteral(resourceName: "pumpkin2.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "pumpkin2.png")
+                } else {
+                    return #imageLiteral(resourceName: "pumpkin2water.png")
+                }
             case .three:
-                return #imageLiteral(resourceName: "pumpkin3.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "pumpkin3.png")
+                } else {
+                    return #imageLiteral(resourceName: "pumpkin3water.png")
+                }
             case .four:
-                return #imageLiteral(resourceName: "pumpkin4.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "pumpkin4.png")
+                } else {
+                    return #imageLiteral(resourceName: "pumpkin4water.png")
+                }
             case .five:
-                return #imageLiteral(resourceName: "pumpkin5.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "pumpkin5.png")
+                } else {
+                    return #imageLiteral(resourceName: "pumpkin5water.png")
+                }
             case .six:
-                return #imageLiteral(resourceName: "pumpkin6.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "pumpkin6.png")
+                } else {
+                    return #imageLiteral(resourceName: "pumpkin6water.png")
+                }
             case .seven:
-                return #imageLiteral(resourceName: "pumpkin7.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "pumpkin7.png")
+                } else {
+                    return #imageLiteral(resourceName: "pumpkin7water.png")
+                }
             }
         }
     }
@@ -208,19 +340,47 @@ struct PlantManager {
             case .zero:
                 return #imageLiteral(resourceName: "emptyplotsmallpot.png")
             case .one:
-                return #imageLiteral(resourceName: "geranium1.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "geranium1.png")
+                } else {
+                    return #imageLiteral(resourceName: "geranium1water.png")
+                }
             case .two:
-                return #imageLiteral(resourceName: "geranium2.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "geranium2.png")
+                } else {
+                    return #imageLiteral(resourceName: "geranium2water.png")
+                }
             case .three:
-                return #imageLiteral(resourceName: "geranium3.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "geranium3.png")
+                } else {
+                    return #imageLiteral(resourceName: "geranium3water.png")
+                }
             case .four:
-                return #imageLiteral(resourceName: "geranium4.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "geranium4.png")
+                } else {
+                    return #imageLiteral(resourceName: "geranium4water.png")
+                }
             case .five:
-                return #imageLiteral(resourceName: "geranium5.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "geranium5.png")
+                } else {
+                    return #imageLiteral(resourceName: "geranium5water.png")
+                }
             case .six:
-                return #imageLiteral(resourceName: "geranium6.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "geranium6.png")
+                } else {
+                    return #imageLiteral(resourceName: "geranium6water.png")
+                }
             case .seven:
-                return #imageLiteral(resourceName: "geranium7.png")
+                if needsWater {
+                    return #imageLiteral(resourceName: "geranium7.png")
+                } else {
+                    return #imageLiteral(resourceName: "geranium7water.png")
+                }
             }
         }
     }

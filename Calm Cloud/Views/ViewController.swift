@@ -22,14 +22,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var pottyBox: UIImageView!
     @IBOutlet weak var door: UIImageView!
     @IBOutlet weak var openDoor: UIImageView!
+    
     @IBOutlet weak var nightOverlay: UIView!
     @IBOutlet weak var lightsOffButton: UIButton!
     @IBOutlet weak var darkOutside: UIView!
     @IBOutlet weak var containerView: UIView!
+    
     @IBOutlet weak var boxComingIn: UIImageView!
     @IBOutlet weak var boxInside: UIImageView!
+    
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var expLabel: UILabel!
+    @IBOutlet weak var levelUpImage: UIImageView!
     
     // MARK: Variables
     
@@ -111,6 +115,11 @@ class ViewController: UIViewController {
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
     }
     
+    func showLevelUp() {
+        view.bringSubviewToFront(levelUpImage)
+        levelUpImage.animateBounce()
+    }
+    
     func updateEXP(with amount: Int) {
         LevelManager.currentEXP += amount
         
@@ -118,7 +127,11 @@ class ViewController: UIViewController {
             LevelManager.currentLevel += 1
             levelLabel.text = "\(LevelManager.currentLevel)"
             LevelManager.calculateLevel()
-            receivePackage()
+            showLevelUp()
+            levelLabel.animateBounce()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
+                self.receivePackage()
+            }
         }
         
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
@@ -179,6 +192,7 @@ class ViewController: UIViewController {
     // MARK: Animations
     
     func receivePackage() {
+        view.sendSubviewToBack(levelUpImage)
         door.isHidden = true
         openDoor.isHidden = false
         boxComingIn.isHidden = false
@@ -800,7 +814,6 @@ class ViewController: UIViewController {
             saveCare(food: Date(), water: nil, potty: nil)
             updateEXP(with: 5)
         }
-        updateEXP(with: 5)
     }
     
     @IBAction func tapOnToy(_ sender: UITapGestureRecognizer) {

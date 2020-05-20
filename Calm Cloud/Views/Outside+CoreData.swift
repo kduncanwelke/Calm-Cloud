@@ -23,7 +23,7 @@ extension OutsideViewController {
             for planting in Plantings.plantings {
                 let view = container.subviews.filter { $0.tag == Int(planting.id) }.first
                 if let imageView = view as? UIImageView {
-                    imageView.image = PlantManager.getStage(date: planting.date, plant: Plant(rawValue: Int(planting.plant))!, lastWatered: planting.lastWatered)
+                    imageView.image = PlantManager.getStage(daysOfCare: Int(planting.consecutiveDaysWatered), plant: Plant(rawValue: Int(planting.plant))!, lastWatered: planting.lastWatered)
                 }
             }
         } catch let error as NSError {
@@ -60,14 +60,39 @@ extension OutsideViewController {
         
         if plot.lastWatered == nil {
             plot.lastWatered = Date()
+            plot.consecutiveDaysWatered = 0
             print("new watering")
+            
+            let view = container.subviews.filter { $0.tag == id }.first
+            if let imageView = view as? UIImageView {
+                imageView.image = PlantManager.getStage(daysOfCare: Int(plot.consecutiveDaysWatered), plant: Plant(rawValue: Int(plot.plant))!, lastWatered: plot.lastWatered)
+            }
         } else if PlantManager.needsWatering(date: plot.lastWatered) {
-            plot.lastWatered = Date()
             print("new watering date")
+            
+            if let lastWatered = plot.lastWatered {
+                let calendar = Calendar.current
+                let components = calendar.dateComponents([.day], from: lastWatered, to: Date())
+                let diff = components.day
+                
+                if let difference = diff {
+                    if difference < 1 {
+                        plot.consecutiveDaysWatered += 1
+                    }
+                }
+            }
+            
+            plot.lastWatered = Date()
+            let view = container.subviews.filter { $0.tag == id }.first
+            if let imageView = view as? UIImageView {
+                imageView.image = PlantManager.getStage(daysOfCare: Int(plot.consecutiveDaysWatered), plant: Plant(rawValue: Int(plot.plant))!, lastWatered: plot.lastWatered)
+            }
         } else {
             print("no need for water")
             return
         }
+        
+        updateEXP(with: 5)
         
         do {
             try managedContext.save()

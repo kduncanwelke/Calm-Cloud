@@ -21,6 +21,7 @@
         <attribute name="path" attributeType="String" customClassName="[String]"/>
     </entity>
     <entity name="Plot" representedClassName="Plot" syncable="YES" codeGenerationType="class">
+        <attribute name="consecutiveDaysWatered" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="lastWatered" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -39,7 +40,7 @@
         <element name="JournalEntry" positionX="-63" positionY="-9" width="128" height="73"/>
         <element name="Level" positionX="-63" positionY="27" width="128" height="88"/>
         <element name="Photo" positionX="-63" positionY="-18" width="128" height="58"/>
-        <element name="Plot" positionX="-63" positionY="27" width="128" height="103"/>
+        <element name="Plot" positionX="-63" positionY="27" width="128" height="118"/>
         <element name="Reminder" positionX="-63" positionY="0" width="128" height="118"/>
     </elements>
 </model>
