@@ -47,6 +47,7 @@
 		2DAA52292472FDDA00171A7D /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA52282472FDDA00171A7D /* LevelManager.swift */; };
 		2DB1D48924573DDD00512E4F /* CareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48824573DDD00512E4F /* CareManager.swift */; };
 		2DB1D48B2457415000512E4F /* ViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */; };
+		2DB781722477039800EDCAF9 /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB781712477039800EDCAF9 /* DeliveryViewController.swift */; };
 		2DC5EBCB2474886300741E5E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC5EBCA2474886300741E5E /* Colors.swift */; };
 		2DCC9C7B24672031006834B0 /* PlantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC9C7A24672031006834B0 /* PlantManager.swift */; };
 		2DD2C319246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD2C318246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 */; };
@@ -102,6 +103,7 @@
 		2DAA52282472FDDA00171A7D /* LevelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
 		2DB1D48824573DDD00512E4F /* CareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareManager.swift; sourceTree = "<group>"; };
 		2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CoreData.swift"; sourceTree = "<group>"; };
+		2DB781712477039800EDCAF9 /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
 		2DC5EBCA2474886300741E5E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2DCC9C7A24672031006834B0 /* PlantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantManager.swift; sourceTree = "<group>"; };
 		2DD2C318246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "audio_hero_NightAmbienceCalm+PE011801.mp3"; sourceTree = "<group>"; };
@@ -219,6 +221,17 @@
 			path = "Tables and Collection Views";
 			sourceTree = "<group>";
 		};
+		2DB781702477034000EDCAF9 /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				2D5D6F352464830C00993969 /* MiniGameViewController.swift */,
+				2DB781712477039800EDCAF9 /* DeliveryViewController.swift */,
+				2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */,
+				2D2EF6A3246600FF00E497DC /* InventoryViewController.swift */,
+			);
+			path = Containers;
+			sourceTree = "<group>";
+		};
 		2DD2C317246352C70070934D /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,11 +248,9 @@
 				2D8F9040243F9DE800211802 /* Cells */,
 				2D48CC3D242548B200D0FBBB /* ViewController.swift */,
 				2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */,
-				2D5D6F352464830C00993969 /* MiniGameViewController.swift */,
 				2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */,
 				2D7DF67C2469FCEE009B9291 /* Outside+CoreData.swift */,
-				2D2EF6A3246600FF00E497DC /* InventoryViewController.swift */,
-				2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */,
+				2DB781702477034000EDCAF9 /* Containers */,
 				2D7FCABB243263E800E2DEC4 /* ReminderViewController.swift */,
 				2D7FCABD2432918C00E2DEC4 /* ReminderListViewController.swift */,
 				2D41EF30242D607C0058C443 /* FavoriteThingsViewController.swift */,
@@ -347,6 +358,7 @@
 				2DD2C31B246353310070934D /* Sounds.swift in Sources */,
 				2D14EBDE243E7740004CB7E2 /* NotificationManager.swift in Sources */,
 				2DFD54B124660B100096FD5C /* Plantings.swift in Sources */,
+				2DB781722477039800EDCAF9 /* DeliveryViewController.swift in Sources */,
 				2D14EBDC243E752B004CB7E2 /* ReminderManager.swift in Sources */,
 				2DC5EBCB2474886300741E5E /* Colors.swift in Sources */,
 				2D8F9049243FC51800211802 /* Activities+TableView.swift in Sources */,

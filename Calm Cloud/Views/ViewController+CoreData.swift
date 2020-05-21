@@ -108,6 +108,52 @@ extension ViewController {
         }
     }
     
+    func saveInventory() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        
+        // save anew if it doesn't exist (like on app initial launch)
+        guard let currentInventory = Plantings.loaded else {
+            let inventorySave = Inventory(context: managedContext)
+            
+            inventorySave.chards = Int16(Plantings.availableSeedlings[.chard]!)
+            inventorySave.pinkGeraniums = Int16(Plantings.availableSeedlings[.geranium]!)
+            inventorySave.jades = Int16(Plantings.availableSeedlings[.jade]!)
+            inventorySave.lemons = Int16(Plantings.availableSeedlings[.lemon]!)
+            inventorySave.pumpkins = Int16(Plantings.availableSeedlings[.pumpkin]!)
+            inventorySave.redTulips = Int16(Plantings.availableSeedlings[.redTulip]!)
+            
+            Plantings.loaded = inventorySave
+            
+            do {
+                try managedContext.save()
+                print("saved inventory")
+            } catch {
+                // this should never be displayed but is here to cover the possibility
+                showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
+            }
+            
+            return
+        }
+        
+        // otherwise rewrite data
+        currentInventory.chards = Int16(Plantings.availableSeedlings[.chard]!)
+        currentInventory.pinkGeraniums = Int16(Plantings.availableSeedlings[.geranium]!)
+        currentInventory.jades = Int16(Plantings.availableSeedlings[.jade]!)
+        currentInventory.lemons = Int16(Plantings.availableSeedlings[.lemon]!)
+        currentInventory.pumpkins = Int16(Plantings.availableSeedlings[.pumpkin]!)
+        currentInventory.redTulips = Int16(Plantings.availableSeedlings[.redTulip]!)
+        
+        Plantings.loaded = currentInventory
+        
+        do {
+            try managedContext.save()
+            print("resave successful")
+        } catch {
+            // this should never be displayed but is here to cover the possibility
+            showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
+        }
+    }
+    
     func loadLevel() {
         var managedContext = CoreDataManager.shared.managedObjectContext
         var fetchRequest = NSFetchRequest<Level>(entityName: "Level")

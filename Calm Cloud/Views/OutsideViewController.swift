@@ -56,6 +56,8 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var expLabel: UILabel!
     @IBOutlet weak var levelUpImage: UIImageView!
     
+    @IBOutlet weak var plusEXPLabel: UILabel!
+    
     @IBOutlet weak var backgroundView: UIView!
     
     // MARK: Variables
@@ -80,9 +82,12 @@ class OutsideViewController: UIViewController {
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
         
+        plusEXPLabel.isHidden = true
+        
         AnimationManager.outsideLocation = .back
         sleep()
         loadUI()
+        loadInventory()
         loadPlots()
     }
     
@@ -91,6 +96,17 @@ class OutsideViewController: UIViewController {
     func loadUI() {
         levelLabel.text = "\(LevelManager.currentLevel)"
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
+    }
+    
+    func showEXP(near: UIImageView, exp: Int) {
+        plusEXPLabel.center = CGPoint(x: near.frame.midX, y: near.frame.midY-30)
+        plusEXPLabel.text = "+\(exp) EXP"
+        plusEXPLabel.alpha = 1.0
+        plusEXPLabel.isHidden = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
+            self.plusEXPLabel.fadeOut()
+        }
     }
     
     func updateEXP(with amount: Int) {
@@ -106,6 +122,7 @@ class OutsideViewController: UIViewController {
         }
         
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "saveLevelFromOutside"), object: nil)
     }
     
@@ -136,8 +153,8 @@ class OutsideViewController: UIViewController {
         // change based on selected species
         savePlanting(id: selectedPlot, plant: PlantManager.selected.rawValue)
         
-        updateEXP(with: 10)
         var imageToUpdate: UIImageView
+        updateEXP(with: 10)
         
         if selectedPlot == 1 {
             imageToUpdate = fencePlot1
@@ -197,6 +214,7 @@ class OutsideViewController: UIViewController {
             imageToUpdate = smallPotPlot
         }
         
+        showEXP(near: imageToUpdate, exp: 10)
         imageToUpdate.image = PlantManager.getStage(daysOfCare: 0, plant: PlantManager.selected, lastWatered: nil)
         
         view.sendSubviewToBack(inventoryContainer)

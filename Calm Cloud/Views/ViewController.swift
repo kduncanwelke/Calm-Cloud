@@ -34,6 +34,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var expLabel: UILabel!
     @IBOutlet weak var levelUpImage: UIImageView!
+    @IBOutlet weak var receivedPackageContainer: UIView!
+    
+    @IBOutlet weak var plusEXPLabel: UILabel!
+    
     
     // MARK: Variables
     
@@ -63,11 +67,14 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(closeMiniGame), name: NSNotification.Name(rawValue: "closeMiniGame"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(closeDelivery), name: NSNotification.Name(rawValue: "closeDelivery"), object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(saveLevelFromOutside), name: NSNotification.Name(rawValue: "saveLevelFromOutside"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(levelUp), name: NSNotification.Name(rawValue: "levelUp"), object: nil)
         
         openDoor.isHidden = true
+        plusEXPLabel.isHidden = true
        
         // load sounds
         Sound.loadSound(resourceName: Sounds.calmMusic.resourceName, type: Sounds.calmMusic.type)
@@ -120,6 +127,17 @@ class ViewController: UIViewController {
         levelUpImage.animateBounce()
     }
     
+    func showEXP(near: UIImageView, exp: Int) {
+        plusEXPLabel.center = CGPoint(x: near.frame.midX, y: near.frame.midY-30)
+        plusEXPLabel.text = "+\(exp) EXP"
+        plusEXPLabel.alpha = 1.0
+        plusEXPLabel.isHidden = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
+            self.plusEXPLabel.fadeOut()
+        }
+    }
+    
     func updateEXP(with amount: Int) {
         LevelManager.currentEXP += amount
         
@@ -140,6 +158,8 @@ class ViewController: UIViewController {
     
     @objc func saveLevelFromOutside() {
         saveLevel()
+        levelLabel.text = "\(LevelManager.currentLevel)"
+        expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
     }
     
     @objc func levelUp() {
@@ -164,6 +184,12 @@ class ViewController: UIViewController {
         view.sendSubviewToBack(containerView)
         stopped = false
         stopMoving()
+    }
+
+    @objc func closeDelivery() {
+        view.sendSubviewToBack(receivedPackageContainer)
+        boxInside.isHidden = true
+        saveInventory()
     }
     
     func randomRepeatCount() -> Int {
@@ -800,6 +826,7 @@ class ViewController: UIViewController {
             hasWater = true
             saveCare(food: nil, water: Date(), potty: nil)
             updateEXP(with: 5)
+            showEXP(near: waterImage, exp: 5)
         }
     }
     
@@ -813,6 +840,7 @@ class ViewController: UIViewController {
             hasFood = true
             saveCare(food: Date(), water: nil, potty: nil)
             updateEXP(with: 5)
+            showEXP(near: foodImage, exp: 5)
         }
     }
     
@@ -833,6 +861,7 @@ class ViewController: UIViewController {
             saveCare(food: nil, water: nil, potty: Date())
             setMood()
             updateEXP(with: 10)
+            showEXP(near: pottyBox, exp: 10)
         }
     }
     
@@ -887,6 +916,14 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func boxTapped(_ sender: UITapGestureRecognizer) {
+        boxInside.image = UIImage(named: "openedbox")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [unowned self] in
+            self.view.bringSubviewToFront(self.receivedPackageContainer)
+            self.receivedPackageContainer.animateBounce()
+        }
+    }
     
     @IBAction func remindersTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "visitReminders", sender: Any?.self)

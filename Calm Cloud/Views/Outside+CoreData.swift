@@ -11,6 +11,27 @@ import UIKit
 import CoreData
 
 extension OutsideViewController {
+    
+    func loadInventory() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        var fetchRequest = NSFetchRequest<Inventory>(entityName: "Inventory")
+        
+        do {
+            var result = try managedContext.fetch(fetchRequest)
+            if let inventory = result.first {
+                Plantings.loaded = inventory
+                Plantings.availableSeedlings[.chard] = Int(inventory.chards)
+                Plantings.availableSeedlings[.geranium] = Int(inventory.pinkGeraniums)
+                Plantings.availableSeedlings[.jade] = Int(inventory.jades)
+                Plantings.availableSeedlings[.lemon] = Int(inventory.lemons)
+                Plantings.availableSeedlings[.pumpkin] = Int(inventory.pumpkins)
+                Plantings.availableSeedlings[.redTulip] = Int(inventory.redTulips)
+            }
+            print("inventory loaded")
+        } catch let error as NSError {
+            showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
+        }
+    }
 
     func loadPlots() {
         var managedContext = CoreDataManager.shared.managedObjectContext
@@ -66,6 +87,7 @@ extension OutsideViewController {
             let view = container.subviews.filter { $0.tag == id }.first
             if let imageView = view as? UIImageView {
                 imageView.image = PlantManager.getStage(daysOfCare: Int(plot.consecutiveDaysWatered), plant: Plant(rawValue: Int(plot.plant))!, lastWatered: plot.lastWatered)
+                showEXP(near: imageView, exp: 5)
             }
         } else if PlantManager.needsWatering(date: plot.lastWatered) {
             print("new watering date")
@@ -86,6 +108,7 @@ extension OutsideViewController {
             let view = container.subviews.filter { $0.tag == id }.first
             if let imageView = view as? UIImageView {
                 imageView.image = PlantManager.getStage(daysOfCare: Int(plot.consecutiveDaysWatered), plant: Plant(rawValue: Int(plot.plant))!, lastWatered: plot.lastWatered)
+                showEXP(near: imageView, exp: 5)
             }
         } else {
             print("no need for water")

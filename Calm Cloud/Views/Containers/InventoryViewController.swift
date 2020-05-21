@@ -82,6 +82,10 @@ class InventoryViewController: UIViewController {
             }
         }
         
+        if Plantings.availableSeedlings[PlantManager.selected] == 0 {
+            return
+        }
+        
         clearSelections()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "plant"), object: nil)
     }
@@ -101,7 +105,9 @@ extension InventoryViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "inventoryCell", for: indexPath) as! InventoryCollectionViewCell
         
-        cell.cellLabel.text = validSeedlings[indexPath.row].name
+        if let number = Plantings.availableSeedlings[validSeedlings[indexPath.row].plant] {
+            cell.cellLabel.text = validSeedlings[indexPath.row].name + "\nx\(number)"
+        }
         cell.cellImage.image = validSeedlings[indexPath.row].image
         cell.backgroundColor = UIColor.white
         
