@@ -14,15 +14,55 @@ class DeliveryViewController: UIViewController {
     
     @IBOutlet weak var seedlingMessage: UILabel!
     
+    var selected: Plant?
+    var number = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if let redTulipCount = Plantings.availableSeedlings[.redTulip] {
-            Plantings.availableSeedlings[.redTulip] = redTulipCount + 3
+        randomSeeds()
+    }
+    
+    func randomSeeds() {
+        let random = Int.random(in: 0...5)
+        let type = Plant(rawValue: random)
+        selected = type
+        number = Int.random(in: 1...4)
+        
+        let name = getName()
+        seedlingMessage.text = "x\(number) \(name) Seedlings"
+        add()
+    }
+    
+    func getName() -> String {
+        switch selected {
+        case .chard:
+            return "Rainbow Chard"
+        case .geranium:
+            return "Pink Geranium"
+        case .jade:
+            return "Jade"
+        case .lemon:
+            return "Lemon Tree"
+        case .pumpkin:
+            return "Pumpkin"
+        case .redTulip:
+            return "Red Tulip"
+        default:
+            return ""
         }
     }
     
+    func add() {
+        guard let chosen = selected else { return }
+        
+        if let plantCount = Plantings.availableSeedlings[chosen] {
+            Plantings.availableSeedlings[chosen] = plantCount + number
+        }
+        
+        DataFunctions.saveInventory()
+    }
 
     /*
     // MARK: - Navigation

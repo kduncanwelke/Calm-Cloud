@@ -53,6 +53,7 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
     // MARK: Custom functions
     
     func addImage(pickedImage: UIImage) {
+        // add picked image
         var date = String(Date.timeIntervalSinceReferenceDate)
         var imageID = date.replacingOccurrences(of: ".", with: "-") + ".png"
         
@@ -71,6 +72,7 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func savePhoto() {
+        // save photo path to core data
         var managedContext = CoreDataManager.shared.managedObjectContext
         
         let newPhotoSave = Photo(context: managedContext)
@@ -87,6 +89,7 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func deletePhoto(indexes: [IndexPath]?) {
+        // delete selected photos
         guard let indexList = indexes else { return }
       
         let orderedList = indexList.sorted()
@@ -165,7 +168,6 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
         collectionView.reloadData()
     }
     
-    
     @IBAction func backTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -173,6 +175,7 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
 }
 
 extension FavoriteThingsViewController {
+    // image picker
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         print("called")
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {

@@ -85,20 +85,25 @@ class OutsideViewController: UIViewController {
         plusEXPLabel.isHidden = true
         
         AnimationManager.outsideLocation = .back
+        AnimationManager.movement = .staying
         sleep()
+        
         loadUI()
         loadInventory()
         loadPlots()
+        DataFunctions.saveInventory()
     }
     
     // MARK: Custom functions
     
     func loadUI() {
+        // update level
         levelLabel.text = "\(LevelManager.currentLevel)"
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
     }
     
     func showEXP(near: UIImageView, exp: Int) {
+        // show exp
         plusEXPLabel.center = CGPoint(x: near.frame.midX, y: near.frame.midY-30)
         plusEXPLabel.text = "+\(exp) EXP"
         plusEXPLabel.alpha = 1.0
@@ -110,6 +115,7 @@ class OutsideViewController: UIViewController {
     }
     
     func updateEXP(with amount: Int) {
+        // update exp and save
         LevelManager.currentEXP += amount
         
         if LevelManager.currentEXP >= LevelManager.maxEXP {
@@ -122,11 +128,13 @@ class OutsideViewController: UIViewController {
         }
         
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
+        DataFunctions.saveLevel()
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "saveLevelFromOutside"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromOutside"), object: nil)
     }
     
     func showLevelUp() {
+        // show level up image
         view.bringSubviewToFront(levelUpImage)
         levelUpImage.animateBounce()
         
@@ -136,16 +144,19 @@ class OutsideViewController: UIViewController {
     }
     
     @objc func closePopUp() {
+        // close message popup
         view.sendSubviewToBack(messageContainer)
     }
     
     @objc func showInventory() {
+        // show seedling inventory
         view.sendSubviewToBack(messageContainer)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
         view.bringSubviewToFront(inventoryContainer)
     }
     
     @objc func closeInventory() {
+        // close inventory
         view.sendSubviewToBack(inventoryContainer)
     }
     
@@ -214,36 +225,48 @@ class OutsideViewController: UIViewController {
             imageToUpdate = smallPotPlot
         }
         
+        // show exp feedback
         showEXP(near: imageToUpdate, exp: 10)
-        imageToUpdate.image = PlantManager.getStage(daysOfCare: 0, plant: PlantManager.selected, lastWatered: nil)
+        // update image
+        imageToUpdate.image = PlantManager.getStage(halfDaysOfCare: 0, plant: PlantManager.selected, lastWatered: nil, mature: nil)
         
         view.sendSubviewToBack(inventoryContainer)
     }
     
-    func tappedPlant(image: UIImageView) {
-        if image.image?.pngData() == UIImage(named: "emptyplot")?.pngData() || image.image?.pngData() == UIImage(named: "emptyplotbig")?.pngData() || image.image?.pngData() == UIImage(named: "emptyplottree")?.pngData() || image.image?.pngData() == UIImage(named: "emptyplotsmallpot")?.pngData() {
-            if selectedPlot < 15 {
-                PlantManager.area = .flowerStrips
-                print("flower strip")
-            } else if selectedPlot > 14 && selectedPlot < 18 {
-                PlantManager.area = .lowPot
-                print("bowl")
-            } else if selectedPlot > 17 && selectedPlot < 21 {
-                PlantManager.area = .planter
-                print("planter")
-            } else if selectedPlot == 21 {
-                PlantManager.area = .tallPot
-                print("tall pot")
-            } else if selectedPlot == 28 {
-                PlantManager.area = .smallPot
-                print("small pot")
-            } else {
-                PlantManager.area = .vegetablePlot
-                print("vegetable plot")
-            }
-            
-            view.bringSubviewToFront(messageContainer)
+    func setPlotArea() {
+        if selectedPlot < 15 {
+            PlantManager.area = .flowerStrips
+            print("flower strip")
+        } else if selectedPlot > 14 && selectedPlot < 18 {
+            PlantManager.area = .lowPot
+            print("bowl")
+        } else if selectedPlot > 17 && selectedPlot < 21 {
+            PlantManager.area = .planter
+            print("planter")
+        } else if selectedPlot == 21 {
+            PlantManager.area = .tallPot
+            print("tall pot")
+        } else if selectedPlot == 28 {
+            PlantManager.area = .smallPot
+            print("small pot")
         } else {
+            PlantManager.area = .vegetablePlot
+            print("vegetable plot")
+        }
+    }
+    
+    func tappedPlant(image: UIImageView) {
+        // determine if plot is empty
+        if image.image?.pngData() == UIImage(named: "emptyplot")?.pngData() || image.image?.pngData() == UIImage(named: "emptyplotbig")?.pngData() || image.image?.pngData() == UIImage(named: "emptyplottree")?.pngData() || image.image?.pngData() == UIImage(named: "emptyplotsmallpot")?.pngData() {
+            setPlotArea()
+            view.bringSubviewToFront(messageContainer)
+        } else if image.image?.pngData() == UIImage(named: "chard8")?.pngData() || image.image?.pngData() == UIImage(named: "geranium8")?.pngData() || image.image?.pngData() == UIImage(named: "jade8")?.pngData() || image.image?.pngData() == UIImage(named: "lemon8")?.pngData() || image.image?.pngData() == UIImage(named: "pumpkin8")?.pngData() || image.image?.pngData() == UIImage(named: "redtulip8")?.pngData() {
+            print("wilted plant")
+            setPlotArea()
+            deletePlanting(id: selectedPlot)
+            PlantManager.getStage(halfDaysOfCare: nil, plant: .none, lastWatered: nil, mature: nil)
+        } else {
+            // plot is not empty, if watering update watering status
             if wateringModeOn {
                 saveWatering(id: selectedPlot)
             }
@@ -251,249 +274,13 @@ class OutsideViewController: UIViewController {
     }
     
     func randomRepeatCount() -> Int {
+        // random repeat for animations
         var randomRepeatCount = Int.random(in: 4...8)
         return randomRepeatCount
     }
     
-    func floatUp() {
-        print("float")
-        cloudKitty.animationImages = AnimationManager.bouncingAnimation
-        cloudKitty.startAnimating()
-        let ceilingDestination = CGPoint(x: container.frame.width/2, y: container.frame.height/6)
-        cloudKitty.outsideMove(to: ceilingDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .ceiling
-    }
-    
-    // left movement
-    
-    func floatLeft() {
-        print("float left")
-        cloudKitty.animationImages = AnimationManager.upsideDownLeft
-        cloudKitty.startAnimating()
-        let ceilingDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/6)
-        cloudKitty.outsideMove(to: ceilingDestination, duration: 4.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .ceiling
-    }
-    
-    func moveLeftToBack() {
-        print("left to back")
-        cloudKitty.animationImages = AnimationManager.movingLeftAnimation
-        cloudKitty.startAnimating()
-        let centerDestination = CGPoint(x: container.frame.width/2, y: (container.frame.height/3)*1.52)
-        cloudKitty.outsideMove(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .back
-    }
-    
-    func moveLeftToPlanter() {
-        print("left to planter")
-        cloudKitty.animationImages = AnimationManager.movingLeftAnimation
-        cloudKitty.startAnimating()
-        let planterDestination = CGPoint(x: container.frame.width/4, y: (container.frame.height/3)*2)
-        cloudKitty.outsideMove(to: planterDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .planter
-    }
-    
-    func moveLeftToWidePot() {
-        print("left to wide pot")
-        cloudKitty.animationImages = AnimationManager.movingLeftAnimation
-        cloudKitty.startAnimating()
-        let potDestination = CGPoint(x: container.frame.width/4, y: (container.frame.height/3)*2.4)
-        cloudKitty.outsideMove(to: potDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .pot
-    }
-    
-    func moveLeftToCenter() {
-        print("left to center")
-        cloudKitty.animationImages = AnimationManager.movingLeftAnimation
-        cloudKitty.startAnimating()
-        let centerDestination = CGPoint(x: container.frame.width/3, y: (container.frame.height/3)*2.35)
-        cloudKitty.outsideMove(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .front
-    }
-    
-    // right movement
-    
-    func floatRight() {
-        print("float right")
-        cloudKitty.animationImages = AnimationManager.upsideDownRight
-        cloudKitty.startAnimating()
-        let ceilingDestination = CGPoint(x: container.frame.width/1.12, y: container.frame.height/6)
-        cloudKitty.outsideMove(to: ceilingDestination, duration: 4.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .ceiling
-    }
-    
-    func moveRightToBack() {
-        print("right to back")
-        cloudKitty.animationImages = AnimationManager.movingRightAnimation
-        cloudKitty.startAnimating()
-        let centerDestination = CGPoint(x: container.frame.width/2, y: (container.frame.height/3)*1.52)
-        cloudKitty.outsideMove(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .back
-    }
-    
-    func moveRightToGate() {
-        print("right to gate")
-        cloudKitty.animationImages = AnimationManager.movingRightAnimation
-        cloudKitty.startAnimating()
-        let gateDestination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*1.5)
-        cloudKitty.outsideMove(to: gateDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .gate
-    }
-    
-    func moveRightToCenter() {
-        print("right to center")
-        cloudKitty.animationImages = AnimationManager.movingRightAnimation
-        cloudKitty.startAnimating()
-        let centerDestination = CGPoint(x: container.frame.width/3, y: (container.frame.height/3)*2.35)
-        cloudKitty.outsideMove(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .front
-    }
-    
-    func moveRightToPots() {
-        print("right to pots")
-        cloudKitty.animationImages = AnimationManager.movingRightAnimation
-        cloudKitty.startAnimating()
-        let potsDestination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*2.4)
-        cloudKitty.outsideMove(to: potsDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .pots
-    }
-    
-    // sleep animations
-    
-    func sleep() {
-        print("sleep")
-        cloudKitty.animationImages = AnimationManager.sleepAnimation
-        cloudKitty.animationDuration = 2.0
-        cloudKitty.animationRepeatCount = 0
-        cloudKitty.startAnimating()
-        AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
-    }
-    
-    func floatSleep() {
-        print("float sleep")
-        cloudKitty.animationImages = AnimationManager.sleepAnimation
-        cloudKitty.animationDuration = 2.0
-        cloudKitty.animationRepeatCount = 0
-        cloudKitty.startAnimating()
-        let destination = CGPoint(x: cloudKitty.frame.midX, y: cloudKitty.frame.midY)
-        let floatDestination = CGPoint(x: destination.x, y: destination.y-20)
-        cloudKitty.floatMoveOutside(to: floatDestination, returnTo: destination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
-    }
-
-    // place non-specific animations
-    
-    func bounce() {
-        print("bounce")
-        cloudKitty.animationImages = AnimationManager.bouncingAnimation
-        cloudKitty.animationDuration = 2.0
-        cloudKitty.startAnimating()
-        
-        let destination: CGPoint
-        
-        switch AnimationManager.outsideLocation {
-        case .ceiling:
-            destination = CGPoint(x: cloudKitty.frame.midX, y: cloudKitty.frame.midY) //CGPoint(x: container.frame.width/2, y: container.frame.height/1.2)
-        case .back:
-            destination = CGPoint(x: container.frame.width/2, y: (container.frame.height/3)*1.52)
-        case .front:
-            destination = CGPoint(x: container.frame.width/3, y: (container.frame.height/3)*2.35)
-        case .gate:
-            destination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*1.5)
-        case .planter:
-            destination = CGPoint(x: container.frame.width/4, y: (container.frame.height/3)*2)
-        case .pot:
-            destination = CGPoint(x: container.frame.width/4, y: (container.frame.height/3)*2.4)
-        case .pots:
-            destination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*2.4)
-        }
-        
-        let floatDestination = CGPoint(x: destination.x, y: destination.y-20)
-        cloudKitty.floatMoveOutside(to: floatDestination, returnTo: destination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
-    }
-    
-    func pause() {
-        cloudKitty.image = AnimationManager.startImage
-        AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
-    }
-    
-    func randomBackAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            bounce()
-        } else {
-            pause()
-        }
-    }
-    
-    func randomCeilingAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            floatLeft()
-        } else {
-            floatRight()
-        }
-    }
-    
-    func randomFrontAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            bounce()
-        } else {
-            pause()
-        }
-    }
-    
-    func randomGateAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            bounce()
-        } else {
-            pause()
-        }
-    }
-    
-    func randomPlanterAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            bounce()
-        } else {
-            pause()
-        }
-    }
-    
-    func randomPotAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            bounce()
-        } else {
-            pause()
-        }
-    }
-    
-    func randomPotsAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            bounce()
-        } else {
-            pause()
-        }
-    }
-    
     func randomMove() {
+        // randomize movement animations
         let range = [1,2,3,4]
         let animation = range.randomElement()
         
@@ -569,6 +356,7 @@ class OutsideViewController: UIViewController {
     }
     
     @objc func stopMovingOutside() {
+        // run after an animation is complete, randomize next
         cloudKitty.stopAnimating()
         let range = [1,2,3,4,5]
         let animation = range.randomElement()
@@ -639,6 +427,7 @@ class OutsideViewController: UIViewController {
     }
     
     @IBAction func waterModeTapped(_ sender: UIButton) {
+        // toggle watering mode
         if wateringModeOn == false {
             wateringModeOn = true
             backgroundView.backgroundColor = Colors.blue
@@ -755,6 +544,7 @@ class OutsideViewController: UIViewController {
     }
     
     @IBAction func planterPlot2Tapped(_ sender: UITapGestureRecognizer) {
+        print("tapped")
         selectedPlot = 19
         tappedPlant(image: planterPlot2)
     }

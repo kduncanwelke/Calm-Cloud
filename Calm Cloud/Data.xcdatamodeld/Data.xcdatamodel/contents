@@ -33,6 +33,7 @@
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="lastWatered" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="mature" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="plant" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="Reminder" representedClassName="Reminder" syncable="YES" codeGenerationType="class">
@@ -45,11 +46,11 @@
     <elements>
         <element name="ActivityId" positionX="-63" positionY="27" width="128" height="58"/>
         <element name="Care" positionX="-63" positionY="27" width="128" height="88"/>
+        <element name="Inventory" positionX="-63" positionY="45" width="128" height="133"/>
         <element name="JournalEntry" positionX="-63" positionY="-9" width="128" height="73"/>
         <element name="Level" positionX="-63" positionY="27" width="128" height="88"/>
         <element name="Photo" positionX="-63" positionY="-18" width="128" height="58"/>
-        <element name="Plot" positionX="-63" positionY="27" width="128" height="118"/>
+        <element name="Plot" positionX="-63" positionY="27" width="128" height="133"/>
         <element name="Reminder" positionX="-63" positionY="0" width="128" height="118"/>
-        <element name="Inventory" positionX="-63" positionY="45" width="128" height="133"/>
     </elements>
 </model>

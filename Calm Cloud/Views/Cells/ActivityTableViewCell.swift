@@ -37,6 +37,7 @@ class ActivityTableViewCell: UITableViewCell {
     @IBAction func checkTapped(_ sender: UIButton) {
         var isChecked = false
         
+        // set cell selection by image
         if sender.imageView?.image?.pngData() == UIImage(named: "incomplete")?.pngData() {
             sender.setImage(UIImage(named: "complete"), for: .normal)
             isChecked = true

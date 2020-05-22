@@ -15,7 +15,8 @@ class InventoryViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var plantSeedlingButton: UIButton!
     
-    let seedlings = [Seedling(name: "Red Tulip", image: UIImage(named: "redtulip")!, plant: .redTulip, allowedArea: .flowerStrips), Seedling(name: "Jade", image: UIImage(named: "jade")!, plant: .jade, allowedArea: .lowPot), Seedling(name: "Rainbow Chard", image: UIImage(named: "chard")!, plant: .chard, allowedArea: .planter), Seedling(name: "Lemon Tree", image: UIImage(named: "lemon")!, plant: .lemon, allowedArea: .tallPot), Seedling(name: "Pumpkin", image: UIImage(named: "pumpkin")!, plant: .pumpkin, allowedArea: .vegetablePlot), Seedling(name: "Pink Geranium", image: UIImage(named: "geranium")!, plant: .geranium, allowedArea: .smallPot)]
+    // MARK: Variables
+    
     var validSeedlings: [Seedling] = []
     
     override func viewDidLoad() {
@@ -31,21 +32,22 @@ class InventoryViewController: UIViewController {
     }
     
     @objc func reload() {
+        // reload when re-shown
         validSeedlings.removeAll()
         setSeedlings()
         collectionView.reloadData()
     }
     
     func setSeedlings() {
-        print(PlantManager.area)
+        // show seedlings relevant to the chosen area if applicable
         if PlantManager.area == .none {
             plantSeedlingButton.isHidden = true
-            for seedling in seedlings {
+            for seedling in Plantings.seedlings {
                 validSeedlings.append(seedling)
             }
         } else {
             plantSeedlingButton.isHidden = false
-            for seedling in seedlings {
+            for seedling in Plantings.seedlings {
                 if seedling.allowedArea == PlantManager.area {
                     validSeedlings.append(seedling)
                 }
@@ -54,6 +56,7 @@ class InventoryViewController: UIViewController {
     }
     
     func clearSelections() {
+        // clear selections so they don't stick when this view reappears
         if let selections = collectionView.indexPathsForSelectedItems {
             for index in selections {
                 collectionView.deselectItem(at: index, animated: false)
@@ -76,16 +79,24 @@ class InventoryViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func confirmPlanting(_ sender: UIButton) {
+        // if no selection, exist
         if let selections = collectionView.indexPathsForSelectedItems {
             if selections.isEmpty {
                 return
             }
         }
         
+        // if plant count is zero, exit
         if Plantings.availableSeedlings[PlantManager.selected] == 0 {
             return
         }
         
+        // plant selection exists and is not zero, update count
+        if let selectedSeedling = Plantings.availableSeedlings[PlantManager.selected] {
+            Plantings.availableSeedlings[PlantManager.selected] = selectedSeedling - 1
+        }
+        
+        DataFunctions.saveInventory()
         clearSelections()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "plant"), object: nil)
     }

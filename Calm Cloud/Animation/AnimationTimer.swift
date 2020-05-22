@@ -14,6 +14,7 @@ class AnimationTimer {
     static var seconds = 0
     static var timer: Timer?
     
+    // timer for animations
     static func beginTimer(repeatCount: Int) {
         
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in

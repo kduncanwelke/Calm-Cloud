@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// manage cloud kitty animations
 struct AnimationManager {
  
     static var movingLeftAnimation: [UIImage] {

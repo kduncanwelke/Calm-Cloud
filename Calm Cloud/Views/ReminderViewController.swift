@@ -19,7 +19,6 @@ class ReminderViewController: UIViewController {
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var savedLabel: UILabel!
     
-    
     // MARK: Variables
     
     let calendar = Calendar.current
@@ -72,6 +71,7 @@ class ReminderViewController: UIViewController {
     }
     
     func getTime(reminder: Reminder) {
+        // get time from picker
         let date = timePicker.date
         
         let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
@@ -83,6 +83,7 @@ class ReminderViewController: UIViewController {
     }
     
     func saveReminder() {
+        // save reminder
         if messageTextField.text != "" {
             var managedContext = CoreDataManager.shared.managedObjectContext
             let newReminder = Reminder(context: managedContext)

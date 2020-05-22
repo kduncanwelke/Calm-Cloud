@@ -41,6 +41,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
     }
     
     func isSameDay() -> Bool {
+        // check when last viewed
         let date = Date()
         let calendar = Calendar.current
         let dateToCompare = calendar.component(.day , from: date)
@@ -56,6 +57,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
     }
     
     func loadCompleted() {
+        // load completed items
         var managedContext = CoreDataManager.shared.managedObjectContext
         var fetchRequest = NSFetchRequest<ActivityId>(entityName: "ActivityId")
         
@@ -67,6 +69,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
                     completion[Int(item.id)] = true
                 }
             } else {
+                // if it's a new day, removed all saved completions
                 for item in loaded {
                     managedContext.delete(item)
                 }
@@ -86,6 +89,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
     }
     
     func saveCompletedActivity(id: Int) {
+        // save item that has been completed
         var managedContext = CoreDataManager.shared.managedObjectContext
         let activitySave = ActivityId(context: managedContext)
         
@@ -119,6 +123,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
+    // MARK: Search bar
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filterSearch(searchText)

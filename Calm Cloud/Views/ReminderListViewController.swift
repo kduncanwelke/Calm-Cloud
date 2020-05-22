@@ -43,6 +43,7 @@ class ReminderListViewController: UIViewController {
     }
     
     func loadReminders() {
+        // load saved reminders
         var managedContext = CoreDataManager.shared.managedObjectContext
         var fetchRequest = NSFetchRequest<Reminder>(entityName: "Reminder")
         
@@ -55,6 +56,7 @@ class ReminderListViewController: UIViewController {
     }
     
     func fullDelete(reminder: Reminder) {
+        // delete reminder, including notification
         var managedContext = CoreDataManager.shared.managedObjectContext
         
         let notificationCenter = UNUserNotificationCenter.current()

@@ -13,15 +13,21 @@ struct PlantManager {
     static func needsWatering(date: Date?) -> Bool {
         if let chosenDate = date {
             let calendar = Calendar.current
-            let isSameDay = calendar.isDate(chosenDate, inSameDayAs: Date())
-           
-            if isSameDay {
-                // plant has been watered within this day
-                print("same day no need for water")
-                return false
+            let components = calendar.dateComponents([.hour], from: chosenDate, to: Date())
+            let diff = components.hour
+            
+            if let difference = diff {
+                if difference < 12 {
+                    // plant has been watered within 12 hours
+                    print("has been watered recently")
+                    return false
+                } else {
+                    // plant has not been watered within 12 hours
+                    print("needs water for this period")
+                    return true
+                }
             } else {
-                // plant has not been watered within this day
-                print("new day needs water")
+                // date with incalcuable difference (unlikely)
                 return true
             }
         } else {
@@ -31,22 +37,63 @@ struct PlantManager {
         }
     }
     
-    static func getStage(daysOfCare: Int?, plant: Plant, lastWatered: Date?) -> UIImage? {
+    static func checkDiff(date: Date?) -> Int {
+        if let chosenDate = date {
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.day], from: chosenDate, to: Date())
+            let diff = components.day
+            
+            if let difference = diff {
+                return difference
+            } else {
+                return 0
+            }
+        } else {
+            return 0
+        }
+    }
+    
+    static func getStage(halfDaysOfCare: Int?, plant: Plant, lastWatered: Date?, mature: Date?) -> UIImage? {
+        if plant == .none {
+            switch PlantManager.area {
+            case .flowerStrips, .planter, .smallPot:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .lowPot:
+                return #imageLiteral(resourceName: "emptyplotsmallpot.png")
+            case .tallPot:
+                return #imageLiteral(resourceName: "emptyplottree.png")
+            case .vegetablePlot:
+                return #imageLiteral(resourceName: "emptyplotbig.png")
+            case .none:
+                return nil
+            }
+        }
+        
         var stage: Int
-        if let daysCaredFor = daysOfCare {
-            if daysCaredFor == 0 {
+        // set stage of plant based on how many days it has received care
+        
+        // if plant has reached maturity, check how many days have passed
+        if let matureDate = mature {
+            // if four days have passed, plant reaches wilting stage
+            if checkDiff(date: matureDate) >= 4 {
+                stage = 8
+            }
+        }
+        
+        if let halfDaysCaredFor = halfDaysOfCare {
+            if halfDaysCaredFor == 0 {
                 stage = 1
-            } else if daysCaredFor == 1 {
+            } else if halfDaysCaredFor == 2 {
                 stage = 2
-            } else if daysCaredFor == 2 {
+            } else if halfDaysCaredFor == 4 {
                 stage = 3
-            } else if daysCaredFor == 3 {
+            } else if halfDaysCaredFor == 6 {
                 stage = 4
-            } else if daysCaredFor == 4 {
+            } else if halfDaysCaredFor == 8 {
                 stage = 5
-            } else if daysCaredFor == 5 {
+            } else if halfDaysCaredFor == 10 {
                 stage = 6
-            } else if daysCaredFor >= 6 {
+            } else if halfDaysCaredFor >= 12 {
                 stage = 7
             } else {
                 stage = 0
@@ -54,10 +101,19 @@ struct PlantManager {
         } else {
             return nil
         }
-            
-        PlantManager.currentStage = Stage.init(rawValue: stage)!
-        PlantManager.needsWater = PlantManager.needsWatering(date: lastWatered)
         
+        // set current stage to use for plant
+        PlantManager.currentStage = Stage.init(rawValue: stage)!
+        
+        // determine if plant needs water
+        if PlantManager.currentStage == .eight {
+            // if plant is on last stage (wilted) it does not require water
+            PlantManager.needsWater = false
+        } else {
+            PlantManager.needsWater = PlantManager.needsWatering(date: lastWatered)
+        }
+        
+        // determine which plant art is needed
         switch plant {
         case .redTulip:
             return redTulip
@@ -71,6 +127,8 @@ struct PlantManager {
             return pumpkin
         case .geranium:
             return geranium
+        case .none:
+            return nil
         }
     }
     
@@ -78,6 +136,8 @@ struct PlantManager {
     static var needsWater = false
     static var selected: Plant = .redTulip
     static var area: Area = .none
+    
+    // MARK: Red tulip
     
     static var redTulip: UIImage {
         get {
@@ -126,9 +186,13 @@ struct PlantManager {
                 } else {
                     return #imageLiteral(resourceName: "redtulip7water.png")
                 }
+            case .eight:
+                return #imageLiteral(resourceName: "redtulip8.png")
             }
         }
     }
+    
+    // MARK: Jade
     
     static var jade: UIImage {
         get {
@@ -177,9 +241,13 @@ struct PlantManager {
                 } else {
                     return #imageLiteral(resourceName: "jade7water.png")
                 }
+            case .eight:
+                return #imageLiteral(resourceName: "jade8.png")
             }
         }
     }
+    
+    // MARK: Chard
     
     static var chard: UIImage {
         get {
@@ -228,9 +296,13 @@ struct PlantManager {
                 } else {
                     return #imageLiteral(resourceName: "chard7water.png")
                 }
+            case .eight:
+                return #imageLiteral(resourceName: "chard8.png")
             }
         }
     }
+    
+    // MARK: Lemon
     
     static var lemon: UIImage {
         get {
@@ -279,9 +351,13 @@ struct PlantManager {
                 } else {
                     return #imageLiteral(resourceName: "lemon7water.png")
                 }
+            case .eight:
+                return #imageLiteral(resourceName: "lemon8.png")
             }
         }
     }
+    
+    // MARK: Pumpkin
     
     static var pumpkin: UIImage {
         get {
@@ -330,9 +406,13 @@ struct PlantManager {
                 } else {
                     return #imageLiteral(resourceName: "pumpkin7water.png")
                 }
+            case .eight:
+                return #imageLiteral(resourceName: "pumpkin8.png")
             }
         }
     }
+    
+    // MARK: Geranium
     
     static var geranium: UIImage {
         get {
@@ -381,6 +461,8 @@ struct PlantManager {
                 } else {
                     return #imageLiteral(resourceName: "geranium7water.png")
                 }
+            case .eight:
+                return #imageLiteral(resourceName: "geranium8.png")
             }
         }
     }
@@ -393,10 +475,11 @@ enum Plant: Int {
     case lemon
     case pumpkin
     case geranium
+    case none
 }
 
 enum Stage: Int {
-    case zero, one, two, three, four, five, six, seven
+    case zero, one, two, three, four, five, six, seven, eight
 }
  
 enum Area {
