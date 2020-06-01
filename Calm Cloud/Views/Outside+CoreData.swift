@@ -77,10 +77,12 @@ extension OutsideViewController {
     
     func deletePlanting(id: Int) {
         var managedContext = CoreDataManager.shared.managedObjectContext
-        
+       
         let planting = Plantings.plantings.filter { $0.id == Int16(id) }.first
         
-        guard let toDelete = planting else { return }
+        guard let toDelete = planting else {
+            print("didn't get item to delete")
+            return }
         
         managedContext.delete(toDelete)
         

@@ -52,6 +52,8 @@
 		2DB1D48B2457415000512E4F /* ViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */; };
 		2DB781722477039800EDCAF9 /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB781712477039800EDCAF9 /* DeliveryViewController.swift */; };
 		2DC5EBCB2474886300741E5E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC5EBCA2474886300741E5E /* Colors.swift */; };
+		2DC95DDD2485A9830085DD14 /* CompareImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC95DDC2485A9830085DD14 /* CompareImages.swift */; };
+		2DC95DDF2485AC160085DD14 /* HarvestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC95DDE2485AC160085DD14 /* HarvestViewController.swift */; };
 		2DCC9C7B24672031006834B0 /* PlantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCC9C7A24672031006834B0 /* PlantManager.swift */; };
 		2DD2C319246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD2C318246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 */; };
 		2DD2C31B246353310070934D /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD2C31A246353310070934D /* Sounds.swift */; };
@@ -111,6 +113,8 @@
 		2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CoreData.swift"; sourceTree = "<group>"; };
 		2DB781712477039800EDCAF9 /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
 		2DC5EBCA2474886300741E5E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		2DC95DDC2485A9830085DD14 /* CompareImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareImages.swift; sourceTree = "<group>"; };
+		2DC95DDE2485AC160085DD14 /* HarvestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestViewController.swift; sourceTree = "<group>"; };
 		2DCC9C7A24672031006834B0 /* PlantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantManager.swift; sourceTree = "<group>"; };
 		2DD2C318246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "audio_hero_NightAmbienceCalm+PE011801.mp3"; sourceTree = "<group>"; };
 		2DD2C31A246353310070934D /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 			children = (
 				2D867DAD243E80B7005BE38F /* Alerts.swift */,
 				2D2654602441165800FBFF74 /* CellCheckDelegate.swift */,
+				2DC95DDC2485A9830085DD14 /* CompareImages.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 				2D5D6F352464830C00993969 /* MiniGameViewController.swift */,
 				2DB781712477039800EDCAF9 /* DeliveryViewController.swift */,
 				2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */,
+				2DC95DDE2485AC160085DD14 /* HarvestViewController.swift */,
 				2D2EF6A3246600FF00E497DC /* InventoryViewController.swift */,
 			);
 			path = Containers;
@@ -370,6 +376,7 @@
 				2D41EF28242D5CE20058C443 /* PhotoManager.swift in Sources */,
 				2DB1D48B2457415000512E4F /* ViewController+CoreData.swift in Sources */,
 				2DCC9C7B24672031006834B0 /* PlantManager.swift in Sources */,
+				2DC95DDD2485A9830085DD14 /* CompareImages.swift in Sources */,
 				2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */,
 				2D2EF6A22465F2EE00E497DC /* PopUpViewController.swift in Sources */,
 				2DD2C31B246353310070934D /* Sounds.swift in Sources */,
@@ -388,6 +395,7 @@
 				2D48CC3A242548B200D0FBBB /* AppDelegate.swift in Sources */,
 				2DB1D48924573DDD00512E4F /* CareManager.swift in Sources */,
 				2D41EF2F242D5EBB0058C443 /* DocumentsManager.swift in Sources */,
+				2DC95DDF2485AC160085DD14 /* HarvestViewController.swift in Sources */,
 				2D8C838D2433CBB2006711F2 /* Data.xcdatamodeld in Sources */,
 				2DD50C21242D58F600073B49 /* PhotoCollectionViewCell.swift in Sources */,
 				2D384C23243BCB5E00D0FFEB /* EntryManager.swift in Sources */,

@@ -17,6 +17,7 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var cloudKitty: UIImageView!
     @IBOutlet weak var messageContainer: UIView!
     @IBOutlet weak var inventoryContainer: UIView!
+    @IBOutlet weak var harvestContainer: UIView!
     
     @IBOutlet weak var fencePlot1: UIImageView!
     @IBOutlet weak var fencePlot2: UIImageView!
@@ -64,6 +65,7 @@ class OutsideViewController: UIViewController {
     
     var selectedPlot = 0
     var wateringModeOn = false
+    var tappedImage: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +78,8 @@ class OutsideViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(showInventory), name: NSNotification.Name(rawValue: "showInventory"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(closeInventory), name: NSNotification.Name(rawValue: "closeInventory"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(closeHarvestMessage), name: NSNotification.Name(rawValue: "closeHarvestMessage"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(plant), name: NSNotification.Name(rawValue: "plant"), object: nil)
         
@@ -146,6 +150,23 @@ class OutsideViewController: UIViewController {
     @objc func closePopUp() {
         // close message popup
         view.sendSubviewToBack(messageContainer)
+    }
+    
+    @objc func harvestPlant() {
+        // close message popup
+        // do harvesting
+        view.sendSubviewToBack(harvestContainer)
+        PlantManager.getStage(halfDaysOfCare: nil, plant: .none, lastWatered: nil, mature: nil)
+        deletePlanting(id: selectedPlot)
+        if let image = tappedImage {
+            showEXP(near: image, exp: 15)
+        }
+    }
+    
+    
+    @objc func closeHarvestMessage() {
+        // close message popup
+        view.sendSubviewToBack(harvestContainer)
     }
     
     @objc func showInventory() {
@@ -257,10 +278,10 @@ class OutsideViewController: UIViewController {
     
     func tappedPlant(image: UIImageView) {
         // determine if plot is empty
-        if image.image?.pngData() == UIImage(named: "emptyplot")?.pngData() || image.image?.pngData() == UIImage(named: "emptyplotbig")?.pngData() || image.image?.pngData() == UIImage(named: "emptyplottree")?.pngData() || image.image?.pngData() == UIImage(named: "emptyplotsmallpot")?.pngData() {
+        if image.isMatch(with: PlantManager.emptyPlots) {
             setPlotArea()
             view.bringSubviewToFront(messageContainer)
-        } else if image.image?.pngData() == UIImage(named: "chard8")?.pngData() || image.image?.pngData() == UIImage(named: "geranium8")?.pngData() || image.image?.pngData() == UIImage(named: "jade8")?.pngData() || image.image?.pngData() == UIImage(named: "lemon8")?.pngData() || image.image?.pngData() == UIImage(named: "pumpkin8")?.pngData() || image.image?.pngData() == UIImage(named: "redtulip8")?.pngData() {
+        } else if image.isMatch(with: PlantManager.wiltedPlants) {
             print("wilted plant")
             setPlotArea()
             deletePlanting(id: selectedPlot)
@@ -269,6 +290,13 @@ class OutsideViewController: UIViewController {
             // plot is not empty, if watering update watering status
             if wateringModeOn {
                 saveWatering(id: selectedPlot)
+            } else if image.isMatch(with: PlantManager.maturePlants) {
+                print("mature plant")
+                setPlotArea()
+                tappedImage = image
+                PlantManager.chosen = selectedPlot
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+                view.bringSubviewToFront(harvestContainer)
             }
         }
     }

@@ -1112,6 +1112,12 @@
                                     <segue destination="dQl-Bs-SyE" kind="embed" id="4D8-dh-6g5"/>
                                 </connections>
                             </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nPL-nq-gy3">
+                                <rect key="frame" x="45.5" y="313.5" width="323" height="246.5"/>
+                                <connections>
+                                    <segue destination="zX6-ZO-hNr" kind="embed" id="Lgv-4K-XQS"/>
+                                </connections>
+                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWS-Hh-Rfp">
                                 <rect key="frame" x="33" y="124" width="348" height="625.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1563,8 +1569,11 @@
                             <constraint firstItem="SzU-m7-Iwb" firstAttribute="height" secondItem="OVt-B1-YHB" secondAttribute="height" multiplier="0.25" id="0vM-Nv-dMv"/>
                             <constraint firstItem="SzU-m7-Iwb" firstAttribute="centerY" secondItem="BJB-y1-oCG" secondAttribute="centerY" id="2dp-5I-F4A"/>
                             <constraint firstItem="8SL-Jx-3c1" firstAttribute="leading" secondItem="Ebh-Cx-HLT" secondAttribute="trailing" constant="5" id="7EV-lt-LdG"/>
+                            <constraint firstItem="nPL-nq-gy3" firstAttribute="centerY" secondItem="SzU-m7-Iwb" secondAttribute="centerY" id="8U3-xk-YJ1"/>
                             <constraint firstItem="D0Z-1c-AQh" firstAttribute="centerX" secondItem="OVt-B1-YHB" secondAttribute="centerX" id="9ra-qH-1CU"/>
                             <constraint firstItem="mb6-0Z-KdM" firstAttribute="top" secondItem="K4w-br-9dW" secondAttribute="top" id="Ff5-W8-big"/>
+                            <constraint firstItem="nPL-nq-gy3" firstAttribute="centerX" secondItem="SzU-m7-Iwb" secondAttribute="centerX" id="I9e-nX-cqJ"/>
+                            <constraint firstItem="nPL-nq-gy3" firstAttribute="width" secondItem="SzU-m7-Iwb" secondAttribute="width" multiplier="1.2" id="JdR-WY-3L5"/>
                             <constraint firstItem="Ebh-Cx-HLT" firstAttribute="leading" secondItem="FqL-GY-HeN" secondAttribute="leading" constant="20" id="Jzg-c9-cZI"/>
                             <constraint firstItem="Ebh-Cx-HLT" firstAttribute="top" secondItem="K4w-br-9dW" secondAttribute="top" constant="3" id="KjL-at-wyD"/>
                             <constraint firstItem="K4w-br-9dW" firstAttribute="trailing" secondItem="FGl-vr-VET" secondAttribute="trailing" constant="10" id="Ljb-35-t4B"/>
@@ -1577,6 +1586,7 @@
                             <constraint firstItem="8Ni-W6-bGV" firstAttribute="width" secondItem="BJB-y1-oCG" secondAttribute="width" multiplier="0.7" priority="999" id="bXk-SG-weL"/>
                             <constraint firstItem="BJB-y1-oCG" firstAttribute="top" secondItem="K4w-br-9dW" secondAttribute="top" constant="45" id="dJJ-Ze-ffK"/>
                             <constraint firstItem="FGl-vr-VET" firstAttribute="leading" secondItem="mb6-0Z-KdM" secondAttribute="trailing" constant="10" id="dUq-e3-zdD"/>
+                            <constraint firstItem="nPL-nq-gy3" firstAttribute="height" secondItem="SzU-m7-Iwb" secondAttribute="height" multiplier="1.1" id="ecf-QI-X50"/>
                             <constraint firstItem="8Ni-W6-bGV" firstAttribute="top" secondItem="BJB-y1-oCG" secondAttribute="top" constant="130" id="glo-ir-Gqo"/>
                             <constraint firstItem="SzU-m7-Iwb" firstAttribute="centerX" secondItem="OVt-B1-YHB" secondAttribute="centerX" id="hcx-2S-mTd"/>
                             <constraint firstItem="aWS-Hh-Rfp" firstAttribute="height" secondItem="BJB-y1-oCG" secondAttribute="height" multiplier="0.9" id="ljq-gt-zEN"/>
@@ -1612,6 +1622,7 @@
                         <outlet property="frontPlot6" destination="bm9-ct-Qk7" id="IkI-ZF-3pE"/>
                         <outlet property="frontPlot7" destination="UYL-Pz-Msa" id="lQ4-iQ-emp"/>
                         <outlet property="frontPlot8" destination="Khd-eO-9CX" id="rMR-eb-aH8"/>
+                        <outlet property="harvestContainer" destination="nPL-nq-gy3" id="n8J-gc-6Um"/>
                         <outlet property="inventoryContainer" destination="aWS-Hh-Rfp" id="WxI-6I-9bD"/>
                         <outlet property="levelLabel" destination="Ebh-Cx-HLT" id="uPH-WI-NXL"/>
                         <outlet property="levelUpImage" destination="8Ni-W6-bGV" id="EAO-ce-rip"/>
@@ -2135,7 +2146,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K6e-lL-ktS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-646" y="-332"/>
+            <point key="canvasLocation" x="-508" y="-333"/>
         </scene>
         <!--Inventory View Controller-->
         <scene sceneID="5EE-Gg-8sF">
@@ -2249,7 +2260,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOl-0x-NUo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-591.304347826087" y="-696.42857142857144"/>
+            <point key="canvasLocation" x="-691" y="-690"/>
         </scene>
         <!--Delivery View Controller-->
         <scene sceneID="BMC-Mk-52T">
@@ -2316,6 +2327,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yfv-D6-CZU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-733" y="401"/>
+        </scene>
+        <!--Harvest View Controller-->
+        <scene sceneID="fHd-8o-eRB">
+            <objects>
+                <viewController id="zX6-ZO-hNr" customClass="HarvestViewController" customModule="Calm_Cloud" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JUG-7j-aMT">
+                        <rect key="frame" x="0.0" y="0.0" width="323" height="246.5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Veo-Gp-vyO">
+                                <rect key="frame" x="20" y="18" width="283" height="94"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Harvest Plant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90r-HF-oSK">
+                                        <rect key="frame" x="0.0" y="0.0" width="283" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This plant has 1 day(s) of maturity left before it wilts. Would you like to harvest it now?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4L-61-Ilo">
+                                        <rect key="frame" x="0.0" y="36.5" width="283" height="57.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AC7-Ad-U5x">
+                                <rect key="frame" x="123.5" y="198" width="76" height="30"/>
+                                <state key="normal" title="No, Keep It"/>
+                                <connections>
+                                    <action selector="closePressed:" destination="dQl-Bs-SyE" eventType="touchUpInside" id="jri-WM-L1w"/>
+                                    <action selector="noPressed:" destination="zX6-ZO-hNr" eventType="touchUpInside" id="r1G-EO-5G5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NrA-dY-dyv">
+                                <rect key="frame" x="118.5" y="138" width="86" height="30"/>
+                                <state key="normal" title="Yes, Harvest"/>
+                                <connections>
+                                    <action selector="goToInventory:" destination="dQl-Bs-SyE" eventType="touchUpInside" id="xxw-ww-xfF"/>
+                                    <action selector="harvestPressed:" destination="zX6-ZO-hNr" eventType="touchUpInside" id="nP0-Xl-G2p"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.88235294119999996" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Veo-Gp-vyO" firstAttribute="top" secondItem="JUG-7j-aMT" secondAttribute="top" constant="18" id="13v-F2-nI4"/>
+                            <constraint firstItem="Veo-Gp-vyO" firstAttribute="leading" secondItem="JUG-7j-aMT" secondAttribute="leading" constant="20" id="KOz-J6-67Z"/>
+                            <constraint firstAttribute="trailing" secondItem="Veo-Gp-vyO" secondAttribute="trailing" constant="20" id="MMk-BI-LJG"/>
+                            <constraint firstItem="NrA-dY-dyv" firstAttribute="centerX" secondItem="JUG-7j-aMT" secondAttribute="centerX" id="PXj-BC-eyi"/>
+                            <constraint firstItem="NrA-dY-dyv" firstAttribute="top" secondItem="Veo-Gp-vyO" secondAttribute="bottom" constant="26" id="Rtw-L6-zNZ"/>
+                            <constraint firstItem="AC7-Ad-U5x" firstAttribute="top" secondItem="NrA-dY-dyv" secondAttribute="bottom" constant="30" id="rHa-rr-XJD"/>
+                            <constraint firstItem="AC7-Ad-U5x" firstAttribute="centerX" secondItem="JUG-7j-aMT" secondAttribute="centerX" id="uvF-fC-OxR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="message" destination="R4L-61-Ilo" id="A7m-Lu-7mj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wE1-1u-por" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-130" y="-996"/>
         </scene>
     </scenes>
     <resources>

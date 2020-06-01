@@ -132,6 +132,7 @@ struct PlantManager {
         }
     }
     
+    static var chosen = 0
     static var currentStage: Stage = .one
     static var needsWater = false
     static var selected: Plant = .redTulip
@@ -466,6 +467,10 @@ struct PlantManager {
             }
         }
     }
+    
+    static let emptyPlots = [#imageLiteral(resourceName: "emptyplot.png"),#imageLiteral(resourceName: "emptyplotbig.png"),#imageLiteral(resourceName: "emptyplotsmallpot.png"),#imageLiteral(resourceName: "emptyplottree.png")]
+    static let maturePlants = [#imageLiteral(resourceName: "chard7.png"),#imageLiteral(resourceName: "chard7water.png"),#imageLiteral(resourceName: "geranium7.png"),#imageLiteral(resourceName: "geranium7water.png"),#imageLiteral(resourceName: "jade7.png"),#imageLiteral(resourceName: "jade7water.png"),#imageLiteral(resourceName: "lemon7.png"),#imageLiteral(resourceName: "lemon7water.png"),#imageLiteral(resourceName: "pumpkin7.png"),#imageLiteral(resourceName: "pumpkin7water.png"),#imageLiteral(resourceName: "redtulip7.png"),#imageLiteral(resourceName: "redtulip7water.png")]
+    static let wiltedPlants = [#imageLiteral(resourceName: "chard8.png"),#imageLiteral(resourceName: "geranium8.png"),#imageLiteral(resourceName: "jade8.png"),#imageLiteral(resourceName: "lemon8.png"),#imageLiteral(resourceName: "pumpkin8.png"),#imageLiteral(resourceName: "redtulip8.png")]
 }
 
 enum Plant: Int {
