@@ -81,6 +81,8 @@ class OutsideViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(closeHarvestMessage), name: NSNotification.Name(rawValue: "closeHarvestMessage"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(harvestPlant), name: NSNotification.Name(rawValue: "harvestPlant"), object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(plant), name: NSNotification.Name(rawValue: "plant"), object: nil)
         
         let offset = container.frame.width / 5
@@ -160,9 +162,9 @@ class OutsideViewController: UIViewController {
         deletePlanting(id: selectedPlot)
         if let image = tappedImage {
             showEXP(near: image, exp: 15)
+            updateEXP(with: 15)
         }
     }
-    
     
     @objc func closeHarvestMessage() {
         // close message popup

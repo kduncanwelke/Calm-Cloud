@@ -15,8 +15,6 @@
 		2D2EF6A22465F2EE00E497DC /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */; };
 		2D2EF6A4246600FF00E497DC /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EF6A3246600FF00E497DC /* InventoryViewController.swift */; };
 		2D2EF6A62466017E00E497DC /* InventoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EF6A52466017E00E497DC /* InventoryCollectionViewCell.swift */; };
-		2D384C1D243BBBE600D0FFEB /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C1C243BBBE600D0FFEB /* PageViewController.swift */; };
-		2D384C1F243BC2B700D0FFEB /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C1E243BC2B700D0FFEB /* ContentViewController.swift */; };
 		2D384C21243BCA3B00D0FFEB /* PageControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C20243BCA3B00D0FFEB /* PageControllerManager.swift */; };
 		2D384C23243BCB5E00D0FFEB /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C22243BCB5E00D0FFEB /* EntryManager.swift */; };
 		2D41EF28242D5CE20058C443 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D41EF27242D5CE20058C443 /* PhotoManager.swift */; };
@@ -38,6 +36,8 @@
 		2D7FCAC02432968F00E2DEC4 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCABF2432968F00E2DEC4 /* ReminderTableViewCell.swift */; };
 		2D7FCAC224329CDE00E2DEC4 /* ReminderList+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCAC124329CDE00E2DEC4 /* ReminderList+TableView.swift */; };
 		2D867DAE243E80B7005BE38F /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D867DAD243E80B7005BE38F /* Alerts.swift */; };
+		2D875E112486F9480054B737 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D875E102486F9480054B737 /* CalendarCollectionViewCell.swift */; };
+		2D875E132486FA3F0054B737 /* Journal+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D875E122486FA3F0054B737 /* Journal+CollectionView.swift */; };
 		2D8C838D2433CBB2006711F2 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C838B2433CBB2006711F2 /* Data.xcdatamodeld */; };
 		2D8C838F2433CDD9006711F2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C838E2433CDD9006711F2 /* CoreDataManager.swift */; };
 		2D8F9042243F9E8F00211802 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F9041243F9E8F00211802 /* ActivityTableViewCell.swift */; };
@@ -74,8 +74,6 @@
 		2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		2D2EF6A3246600FF00E497DC /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		2D2EF6A52466017E00E497DC /* InventoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCollectionViewCell.swift; sourceTree = "<group>"; };
-		2D384C1C243BBBE600D0FFEB /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		2D384C1E243BC2B700D0FFEB /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		2D384C20243BCA3B00D0FFEB /* PageControllerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControllerManager.swift; sourceTree = "<group>"; };
 		2D384C22243BCB5E00D0FFEB /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
 		2D41EF27242D5CE20058C443 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
@@ -99,6 +97,8 @@
 		2D7FCABF2432968F00E2DEC4 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
 		2D7FCAC124329CDE00E2DEC4 /* ReminderList+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderList+TableView.swift"; sourceTree = "<group>"; };
 		2D867DAD243E80B7005BE38F /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		2D875E102486F9480054B737 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		2D875E122486FA3F0054B737 /* Journal+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+CollectionView.swift"; sourceTree = "<group>"; };
 		2D8C838C2433CBB2006711F2 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		2D8C838E2433CDD9006711F2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		2D8F9041243F9E8F00211802 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
@@ -210,17 +210,9 @@
 				2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */,
 				2D8F9041243F9E8F00211802 /* ActivityTableViewCell.swift */,
 				2D2EF6A52466017E00E497DC /* InventoryCollectionViewCell.swift */,
+				2D875E102486F9480054B737 /* CalendarCollectionViewCell.swift */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		2D8F9043243FC2A700211802 /* Page View */ = {
-			isa = PBXGroup;
-			children = (
-				2D384C1C243BBBE600D0FFEB /* PageViewController.swift */,
-				2D384C1E243BC2B700D0FFEB /* ContentViewController.swift */,
-			);
-			path = "Page View";
 			sourceTree = "<group>";
 		};
 		2D8F9047243FC32100211802 /* Tables and Collection Views */ = {
@@ -228,6 +220,7 @@
 			children = (
 				2D7FCAC124329CDE00E2DEC4 /* ReminderList+TableView.swift */,
 				2D41EF29242D5DCF0058C443 /* Favorites+CollectionView.swift */,
+				2D875E122486FA3F0054B737 /* Journal+CollectionView.swift */,
 				2D8F9048243FC51800211802 /* Activities+TableView.swift */,
 			);
 			path = "Tables and Collection Views";
@@ -280,7 +273,6 @@
 				2D8F9044243FC2EF00211802 /* ActivitiesViewController.swift */,
 				2DD50C1C242D535F00073B49 /* JournalViewController.swift */,
 				2D11FD6824367EA900EC89D9 /* Journal+TextViewDelegate.swift */,
-				2D8F9043243FC2A700211802 /* Page View */,
 				2D7FCAB724324F2F00E2DEC4 /* PhotoViewController.swift */,
 				2D7FCAB92432506100E2DEC4 /* Photo+ScrollViewDelegate.swift */,
 			);
@@ -371,7 +363,6 @@
 			files = (
 				2DDEA32B242A98E800717E8C /* AnimationManager.swift in Sources */,
 				2D48CC3E242548B200D0FBBB /* ViewController.swift in Sources */,
-				2D384C1F243BC2B700D0FFEB /* ContentViewController.swift in Sources */,
 				2D7FCABC243263E800E2DEC4 /* ReminderViewController.swift in Sources */,
 				2D41EF28242D5CE20058C443 /* PhotoManager.swift in Sources */,
 				2DB1D48B2457415000512E4F /* ViewController+CoreData.swift in Sources */,
@@ -390,6 +381,7 @@
 				2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */,
 				2D41EF2A242D5DCF0058C443 /* Favorites+CollectionView.swift in Sources */,
 				2D7DF67D2469FCEE009B9291 /* Outside+CoreData.swift in Sources */,
+				2D875E132486FA3F0054B737 /* Journal+CollectionView.swift in Sources */,
 				2D8F904B243FC5B900211802 /* ActivityManager.swift in Sources */,
 				2D7FCAB824324F2F00E2DEC4 /* PhotoViewController.swift in Sources */,
 				2D48CC3A242548B200D0FBBB /* AppDelegate.swift in Sources */,
@@ -406,10 +398,10 @@
 				2DAA52292472FDDA00171A7D /* LevelManager.swift in Sources */,
 				2DD50C1D242D535F00073B49 /* JournalViewController.swift in Sources */,
 				2D8F9042243F9E8F00211802 /* ActivityTableViewCell.swift in Sources */,
-				2D384C1D243BBBE600D0FFEB /* PageViewController.swift in Sources */,
 				2D2EF6A62466017E00E497DC /* InventoryCollectionViewCell.swift in Sources */,
 				2D41EF31242D607C0058C443 /* FavoriteThingsViewController.swift in Sources */,
 				2D8F9045243FC2EF00211802 /* ActivitiesViewController.swift in Sources */,
+				2D875E112486F9480054B737 /* CalendarCollectionViewCell.swift in Sources */,
 				2D48CC3C242548B200D0FBBB /* SceneDelegate.swift in Sources */,
 				2D7FCABE2432918C00E2DEC4 /* ReminderListViewController.swift in Sources */,
 				2D384C21243BCA3B00D0FFEB /* PageControllerManager.swift in Sources */,

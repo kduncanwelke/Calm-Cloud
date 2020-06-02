@@ -54,6 +54,7 @@ struct PlantManager {
     }
     
     static func getStage(halfDaysOfCare: Int?, plant: Plant, lastWatered: Date?, mature: Date?) -> UIImage? {
+        // used for if plant has beeen removed by harvesting or wilting
         if plant == .none {
             switch PlantManager.area {
             case .flowerStrips, .planter, .smallPot:
@@ -80,6 +81,7 @@ struct PlantManager {
             }
         }
         
+        // determine which stage of growth, half days of care because plants should be watered every 12 hours
         if let halfDaysCaredFor = halfDaysOfCare {
             if halfDaysCaredFor == 0 {
                 stage = 1
