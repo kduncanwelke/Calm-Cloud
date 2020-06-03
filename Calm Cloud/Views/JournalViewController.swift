@@ -20,6 +20,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var calendarView: UIView!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var darkOverlay: UIView!
     
     // MARK: Variables
     
@@ -28,6 +29,9 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     let dateFormatter = DateFormatter()
     var currentPage = 0
     var days: [Int] = []
+    var direction = 0
+    var monthBeginning: Date?
+    var selectedFromCalendar = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,43 +46,52 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
         
         loadUI()
         calendarView.isHidden = true
+        darkOverlay.isHidden = true
         getCalendar()
     }
 
     // MARK: Custom functions
     
     func getCalendar() {
+        // show initial calendar page for current month
         let today = Date()
-        let comps = calendar.dateComponents([.year, .month], from: today)
+        days.removeAll()
         
-        let monthFormatter = DateFormatter()
-        monthFormatter.dateFormat = "LLLL"
-        let nameOfMonth = monthFormatter.string(from: today)
-        monthLabel.text = nameOfMonth
-        
-        if let firstOfMonth = calendar.date(from: comps) {
-            let dayOfWeek = calendar.component(.weekday, from: firstOfMonth)
+        if let monthToShow = calendar.date(byAdding: .month, value: direction, to: today) {
+            let comps = calendar.dateComponents([.year, .month], from: monthToShow)
             
-            var comps2 = DateComponents()
-            comps2.month = 1
-            comps2.day = -1
-            let endOfMonth = Calendar.current.date(byAdding: comps2, to: firstOfMonth)
+            let monthFormatter = DateFormatter()
+            monthFormatter.dateFormat = "LLLL YYYY"
+            let nameOfMonth = monthFormatter.string(from: monthToShow)
+            monthLabel.text = nameOfMonth
             
-            if dayOfWeek != 1 {
-                let daysToAdd = dayOfWeek
-                for day in 1...daysToAdd {
-                    days.append(0)
-                }
-            }
-            
-            if let end = endOfMonth {
-                let endDay = calendar.component(.day, from: end)
+            if let firstOfMonth = calendar.date(from: comps) {
+                monthBeginning = firstOfMonth
+                let dayOfWeek = calendar.component(.weekday, from: firstOfMonth)
                 
-                for day in 1...endDay {
-                    days.append(day)
+                var comps2 = DateComponents()
+                comps2.month = 1
+                comps2.day = -1
+                let endOfMonth = Calendar.current.date(byAdding: comps2, to: firstOfMonth)
+                
+                if dayOfWeek != 1 {
+                    let daysToAdd = dayOfWeek - 1
+                    for day in 1...daysToAdd {
+                        days.append(0)
+                    }
+                }
+                
+                if let end = endOfMonth {
+                    let endDay = calendar.component(.day, from: end)
+                    
+                    for day in 1...endDay {
+                        days.append(day)
+                    }
                 }
             }
         }
+        
+        collectionView.reloadData()
     }
     
     func loadUI() {
@@ -183,11 +196,41 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     
     @IBAction func calendarPressed(_ sender: UIBarButtonItem) {
         if calendarView.isHidden {
+            darkOverlay.isHidden = false
             calendarView.isHidden = false
             calendarView.animateBounce()
         } else {
-            calendarView.animateBounce()
-            calendarView.isHidden = true
+            calendarView.animateBounceOut()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [unowned self] in
+                self.calendarView.isHidden = true
+            }
+            darkOverlay.isHidden = true
+        }
+    }
+    
+    // go left, show later month
+    @IBAction func nextMonth(_ sender: UIButton) {
+        direction += 1
+        getCalendar()
+    }
+    
+    // go right, show past month
+    @IBAction func prevMonth(_ sender: UIButton) {
+        direction -= 1
+        getCalendar()
+    }
+    
+    @IBAction func viewEntry(_ sender: UIButton) {
+        if collectionView.indexPathsForSelectedItems?.isEmpty ?? true {
+            return
+        }
+        
+        currentPage = selectedFromCalendar
+        entry = EntryManager.loadedEntries[currentPage]
+        displayEntry()
+        calendarView.animateBounceOut()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [unowned self] in
+            self.calendarView.isHidden = true
         }
     }
    
