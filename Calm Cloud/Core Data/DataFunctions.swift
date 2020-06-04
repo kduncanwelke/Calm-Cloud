@@ -14,46 +14,48 @@ struct DataFunctions {
         var managedContext = CoreDataManager.shared.managedObjectContext
         
         // save anew if it doesn't exist (like on app initial launch)
-        guard let currentInventory = Plantings.loaded else {
-            let inventorySave = Inventory(context: managedContext)
-            
-            inventorySave.chards = Int16(Plantings.availableSeedlings[.chard]!)
-            inventorySave.pinkGeraniums = Int16(Plantings.availableSeedlings[.geranium]!)
-            inventorySave.jades = Int16(Plantings.availableSeedlings[.jade]!)
-            inventorySave.lemons = Int16(Plantings.availableSeedlings[.lemon]!)
-            inventorySave.pumpkins = Int16(Plantings.availableSeedlings[.pumpkin]!)
-            inventorySave.redTulips = Int16(Plantings.availableSeedlings[.redTulip]!)
-            
-            Plantings.loaded = inventorySave
-            
-            do {
-                try managedContext.save()
-                print("saved inventory")
-            } catch {
-                // this should never be displayed but is here to cover the possibility
-                print("failed to save inventory")
+        if Plantings.loaded.isEmpty {
+            for (type, quantity) in Plantings.availableSeedlings {
+                
+                let inventorySave = InventoryItem(context: managedContext)
+                
+                inventorySave.id = Int16(type.rawValue)
+                inventorySave.quantity = Int16(quantity)
+                    
+                Plantings.loaded.append(inventorySave)
+                
+                do {
+                    try managedContext.save()
+                    print("saved inventory item")
+                } catch {
+                    // this should never be displayed but is here to cover the possibility
+                    print("failed to save inventory")
+                }
             }
             
             return
         }
         
         // otherwise rewrite data
-        currentInventory.chards = Int16(Plantings.availableSeedlings[.chard]!)
-        currentInventory.pinkGeraniums = Int16(Plantings.availableSeedlings[.geranium]!)
-        currentInventory.jades = Int16(Plantings.availableSeedlings[.jade]!)
-        currentInventory.lemons = Int16(Plantings.availableSeedlings[.lemon]!)
-        currentInventory.pumpkins = Int16(Plantings.availableSeedlings[.pumpkin]!)
-        currentInventory.redTulips = Int16(Plantings.availableSeedlings[.redTulip]!)
+        var resave: [InventoryItem] = []
         
-        Plantings.loaded = currentInventory
-        
-        do {
-            try managedContext.save()
-            print("resave successful")
-        } catch {
-            // this should never be displayed but is here to cover the possibility
-            print("failed to save inventory")
+        for item in Plantings.loaded {
+            let quantity = Plantings.availableSeedlings[Plant(rawValue: Int(item.id))!]
+            item.quantity = Int16(quantity!)
+            
+            resave.append(item)
+            
+            do {
+                try managedContext.save()
+                print("resave successful")
+            } catch {
+                // this should never be displayed but is here to cover the possibility
+                print("failed to save inventory")
+            }
         }
+        
+        Plantings.loaded.removeAll()
+        Plantings.loaded = resave
     }
     
     static func loadLevel() {

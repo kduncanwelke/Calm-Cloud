@@ -10,6 +10,7 @@
 		2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D11FD6824367EA900EC89D9 /* Journal+TextViewDelegate.swift */; };
 		2D14EBDC243E752B004CB7E2 /* ReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EBDB243E752B004CB7E2 /* ReminderManager.swift */; };
 		2D14EBDE243E7740004CB7E2 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EBDD243E7740004CB7E2 /* NotificationManager.swift */; };
+		2D25AFF82489A126003BDBE6 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D25AFF72489A126003BDBE6 /* BasketViewController.swift */; };
 		2D26545E2440F6EE00FBFF74 /* OutsideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */; };
 		2D2654612441165800FBFF74 /* CellCheckDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2654602441165800FBFF74 /* CellCheckDelegate.swift */; };
 		2D2EF6A22465F2EE00E497DC /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */; };
@@ -69,6 +70,7 @@
 		2D11FD6824367EA900EC89D9 /* Journal+TextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+TextViewDelegate.swift"; sourceTree = "<group>"; };
 		2D14EBDB243E752B004CB7E2 /* ReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManager.swift; sourceTree = "<group>"; };
 		2D14EBDD243E7740004CB7E2 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		2D25AFF72489A126003BDBE6 /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutsideViewController.swift; sourceTree = "<group>"; };
 		2D2654602441165800FBFF74 /* CellCheckDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellCheckDelegate.swift; sourceTree = "<group>"; };
 		2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				2D7DF67C2469FCEE009B9291 /* Outside+CoreData.swift */,
 				2DB781702477034000EDCAF9 /* Containers */,
 				2D7FCABB243263E800E2DEC4 /* ReminderViewController.swift */,
+				2D25AFF72489A126003BDBE6 /* BasketViewController.swift */,
 				2D7FCABD2432918C00E2DEC4 /* ReminderListViewController.swift */,
 				2D41EF30242D607C0058C443 /* FavoriteThingsViewController.swift */,
 				2D8F9044243FC2EF00211802 /* ActivitiesViewController.swift */,
@@ -413,6 +416,7 @@
 				2D2EF6A4246600FF00E497DC /* InventoryViewController.swift in Sources */,
 				2D8C838F2433CDD9006711F2 /* CoreDataManager.swift in Sources */,
 				2D7FCAC02432968F00E2DEC4 /* ReminderTableViewCell.swift in Sources */,
+				2D25AFF82489A126003BDBE6 /* BasketViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

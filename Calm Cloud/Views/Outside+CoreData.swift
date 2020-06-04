@@ -15,18 +15,13 @@ extension OutsideViewController {
     func loadInventory() {
         // load seedling inventory
         var managedContext = CoreDataManager.shared.managedObjectContext
-        var fetchRequest = NSFetchRequest<Inventory>(entityName: "Inventory")
+        var fetchRequest = NSFetchRequest<InventoryItem>(entityName: "InventoryItem")
         
         do {
-            var result = try managedContext.fetch(fetchRequest)
-            if let inventory = result.first {
-                Plantings.loaded = inventory
-                Plantings.availableSeedlings[.chard] = Int(inventory.chards)
-                Plantings.availableSeedlings[.geranium] = Int(inventory.pinkGeraniums)
-                Plantings.availableSeedlings[.jade] = Int(inventory.jades)
-                Plantings.availableSeedlings[.lemon] = Int(inventory.lemons)
-                Plantings.availableSeedlings[.pumpkin] = Int(inventory.pumpkins)
-                Plantings.availableSeedlings[.redTulip] = Int(inventory.redTulips)
+            Plantings.loaded = try managedContext.fetch(fetchRequest)
+            
+            for item in Plantings.loaded {
+                Plantings.availableSeedlings[Plant(rawValue: Int(item.id))!] = Int(item.quantity)
             }
             print("inventory loaded")
         } catch let error as NSError {

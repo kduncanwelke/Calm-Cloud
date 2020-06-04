@@ -624,6 +624,9 @@ class OutsideViewController: UIViewController {
         tappedPlant(image: smallPotPlot)
     }
     
+    @IBAction func basketPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "viewBasket", sender: Any?.self)
+    }
     
     @IBAction func returnPressed(_ sender: UIButton) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)

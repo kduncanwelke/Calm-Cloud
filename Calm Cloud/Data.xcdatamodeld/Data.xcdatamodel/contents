@@ -8,13 +8,9 @@
         <attribute name="lastFed" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lastWatered" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
-    <entity name="Inventory" representedClassName="Inventory" syncable="YES" codeGenerationType="class">
-        <attribute name="chards" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="jades" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="lemons" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="pinkGeraniums" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="pumpkins" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="redTulips" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    <entity name="InventoryItem" representedClassName="InventoryItem" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="quantity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="JournalEntry" representedClassName="JournalEntry" syncable="YES" codeGenerationType="class">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
@@ -46,7 +42,7 @@
     <elements>
         <element name="ActivityId" positionX="-63" positionY="27" width="128" height="58"/>
         <element name="Care" positionX="-63" positionY="27" width="128" height="88"/>
-        <element name="Inventory" positionX="-63" positionY="45" width="128" height="133"/>
+        <element name="InventoryItem" positionX="-63" positionY="45" width="128" height="73"/>
         <element name="JournalEntry" positionX="-63" positionY="-9" width="128" height="73"/>
         <element name="Level" positionX="-63" positionY="27" width="128" height="88"/>
         <element name="Photo" positionX="-63" positionY="-18" width="128" height="58"/>

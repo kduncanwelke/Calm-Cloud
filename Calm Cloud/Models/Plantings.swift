@@ -12,7 +12,7 @@ import UIKit
 struct Plantings {
     static var plantings: [Plot] = []
     
-    static var loaded: Inventory?
+    static var loaded: [InventoryItem] = []
     
     static var availableSeedlings: [Plant: Int] = [
         Plant.chard: 1,
