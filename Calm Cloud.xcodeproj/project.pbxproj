@@ -51,6 +51,9 @@
 		2DB1321B247843AD00FA6D71 /* Outside+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1321A247843AD00FA6D71 /* Outside+Animations.swift */; };
 		2DB1D48924573DDD00512E4F /* CareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48824573DDD00512E4F /* CareManager.swift */; };
 		2DB1D48B2457415000512E4F /* ViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */; };
+		2DB6E540248AD8CA007DA241 /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E53F248AD8CA007DA241 /* BasketTableViewCell.swift */; };
+		2DB6E542248ADAE6007DA241 /* Basket+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E541248ADAE6007DA241 /* Basket+TableView.swift */; };
+		2DB6E544248AF375007DA241 /* Harvested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E543248AF375007DA241 /* Harvested.swift */; };
 		2DB781722477039800EDCAF9 /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB781712477039800EDCAF9 /* DeliveryViewController.swift */; };
 		2DC5EBCB2474886300741E5E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC5EBCA2474886300741E5E /* Colors.swift */; };
 		2DC95DDD2485A9830085DD14 /* CompareImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC95DDC2485A9830085DD14 /* CompareImages.swift */; };
@@ -113,6 +116,9 @@
 		2DB1321A247843AD00FA6D71 /* Outside+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Outside+Animations.swift"; sourceTree = "<group>"; };
 		2DB1D48824573DDD00512E4F /* CareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareManager.swift; sourceTree = "<group>"; };
 		2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CoreData.swift"; sourceTree = "<group>"; };
+		2DB6E53F248AD8CA007DA241 /* BasketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
+		2DB6E541248ADAE6007DA241 /* Basket+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Basket+TableView.swift"; sourceTree = "<group>"; };
+		2DB6E543248AF375007DA241 /* Harvested.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Harvested.swift; sourceTree = "<group>"; };
 		2DB781712477039800EDCAF9 /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
 		2DC5EBCA2474886300741E5E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2DC95DDC2485A9830085DD14 /* CompareImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareImages.swift; sourceTree = "<group>"; };
@@ -162,6 +168,7 @@
 				2DB1D48824573DDD00512E4F /* CareManager.swift */,
 				2DFD54B024660B100096FD5C /* Plantings.swift */,
 				2DCC9C7A24672031006834B0 /* PlantManager.swift */,
+				2DB6E543248AF375007DA241 /* Harvested.swift */,
 				2DAA52282472FDDA00171A7D /* LevelManager.swift */,
 				2DC5EBCA2474886300741E5E /* Colors.swift */,
 			);
@@ -213,6 +220,7 @@
 				2D8F9041243F9E8F00211802 /* ActivityTableViewCell.swift */,
 				2D2EF6A52466017E00E497DC /* InventoryCollectionViewCell.swift */,
 				2D875E102486F9480054B737 /* CalendarCollectionViewCell.swift */,
+				2DB6E53F248AD8CA007DA241 /* BasketTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -224,6 +232,7 @@
 				2D41EF29242D5DCF0058C443 /* Favorites+CollectionView.swift */,
 				2D875E122486FA3F0054B737 /* Journal+CollectionView.swift */,
 				2D8F9048243FC51800211802 /* Activities+TableView.swift */,
+				2DB6E541248ADAE6007DA241 /* Basket+TableView.swift */,
 			);
 			path = "Tables and Collection Views";
 			sourceTree = "<group>";
@@ -379,6 +388,7 @@
 				2DB1321B247843AD00FA6D71 /* Outside+Animations.swift in Sources */,
 				2DB781722477039800EDCAF9 /* DeliveryViewController.swift in Sources */,
 				2D14EBDC243E752B004CB7E2 /* ReminderManager.swift in Sources */,
+				2DB6E542248ADAE6007DA241 /* Basket+TableView.swift in Sources */,
 				2DC5EBCB2474886300741E5E /* Colors.swift in Sources */,
 				2D8F9049243FC51800211802 /* Activities+TableView.swift in Sources */,
 				2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */,
@@ -401,7 +411,9 @@
 				2DAA52292472FDDA00171A7D /* LevelManager.swift in Sources */,
 				2DD50C1D242D535F00073B49 /* JournalViewController.swift in Sources */,
 				2D8F9042243F9E8F00211802 /* ActivityTableViewCell.swift in Sources */,
+				2DB6E540248AD8CA007DA241 /* BasketTableViewCell.swift in Sources */,
 				2D2EF6A62466017E00E497DC /* InventoryCollectionViewCell.swift in Sources */,
+				2DB6E544248AF375007DA241 /* Harvested.swift in Sources */,
 				2D41EF31242D607C0058C443 /* FavoriteThingsViewController.swift in Sources */,
 				2D8F9045243FC2EF00211802 /* ActivitiesViewController.swift in Sources */,
 				2D875E112486F9480054B737 /* CalendarCollectionViewCell.swift in Sources */,

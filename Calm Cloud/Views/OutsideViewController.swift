@@ -156,10 +156,17 @@ class OutsideViewController: UIViewController {
     
     @objc func harvestPlant() {
         // close message popup
-        // do harvesting
         view.sendSubviewToBack(harvestContainer)
+        
+        // update count and save
+        Harvested.basketCounts[PlantManager.selected]! += 1
+        DataFunctions.saveHarvest()
+        
+        // remove plant image and delete save
         PlantManager.getStage(halfDaysOfCare: nil, plant: .none, lastWatered: nil, mature: nil)
         deletePlanting(id: selectedPlot)
+        
+        // show exp gain
         if let image = tappedImage {
             showEXP(near: image, exp: 15)
             updateEXP(with: 15)

@@ -30,7 +30,7 @@ class ReminderListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
-        tableView.backgroundColor = UIColor(red:1.00, green:0.88, blue:0.95, alpha:1.00)
+        tableView.backgroundColor = Colors.pink
         
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none

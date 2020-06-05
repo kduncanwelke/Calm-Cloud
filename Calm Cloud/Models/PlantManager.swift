@@ -499,9 +499,3 @@ enum Area {
     case none
 }
 
-struct Seedling {
-    let name: String
-    let image: UIImage
-    let plant: Plant
-    let allowedArea: Area
-}

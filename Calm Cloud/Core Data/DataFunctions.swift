@@ -10,6 +10,9 @@ import Foundation
 import CoreData
 
 struct DataFunctions {
+    
+    // MARK: Inventory
+    
     static func saveInventory() {
         var managedContext = CoreDataManager.shared.managedObjectContext
         
@@ -57,6 +60,8 @@ struct DataFunctions {
         Plantings.loaded.removeAll()
         Plantings.loaded = resave
     }
+    
+    // MARK: Level
     
     static func loadLevel() {
         var managedContext = CoreDataManager.shared.managedObjectContext
@@ -113,6 +118,74 @@ struct DataFunctions {
         } catch {
             // this should never be displayed but is here to cover the possibility
             print("level not resaved")
+        }
+    }
+    
+    // MARK: Harvest
+    
+    static func saveHarvest() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        
+        // save anew if it doesn't exist (like on app initial launch)
+        if Harvested.loaded.isEmpty {
+            for (type, quantity) in Harvested.basketCounts {
+                
+                let harvestSave = HarvestedItem(context: managedContext)
+                
+                harvestSave.id = Int16(type.rawValue)
+                harvestSave.quantity = Int16(quantity)
+                
+                Harvested.loaded.append(harvestSave)
+                
+                do {
+                    try managedContext.save()
+                    print("saved harvest item")
+                } catch {
+                    // this should never be displayed but is here to cover the possibility
+                    print("failed to save harvest")
+                }
+            }
+            
+            return
+        }
+        
+        // otherwise rewrite data
+        var resave: [HarvestedItem] = []
+        
+        for item in Harvested.loaded {
+            let quantity = Harvested.basketCounts[Plant(rawValue: Int(item.id))!]
+            item.quantity = Int16(quantity!)
+            
+            resave.append(item)
+            
+            do {
+                try managedContext.save()
+                print("resave successful")
+            } catch {
+                // this should never be displayed but is here to cover the possibility
+                print("failed to save inventory")
+            }
+        }
+        
+        Harvested.loaded.removeAll()
+        Harvested.loaded = resave
+    }
+    
+    static func loadHarvest() {
+        // load harvest inventory
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        var fetchRequest = NSFetchRequest<HarvestedItem>(entityName: "HarvestedItem")
+        
+        do {
+            Harvested.loaded = try managedContext.fetch(fetchRequest)
+            
+            for item in Harvested.loaded {
+                Harvested.basketCounts[Plant(rawValue: Int(item.id))!] = Int(item.quantity)
+            }
+            print("harvest loaded")
+        } catch let error as NSError {
+           // showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
+            print("did not load harvest")
         }
     }
 }

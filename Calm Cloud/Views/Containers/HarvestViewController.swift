@@ -24,6 +24,10 @@ class HarvestViewController: UIViewController {
     @objc func load() {
         let planting = Plantings.plantings.filter { $0.id == Int16(PlantManager.chosen) }.first
         let days = PlantManager.checkDiff(date: planting?.mature)
+       
+        if let plant = planting {
+            PlantManager.selected = .jade //Plant(rawValue: Int(plant.id))!
+        }
         message.text = "This plant has \(days) day(s) of maturity left before it wilts. Would you like to harvest it now?"
     }
 

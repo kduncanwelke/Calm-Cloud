@@ -9,11 +9,43 @@
 import UIKit
 
 class BasketViewController: UIViewController {
+    
+    // MARK: IBOutlets
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: Variables
+    
+    var itemsToShow: [BasketItem] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        DataFunctions.loadHarvest()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.backgroundColor = Colors.pink
+        
+        loadItems()
+    }
+    
+    // MARK: Custom functions
+    
+    func loadItems() {
+        for (plant, number) in Harvested.basketCounts {
+            if number != 0 {
+                for item in Harvested.basketItems {
+                    if item.plant == plant {
+                        itemsToShow.append(item)
+                        break
+                    }
+                }
+            }
+        }
+        tableView.reloadData()
     }
     
 
