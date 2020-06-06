@@ -200,6 +200,7 @@ class ViewController: UIViewController {
         // close delivery container when user dismisses
         view.sendSubviewToBack(receivedPackageContainer)
         boxInside.isHidden = true
+        boxInside.image = UIImage(named: "closedbox")
     }
     
     func randomRepeatCount() -> Int {
