@@ -15,12 +15,12 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var savedLabel: UILabel!
     @IBOutlet weak var calendarView: UIView!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var darkOverlay: UIView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var savedImage: UIImageView!
     
     // MARK: Variables
     
@@ -39,7 +39,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
         // Do any additional setup after loading the view.
         collectionView.delegate = self
         collectionView.dataSource = self
-        savedLabel.alpha = 0.0
+        savedImage.alpha = 0.0
         textView.delegate = self
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
@@ -122,7 +122,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     
     func displayEntry() {
         guard let currentEntry = entry, let chosenDate = currentEntry.date else {
-            saveButton.isHidden = false
+            saveButton.isEnabled = true
             dateLabel.text = dateFormatter.string(from: Date())
             
             return
@@ -130,7 +130,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
         
         textView.text = currentEntry.text
         dateLabel.text = dateFormatter.string(from: chosenDate)
-        saveButton.isHidden = true
+        saveButton.isEnabled = false
     }
     
     @objc func adjustForKeyboard(notification: Notification) {
@@ -170,8 +170,9 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
             do {
                 try managedContext.save()
                 print("saved entry")
-                saveButton.isHidden = true
-                savedLabel.animateFadeIn()
+                collectionView.reloadData()
+                saveButton.isEnabled = false
+                savedImage.animateFadeIn()
             } catch {
                 // this should never be displayed but is here to cover the possibility
                 showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
@@ -208,6 +209,11 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
         }
     }
     
+    
+    @IBAction func saveTapped(_ sender: UIBarButtonItem) {
+        saveEntry()
+    }
+    
     // go left, show later month
     @IBAction func nextMonth(_ sender: UIButton) {
         direction += 1
@@ -233,11 +239,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
             self.calendarView.isHidden = true
         }
     }
-   
-    @IBAction func savePressed(_ sender: UIButton) {
-        saveEntry()
-    }
-    
+
     @IBAction func forwardPressed(_ sender: UIButton) {
         if currentPage > 0 {
             currentPage -= 1

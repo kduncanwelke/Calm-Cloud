@@ -12,6 +12,9 @@ class BasketViewController: UIViewController {
     
     // MARK: IBOutlets
     
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: Variables
@@ -30,6 +33,7 @@ class BasketViewController: UIViewController {
         tableView.backgroundColor = Colors.pink
         
         loadItems()
+        toggleButtons()
     }
     
     // MARK: Custom functions
@@ -48,6 +52,21 @@ class BasketViewController: UIViewController {
         tableView.reloadData()
     }
     
+    func toggleButtons() {
+        if segmentedControl.selectedSegmentIndex == -1 {
+            doneButton.isEnabled = false
+            cancelButton.isEnabled = false
+        } else {
+            doneButton.isEnabled = true
+            cancelButton.isEnabled = true
+        }
+    }
+    
+    func reset() {
+        segmentedControl.selectedSegmentIndex = -1
+        tableView.reloadData()
+        toggleButtons()
+    }
 
     /*
     // MARK: - Navigation
@@ -60,6 +79,19 @@ class BasketViewController: UIViewController {
     */
     
     // MARK: IBActions
+    
+    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        tableView.reloadData()
+        toggleButtons()
+    }
+    
+    @IBAction func donePressed(_ sender: UIBarButtonItem) {
+        reset()
+    }
+    
+    @IBAction func cancelPressed(_ sender: UIBarButtonItem) {
+        reset()
+    }
     
     @IBAction func backTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)

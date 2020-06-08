@@ -59,6 +59,8 @@ class OutsideViewController: UIViewController {
     
     @IBOutlet weak var plusEXPLabel: UILabel!
     
+    
+    @IBOutlet weak var honorStand: UIImageView!
     @IBOutlet weak var backgroundView: UIView!
     
     // MARK: Variables
@@ -488,6 +490,10 @@ class OutsideViewController: UIViewController {
         } else if sender.state == .ended || sender.state == .cancelled {
             stopMovingOutside()
         }
+    }
+    
+    @IBAction func honorStandTapped(_ sender: UITapGestureRecognizer) {
+        print("honor stand tapped")
     }
     
     @IBAction func fencePlot1Tapped(_ sender: UITapGestureRecognizer) {

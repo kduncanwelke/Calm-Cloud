@@ -14,7 +14,9 @@ class BasketTableViewCell: UITableViewCell {
     
     @IBOutlet weak var itemLabel: UILabel!
     @IBOutlet weak var quantityLabel: UILabel!
-
+    @IBOutlet weak var selectedNumber: UILabel!
+    @IBOutlet weak var stepper: UIStepper!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,5 +27,9 @@ class BasketTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    @IBAction func stepperChanged(_ sender: UIStepper) {
+        var intified = Int(stepper.value)
+        selectedNumber.text = "\(intified)"
+    }
 }
