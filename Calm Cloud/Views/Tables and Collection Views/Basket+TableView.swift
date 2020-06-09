@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-extension BasketViewController: UITableViewDelegate, UITableViewDataSource {
-    
+extension BasketViewController: UITableViewDelegate, UITableViewDataSource, QuantityChangeDelegate {
+  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemsToShow.count
     }
@@ -40,7 +40,20 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource {
             cell.stepper.minimumValue = 0
         }
         
+        cell.cellDelegate = self
+        
         return cell
     }
+    
+    func didChangeQuantity(sender: BasketTableViewCell, number: Int) {
+        let path = self.tableView.indexPath(for: sender)
+        if let selected = path {
+            let item = itemsToShow[selected.row]
+            
+            Harvested.inStand[item.plant] = number
+            print("quantity delegate called")
+        }
+    }
+    
 }
 

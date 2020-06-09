@@ -17,6 +17,10 @@ class BasketTableViewCell: UITableViewCell {
     @IBOutlet weak var selectedNumber: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     
+    // MARK: Variables
+    
+    weak var cellDelegate: QuantityChangeDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,5 +35,7 @@ class BasketTableViewCell: UITableViewCell {
     @IBAction func stepperChanged(_ sender: UIStepper) {
         var intified = Int(stepper.value)
         selectedNumber.text = "\(intified)"
+        
+        self.cellDelegate?.didChangeQuantity(sender: self, number: intified)
     }
 }

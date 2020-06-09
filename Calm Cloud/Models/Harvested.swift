@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Harvested {
     
@@ -32,6 +33,78 @@ struct Harvested {
         BasketItem(name: "Pumpkins", plant: .pumpkin),
         BasketItem(name: "Geranium cuttings", plant: .geranium)
     ]
+    
+    static var stand: [HonorStandItem] = []
+    
+    // items placed in honor stand
+    static var inStand: [Plant: Int] = [
+        Plant.chard: 0,
+        Plant.geranium: 0,
+        Plant.jade: 0,
+        Plant.lemon: 0,
+        Plant.pumpkin: 0,
+        Plant.redTulip: 0,
+    ]
+    
+    static func getStandImage(plant: Plant) -> UIImage {
+        switch plant {
+        case .chard:
+            return #imageLiteral(resourceName: "chardsale.png")
+        case .geranium:
+            return #imageLiteral(resourceName: "geraniumsale.png")
+        case .jade:
+            return #imageLiteral(resourceName: "jadesale.png")
+        case .lemon:
+            return #imageLiteral(resourceName: "lemonssale.png")
+        case .none:
+            return #imageLiteral(resourceName: "emptyplot.png")
+        case .pumpkin:
+            return #imageLiteral(resourceName: "pumpkinsale.png")
+        case .redTulip:
+            return #imageLiteral(resourceName: "redtulipsale.png")
+        }
+    }
+    
+    // handle random purchases 'disappearance' from mysterious buyers we never see
+    static func randomPurchases() -> Int? {
+        // only check once per day, if same day exit
+        if Recentness.isSameDay() {
+            return nil
+        }
+        
+        var income = 0
+        
+        for (type, quantity) in Harvested.inStand {
+            // cannot purchase what is not there
+            if quantity == 0 {
+                break
+            }
+            
+            // random purchase bool
+            var purchasesMade = Bool.random()
+            
+            if purchasesMade {
+                // random number bought
+                var number = Int.random(in: 1...quantity)
+                let newQuantity = quantity - number
+                
+                // subtract items purchased and change quantity
+                Harvested.inStand[type] = newQuantity
+                
+                // random price paid
+                let prices = [10,15,20,25]
+                
+                if let price = prices.randomElement() {
+                    income += (price * number)
+                }
+            } else {
+                // no purchase
+                break
+            }
+        }
+        
+        return income
+    }
 }
 
 struct BasketItem {

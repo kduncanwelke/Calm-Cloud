@@ -50,6 +50,15 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
         nav.rightBarButtonItems = rightItem
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            // Fallback on earlier versions
+            return .default
+        }
+    }
+    
     // MARK: Custom functions
     
     func addImage(pickedImage: UIImage) {

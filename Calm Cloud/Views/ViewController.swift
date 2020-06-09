@@ -96,7 +96,12 @@ class ViewController: UIViewController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .default
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            // Fallback on earlier versions
+            return .default
+        }
     }
     
     // MARK: Custom functions
@@ -532,12 +537,17 @@ class ViewController: UIViewController {
             stopped = true
             stopMoving()
             
-            print("left to bed")
-            cloudKitty.animationImages = AnimationManager.movingLeftAnimation
-            cloudKitty.startAnimating()
-            let bedDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/2)
-            cloudKitty.goToSleep(to: bedDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
-            AnimationManager.location = .bed
+            // if cloud kitty is not on bed, move over to it
+            if AnimationManager.location != .bed {
+                print("left to bed")
+                cloudKitty.animationImages = AnimationManager.movingLeftAnimation
+                cloudKitty.startAnimating()
+                let bedDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/2)
+                cloudKitty.goToSleep(to: bedDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
+                AnimationManager.location = .bed
+            } else {
+                goToSleep()
+            }
             
             nightOverlay.fadeIn()
             darkOutside.fadeIn()

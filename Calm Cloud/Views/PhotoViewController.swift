@@ -34,6 +34,15 @@ class PhotoViewController: UIViewController {
         imageView.image = imageToZoom
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            // Fallback on earlier versions
+            return .default
+        }
+    }
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         updateZoom(view.bounds.size)

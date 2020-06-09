@@ -59,8 +59,9 @@ class OutsideViewController: UIViewController {
     
     @IBOutlet weak var plusEXPLabel: UILabel!
     
-    
     @IBOutlet weak var honorStand: UIImageView!
+    @IBOutlet var honorStandImages: [UIImageView]!
+    
     @IBOutlet weak var backgroundView: UIView!
     
     // MARK: Variables
@@ -99,7 +100,18 @@ class OutsideViewController: UIViewController {
         loadUI()
         loadInventory()
         loadPlots()
+        DataFunctions.loadHonorStand()
         DataFunctions.saveInventory()
+        displayHonorStand()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            // Fallback on earlier versions
+            return .default
+        }
     }
     
     // MARK: Custom functions
@@ -108,6 +120,24 @@ class OutsideViewController: UIViewController {
         // update level
         levelLabel.text = "\(LevelManager.currentLevel)"
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
+    }
+    
+    func displayHonorStand() {
+        if let income = Harvested.randomPurchases() {
+            // show collectable money
+        }
+        
+        var index = 0
+        
+        // show more crowded image if more quantity
+        for (type, quantity) in Harvested.inStand {
+            if honorStandImages[index].image == nil {
+                if quantity > 0 {
+                    honorStandImages[index].image = Harvested.getStandImage(plant: type)
+                    index += 1
+                }
+            }
+        }
     }
     
     func showEXP(near: UIImageView, exp: Int) {

@@ -188,4 +188,22 @@ struct DataFunctions {
             print("did not load harvest")
         }
     }
+    
+    static func loadHonorStand() {
+        // load honor stand inventory
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        var fetchRequest = NSFetchRequest<HonorStandItem>(entityName: "HonorStandItem")
+        
+        do {
+            Harvested.stand = try managedContext.fetch(fetchRequest)
+            
+            for item in Harvested.stand {
+                Harvested.inStand[Plant(rawValue: Int(item.id))!] = Int(item.quantity)
+            }
+            print("honor stand loaded")
+        } catch let error as NSError {
+            // showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
+            print("did not load harvest")
+        }
+    }
 }

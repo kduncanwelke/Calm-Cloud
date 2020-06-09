@@ -17,7 +17,7 @@ class ReminderViewController: UIViewController {
     @IBOutlet weak var dailySwitch: UISwitch!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var timePicker: UIDatePicker!
-    @IBOutlet weak var savedLabel: UILabel!
+    @IBOutlet weak var savedImage: UIImageView!
     
     // MARK: Variables
     
@@ -27,8 +27,17 @@ class ReminderViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        savedLabel.alpha = 0.0
+        savedImage.alpha = 0.0
         datePicker.minimumDate = Date()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            // Fallback on earlier versions
+            return .default
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -104,7 +113,7 @@ class ReminderViewController: UIViewController {
             do {
                 try managedContext.save()
                 print("saved entry")
-                savedLabel.animateFadeIn()
+                savedImage.animateFadeIn()
                 resetUI()
             } catch {
                 // this should never be displayed but is here to cover the possibility
@@ -129,8 +138,7 @@ class ReminderViewController: UIViewController {
         updateUI()
     }
     
-    
-    @IBAction func savePressed(_ sender: UIButton) {
+    @IBAction func saveTapped(_ sender: UIBarButtonItem) {
         saveReminder()
     }
     

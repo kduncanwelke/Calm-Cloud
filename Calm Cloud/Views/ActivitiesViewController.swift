@@ -21,7 +21,6 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
     
     var completion: [Int : Bool] = [:]
     var loaded: [ActivityId] = []
-    let userDefaultDate = "userDefaultDate"
     var searchResults: [Activity] = []
     
     override func viewDidLoad() {
@@ -40,19 +39,12 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
         tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
-    func isSameDay() -> Bool {
-        // check when last viewed
-        let date = Date()
-        let calendar = Calendar.current
-        let dateToCompare = calendar.component(.day , from: date)
-        
-        let userDefaultDate = UserDefaults.standard.integer(forKey: "userDefaultDate")
-        
-        if userDefaultDate != dateToCompare {
-            UserDefaults.standard.set(dateToCompare, forKey: self.userDefaultDate)
-            return false
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if #available(iOS 13.0, *) {
+            return .darkContent
         } else {
-            return true
+            // Fallback on earlier versions
+            return .default
         }
     }
     
@@ -64,7 +56,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
         do {
             loaded = try managedContext.fetch(fetchRequest)
             
-            if isSameDay() {
+            if Recentness.isSameDay() {
                 for item in loaded {
                     completion[Int(item.id)] = true
                 }
