@@ -77,7 +77,7 @@ struct Harvested {
         for (type, quantity) in Harvested.inStand {
             // cannot purchase what is not there
             if quantity == 0 {
-                break
+                continue
             }
             
             // random purchase bool
@@ -89,6 +89,7 @@ struct Harvested {
                 let newQuantity = quantity - number
                 
                 // subtract items purchased and change quantity
+                // (new amount gets saved when this function is called)
                 Harvested.inStand[type] = newQuantity
                 
                 // random price paid
@@ -99,7 +100,7 @@ struct Harvested {
                 }
             } else {
                 // no purchase
-                break
+                continue
             }
         }
         

@@ -42,6 +42,8 @@ extension OutsideViewController {
                 let view = container.subviews.filter { $0.tag == Int(planting.id) }.first
                 if let imageView = view as? UIImageView {
                     imageView.image = PlantManager.getStage(halfDaysOfCare: Int(planting.consecutiveDaysWatered), plant: Plant(rawValue: Int(planting.plant))!, lastWatered: planting.lastWatered, mature: planting.mature)
+                    print(planting.consecutiveDaysWatered)
+                    print(planting.lastWatered)
                 }
             }
         } catch let error as NSError {
@@ -121,14 +123,18 @@ extension OutsideViewController {
                 let diff = components.hour
                 
                 if let difference = diff {
+                    print(difference)
                     if difference <= 12 {
-                        plot.consecutiveDaysWatered += 1
+                        var prevWatering = plot.consecutiveDaysWatered
+                        let newWatering = prevWatering + 1
+                        plot.consecutiveDaysWatered = newWatering
+                        print(newWatering)
                     }
                 }
             }
             
             plot.lastWatered = Date()
-            
+    
             // update images
             let view = container.subviews.filter { $0.tag == id }.first
             if let imageView = view as? UIImageView {
@@ -155,5 +161,4 @@ extension OutsideViewController {
             showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
         }
     }
-    
 }

@@ -189,6 +189,8 @@ struct DataFunctions {
         }
     }
     
+    // MARK: Honor stand
+    
     static func loadHonorStand() {
         // load honor stand inventory
         var managedContext = CoreDataManager.shared.managedObjectContext
@@ -204,6 +206,129 @@ struct DataFunctions {
         } catch let error as NSError {
             // showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
             print("did not load harvest")
+        }
+    }
+    
+    static func saveHonorStandItems() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        
+        // save anew if it doesn't exist (like on app initial launch)
+        if Harvested.stand.isEmpty {
+            for (type, quantity) in Harvested.inStand {
+                
+                let standSave = HonorStandItem(context: managedContext)
+                
+                standSave.id = Int16(type.rawValue)
+                standSave.quantity = Int16(quantity)
+                
+                Harvested.stand.append(standSave)
+                
+                // update quantity in basket
+                if let oldCount = Harvested.basketCounts[type] {
+                    let newCount = oldCount - quantity
+                    
+                    Harvested.basketCounts[type] = newCount
+                }
+                
+                do {
+                    try managedContext.save()
+                    print("saved honor stand item")
+                } catch {
+                    // this should never be displayed but is here to cover the possibility
+                    print("failed to save honor stand")
+                }
+            }
+            
+            DataFunctions.saveHarvest()
+            
+            return
+        }
+        
+        // otherwise rewrite data
+        var resave: [HonorStandItem] = []
+        
+        for item in Harvested.stand {
+            let quantity = Harvested.inStand[Plant(rawValue: Int(item.id))!]
+            item.quantity = Int16(quantity!)
+            
+            resave.append(item)
+            
+            // update quantity in basket
+            if let oldCount = Harvested.basketCounts[Plant(rawValue: Int(item.id))!], let number = quantity {
+                let newCount = oldCount - number
+                
+                Harvested.basketCounts[Plant(rawValue: Int(item.id))!] = newCount
+            }
+            
+            do {
+                try managedContext.save()
+                print("resave successful")
+            } catch {
+                // this should never be displayed but is here to cover the possibility
+                print("failed to save honor stand")
+            }
+        }
+        
+        Harvested.stand.removeAll()
+        Harvested.stand = resave
+        
+        DataFunctions.saveHarvest()
+    }
+    
+    // MARK: Money
+    
+    static func loadMoney() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        var fetchRequest = NSFetchRequest<Money>(entityName: "Money")
+        
+        do {
+            var result = try managedContext.fetch(fetchRequest)
+            if let money = result.first {
+                MoneyManager.loaded = money
+                MoneyManager.earnings = Int(money.earnings)
+                MoneyManager.total = Int(money.total)
+            }
+            print("money loaded")
+        } catch let error as NSError {
+            print("money not loaded")
+        }
+    }
+    
+    static func saveMoney() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        
+        // save anew if it doesn't exist (like on app initial launch)
+        guard let moneyLoaded = MoneyManager.loaded else {
+            let moneySave = Money(context: managedContext)
+            
+            moneySave.earnings = Int16(MoneyManager.earnings)
+            moneySave.total = Int16(MoneyManager.total)
+            
+            MoneyManager.loaded = moneySave
+            
+            do {
+                try managedContext.save()
+                print("saved money")
+            } catch {
+                // this should never be displayed but is here to cover the possibility
+                print("money not saved")
+            }
+            
+            return
+        }
+        
+        // otherwise rewrite data
+        moneyLoaded.earnings = Int16(MoneyManager.earnings)
+        moneyLoaded.total = Int16(MoneyManager.total)
+        
+        MoneyManager.loaded = moneyLoaded
+        
+        do {
+            try managedContext.save()
+            print("resave successful")
+        } catch {
+            // this should never be displayed but is here to cover the possibility
+            print("money not resaved")
         }
     }
 }

@@ -16,6 +16,7 @@ class BasketViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addedImage: UIImageView!
     
     // MARK: Variables
     
@@ -26,6 +27,8 @@ class BasketViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         DataFunctions.loadHarvest()
+        
+        addedImage.alpha = 0.0
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -76,72 +79,6 @@ class BasketViewController: UIViewController {
         tableView.reloadData()
         toggleButtons()
     }
-    
-    func saveHonorStandItems() {
-        var managedContext = CoreDataManager.shared.managedObjectContext
-        
-        // save anew if it doesn't exist (like on app initial launch)
-        if Harvested.stand.isEmpty {
-            for (type, quantity) in Harvested.inStand {
-                
-                let standSave = HonorStandItem(context: managedContext)
-                
-                standSave.id = Int16(type.rawValue)
-                standSave.quantity = Int16(quantity)
-                
-                Harvested.stand.append(standSave)
-                
-                // update quantity in basket
-                if let oldCount = Harvested.basketCounts[type] {
-                    let newCount = oldCount - quantity
-                    
-                    Harvested.basketCounts[type] = newCount
-                }
-                
-                do {
-                    try managedContext.save()
-                    print("saved honor stand item")
-                } catch {
-                    // this should never be displayed but is here to cover the possibility
-                    print("failed to save honor stand")
-                }
-            }
-            
-            DataFunctions.saveHarvest()
-            
-            return
-        }
-        
-        // otherwise rewrite data
-        var resave: [HonorStandItem] = []
-        
-        for item in Harvested.stand {
-            let quantity = Harvested.inStand[Plant(rawValue: Int(item.id))!]
-            item.quantity = Int16(quantity!)
-            
-            resave.append(item)
-            
-            // update quantity in basket
-            if let oldCount = Harvested.basketCounts[Plant(rawValue: Int(item.id))!], let number = quantity {
-                let newCount = oldCount - number
-                
-                Harvested.basketCounts[Plant(rawValue: Int(item.id))!] = newCount
-            }
-        
-            do {
-                try managedContext.save()
-                print("resave successful")
-            } catch {
-                // this should never be displayed but is here to cover the possibility
-                print("failed to save honor stand")
-            }
-        }
-        
-        Harvested.stand.removeAll()
-        Harvested.stand = resave
-        
-        DataFunctions.saveHarvest()
-    }
 
     /*
     // MARK: - Navigation
@@ -161,7 +98,9 @@ class BasketViewController: UIViewController {
     }
     
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
-        saveHonorStandItems()
+        DataFunctions.saveHonorStandItems()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadHonorStand"), object: nil)
+        addedImage.fadeIn()
         reset()
     }
     

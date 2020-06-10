@@ -61,6 +61,7 @@ class OutsideViewController: UIViewController {
     
     @IBOutlet weak var honorStand: UIImageView!
     @IBOutlet var honorStandImages: [UIImageView]!
+    @IBOutlet weak var honorStandMoney: UIImageView!
     
     @IBOutlet weak var backgroundView: UIView!
     
@@ -88,10 +89,13 @@ class OutsideViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(plant), name: NSNotification.Name(rawValue: "plant"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(loadHonorStand), name: NSNotification.Name(rawValue: "loadHonorStand"), object: nil)
+        
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
         
         plusEXPLabel.isHidden = true
+        honorStandMoney.isHidden = true
         
         AnimationManager.outsideLocation = .back
         AnimationManager.movement = .staying
@@ -102,7 +106,7 @@ class OutsideViewController: UIViewController {
         loadPlots()
         DataFunctions.loadHonorStand()
         DataFunctions.saveInventory()
-        displayHonorStand()
+        checkForPurchases()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -122,11 +126,18 @@ class OutsideViewController: UIViewController {
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
     }
     
-    func displayHonorStand() {
+    func checkForPurchases() {
         if let income = Harvested.randomPurchases() {
             // show collectable money
+            MoneyManager.earnings += income
+            honorStandMoney.isHidden = false
+            DataFunctions.saveHonorStandItems()
         }
         
+        loadHonorStand()
+    }
+    
+    @objc func loadHonorStand() {
         var index = 0
         
         // show more crowded image if more quantity
@@ -223,6 +234,7 @@ class OutsideViewController: UIViewController {
     }
     
     @objc func plant() {
+        view.sendSubviewToBack(inventoryContainer)
         // change based on selected species
         savePlanting(id: selectedPlot, plant: PlantManager.selected.rawValue)
         
@@ -286,13 +298,11 @@ class OutsideViewController: UIViewController {
         } else {
             imageToUpdate = smallPotPlot
         }
-        
+                
         // show exp feedback
         showEXP(near: imageToUpdate, exp: 10)
         // update image
         imageToUpdate.image = PlantManager.getStage(halfDaysOfCare: 0, plant: PlantManager.selected, lastWatered: nil, mature: nil)
-        
-        view.sendSubviewToBack(inventoryContainer)
     }
     
     func setPlotArea() {
@@ -524,6 +534,16 @@ class OutsideViewController: UIViewController {
     
     @IBAction func honorStandTapped(_ sender: UITapGestureRecognizer) {
         print("honor stand tapped")
+        print("\(MoneyManager.earnings)")
+        // add earnings to total
+        MoneyManager.total += MoneyManager.earnings
+        
+        // clear out earnings
+        MoneyManager.earnings = 0
+        
+        // resave money
+        DataFunctions.saveMoney()
+        honorStandMoney.isHidden = true
     }
     
     @IBAction func fencePlot1Tapped(_ sender: UITapGestureRecognizer) {

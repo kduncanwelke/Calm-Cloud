@@ -96,9 +96,10 @@ class InventoryViewController: UIViewController {
             Plantings.availableSeedlings[PlantManager.selected] = selectedSeedling - 1
         }
         
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "plant"), object: nil)
+        
         DataFunctions.saveInventory()
         clearSelections()
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "plant"), object: nil)
     }
     
     @IBAction func close(_ sender: UIButton) {

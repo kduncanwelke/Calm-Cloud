@@ -53,6 +53,7 @@
 		2DB1321B247843AD00FA6D71 /* Outside+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1321A247843AD00FA6D71 /* Outside+Animations.swift */; };
 		2DB1D48924573DDD00512E4F /* CareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48824573DDD00512E4F /* CareManager.swift */; };
 		2DB1D48B2457415000512E4F /* ViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */; };
+		2DB4106524916E8C00EFD088 /* MoneyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4106424916E8C00EFD088 /* MoneyManager.swift */; };
 		2DB6E540248AD8CA007DA241 /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E53F248AD8CA007DA241 /* BasketTableViewCell.swift */; };
 		2DB6E542248ADAE6007DA241 /* Basket+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E541248ADAE6007DA241 /* Basket+TableView.swift */; };
 		2DB6E544248AF375007DA241 /* Harvested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E543248AF375007DA241 /* Harvested.swift */; };
@@ -120,6 +121,7 @@
 		2DB1321A247843AD00FA6D71 /* Outside+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Outside+Animations.swift"; sourceTree = "<group>"; };
 		2DB1D48824573DDD00512E4F /* CareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareManager.swift; sourceTree = "<group>"; };
 		2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CoreData.swift"; sourceTree = "<group>"; };
+		2DB4106424916E8C00EFD088 /* MoneyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyManager.swift; sourceTree = "<group>"; };
 		2DB6E53F248AD8CA007DA241 /* BasketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
 		2DB6E541248ADAE6007DA241 /* Basket+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Basket+TableView.swift"; sourceTree = "<group>"; };
 		2DB6E543248AF375007DA241 /* Harvested.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Harvested.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				2DCC9C7A24672031006834B0 /* PlantManager.swift */,
 				2DB6E543248AF375007DA241 /* Harvested.swift */,
 				2DAA52282472FDDA00171A7D /* LevelManager.swift */,
+				2DB4106424916E8C00EFD088 /* MoneyManager.swift */,
 				2DC5EBCA2474886300741E5E /* Colors.swift */,
 			);
 			path = Models;
@@ -387,6 +390,7 @@
 				2DCC9C7B24672031006834B0 /* PlantManager.swift in Sources */,
 				2DC95DDD2485A9830085DD14 /* CompareImages.swift in Sources */,
 				2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */,
+				2DB4106524916E8C00EFD088 /* MoneyManager.swift in Sources */,
 				2D2EF6A22465F2EE00E497DC /* PopUpViewController.swift in Sources */,
 				2DD2C31B246353310070934D /* Sounds.swift in Sources */,
 				2D14EBDE243E7740004CB7E2 /* NotificationManager.swift in Sources */,

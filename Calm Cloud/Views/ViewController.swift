@@ -83,6 +83,7 @@ class ViewController: UIViewController {
         loadEntries()
         loadCare()
         DataFunctions.loadLevel()
+        DataFunctions.loadMoney()
         loadUI()
         
         let offset = container.frame.width / 5
