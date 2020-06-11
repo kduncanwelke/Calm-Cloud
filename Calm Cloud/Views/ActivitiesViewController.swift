@@ -56,11 +56,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
         do {
             loaded = try managedContext.fetch(fetchRequest)
             
-            if Recentness.isSameDay() {
-                for item in loaded {
-                    completion[Int(item.id)] = true
-                }
-            } else {
+            if Recentness.isNewDay() {
                 // if it's a new day, removed all saved completions
                 for item in loaded {
                     managedContext.delete(item)
@@ -71,6 +67,11 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
                     print("deleted all")
                 } catch {
                     print("Failed to save")
+                }
+            } else {
+                // same day, no changes
+                for item in loaded {
+                    completion[Int(item.id)] = true
                 }
             }
             
@@ -90,7 +91,8 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
         do {
             try managedContext.save()
             print("saved activity")
-        } catch {
+        } catch let error as NSError {
+            print(error)
             // this should never be displayed but is here to cover the possibility
             showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
         }

@@ -63,6 +63,9 @@ class OutsideViewController: UIViewController {
     @IBOutlet var honorStandImages: [UIImageView]!
     @IBOutlet weak var honorStandMoney: UIImageView!
     
+    @IBOutlet weak var coinCount: UILabel!
+    @IBOutlet weak var coinImage: UIImageView!
+    
     @IBOutlet weak var backgroundView: UIView!
     
     // MARK: Variables
@@ -91,11 +94,14 @@ class OutsideViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(loadHonorStand), name: NSNotification.Name(rawValue: "loadHonorStand"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLevelFromBasket), name: NSNotification.Name(rawValue: "updateLevelFromBasket"), object: nil)
+        
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
         
         plusEXPLabel.isHidden = true
         honorStandMoney.isHidden = true
+        coinCount.text = "\(MoneyManager.total)"
         
         AnimationManager.outsideLocation = .back
         AnimationManager.movement = .staying
@@ -149,6 +155,12 @@ class OutsideViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc func updateLevelFromBasket() {
+        // refresh these level labels when exp is gained outside
+        levelLabel.text = "\(LevelManager.currentLevel)"
+        expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
     }
     
     func showEXP(near: UIImageView, exp: Int) {
@@ -537,6 +549,8 @@ class OutsideViewController: UIViewController {
         print("\(MoneyManager.earnings)")
         // add earnings to total
         MoneyManager.total += MoneyManager.earnings
+        coinCount.text = "\(MoneyManager.total)"
+        coinImage.animateBounce()
         
         // clear out earnings
         MoneyManager.earnings = 0

@@ -11,7 +11,7 @@ import Foundation
 struct Recentness {
     static let userDefaultDate = "userDefaultDate"
     
-    static func isSameDay() -> Bool {
+    static func checkIfNewDay() {
         // check when last viewed
         let date = Date()
         let calendar = Calendar.current
@@ -21,9 +21,23 @@ struct Recentness {
         
         if userDefaultDate != dateToCompare {
             UserDefaults.standard.set(dateToCompare, forKey: Recentness.userDefaultDate)
-            return false
         } else {
+            // do nothing
+        }
+    }
+    
+    static func isNewDay() -> Bool {
+        // check if day-dependent features should be reset
+        let date = Date()
+        let calendar = Calendar.current
+        let dateToCompare = calendar.component(.day , from: date)
+        
+        let userDefaultDate = UserDefaults.standard.integer(forKey: "userDefaultDate")
+        
+        if userDefaultDate != dateToCompare {
             return true
+        } else {
+            return false
         }
     }
     

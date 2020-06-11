@@ -16,13 +16,19 @@ struct PlantManager {
             let components = calendar.dateComponents([.hour], from: chosenDate, to: Date())
             let diff = components.hour
             
+            // if it's a new day plants can be watered (aka watering is reset)
+            if Recentness.isNewDay() {
+                return true
+            }
+            
+            // allow watering every six hours
             if let difference = diff {
-                if difference < 12 {
-                    // plant has been watered within 12 hours
+                if difference < 6 {
+                    // plant has been watered within 6 hours
                     print("has been watered recently")
                     return false
                 } else {
-                    // plant has not been watered within 12 hours
+                    // plant has not been watered within 6 hours
                     print("needs water for this period")
                     return true
                 }

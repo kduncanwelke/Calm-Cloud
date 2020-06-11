@@ -19,6 +19,8 @@ class MiniGameViewController: UIViewController {
     @IBOutlet weak var againButton: UIButton!
     @IBOutlet weak var lowerButton: UIButton!
     @IBOutlet weak var feedback: UIImageView!
+    @IBOutlet weak var coin: UIImageView!
+
     
     // MARK: Variables
     
@@ -31,6 +33,7 @@ class MiniGameViewController: UIViewController {
         // Do any additional setup after loading the view.
         againButton.isHidden = true
         feedback.isHidden = true
+        coin.isHidden = true
         
         previousNumber = Int.random(in: 1...10)
         firstNumber.text = "\(previousNumber)"
@@ -60,6 +63,14 @@ class MiniGameViewController: UIViewController {
         lowerButton.isHidden = true
         againButton.isHidden = false
         againButton.fadeIn()
+    }
+    
+    func randomCoinReward() -> Int? {
+        if Bool.random() {
+            return Int.random(in: 1...5)
+        } else {
+            return nil
+        }
     }
 
     /*
@@ -103,6 +114,7 @@ class MiniGameViewController: UIViewController {
         lowerButton.animateBounce()
         againButton.isHidden = true
         feedback.isHidden = true
+        coin.isHidden = true
     }
     
     @IBAction func lowerPressed(_ sender: UIButton) {
@@ -115,6 +127,13 @@ class MiniGameViewController: UIViewController {
                 self.feedback.isHidden = false
                 self.feedback.animateBounce()
                 self.feedback.image = UIImage(named: "correct")
+                
+                if let reward = self.randomCoinReward() {
+                    MoneyManager.total += reward
+                    self.coin.isHidden = false
+                    self.coin.animateBounce()
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
+                }
             } else {
                 self.feedback.isHidden = false
                 self.feedback.animateBounce()

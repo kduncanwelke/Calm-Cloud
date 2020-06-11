@@ -50,7 +50,16 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource, Quan
         if let selected = path {
             let item = itemsToShow[selected.row]
             
-            Harvested.inStand[item.plant] = number
+            if segmentedControl.selectedSegmentIndex == 0 {
+                Harvested.inStand[item.plant] = number
+            } else if segmentedControl.selectedSegmentIndex == 1 {
+                if let oldCount = Harvested.basketCounts[item.plant] {
+                    let newCount = oldCount - number
+                    Harvested.basketCounts[item.plant] = newCount
+                    numberDonated += number
+                }
+            }
+            
             print("quantity delegate called")
         }
     }

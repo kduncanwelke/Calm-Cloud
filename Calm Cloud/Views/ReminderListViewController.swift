@@ -78,7 +78,7 @@ class ReminderListViewController: UIViewController {
             try managedContext.save()
             print("delete successful")
         } catch {
-            print("Failed to save")
+            print("Failed to delete")
         }
     }
 

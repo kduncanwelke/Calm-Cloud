@@ -38,6 +38,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var plusEXPLabel: UILabel!
     
+    @IBOutlet weak var coinCount: UILabel!
+    @IBOutlet weak var coinImage: UIImageView!
     
     // MARK: Variables
     
@@ -73,11 +75,16 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(levelUp), name: NSNotification.Name(rawValue: "levelUp"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updateMoney), name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
+        
+        
         openDoor.isHidden = true
         plusEXPLabel.isHidden = true
        
         // load sounds
         Sound.loadSound(resourceName: Sounds.calmMusic.resourceName, type: Sounds.calmMusic.type)
+        
+        Recentness.checkIfNewDay()
         
         loadPhotos()
         loadEntries()
@@ -129,6 +136,7 @@ class ViewController: UIViewController {
         
         levelLabel.text = "\(LevelManager.currentLevel)"
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
+        coinCount.text = "\(MoneyManager.total)"
     }
     
     func showLevelUp() {
@@ -166,6 +174,14 @@ class ViewController: UIViewController {
         
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
         DataFunctions.saveLevel()
+    }
+    
+    @objc func updateMoney() {
+        coinCount.text = "\(MoneyManager.total)"
+        coinImage.animateBounce()
+        
+        // resave money
+        DataFunctions.saveMoney()
     }
     
     @objc func updateLevelFromOutside() {

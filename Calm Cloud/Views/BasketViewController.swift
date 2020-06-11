@@ -17,10 +17,13 @@ class BasketViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addedImage: UIImageView!
+    @IBOutlet weak var donatedView: UIView!
+    @IBOutlet weak var expLabel: UILabel!
     
     // MARK: Variables
     
     var itemsToShow: [BasketItem] = []
+    var numberDonated = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +32,7 @@ class BasketViewController: UIViewController {
         DataFunctions.loadHarvest()
         
         addedImage.alpha = 0.0
+        donatedView.alpha = 0.0
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -79,6 +83,25 @@ class BasketViewController: UIViewController {
         tableView.reloadData()
         toggleButtons()
     }
+    
+    func randomEXP() -> Int {
+        var exp = 0
+        
+        for _ in 1...numberDonated {
+            let randomEXP = Int.random(in: 5...15)
+            exp += randomEXP
+        }
+        
+        LevelManager.currentEXP += exp
+        
+        // update exp amounts where displayed, in home view and outside view
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromOutside"), object: nil)
+         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromBasket"), object: nil)
+        
+        DataFunctions.saveLevel()
+        
+        return exp
+    }
 
     /*
     // MARK: - Navigation
@@ -98,9 +121,16 @@ class BasketViewController: UIViewController {
     }
     
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
-        DataFunctions.saveHonorStandItems()
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadHonorStand"), object: nil)
-        addedImage.fadeIn()
+        if segmentedControl.selectedSegmentIndex == 0 {
+            DataFunctions.saveHonorStandItems()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadHonorStand"), object: nil)
+            addedImage.animateFadeInSlow()
+        } else if segmentedControl.selectedSegmentIndex == 1 {
+            DataFunctions.saveHarvest()
+            expLabel.text = "+\(randomEXP())EXP"
+            donatedView.animateFadeInSlow()
+        }
+        
         reset()
     }
     

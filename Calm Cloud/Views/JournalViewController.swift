@@ -24,7 +24,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     
     // MARK: Variables
     
-    let calendar = Calendar.current
+    let calendar = Calendar.init(identifier: .gregorian)
     var entry: JournalEntry?
     let dateFormatter = DateFormatter()
     var currentPage = 0
@@ -129,6 +129,14 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
         displayEntry()
     }
     
+    func hideCalendar() {
+        calendarView.animateBounceOut()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [unowned self] in
+            self.calendarView.isHidden = true
+        }
+        darkOverlay.isHidden = true
+    }
+    
     func displayEntry() {
         guard let currentEntry = entry, let chosenDate = currentEntry.date else {
             saveButton.isEnabled = true
@@ -210,17 +218,16 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
             calendarView.isHidden = false
             calendarView.animateBounce()
         } else {
-            calendarView.animateBounceOut()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [unowned self] in
-                self.calendarView.isHidden = true
-            }
-            darkOverlay.isHidden = true
+            hideCalendar()
         }
     }
     
-    
     @IBAction func saveTapped(_ sender: UIBarButtonItem) {
         saveEntry()
+    }
+    
+    @IBAction func darkLayerTapped(_ sender: UITapGestureRecognizer) {
+        hideCalendar()
     }
     
     // go left, show later month

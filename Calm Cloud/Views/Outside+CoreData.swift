@@ -41,8 +41,8 @@ extension OutsideViewController {
             for planting in Plantings.plantings {
                 let view = container.subviews.filter { $0.tag == Int(planting.id) }.first
                 if let imageView = view as? UIImageView {
-                    imageView.image = PlantManager.getStage(halfDaysOfCare: Int(planting.consecutiveDaysWatered), plant: Plant(rawValue: Int(planting.plant))!, lastWatered: planting.lastWatered, mature: planting.mature)
-                    print(planting.consecutiveDaysWatered)
+                    imageView.image = PlantManager.getStage(halfDaysOfCare: Int(planting.consecutiveWaterings), plant: Plant(rawValue: Int(planting.plant))!, lastWatered: planting.lastWatered, mature: planting.mature)
+                    print(planting.consecutiveWaterings)
                     print(planting.lastWatered)
                 }
             }
@@ -104,41 +104,47 @@ extension OutsideViewController {
         if plot.lastWatered == nil {
             // plot has never been watered ie it's new
             plot.lastWatered = Date()
-            plot.consecutiveDaysWatered = 0
+            plot.consecutiveWaterings = 0
             print("new watering")
             
             // update images
             let view = container.subviews.filter { $0.tag == id }.first
             if let imageView = view as? UIImageView {
-                imageView.image = PlantManager.getStage(halfDaysOfCare: Int(plot.consecutiveDaysWatered), plant: Plant(rawValue: Int(plot.plant))!, lastWatered: plot.lastWatered, mature: plot.mature)
+                imageView.image = PlantManager.getStage(halfDaysOfCare: Int(plot.consecutiveWaterings), plant: Plant(rawValue: Int(plot.plant))!, lastWatered: plot.lastWatered, mature: plot.mature)
                 showEXP(near: imageView, exp: 5)
             }
         } else if PlantManager.needsWatering(date: plot.lastWatered) {
             // plant getting new watering date
             print("new watering date")
             
-            if let lastWatered = plot.lastWatered {
-                let calendar = Calendar.current
-                let components = calendar.dateComponents([.hour], from: lastWatered, to: Date())
-                let diff = components.hour
-                
-                if let difference = diff {
-                    print(difference)
-                    if difference <= 12 {
-                        var prevWatering = plot.consecutiveDaysWatered
-                        let newWatering = prevWatering + 1
-                        plot.consecutiveDaysWatered = newWatering
-                        print(newWatering)
+            if Recentness.isNewDay() {
+                // if it's a new day, plants can be watered
+                plot.consecutiveWaterings += 1
+            } else {
+                if let lastWatered = plot.lastWatered {
+                    let differenceFromNowToLastWatering = PlantManager.checkDiff(date: lastWatered)
+                    
+                    // if plot was last watered 12 hours or more ago and that last watering was within the current day, add to waterings
+                    if differenceFromNowToLastWatering >= 12 && Calendar.current.isDateInToday(lastWatered) {
+                        plot.consecutiveWaterings += 1
+                    } else if let prevWatered = plot.prevWatered {
+                        let differenceFromNowToPrevWatering = PlantManager.checkDiff(date: prevWatered)
+                        
+                        // if plot was last watered 12 hours or more ago and that last watering was within the current day, add to waterings
+                        if differenceFromNowToPrevWatering <= 12 && Calendar.current.isDateInToday(prevWatered) {
+                            plot.consecutiveWaterings += 1
+                        }
                     }
                 }
             }
             
+            plot.prevWatered = plot.lastWatered
             plot.lastWatered = Date()
     
             // update images
             let view = container.subviews.filter { $0.tag == id }.first
             if let imageView = view as? UIImageView {
-                imageView.image = PlantManager.getStage(halfDaysOfCare: Int(plot.consecutiveDaysWatered), plant: Plant(rawValue: Int(plot.plant))!, lastWatered: plot.lastWatered, mature: plot.mature)
+                imageView.image = PlantManager.getStage(halfDaysOfCare: Int(plot.consecutiveWaterings), plant: Plant(rawValue: Int(plot.plant))!, lastWatered: plot.lastWatered, mature: plot.mature)
                 showEXP(near: imageView, exp: 5)
             }
         } else {
