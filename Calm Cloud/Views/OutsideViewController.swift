@@ -103,6 +103,10 @@ class OutsideViewController: UIViewController {
         honorStandMoney.isHidden = true
         coinCount.text = "\(MoneyManager.total)"
         
+        Sound.stopPlaying()
+        Sound.loadSound(resourceName: Sounds.outside.resourceName, type: Sounds.outside.type)
+        Sound.startPlaying()
+        
         AnimationManager.outsideLocation = .back
         AnimationManager.movement = .staying
         sleep()

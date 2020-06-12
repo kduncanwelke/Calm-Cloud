@@ -8,6 +8,11 @@
         <attribute name="lastFed" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lastWatered" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
+    <entity name="DailyTasks" representedClassName="DailyTasks" syncable="YES" codeGenerationType="class">
+        <attribute name="activities" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="fave" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="journal" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
     <entity name="HarvestedItem" representedClassName="HarvestedItem" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="quantity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -64,5 +69,6 @@
         <element name="Photo" positionX="-63" positionY="-18" width="128" height="58"/>
         <element name="Plot" positionX="-63" positionY="27" width="128" height="148"/>
         <element name="Reminder" positionX="-63" positionY="0" width="128" height="118"/>
+        <element name="DailyTasks" positionX="-63" positionY="54" width="128" height="88"/>
     </elements>
 </model>

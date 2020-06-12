@@ -24,6 +24,7 @@ class BasketViewController: UIViewController {
     
     var itemsToShow: [BasketItem] = []
     var numberDonated = 0
+    var numberSentToStand = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,8 +73,21 @@ class BasketViewController: UIViewController {
         if segmentedControl.selectedSegmentIndex == -1 {
             doneButton.isEnabled = false
             cancelButton.isEnabled = false
-        } else {
-            doneButton.isEnabled = true
+        } else if segmentedControl.selectedSegmentIndex == 0 {
+            if numberSentToStand != 0 {
+                doneButton.isEnabled = true
+            } else {
+                doneButton.isEnabled = false
+            }
+            
+            cancelButton.isEnabled = true
+        } else if segmentedControl.selectedSegmentIndex == 1 {
+            if numberDonated != 0 {
+                doneButton.isEnabled = true
+            } else {
+                doneButton.isEnabled = false
+            }
+            
             cancelButton.isEnabled = true
         }
     }
@@ -122,13 +136,18 @@ class BasketViewController: UIViewController {
     
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
         if segmentedControl.selectedSegmentIndex == 0 {
-            DataFunctions.saveHonorStandItems()
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadHonorStand"), object: nil)
-            addedImage.animateFadeInSlow()
+            if numberSentToStand != 0 {
+                DataFunctions.saveHonorStandItems()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadHonorStand"), object: nil)
+                addedImage.animateFadeInSlow()
+            }
         } else if segmentedControl.selectedSegmentIndex == 1 {
-            DataFunctions.saveHarvest()
-            expLabel.text = "+\(randomEXP())EXP"
-            donatedView.animateFadeInSlow()
+            if numberDonated != 0 {
+                DataFunctions.saveHarvest()
+                expLabel.text = "+\(randomEXP())EXP"
+                donatedView.animateFadeInSlow()
+                numberDonated = 0
+            }
         }
         
         reset()

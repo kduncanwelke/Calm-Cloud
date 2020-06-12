@@ -11,3 +11,11 @@ import Foundation
 struct CareManager {
     static var loaded: Care?
 }
+
+struct TasksManager {
+    static var loaded: DailyTasks?
+    
+    static var journal = false
+    static var photo = false
+    static var activities = false
+}

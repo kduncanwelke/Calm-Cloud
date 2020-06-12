@@ -92,17 +92,17 @@ struct PlantManager {
         // determine which stage of growth, half days of care because plants should be watered every 12 hours
         if let halfDaysCaredFor = halfDaysOfCare {
             print(halfDaysOfCare)
-            if halfDaysCaredFor == 0 {
+            if halfDaysCaredFor <= 2 {
                 stage = 1
-            } else if halfDaysCaredFor <= 2 {
+            } else if halfDaysCaredFor > 2 && halfDaysCaredFor <= 4 {
                 stage = 2
-            } else if halfDaysCaredFor <= 4 {
+            } else if halfDaysCaredFor > 4 && halfDaysCaredFor <= 6  {
                 stage = 3
-            } else if halfDaysCaredFor <= 6 {
+            } else if halfDaysCaredFor > 6 && halfDaysCaredFor <= 8 {
                 stage = 4
-            } else if halfDaysCaredFor <= 8 {
+            } else if halfDaysCaredFor > 8 && halfDaysCaredFor <= 10 {
                 stage = 5
-            } else if halfDaysCaredFor <= 10 {
+            } else if halfDaysCaredFor > 10 && halfDaysCaredFor <= 12 {
                 stage = 6
             } else if halfDaysCaredFor >= 12 {
                 stage = 7

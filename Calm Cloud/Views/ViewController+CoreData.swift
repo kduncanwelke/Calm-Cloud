@@ -147,4 +147,29 @@ extension ViewController {
             showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
         }
     }
+    
+    func loadTasks() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        var fetchRequest = NSFetchRequest<DailyTasks>(entityName: "DailyTasks")
+        
+        do {
+            var result = try managedContext.fetch(fetchRequest)
+            if let tasks = result.first {
+                TasksManager.loaded = tasks
+                TasksManager.journal = tasks.journal
+                TasksManager.photo = tasks.fave
+                TasksManager.activities = tasks.activities
+            }
+            
+            if Recentness.isNewDay() {
+                TasksManager.journal = false
+                TasksManager.photo = false
+                TasksManager.activities = false
+                DataFunctions.saveTasks()
+            }
+            print("tasks loaded")
+        } catch let error as NSError {
+            showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
+        }
+    }
 }

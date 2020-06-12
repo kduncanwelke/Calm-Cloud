@@ -194,6 +194,11 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
                 // this should never be displayed but is here to cover the possibility
                 showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
             }
+            
+            if TasksManager.journal == false {
+                TasksManager.journal = true
+                DataFunctions.saveTasks()
+            }
         } else {
             print("text view was empty or nil")
         }

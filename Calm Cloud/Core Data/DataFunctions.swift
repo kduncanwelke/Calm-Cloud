@@ -331,4 +331,46 @@ struct DataFunctions {
             print("money not resaved")
         }
     }
+    
+    // MARK: Tasks
+    
+    static func saveTasks() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        
+        // save anew if it doesn't exist (like on app initial launch)
+        guard let tasksSave = TasksManager.loaded else {
+            let taskSave = DailyTasks(context: managedContext)
+            
+            taskSave.activities = TasksManager.activities
+            taskSave.fave = TasksManager.photo
+            taskSave.journal = TasksManager.journal
+            
+            TasksManager.loaded = taskSave
+            
+            do {
+                try managedContext.save()
+                print("saved tasks")
+            } catch {
+                // this should never be displayed but is here to cover the possibility
+                print("tasks not saved")
+            }
+            
+            return
+        }
+        
+        // otherwise rewrite data
+        tasksSave.activities = TasksManager.activities
+        tasksSave.fave = TasksManager.photo
+        tasksSave.journal = TasksManager.journal
+        
+        TasksManager.loaded = tasksSave
+        
+        do {
+            try managedContext.save()
+            print("resave successful")
+        } catch {
+            // this should never be displayed but is here to cover the possibility
+            print("tasks not resaved")
+        }
+    }
 }

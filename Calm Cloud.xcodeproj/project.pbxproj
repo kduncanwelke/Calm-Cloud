@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D00EEB92494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D00EEB82494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 */; };
+		2D00EEBD249424E3000DA1C8 /* gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D00EEBC249424E3000DA1C8 /* gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3 */; };
+		2D00EEBF24942EE2000DA1C8 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00EEBE24942EE2000DA1C8 /* TasksViewController.swift */; };
 		2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D11FD6824367EA900EC89D9 /* Journal+TextViewDelegate.swift */; };
 		2D14EBDC243E752B004CB7E2 /* ReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EBDB243E752B004CB7E2 /* ReminderManager.swift */; };
 		2D14EBDE243E7740004CB7E2 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EBDD243E7740004CB7E2 /* NotificationManager.swift */; };
@@ -73,6 +76,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D00EEB82494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio_hero_ForestDay_DIGIX05_11_362.mp3; sourceTree = "<group>"; };
+		2D00EEBC249424E3000DA1C8 /* gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3; sourceTree = "<group>"; };
+		2D00EEBE24942EE2000DA1C8 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		2D11FD6824367EA900EC89D9 /* Journal+TextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+TextViewDelegate.swift"; sourceTree = "<group>"; };
 		2D14EBDB243E752B004CB7E2 /* ReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManager.swift; sourceTree = "<group>"; };
 		2D14EBDD243E7740004CB7E2 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -259,6 +265,7 @@
 			children = (
 				2D5D6F352464830C00993969 /* MiniGameViewController.swift */,
 				2DB781712477039800EDCAF9 /* DeliveryViewController.swift */,
+				2D00EEBE24942EE2000DA1C8 /* TasksViewController.swift */,
 				2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */,
 				2DC95DDE2485AC160085DD14 /* HarvestViewController.swift */,
 				2D2EF6A3246600FF00E497DC /* InventoryViewController.swift */,
@@ -270,6 +277,8 @@
 			isa = PBXGroup;
 			children = (
 				2DD2C31A246353310070934D /* Sounds.swift */,
+				2D00EEB82494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 */,
+				2D00EEBC249424E3000DA1C8 /* gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3 */,
 				2DD2C318246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 */,
 			);
 			path = Sounds;
@@ -368,10 +377,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D00EEBD249424E3000DA1C8 /* gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3 in Resources */,
 				2D48CC46242548B400D0FBBB /* LaunchScreen.storyboard in Resources */,
 				2D7E2AF324477CFA006C76BD /* Assets.xcassets in Resources */,
 				2D48CC41242548B200D0FBBB /* Main.storyboard in Resources */,
 				2DD2C319246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 in Resources */,
+				2D00EEB92494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +410,7 @@
 				2DB781722477039800EDCAF9 /* DeliveryViewController.swift in Sources */,
 				2D14EBDC243E752B004CB7E2 /* ReminderManager.swift in Sources */,
 				2DB6E542248ADAE6007DA241 /* Basket+TableView.swift in Sources */,
+				2D00EEBF24942EE2000DA1C8 /* TasksViewController.swift in Sources */,
 				2DC5EBCB2474886300741E5E /* Colors.swift in Sources */,
 				2D8F9049243FC51800211802 /* Activities+TableView.swift in Sources */,
 				2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */,

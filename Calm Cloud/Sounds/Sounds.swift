@@ -43,7 +43,12 @@ class Sound {
 }
 
 struct Sounds {
-    static let calmMusic = Sound(resourceName: "audio_hero_NightAmbienceCalm+PE011801", type: "mp3")
+    static let night = Sound(resourceName: "audio_hero_NightAmbienceCalm+PE011801", type: "mp3")
+    static let outside = Sound(resourceName: "audio_hero_ForestDay_DIGIX05_11_362", type: "mp3")
+    static let inside = Sound(resourceName: "gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic", type: "mp3")
 }
 
-// sound by Audio Hero on Zapsplat
+// Night Ambience and Forest Ambience by Audio Hero on Zapsplat
+// Residential Indoor Ambience by Gain Walkers
+
+// Loire and You Will Know by Taylor Howard on Zapsplat

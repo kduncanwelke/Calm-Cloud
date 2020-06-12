@@ -104,7 +104,7 @@ extension OutsideViewController {
         if plot.lastWatered == nil {
             // plot has never been watered ie it's new
             plot.lastWatered = Date()
-            plot.consecutiveWaterings = 0
+            plot.consecutiveWaterings = 1
             print("new watering")
             
             // update images

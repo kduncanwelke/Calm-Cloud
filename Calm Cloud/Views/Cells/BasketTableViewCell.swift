@@ -34,8 +34,16 @@ class BasketTableViewCell: UITableViewCell {
     
     @IBAction func stepperChanged(_ sender: UIStepper) {
         var intified = Int(stepper.value)
+        
+        var direction: Direction
+        if intified < Int(selectedNumber.text ?? "0") ?? 0 {
+            direction = .down
+        } else {
+            direction = .up
+        }
+        
         selectedNumber.text = "\(intified)"
         
-        self.cellDelegate?.didChangeQuantity(sender: self, number: intified)
+        self.cellDelegate?.didChangeQuantity(sender: self, number: intified, direction: direction)
     }
 }

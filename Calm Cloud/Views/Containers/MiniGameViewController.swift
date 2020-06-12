@@ -66,7 +66,10 @@ class MiniGameViewController: UIViewController {
     }
     
     func randomCoinReward() -> Int? {
-        if Bool.random() {
+        let chance = Int.random(in: 1...10)
+        
+        // 1 in 10 chance of getting reward
+        if chance == 7 {
             return Int.random(in: 1...5)
         } else {
             return nil

@@ -76,7 +76,7 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
         } catch {
             print("couldn't write image")
         }
-        
+       
         savePhoto()
     }
     
@@ -94,6 +94,11 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
         } catch {
             // this should never be displayed but is here to cover the possibility
             showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
+        }
+        
+        if TasksManager.photo == false {
+            TasksManager.photo = true
+            DataFunctions.saveTasks()
         }
     }
     

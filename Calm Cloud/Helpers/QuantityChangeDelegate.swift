@@ -9,5 +9,10 @@
 import Foundation
 
 protocol QuantityChangeDelegate: class {
-    func didChangeQuantity(sender: BasketTableViewCell, number: Int)
+    func didChangeQuantity(sender: BasketTableViewCell, number: Int, direction: Direction)
+}
+
+enum Direction {
+    case up
+    case down
 }

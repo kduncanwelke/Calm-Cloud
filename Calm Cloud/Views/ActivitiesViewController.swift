@@ -73,6 +73,13 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
                 for item in loaded {
                     completion[Int(item.id)] = true
                 }
+                
+                if loaded.count >= 3 {
+                    if TasksManager.activities == false {
+                        TasksManager.activities = true
+                        DataFunctions.saveTasks()
+                    }
+                }
             }
             
             print("entries loaded")
@@ -96,6 +103,8 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
             // this should never be displayed but is here to cover the possibility
             showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
         }
+        
+        loadCompleted()
     }
     
     func deleteIncompleteActivity(id: Int) {

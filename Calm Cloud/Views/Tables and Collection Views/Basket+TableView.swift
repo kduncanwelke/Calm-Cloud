@@ -45,21 +45,39 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource, Quan
         return cell
     }
     
-    func didChangeQuantity(sender: BasketTableViewCell, number: Int) {
+    func didChangeQuantity(sender: BasketTableViewCell, number: Int, direction: Direction) {
         let path = self.tableView.indexPath(for: sender)
         if let selected = path {
             let item = itemsToShow[selected.row]
             
             if segmentedControl.selectedSegmentIndex == 0 {
                 Harvested.inStand[item.plant] = number
+                
+                switch direction {
+                case .down:
+                    numberSentToStand -= 1
+                case .up:
+                    numberSentToStand += 1
+                }
             } else if segmentedControl.selectedSegmentIndex == 1 {
+                switch direction {
+                case .down:
                 if let oldCount = Harvested.basketCounts[item.plant] {
-                    let newCount = oldCount - number
+                    let newCount = oldCount + 1
                     Harvested.basketCounts[item.plant] = newCount
-                    numberDonated += number
+                    numberDonated -= 1
+                }
+                case .up:
+                if let oldCount = Harvested.basketCounts[item.plant] {
+                    let newCount = oldCount - 1
+                    Harvested.basketCounts[item.plant] = newCount
+                    numberDonated += 1
+                }
                 }
             }
             
+            // toggle buttons based on selection, not active if no items are selected
+            toggleButtons()
             print("quantity delegate called")
         }
     }

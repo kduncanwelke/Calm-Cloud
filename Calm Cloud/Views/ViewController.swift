@@ -41,6 +41,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var coinCount: UILabel!
     @IBOutlet weak var coinImage: UIImageView!
     
+    @IBOutlet weak var tasksView: UIView!
+    
+    
     // MARK: Variables
     
     var hasFood = false
@@ -77,15 +80,19 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateMoney), name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(closeTasks), name: NSNotification.Name(rawValue: "closeTasks"), object: nil)
+        
         
         openDoor.isHidden = true
         plusEXPLabel.isHidden = true
        
-        // load sounds
-        Sound.loadSound(resourceName: Sounds.calmMusic.resourceName, type: Sounds.calmMusic.type)
+        // load sound
+        Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
+        Sound.startPlaying()
         
         Recentness.checkIfNewDay()
         
+        loadTasks()
         loadPhotos()
         loadEntries()
         loadCare()
@@ -197,6 +204,9 @@ class ViewController: UIViewController {
     
     @objc func returnIndoors() {
         // hide open door and restart animation when returning indoors
+        Sound.stopPlaying()
+        Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
+        Sound.startPlaying()
         door.isHidden = false
         openDoor.isHidden = true
         stopped = false
@@ -216,6 +226,11 @@ class ViewController: UIViewController {
         view.sendSubviewToBack(containerView)
         stopped = false
         stopMoving()
+    }
+    
+    @objc func closeTasks() {
+        // close tasks container when user dismisses
+        view.sendSubviewToBack(tasksView)
     }
 
     @objc func closeDelivery() {
@@ -544,8 +559,12 @@ class ViewController: UIViewController {
             lightsOffButton.setTitleColor(UIColor.white, for: .normal)
             lightsOff = false
             stopped = false
-            // turn off soothing night sounds
+            
+            // turn off soothing night sounds and return to previous sound
             Sound.stopPlaying()
+            Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
+            Sound.startPlaying()
+            
             stopMoving()
         } else {
             // if lights are currently on, activate dark layers and send kitty to sleep
@@ -572,7 +591,10 @@ class ViewController: UIViewController {
             lightsOffButton.setTitle("  Lights On", for: .normal)
             lightsOffButton.setTitleColor(UIColor.black, for: .normal)
             lightsOff = true
-            // turn on soothing night sounds
+            
+            // remove previous sound and turn on soothing night sounds
+            Sound.stopPlaying()
+            Sound.loadSound(resourceName: Sounds.night.resourceName, type: Sounds.night.type)
             Sound.startPlaying()
         }
     }
@@ -586,6 +608,11 @@ class ViewController: UIViewController {
             self.view.bringSubviewToFront(self.receivedPackageContainer)
             self.receivedPackageContainer.animateBounce()
         }
+    }
+    
+    @IBAction func toDoTapped(_ sender: UIButton) {
+        view.bringSubviewToFront(tasksView)
+         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTasks"), object: nil)
     }
     
     @IBAction func remindersTapped(_ sender: UIButton) {
