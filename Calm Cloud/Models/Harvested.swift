@@ -68,7 +68,7 @@ struct Harvested {
     // handle random purchases 'disappearance' from mysterious buyers we never see
     static func randomPurchases() -> Int? {
         // only check once per day, if not a new day exit
-        if Recentness.isNewDay() == false {
+        if Recentness.checkIfNewDay() == false {
             return nil
         }
         

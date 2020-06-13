@@ -18,4 +18,5 @@ struct TasksManager {
     static var journal = false
     static var photo = false
     static var activities = false
+    static var rewardCollected = true
 }

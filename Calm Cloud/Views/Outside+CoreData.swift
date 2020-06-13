@@ -117,11 +117,11 @@ extension OutsideViewController {
             // plant getting new watering date
             print("new watering date")
             
-            if Recentness.isNewDay() {
+           if let lastWatered = plot.lastWatered {
+                if Calendar.current.isDateInToday(lastWatered) == false {
                 // if it's a new day, plants can be watered
                 plot.consecutiveWaterings += 1
             } else {
-                if let lastWatered = plot.lastWatered {
                     let differenceFromNowToLastWatering = PlantManager.checkDiff(date: lastWatered)
                     
                     // if plot was last watered 12 hours or more ago and that last watering was within the current day, add to waterings

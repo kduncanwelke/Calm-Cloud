@@ -56,7 +56,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
         do {
             loaded = try managedContext.fetch(fetchRequest)
             
-            if Recentness.isNewDay() {
+            if Recentness.checkIfNewDay() {
                 // if it's a new day, removed all saved completions
                 for item in loaded {
                     managedContext.delete(item)

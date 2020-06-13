@@ -17,7 +17,7 @@ struct PlantManager {
             let diff = components.hour
             
             // if it's a new day plants can be watered (aka watering is reset)
-            if Recentness.isNewDay() {
+            if calendar.isDateInToday(chosenDate) == false {
                 return true
             }
             

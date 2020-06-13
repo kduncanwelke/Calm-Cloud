@@ -32,25 +32,24 @@ class TasksViewController: UIViewController {
     
     func toggleChecks() {
         if TasksManager.activities {
-            activitiesComplete.isHidden = false
+            activitiesComplete.image = UIImage(named: "correct")
         } else {
-            activitiesComplete.isHidden = true
+            activitiesComplete.image = UIImage(named: "unchecked")
         }
         
         if TasksManager.journal {
-            journalComplete.isHidden = false
+            journalComplete.image = UIImage(named: "correct")
         } else {
-            journalComplete.isHidden = true
+            journalComplete.image = UIImage(named: "unchecked")
         }
         
         if TasksManager.photo {
-            photoComplete.isHidden = false
+            photoComplete.image = UIImage(named: "correct")
         } else {
-            photoComplete.isHidden = true
-            print("show photo")
+            photoComplete.image = UIImage(named: "unchecked")
         }
         
-        if TasksManager.activities && TasksManager.journal && TasksManager.photo {
+        if TasksManager.activities && TasksManager.journal && TasksManager.photo && TasksManager.rewardCollected == false {
             allComplete.isHidden = false
             getReward.isHidden = false
         } else {
@@ -71,6 +70,11 @@ class TasksViewController: UIViewController {
     
     @IBAction func rewardPressed(_ sender: UIButton) {
         // add coin reward
+        MoneyManager.total += Int.random(in: 10...15)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
+        getReward.isHidden = true
+        TasksManager.rewardCollected = true
+        DataFunctions.saveTasks()
     }
     
 

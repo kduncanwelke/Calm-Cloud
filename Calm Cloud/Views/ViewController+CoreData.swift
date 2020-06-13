@@ -161,11 +161,13 @@ extension ViewController {
                 TasksManager.activities = tasks.activities
             }
             
-            if Recentness.isNewDay() {
+            if Recentness.checkIfNewDay() {
                 TasksManager.journal = false
                 TasksManager.photo = false
                 TasksManager.activities = false
+                TasksManager.rewardCollected = false
                 DataFunctions.saveTasks()
+                print("new day")
             }
             print("tasks loaded")
         } catch let error as NSError {

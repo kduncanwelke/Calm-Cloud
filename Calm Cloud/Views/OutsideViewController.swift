@@ -140,8 +140,10 @@ class OutsideViewController: UIViewController {
         if let income = Harvested.randomPurchases() {
             // show collectable money
             MoneyManager.earnings += income
-            honorStandMoney.isHidden = false
-            DataFunctions.saveHonorStandItems()
+            if income != 0 {
+                honorStandMoney.isHidden = false
+                DataFunctions.saveHonorStandItems()
+            }
         }
         
         loadHonorStand()

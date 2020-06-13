@@ -92,10 +92,10 @@ class ViewController: UIViewController {
         
         Recentness.checkIfNewDay()
         
-        loadTasks()
         loadPhotos()
         loadEntries()
         loadCare()
+        loadTasks()
         DataFunctions.loadLevel()
         DataFunctions.loadMoney()
         loadUI()
@@ -510,10 +510,14 @@ class ViewController: UIViewController {
     
     @IBAction func tapOnToy(_ sender: UITapGestureRecognizer) {
         summonedToToy = true
-        toyImage.animationImages = AnimationManager.toyAnimation
-        toyImage.animationDuration = 0.3
-        toyImage.animationRepeatCount = 2
-        toyImage.startAnimating()
+        if AnimationManager.movement == .staying && AnimationManager.location == .toy {
+            // do nothing, cat might be playing with toy already
+        } else {
+            toyImage.animationImages = AnimationManager.toyAnimation
+            toyImage.animationDuration = 0.3
+            toyImage.animationRepeatCount = 2
+            toyImage.startAnimating()
+        }
     }
     
     @IBAction func cleanPotty(_ sender: UITapGestureRecognizer) {
@@ -612,7 +616,7 @@ class ViewController: UIViewController {
     
     @IBAction func toDoTapped(_ sender: UIButton) {
         view.bringSubviewToFront(tasksView)
-         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTasks"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTasks"), object: nil)
     }
     
     @IBAction func remindersTapped(_ sender: UIButton) {

@@ -338,7 +338,7 @@ struct DataFunctions {
         var managedContext = CoreDataManager.shared.managedObjectContext
         
         // save anew if it doesn't exist (like on app initial launch)
-        guard let tasksSave = TasksManager.loaded else {
+        guard let prevSave = TasksManager.loaded else {
             let taskSave = DailyTasks(context: managedContext)
             
             taskSave.activities = TasksManager.activities
@@ -359,11 +359,11 @@ struct DataFunctions {
         }
         
         // otherwise rewrite data
-        tasksSave.activities = TasksManager.activities
-        tasksSave.fave = TasksManager.photo
-        tasksSave.journal = TasksManager.journal
+        prevSave.activities = TasksManager.activities
+        prevSave.fave = TasksManager.photo
+        prevSave.journal = TasksManager.journal
         
-        TasksManager.loaded = tasksSave
+        TasksManager.loaded = prevSave
         
         do {
             try managedContext.save()
