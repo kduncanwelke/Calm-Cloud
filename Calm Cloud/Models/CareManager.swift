@@ -19,4 +19,5 @@ struct TasksManager {
     static var photo = false
     static var activities = false
     static var rewardCollected = true
+    static var lastOpened: Date?
 }

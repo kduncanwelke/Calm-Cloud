@@ -150,7 +150,7 @@ extension OutsideViewController {
         
         switch AnimationManager.outsideLocation {
         case .ceiling:
-            destination = CGPoint(x: cloudKitty.frame.midX, y: cloudKitty.frame.midY) //CGPoint(x: container.frame.width/2, y: container.frame.height/1.2)
+            destination = CGPoint(x: container.frame.width/2, y: container.frame.height/6)
         case .back:
             destination = CGPoint(x: container.frame.width/2, y: (container.frame.height/3)*1.52)
         case .front:

@@ -52,6 +52,9 @@ class TasksViewController: UIViewController {
         if TasksManager.activities && TasksManager.journal && TasksManager.photo && TasksManager.rewardCollected == false {
             allComplete.isHidden = false
             getReward.isHidden = false
+        } else if TasksManager.activities && TasksManager.journal && TasksManager.photo && TasksManager.rewardCollected == true {
+            allComplete.isHidden = false
+            getReward.isHidden = true
         } else {
             allComplete.isHidden = true
             getReward.isHidden = true

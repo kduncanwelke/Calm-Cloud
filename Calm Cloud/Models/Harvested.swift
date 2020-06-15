@@ -68,8 +68,11 @@ struct Harvested {
     // handle random purchases 'disappearance' from mysterious buyers we never see
     static func randomPurchases() -> Int? {
         // only check once per day, if not a new day exit
-        if Recentness.checkIfNewDay() == false {
-            return nil
+        if let lastOpened = TasksManager.lastOpened {
+            if Calendar.current.isDateInToday(lastOpened) == false {
+                // if same day exit
+                return nil
+            }
         }
         
         var income = 0

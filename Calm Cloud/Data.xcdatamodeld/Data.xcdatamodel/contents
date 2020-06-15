@@ -12,6 +12,7 @@
         <attribute name="activities" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="fave" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="journal" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastOpened" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="rewardCollected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <entity name="HarvestedItem" representedClassName="HarvestedItem" syncable="YES" codeGenerationType="class">
@@ -61,7 +62,7 @@
     <elements>
         <element name="ActivityId" positionX="-63" positionY="27" width="128" height="58"/>
         <element name="Care" positionX="-63" positionY="27" width="128" height="88"/>
-        <element name="DailyTasks" positionX="-63" positionY="54" width="128" height="103"/>
+        <element name="DailyTasks" positionX="-63" positionY="54" width="128" height="118"/>
         <element name="HarvestedItem" positionX="-63" positionY="54" width="128" height="73"/>
         <element name="HonorStandItem" positionX="-63" positionY="54" width="128" height="73"/>
         <element name="InventoryItem" positionX="-63" positionY="45" width="128" height="73"/>

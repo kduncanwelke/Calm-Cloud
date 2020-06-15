@@ -82,15 +82,13 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(closeTasks), name: NSNotification.Name(rawValue: "closeTasks"), object: nil)
         
-        
+
         openDoor.isHidden = true
         plusEXPLabel.isHidden = true
        
         // load sound
         Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
         Sound.startPlaying()
-        
-        Recentness.checkIfNewDay()
         
         loadPhotos()
         loadEntries()
@@ -462,6 +460,7 @@ class ViewController: UIViewController {
     @IBAction func catTouched(_ sender: UIPanGestureRecognizer) {
         if sender.state == .began {
             if AnimationManager.movement == .staying {
+                print("pet")
                 AnimationTimer.stop()
                 cloudKitty.stopAnimating()
                 cloudKitty.animationImages = AnimationManager.petAnimation

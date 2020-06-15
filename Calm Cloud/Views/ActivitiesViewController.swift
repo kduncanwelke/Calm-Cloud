@@ -56,17 +56,19 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
         do {
             loaded = try managedContext.fetch(fetchRequest)
             
-            if Recentness.checkIfNewDay() {
-                // if it's a new day, removed all saved completions
-                for item in loaded {
-                    managedContext.delete(item)
-                }
-                
-                do {
-                    try managedContext.save()
-                    print("deleted all")
-                } catch {
-                    print("Failed to save")
+            if let lastOpened = TasksManager.lastOpened {
+                if Calendar.current.isDateInToday(lastOpened) == false {
+                    // if it's a new day, removed all saved completions
+                    for item in loaded {
+                        managedContext.delete(item)
+                    }
+                    
+                    do {
+                        try managedContext.save()
+                        print("deleted all")
+                    } catch {
+                        print("Failed to save")
+                    }
                 }
             } else {
                 // same day, no changes

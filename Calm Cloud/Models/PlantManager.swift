@@ -91,23 +91,66 @@ struct PlantManager {
         
         // determine which stage of growth, half days of care because plants should be watered every 12 hours
         if let halfDaysCaredFor = halfDaysOfCare {
-            print(halfDaysOfCare)
-            if halfDaysCaredFor <= 2 {
-                stage = 1
-            } else if halfDaysCaredFor > 2 && halfDaysCaredFor <= 4 {
-                stage = 2
-            } else if halfDaysCaredFor > 4 && halfDaysCaredFor <= 6  {
-                stage = 3
-            } else if halfDaysCaredFor > 6 && halfDaysCaredFor <= 8 {
-                stage = 4
-            } else if halfDaysCaredFor > 8 && halfDaysCaredFor <= 10 {
-                stage = 5
-            } else if halfDaysCaredFor > 10 && halfDaysCaredFor <= 12 {
-                stage = 6
-            } else if halfDaysCaredFor >= 12 {
-                stage = 7
-            } else {
-                stage = 0
+            switch plant {
+            case .geranium, .redTulip:
+                // fast growers, take one week
+                if halfDaysCaredFor <= 2 {
+                    stage = 1
+                } else if halfDaysCaredFor > 2 && halfDaysCaredFor <= 4 {
+                    stage = 2
+                } else if halfDaysCaredFor > 4 && halfDaysCaredFor <= 6  {
+                    stage = 3
+                } else if halfDaysCaredFor > 6 && halfDaysCaredFor <= 8 {
+                    stage = 4
+                } else if halfDaysCaredFor > 8 && halfDaysCaredFor <= 10 {
+                    stage = 5
+                } else if halfDaysCaredFor > 10 && halfDaysCaredFor <= 12 {
+                    stage = 6
+                } else if halfDaysCaredFor >= 12 {
+                    stage = 7
+                } else {
+                    stage = 0
+                }
+            case .jade, .chard:
+                // medium growers take ten days
+                if halfDaysCaredFor <= 2 {
+                    stage = 1
+                } else if halfDaysCaredFor > 2 && halfDaysCaredFor <= 4 {
+                    stage = 2
+                } else if halfDaysCaredFor > 4 && halfDaysCaredFor <= 6  {
+                    stage = 3
+                } else if halfDaysCaredFor > 6 && halfDaysCaredFor <= 10 {
+                    stage = 4
+                } else if halfDaysCaredFor > 10 && halfDaysCaredFor <= 16 {
+                    stage = 5
+                } else if halfDaysCaredFor > 16 && halfDaysCaredFor <= 20 {
+                    stage = 6
+                } else if halfDaysCaredFor >= 20 {
+                    stage = 7
+                } else {
+                    stage = 0
+                }
+            case .lemon, .pumpkin:
+                // slow growers take two weeks
+                if halfDaysCaredFor <= 2 {
+                    stage = 1
+                } else if halfDaysCaredFor > 2 && halfDaysCaredFor <= 6 {
+                    stage = 2
+                } else if halfDaysCaredFor > 6 && halfDaysCaredFor <= 10 {
+                    stage = 3
+                } else if halfDaysCaredFor > 10 && halfDaysCaredFor <= 14 {
+                    stage = 4
+                } else if halfDaysCaredFor > 14 && halfDaysCaredFor <= 20 {
+                    stage = 5
+                } else if halfDaysCaredFor > 20 && halfDaysCaredFor <= 24 {
+                    stage = 6
+                } else if halfDaysCaredFor >= 28 {
+                    stage = 7
+                } else {
+                    stage = 0
+                }
+            case .none:
+                return nil
             }
         } else {
             return nil
