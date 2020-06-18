@@ -28,6 +28,15 @@ extension UIView {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "goToSleep"), object: nil)
         })
     }
+    
+    func moveToPotty(to destination: CGPoint, duration: TimeInterval,
+                   options: UIView.AnimationOptions) {
+        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+            self.center = destination
+        }, completion: {(finished: Bool) in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "moveToPotty"), object: nil)
+        })
+    }
 
     func floatMove(to destination: CGPoint, returnTo: CGPoint, duration: TimeInterval,
                    options: UIView.AnimationOptions) {

@@ -10,20 +10,39 @@ import Foundation
 
 struct Recentness {
     static let userDefaultDate = "userDefaultDate"
+    static var timeLeft = 0
     
-    static func checkIfNewDay() -> Bool {
+    static func lastCompleted() -> Bool {
         // check when last viewed
         let date = Date()
         let calendar = Calendar.current
-        let dateToCompare = calendar.component(.day , from: date)
+        let dateToCompare = calendar.component(.minute, from: date)
         
         let userDefaultDate = UserDefaults.standard.integer(forKey: "userDefaultDate")
         
-        if userDefaultDate != dateToCompare {
-            UserDefaults.standard.set(dateToCompare, forKey: Recentness.userDefaultDate)
-            return true
+        if dateToCompare > userDefaultDate {
+            if dateToCompare - userDefaultDate >= 15 {
+                // last completed item was more than 15 minutes ago
+                UserDefaults.standard.set(dateToCompare, forKey: Recentness.userDefaultDate)
+                timeLeft = 0
+                return true
+            } else {
+                // last completed item was within 15 minutes
+                timeLeft = 15 - (dateToCompare - userDefaultDate)
+                return false
+            }
         } else {
-            return false
+            // cases where default date is later in hour than compare date
+            if userDefaultDate - dateToCompare >= 15 {
+                // last completed item was more than 15 minutes ago
+                UserDefaults.standard.set(dateToCompare, forKey: Recentness.userDefaultDate)
+                timeLeft = 0
+                return true
+            } else {
+                // last completed item was within 15 minutes
+                timeLeft = 15 - (userDefaultDate - dateToCompare)
+                return false
+            }
         }
     }
 }

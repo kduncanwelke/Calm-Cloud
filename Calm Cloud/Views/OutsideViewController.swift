@@ -58,6 +58,7 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var levelUpImage: UIImageView!
     
     @IBOutlet weak var plusEXPLabel: UILabel!
+    @IBOutlet weak var plusEXPLabelAlt: UILabel!
     
     @IBOutlet weak var honorStand: UIImageView!
     @IBOutlet var honorStandImages: [UIImageView]!
@@ -99,7 +100,8 @@ class OutsideViewController: UIViewController {
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
         
-        plusEXPLabel.isHidden = true
+        plusEXPLabel.alpha = 0.0
+        plusEXPLabelAlt.alpha = 0.0
         honorStandMoney.isHidden = true
         coinCount.text = "\(MoneyManager.total)"
         
@@ -171,13 +173,25 @@ class OutsideViewController: UIViewController {
     
     func showEXP(near: UIImageView, exp: Int) {
         // show exp
-        plusEXPLabel.center = CGPoint(x: near.frame.midX, y: near.frame.midY-30)
-        plusEXPLabel.text = "+\(exp) EXP"
-        plusEXPLabel.alpha = 1.0
-        plusEXPLabel.isHidden = false
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
-            self.plusEXPLabel.fadeOut()
+        // choose whichever label is currently not visible
+        if plusEXPLabel.alpha == 0.0 {
+            print("label one")
+            plusEXPLabel.center = CGPoint(x: near.frame.midX, y: near.frame.midY-30)
+            plusEXPLabel.text = "+\(exp) EXP"
+            plusEXPLabel.alpha = 1.0
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
+                self.plusEXPLabel.fadeOut()
+            }
+        } else if plusEXPLabelAlt.alpha == 0.0 {
+            print("label two")
+            plusEXPLabelAlt.center = CGPoint(x: near.frame.midX, y: near.frame.midY-30)
+            plusEXPLabelAlt.text = "+\(exp) EXP"
+            plusEXPLabelAlt.alpha = 1.0
+                
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
+                self.plusEXPLabelAlt.fadeOut()
+            }
         }
     }
     

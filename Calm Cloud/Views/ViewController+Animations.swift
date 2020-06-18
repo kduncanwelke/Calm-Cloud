@@ -137,9 +137,8 @@ extension ViewController {
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
         let pottyDestination = CGPoint(x: container.frame.width/1.12, y: (container.frame.height/3)*1.55)
-        cloudKitty.move(to: pottyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
+        cloudKitty.moveToPotty(to: pottyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .potty
-        inPotty = true
     }
     
     func moveRightToToy() {
@@ -358,18 +357,12 @@ extension ViewController {
         if summonedToPotty && hasCleanPotty {
             moveIntoPotty()
             summonedToPotty = false
-        }
-        
-        if inPotty {
-            dig()
+        } else if hasCleanPotty == false {
+            linger()
+        } else if animation == 1 && hasCleanPotty {
+            moveIntoPotty()
         } else {
-            if hasCleanPotty == false {
-                linger()
-            } else if animation == 1 {
-                moveIntoPotty()
-            } else {
-                linger()
-            }
+            linger()
         }
     }
     

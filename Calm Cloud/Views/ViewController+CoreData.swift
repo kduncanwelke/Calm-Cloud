@@ -159,28 +159,21 @@ extension ViewController {
                 TasksManager.journal = tasks.journal
                 TasksManager.photo = tasks.fave
                 TasksManager.activities = tasks.activities
+                TasksManager.rewardCollected = tasks.rewardCollected
                 TasksManager.lastOpened = tasks.lastOpened
             }
             
             if let lastOpened = TasksManager.lastOpened {
                 if Calendar.current.isDateInToday(lastOpened) == false {
+                    // last opened not today, so reset tasks
                     TasksManager.journal = false
                     TasksManager.photo = false
                     TasksManager.activities = false
                     TasksManager.rewardCollected = false
-                    TasksManager.lastOpened = nil
-                    DataFunctions.saveTasks()
                     print("new day")
                 }
-            } else {
-                TasksManager.journal = false
-                TasksManager.photo = false
-                TasksManager.activities = false
-                TasksManager.rewardCollected = false
-                TasksManager.lastOpened = nil
-                DataFunctions.saveTasks()
-                print("no date new day")
             }
+            
             print("tasks loaded")
         } catch let error as NSError {
             showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")

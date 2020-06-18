@@ -37,15 +37,34 @@ class ActivityTableViewCell: UITableViewCell {
     @IBAction func checkTapped(_ sender: UIButton) {
         var isChecked = false
         
-        // set cell selection by image
-        if sender.imageView?.image?.pngData() == UIImage(named: "incomplete")?.pngData() {
-            sender.setImage(UIImage(named: "complete"), for: .normal)
-            isChecked = true
+        // if first time opened today, allow cell to be checked
+        if TasksManager.lastOpened == nil {
+            // set cell selection by image
+            if sender.imageView?.image?.pngData() == UIImage(named: "incomplete")?.pngData() {
+                sender.setImage(UIImage(named: "complete"), for: .normal)
+                isChecked = true
+            } else {
+                sender.setImage(UIImage(named: "incomplete"), for: .normal)
+                isChecked = false
+            }
+            
+            Recentness.lastCompleted()
+            self.cellDelegate?.didChangeSelectedState(sender: self, isChecked: isChecked)
+        } else if Recentness.lastCompleted() {
+            // if time between this and last item is enough, allow completion
+            // set cell selection by image
+            if sender.imageView?.image?.pngData() == UIImage(named: "incomplete")?.pngData() {
+                sender.setImage(UIImage(named: "complete"), for: .normal)
+                isChecked = true
+            } else {
+                sender.setImage(UIImage(named: "incomplete"), for: .normal)
+                isChecked = false
+            }
+            
+            self.cellDelegate?.didChangeSelectedState(sender: self, isChecked: isChecked)
         } else {
-            sender.setImage(UIImage(named: "incomplete"), for: .normal)
-            isChecked = false
+            print("too soon!")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showTooSoon"), object: nil)
         }
-        
-        self.cellDelegate?.didChangeSelectedState(sender: self, isChecked: isChecked)
     }
 }

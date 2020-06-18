@@ -15,7 +15,8 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
+    @IBOutlet weak var tooSoonView: UIView!
+    @IBOutlet weak var minutesLeft: UILabel!
     
     // MARK: Variables
     
@@ -27,12 +28,14 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(showTooSoon), name: NSNotification.Name(rawValue: "showTooSoon"), object: nil)
+        
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
         
         tableView.backgroundColor = UIColor.white
-        
+        tooSoonView.isHidden = true
         loadCompleted()
         
         let indexPath = IndexPath(row: 0, section: 0)
@@ -48,6 +51,12 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
+    @objc func showTooSoon() {
+        tooSoonView.isHidden = false
+        tooSoonView.animateBounce()
+        minutesLeft.text = "\(Recentness.timeLeft) minutes left"
+    }
+    
     func loadCompleted() {
         // load completed items
         var managedContext = CoreDataManager.shared.managedObjectContext
@@ -57,8 +66,8 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
             loaded = try managedContext.fetch(fetchRequest)
             
             if let lastOpened = TasksManager.lastOpened {
+                // if it's a new day, removed all saved completions
                 if Calendar.current.isDateInToday(lastOpened) == false {
-                    // if it's a new day, removed all saved completions
                     for item in loaded {
                         managedContext.delete(item)
                     }
@@ -68,6 +77,18 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
                         print("deleted all")
                     } catch {
                         print("Failed to save")
+                    }
+                } else {
+                    // same day, no changes
+                    for item in loaded {
+                        completion[Int(item.id)] = true
+                    }
+                    
+                    if loaded.count >= 3 {
+                        if TasksManager.activities == false {
+                            TasksManager.activities = true
+                            DataFunctions.saveTasks()
+                        }
                     }
                 }
             } else {
@@ -173,6 +194,13 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
     */
     
     // MARK: IBActions
+    
+    @IBAction func okPressed(_ sender: UIButton) {
+        tooSoonView.animateBounceOut()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [unowned self] in
+            self.tooSoonView.isHidden = true
+        }
+    }
     
     @IBAction func backPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)

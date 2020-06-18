@@ -344,6 +344,7 @@ struct DataFunctions {
             taskSave.activities = TasksManager.activities
             taskSave.fave = TasksManager.photo
             taskSave.journal = TasksManager.journal
+            taskSave.rewardCollected = TasksManager.rewardCollected
             taskSave.lastOpened = Date()
             
             TasksManager.loaded = taskSave
@@ -363,6 +364,7 @@ struct DataFunctions {
         prevSave.activities = TasksManager.activities
         prevSave.fave = TasksManager.photo
         prevSave.journal = TasksManager.journal
+        prevSave.rewardCollected = TasksManager.rewardCollected
         prevSave.lastOpened = Date()
         
         TasksManager.loaded = prevSave

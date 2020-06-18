@@ -48,6 +48,7 @@ class TasksViewController: UIViewController {
         } else {
             photoComplete.image = UIImage(named: "unchecked")
         }
+        print(TasksManager.rewardCollected)
         
         if TasksManager.activities && TasksManager.journal && TasksManager.photo && TasksManager.rewardCollected == false {
             allComplete.isHidden = false
@@ -71,6 +72,8 @@ class TasksViewController: UIViewController {
     }
     */
     
+    // MARK: IBActions
+    
     @IBAction func rewardPressed(_ sender: UIButton) {
         // add coin reward
         MoneyManager.total += Int.random(in: 10...15)
@@ -79,7 +82,6 @@ class TasksViewController: UIViewController {
         TasksManager.rewardCollected = true
         DataFunctions.saveTasks()
     }
-    
 
     @IBAction func closePressed(_ sender: UIButton) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "closeTasks"), object: nil)

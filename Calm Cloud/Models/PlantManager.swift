@@ -528,13 +528,13 @@ struct PlantManager {
 }
 
 enum Plant: Int {
-    case redTulip
-    case jade
-    case chard
-    case lemon
-    case pumpkin
-    case geranium
-    case none
+    case redTulip   // 0
+    case jade       // 1
+    case chard      // 2
+    case lemon      // 3
+    case pumpkin    // 4
+    case geranium   // 5
+    case none       // 6
 }
 
 enum Stage: Int {

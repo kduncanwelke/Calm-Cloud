@@ -37,6 +37,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var receivedPackageContainer: UIView!
     
     @IBOutlet weak var plusEXPLabel: UILabel!
+    @IBOutlet weak var plusEXPLabelAlt: UILabel!
     
     @IBOutlet weak var coinCount: UILabel!
     @IBOutlet weak var coinImage: UIImageView!
@@ -70,6 +71,8 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(goToSleep), name: NSNotification.Name(rawValue: "goToSleep"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(moveToPotty), name: NSNotification.Name(rawValue: "moveToPotty"), object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(closeMiniGame), name: NSNotification.Name(rawValue: "closeMiniGame"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(closeDelivery), name: NSNotification.Name(rawValue: "closeDelivery"), object: nil)
@@ -84,7 +87,8 @@ class ViewController: UIViewController {
         
 
         openDoor.isHidden = true
-        plusEXPLabel.isHidden = true
+        plusEXPLabel.alpha = 0.0
+        plusEXPLabelAlt.alpha = 0.0
        
         // load sound
         Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
@@ -152,13 +156,26 @@ class ViewController: UIViewController {
     
     func showEXP(near: UIImageView, exp: Int) {
         // add label feedback to activities that produce exp, near relevant image
-        plusEXPLabel.center = CGPoint(x: near.frame.midX, y: near.frame.midY-30)
-        plusEXPLabel.text = "+\(exp) EXP"
-        plusEXPLabel.alpha = 1.0
-        plusEXPLabel.isHidden = false
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
-            self.plusEXPLabel.fadeOut()
+        // choose whichever label is currently not visible
+        if plusEXPLabel.alpha == 0.0 {
+            plusEXPLabel.center = CGPoint(x: near.frame.midX, y: near.frame.midY-30)
+            plusEXPLabel.text = "+\(exp) EXP"
+            plusEXPLabel.alpha = 1.0
+            plusEXPLabel.isHidden = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
+                self.plusEXPLabel.fadeOut()
+            }
+        } else if plusEXPLabelAlt.alpha == 0.0 {
+            plusEXPLabelAlt.center = CGPoint(x: near.frame.midX, y: near.frame.midY-30)
+            plusEXPLabelAlt.text = "+\(exp) EXP"
+            plusEXPLabelAlt.alpha = 1.0
+            plusEXPLabelAlt.isHidden = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
+                self.plusEXPLabelAlt.fadeOut()
+            }
         }
     }
     
@@ -217,6 +234,12 @@ class ViewController: UIViewController {
         cloudKitty.animationDuration = 2.0
         cloudKitty.animationRepeatCount = 0
         cloudKitty.startAnimating()
+    }
+    
+    @objc func moveToPotty() {
+        inPotty = true
+        // dig while in potty
+        dig()
     }
     
     @objc func closeMiniGame() {
@@ -408,7 +431,6 @@ class ViewController: UIViewController {
         
         if inPotty {
             inPotty = false
-            summoned()
         }
         
         if animation == 1 {

@@ -28,7 +28,13 @@ class DeliveryViewController: UIViewController {
         let random = Int.random(in: 0...5)
         let type = Plant(rawValue: random)
         selected = type
-        number = Int.random(in: 1...4)
+        
+        // if geranium or lemon (single pot plants) only give one seedling
+        if random == 3 || random == 5 {
+            number = 1
+        } else {
+            number = Int.random(in: 1...3)
+        }
         
         let name = getName()
         seedlingMessage.text = "x\(number) \(name) Seedlings"

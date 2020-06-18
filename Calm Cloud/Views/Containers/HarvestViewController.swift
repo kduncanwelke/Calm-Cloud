@@ -26,9 +26,9 @@ class HarvestViewController: UIViewController {
         let days = PlantManager.checkDiff(date: planting?.mature)
        
         if let plant = planting {
-            PlantManager.selected = .jade //Plant(rawValue: Int(plant.id))!
+            PlantManager.selected = Plant(rawValue: Int(plant.id))!
         }
-        message.text = "This plant has \(days) day(s) of maturity left before it wilts. Would you like to harvest it now?"
+        message.text = "This plant is mature and will wilt in \(days) day(s). Harvest it now?"
     }
 
     /*

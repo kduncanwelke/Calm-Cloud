@@ -255,10 +255,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
         currentPage = selectedFromCalendar
         entry = EntryManager.loadedEntries[currentPage]
         displayEntry()
-        calendarView.animateBounceOut()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [unowned self] in
-            self.calendarView.isHidden = true
-        }
+        hideCalendar()
     }
 
     @IBAction func forwardPressed(_ sender: UIButton) {
