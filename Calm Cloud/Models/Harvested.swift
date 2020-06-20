@@ -20,8 +20,13 @@ struct Harvested {
         Plant.geranium: 0,
         Plant.jade: 0,
         Plant.lemon: 0,
+        Plant.pinkTulip: 0,
         Plant.pumpkin: 0,
         Plant.redTulip: 0,
+        Plant.redGeranium: 0,
+        Plant.yellowTulip: 0,
+        Plant.whiteTulip: 0,
+        Plant.lime: 0,
     ]
     
     // list of all possible basket items
@@ -30,8 +35,13 @@ struct Harvested {
         BasketItem(name: "Jade cuttings", plant: .jade),
         BasketItem(name: "Chard stems", plant: .chard),
         BasketItem(name: "Lemons", plant: .lemon),
+        BasketItem(name: "Pink tulip cuttings", plant: .pinkTulip),
         BasketItem(name: "Pumpkins", plant: .pumpkin),
-        BasketItem(name: "Geranium cuttings", plant: .geranium)
+        BasketItem(name: "Pink geranium flowers", plant: .geranium),
+        BasketItem(name: "Yellow tulip cuttings", plant: .yellowTulip),
+        BasketItem(name: "Limes", plant: .lime),
+        BasketItem(name: "Red geranium flowers", plant: .redGeranium),
+        BasketItem(name: "White tulip cuttings", plant: .whiteTulip),
     ]
     
     static var stand: [HonorStandItem] = []
@@ -42,8 +52,13 @@ struct Harvested {
         Plant.geranium: 0,
         Plant.jade: 0,
         Plant.lemon: 0,
+        Plant.pinkTulip: 0,
         Plant.pumpkin: 0,
         Plant.redTulip: 0,
+        Plant.redGeranium: 0,
+        Plant.yellowTulip: 0,
+        Plant.whiteTulip: 0,
+        Plant.lime: 0,
     ]
     
     static func getStandImage(plant: Plant) -> UIImage {
@@ -62,6 +77,16 @@ struct Harvested {
             return #imageLiteral(resourceName: "pumpkinsale.png")
         case .redTulip:
             return #imageLiteral(resourceName: "redtulipsale.png")
+        case .redGeranium:
+            return #imageLiteral(resourceName: "redgeraniumsale.png")
+        case .yellowTulip:
+            return #imageLiteral(resourceName: "yellowtulipsale.png")
+        case .pinkTulip:
+            return #imageLiteral(resourceName: "pinktulipsale.png")
+        case .whiteTulip:
+            return #imageLiteral(resourceName: "whitetulipsale.png")
+        case .lime:
+            return #imageLiteral(resourceName: "limessale.png")
         }
     }
     

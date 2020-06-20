@@ -92,7 +92,7 @@ struct PlantManager {
         // determine which stage of growth, half days of care because plants should be watered every 12 hours
         if let halfDaysCaredFor = halfDaysOfCare {
             switch plant {
-            case .geranium, .redTulip:
+            case .geranium, .redTulip, .redGeranium, .yellowTulip, .pinkTulip, .whiteTulip:
                 // fast growers, take one week
                 if halfDaysCaredFor <= 2 {
                     stage = 1
@@ -130,7 +130,7 @@ struct PlantManager {
                 } else {
                     stage = 0
                 }
-            case .lemon, .pumpkin:
+            case .lemon, .pumpkin, .lime:
                 // slow growers take two weeks
                 if halfDaysCaredFor <= 2 {
                     stage = 1
@@ -181,6 +181,16 @@ struct PlantManager {
             return pumpkin
         case .geranium:
             return geranium
+        case .redGeranium:
+            return redGeranium
+        case .yellowTulip:
+            return yellowTulip
+        case .pinkTulip:
+            return pinkTulip
+        case .whiteTulip:
+            return whiteTulip
+        case .lime:
+            return lime
         case .none:
             return nil
         }
@@ -192,7 +202,7 @@ struct PlantManager {
     static var selected: Plant = .redTulip
     static var area: Area = .none
     
-    // MARK: Red tulip
+    // MARK: Tulips
     
     static var redTulip: UIImage {
         get {
@@ -240,6 +250,165 @@ struct PlantManager {
                     return #imageLiteral(resourceName: "redtulip7.png")
                 } else {
                     return #imageLiteral(resourceName: "redtulip7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "redtulip8.png")
+            }
+        }
+    }
+    
+    static var yellowTulip: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip1.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip2.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip3.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip4.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip5.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "yellowtulip6.png")
+                } else {
+                    return #imageLiteral(resourceName: "yellowtulip6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "yellowtulip7.png")
+                } else {
+                    return #imageLiteral(resourceName: "yellowtulip7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "redtulip8.png")
+            }
+        }
+    }
+    
+    static var pinkTulip: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip1.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip2.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip3.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip4.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip5.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "pinktulip6.png")
+                } else {
+                    return #imageLiteral(resourceName: "pinktulip6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "pinktulip7.png")
+                } else {
+                    return #imageLiteral(resourceName: "pinktulip7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "redtulip8.png")
+            }
+        }
+    }
+    
+    static var whiteTulip: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip1.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip2.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip3.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip4.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redtulip5.png")
+                } else {
+                    return #imageLiteral(resourceName: "redtulip5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "whitetulip6.png")
+                } else {
+                    return #imageLiteral(resourceName: "whitetulip6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "whitetulip7.png")
+                } else {
+                    return #imageLiteral(resourceName: "whitetulip7water.png")
                 }
             case .eight:
                 return #imageLiteral(resourceName: "redtulip8.png")
@@ -412,6 +581,61 @@ struct PlantManager {
         }
     }
     
+    // MARK: Lime
+    
+    static var lime: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplottree.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "lime1.png")
+                } else {
+                    return #imageLiteral(resourceName: "lime1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "lime2.png")
+                } else {
+                    return #imageLiteral(resourceName: "lime2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "lime3.png")
+                } else {
+                    return #imageLiteral(resourceName: "lime3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "lime4.png")
+                } else {
+                    return #imageLiteral(resourceName: "lime4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "lime5.png")
+                } else {
+                    return #imageLiteral(resourceName: "lime5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "lime6.png")
+                } else {
+                    return #imageLiteral(resourceName: "lime6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "lime7.png")
+                } else {
+                    return #imageLiteral(resourceName: "lime7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "lime8.png")
+            }
+        }
+    }
+    
     // MARK: Pumpkin
     
     static var pumpkin: UIImage {
@@ -522,6 +746,60 @@ struct PlantManager {
         }
     }
     
+    static var redGeranium: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplotsmallpot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "geranium1.png")
+                } else {
+                    return #imageLiteral(resourceName: "geranium1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "geranium2.png")
+                } else {
+                    return #imageLiteral(resourceName: "geranium2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "geranium3.png")
+                } else {
+                    return #imageLiteral(resourceName: "geranium3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "geranium4.png")
+                } else {
+                    return #imageLiteral(resourceName: "geranium4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "geranium5.png")
+                } else {
+                    return #imageLiteral(resourceName: "geranium5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "geranium6.png")
+                } else {
+                    return #imageLiteral(resourceName: "geranium6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "redgeranium.png")
+                } else {
+                    return #imageLiteral(resourceName: "redgeraniumwater.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "geranium8.png")
+            }
+        }
+    }
+    
+    
     static let emptyPlots = [#imageLiteral(resourceName: "emptyplot.png"),#imageLiteral(resourceName: "emptyplotbig.png"),#imageLiteral(resourceName: "emptyplotsmallpot.png"),#imageLiteral(resourceName: "emptyplottree.png")]
     static let maturePlants = [#imageLiteral(resourceName: "chard7.png"),#imageLiteral(resourceName: "chard7water.png"),#imageLiteral(resourceName: "geranium7.png"),#imageLiteral(resourceName: "geranium7water.png"),#imageLiteral(resourceName: "jade7.png"),#imageLiteral(resourceName: "jade7water.png"),#imageLiteral(resourceName: "lemon7.png"),#imageLiteral(resourceName: "lemon7water.png"),#imageLiteral(resourceName: "pumpkin7.png"),#imageLiteral(resourceName: "pumpkin7water.png"),#imageLiteral(resourceName: "redtulip7.png"),#imageLiteral(resourceName: "redtulip7water.png")]
     static let wiltedPlants = [#imageLiteral(resourceName: "chard8.png"),#imageLiteral(resourceName: "geranium8.png"),#imageLiteral(resourceName: "jade8.png"),#imageLiteral(resourceName: "lemon8.png"),#imageLiteral(resourceName: "pumpkin8.png"),#imageLiteral(resourceName: "redtulip8.png")]
@@ -534,7 +812,12 @@ enum Plant: Int {
     case lemon      // 3
     case pumpkin    // 4
     case geranium   // 5
-    case none       // 6
+    case redGeranium // 6
+    case yellowTulip // 7
+    case pinkTulip // 8
+    case whiteTulip // 9
+    case lime
+    case none       
 }
 
 enum Stage: Int {

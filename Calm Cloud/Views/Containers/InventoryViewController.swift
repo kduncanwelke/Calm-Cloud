@@ -121,7 +121,7 @@ extension InventoryViewController: UICollectionViewDataSource, UICollectionViewD
             cell.cellLabel.text = validSeedlings[indexPath.row].name + "\nx\(number)"
         }
         cell.cellImage.image = validSeedlings[indexPath.row].image
-        cell.backgroundColor = UIColor.white
+        cell.backgroundColor = Colors.mint
         
         return cell
     }
@@ -135,7 +135,7 @@ extension InventoryViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let tappedCell = collectionView.cellForItem(at:indexPath) as! InventoryCollectionViewCell
-        tappedCell.backgroundColor = UIColor.white
+        tappedCell.backgroundColor = Colors.mint
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
