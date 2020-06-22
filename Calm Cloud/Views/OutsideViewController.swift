@@ -17,7 +17,9 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var cloudKitty: UIImageView!
     @IBOutlet weak var messageContainer: UIView!
     @IBOutlet weak var inventoryContainer: UIView!
+    @IBOutlet weak var removeContainer: UIView!
     @IBOutlet weak var harvestContainer: UIView!
+    @IBOutlet weak var cupsMiniGameContainer: UIView!
     
     @IBOutlet weak var fencePlot1: UIImageView!
     @IBOutlet weak var fencePlot2: UIImageView!
@@ -68,11 +70,13 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var coinImage: UIImageView!
     
     @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet weak var modeMessage: UIButton!
     
     // MARK: Variables
     
     var selectedPlot = 0
     var wateringModeOn = false
+    var trowelModeOn = false
     var tappedImage: UIImageView?
     
     override func viewDidLoad() {
@@ -97,6 +101,11 @@ class OutsideViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateLevelFromBasket), name: NSNotification.Name(rawValue: "updateLevelFromBasket"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(closeRemoveMessage), name: NSNotification.Name(rawValue: "closeRemoveMessage"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(removePlant), name: NSNotification.Name(rawValue: "removePlant"), object: nil)
+        
+        
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
         
@@ -104,6 +113,7 @@ class OutsideViewController: UIViewController {
         plusEXPLabelAlt.alpha = 0.0
         honorStandMoney.isHidden = true
         coinCount.text = "\(MoneyManager.total)"
+        modeMessage.isHidden = true
         
         Sound.stopPlaying()
         Sound.loadSound(resourceName: Sounds.outside.resourceName, type: Sounds.outside.type)
@@ -176,6 +186,7 @@ class OutsideViewController: UIViewController {
         // choose whichever label is currently not visible
         if plusEXPLabel.alpha == 0.0 {
             print("label one")
+            print(plusEXPLabel.alpha)
             plusEXPLabel.center = CGPoint(x: near.frame.midX, y: near.frame.midY-30)
             plusEXPLabel.text = "+\(exp) EXP"
             plusEXPLabel.alpha = 1.0
@@ -238,14 +249,33 @@ class OutsideViewController: UIViewController {
         DataFunctions.saveHarvest()
         
         // remove plant image and delete save
-        PlantManager.getStage(halfDaysOfCare: nil, plant: .none, lastWatered: nil, mature: nil)
+        
         deletePlanting(id: selectedPlot)
         
         // show exp gain
         if let image = tappedImage {
             showEXP(near: image, exp: 15)
             updateEXP(with: 15)
+            
+            // update image
+            image.image = PlantManager.getStage(halfDaysOfCare: nil, plant: .none, lastWatered: nil, mature: nil)
         }
+    }
+    
+    @objc func removePlant() {
+        // close message popup
+        view.sendSubviewToBack(removeContainer)
+        
+        // remove plant image and delete save
+        deletePlanting(id: selectedPlot)
+        if let image = tappedImage {
+            image.image = PlantManager.getStage(halfDaysOfCare: nil, plant: .none, lastWatered: nil, mature: nil)
+        }
+    }
+    
+    @objc func closeRemoveMessage() {
+        // close message popup
+        view.sendSubviewToBack(removeContainer)
     }
     
     @objc func closeHarvestMessage() {
@@ -373,6 +403,10 @@ class OutsideViewController: UIViewController {
             // plot is not empty, if watering update watering status
             if wateringModeOn {
                 saveWatering(id: selectedPlot)
+            } else if trowelModeOn {
+                setPlotArea()
+                tappedImage = image
+                view.bringSubviewToFront(removeContainer)
             } else if image.isMatch(with: PlantManager.maturePlants) {
                 print("mature plant")
                 setPlotArea()
@@ -540,11 +574,37 @@ class OutsideViewController: UIViewController {
     @IBAction func waterModeTapped(_ sender: UIButton) {
         // toggle watering mode
         if wateringModeOn == false {
+            if trowelModeOn == true {
+                trowelModeOn = false
+            }
+            
             wateringModeOn = true
             backgroundView.backgroundColor = Colors.blue
+            modeMessage.setTitle("Tap Plants to Water", for: .normal)
+            modeMessage.setBackgroundImage(UIImage(named: "watermodebg"), for: .normal)
+            modeMessage.isHidden = false
         } else {
             wateringModeOn = false
             backgroundView.backgroundColor = Colors.pink
+            modeMessage.isHidden = true
+        }
+    }
+    
+    @IBAction func trowelModeTapped(_ sender: UIButton) {
+        if trowelModeOn == false {
+            if wateringModeOn == true {
+                wateringModeOn = false
+            }
+            
+            trowelModeOn = true
+            backgroundView.backgroundColor = Colors.tan
+            modeMessage.setTitle("Tap Plant to Remove", for: .normal)
+            modeMessage.setBackgroundImage(UIImage(named: "removebg"), for: .normal)
+            modeMessage.isHidden = false
+        } else {
+            trowelModeOn = false
+            backgroundView.backgroundColor = Colors.pink
+            modeMessage.isHidden = true
         }
     }
     
