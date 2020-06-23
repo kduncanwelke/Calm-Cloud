@@ -78,6 +78,9 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
                     } catch {
                         print("Failed to save")
                     }
+                    
+                    TasksManager.lastOpened = Date()
+                    DataFunctions.saveTasks()
                 } else {
                     // same day, no changes
                     for item in loaded {

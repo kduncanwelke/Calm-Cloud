@@ -240,6 +240,7 @@ extension ViewController {
         toyImage.startAnimating()
         AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
         hasPlayed = true
+        isPlaying = true
         setMood()
     }
     

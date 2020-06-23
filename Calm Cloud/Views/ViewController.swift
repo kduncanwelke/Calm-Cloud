@@ -41,9 +41,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var coinCount: UILabel!
     @IBOutlet weak var coinImage: UIImageView!
-    
     @IBOutlet weak var tasksView: UIView!
-    
     
     // MARK: Variables
     
@@ -53,6 +51,7 @@ class ViewController: UIViewController {
     var hasEaten = false
     var hasDrunk = false
     var hasBeenPet = false
+    var isPlaying = false
     var hasPlayed = false
     var summonedToFood = false
     var summonedToWater = false
@@ -429,6 +428,10 @@ class ViewController: UIViewController {
             toyImage.stopAnimating()
         }
         
+        if isPlaying {
+            isPlaying = false
+        }
+        
         if inPotty {
             inPotty = false
         }
@@ -531,8 +534,8 @@ class ViewController: UIViewController {
     
     @IBAction func tapOnToy(_ sender: UITapGestureRecognizer) {
         summonedToToy = true
-        if AnimationManager.movement == .staying && AnimationManager.location == .toy {
-            // do nothing, cat might be playing with toy already
+        if isPlaying {
+            // do nothing, cat is playing with toy already
         } else {
             toyImage.animationImages = AnimationManager.toyAnimation
             toyImage.animationDuration = 0.3

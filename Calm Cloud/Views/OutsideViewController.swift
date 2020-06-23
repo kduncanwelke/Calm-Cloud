@@ -78,6 +78,7 @@ class OutsideViewController: UIViewController {
     var wateringModeOn = false
     var trowelModeOn = false
     var tappedImage: UIImageView?
+    var stopped = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -244,6 +245,8 @@ class OutsideViewController: UIViewController {
     
     @objc func hideMiniGame() {
         view.sendSubviewToBack(cupsMiniGameContainer)
+        stopped = false
+        stopMovingOutside()
     }
     
     @objc func harvestPlant() {
@@ -513,6 +516,10 @@ class OutsideViewController: UIViewController {
         let animation = range.randomElement()
         cloudKitty.stopAnimating()
         
+        if stopped {
+            return
+        }
+        
         if animation == 1 {
             AnimationManager.movement = .moving
             randomMove()
@@ -572,7 +579,12 @@ class OutsideViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func miniGameTapped(_ sender: UIButton) {
+        // show mini game
+        cloudKitty.stopAnimating()
+        AnimationTimer.stop()
+        stopped = true
         view.bringSubviewToFront(cupsMiniGameContainer)
+        cupsMiniGameContainer.animateBounce()
     }
     
     @IBAction func inventoryTapped(_ sender: UIButton) {
