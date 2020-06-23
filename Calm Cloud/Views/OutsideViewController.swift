@@ -105,6 +105,8 @@ class OutsideViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(removePlant), name: NSNotification.Name(rawValue: "removePlant"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(hideMiniGame), name: NSNotification.Name(rawValue: "hideMiniGame"), object: nil)
+        
         
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
@@ -238,6 +240,10 @@ class OutsideViewController: UIViewController {
     @objc func closePopUp() {
         // close message popup
         view.sendSubviewToBack(messageContainer)
+    }
+    
+    @objc func hideMiniGame() {
+        view.sendSubviewToBack(cupsMiniGameContainer)
     }
     
     @objc func harvestPlant() {
@@ -565,6 +571,10 @@ class OutsideViewController: UIViewController {
     
     // MARK: IBActions
     
+    @IBAction func miniGameTapped(_ sender: UIButton) {
+        view.bringSubviewToFront(cupsMiniGameContainer)
+    }
+    
     @IBAction func inventoryTapped(_ sender: UIButton) {
         PlantManager.area = .none
         view.bringSubviewToFront(inventoryContainer)
@@ -598,7 +608,7 @@ class OutsideViewController: UIViewController {
             
             trowelModeOn = true
             backgroundView.backgroundColor = Colors.tan
-            modeMessage.setTitle("Tap Plant to Remove", for: .normal)
+            modeMessage.setTitle("Tap Plant to Dig Up", for: .normal)
             modeMessage.setBackgroundImage(UIImage(named: "removebg"), for: .normal)
             modeMessage.isHidden = false
         } else {

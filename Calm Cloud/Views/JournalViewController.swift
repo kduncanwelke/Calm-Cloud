@@ -110,7 +110,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
                 var managedContext = CoreDataManager.shared.managedObjectContext
                 EntryManager.loadedEntries.insert(JournalEntry(context: managedContext), at: 0)
             } else {
-                // if the entrie's first item does not match the current date there is no entry for today, so add a blank one
+                // if the entry's first item does not match the current date there is no entry for today, so add a blank one
                 if let firstEntry = EntryManager.loadedEntries.first, let dateofEntry = firstEntry.date {
                     let entryIsForToday = calendar.isDate(dateofEntry, inSameDayAs: Date())
                     
@@ -141,6 +141,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
         guard let currentEntry = entry, let chosenDate = currentEntry.date else {
             saveButton.isEnabled = true
             dateLabel.text = dateFormatter.string(from: Date())
+            textView.text = "Start typing . . ."
             
             return
         }

@@ -62,7 +62,6 @@ class MiniGameViewController: UIViewController {
         higherButton.isHidden = true
         lowerButton.isHidden = true
         againButton.isHidden = false
-        againButton.fadeIn()
     }
     
     func randomCoinReward() -> Int? {

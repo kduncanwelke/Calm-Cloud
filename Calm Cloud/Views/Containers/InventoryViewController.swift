@@ -43,12 +43,14 @@ class InventoryViewController: UIViewController {
         if PlantManager.area == .none {
             plantSeedlingButton.isHidden = true
             for seedling in Plantings.seedlings {
-                validSeedlings.append(seedling)
+                if Plantings.availableSeedlings[seedling.plant] != 0 {
+                    validSeedlings.append(seedling)
+                }
             }
         } else {
             plantSeedlingButton.isHidden = false
             for seedling in Plantings.seedlings {
-                if seedling.allowedArea == PlantManager.area {
+                if seedling.allowedArea == PlantManager.area && Plantings.availableSeedlings[seedling.plant] != 0 {
                     validSeedlings.append(seedling)
                 }
             }

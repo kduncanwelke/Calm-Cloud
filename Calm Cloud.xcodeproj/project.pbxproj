@@ -62,6 +62,7 @@
 		2DB6E542248ADAE6007DA241 /* Basket+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E541248ADAE6007DA241 /* Basket+TableView.swift */; };
 		2DB6E544248AF375007DA241 /* Harvested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E543248AF375007DA241 /* Harvested.swift */; };
 		2DB781722477039800EDCAF9 /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB781712477039800EDCAF9 /* DeliveryViewController.swift */; };
+		2DC5606F24A271D200D5AA57 /* MiniGameTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC5606E24A271D200D5AA57 /* MiniGameTwoViewController.swift */; };
 		2DC5EBCB2474886300741E5E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC5EBCA2474886300741E5E /* Colors.swift */; };
 		2DC95DDD2485A9830085DD14 /* CompareImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC95DDC2485A9830085DD14 /* CompareImages.swift */; };
 		2DC95DDF2485AC160085DD14 /* HarvestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC95DDE2485AC160085DD14 /* HarvestViewController.swift */; };
@@ -134,6 +135,7 @@
 		2DB6E541248ADAE6007DA241 /* Basket+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Basket+TableView.swift"; sourceTree = "<group>"; };
 		2DB6E543248AF375007DA241 /* Harvested.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Harvested.swift; sourceTree = "<group>"; };
 		2DB781712477039800EDCAF9 /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
+		2DC5606E24A271D200D5AA57 /* MiniGameTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniGameTwoViewController.swift; sourceTree = "<group>"; };
 		2DC5EBCA2474886300741E5E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2DC95DDC2485A9830085DD14 /* CompareImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareImages.swift; sourceTree = "<group>"; };
 		2DC95DDE2485AC160085DD14 /* HarvestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestViewController.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				2D2EF6A3246600FF00E497DC /* InventoryViewController.swift */,
 				2D07E98824A150E900FD6E66 /* RemoveViewController.swift */,
 				2DC95DDE2485AC160085DD14 /* HarvestViewController.swift */,
+				2DC5606E24A271D200D5AA57 /* MiniGameTwoViewController.swift */,
 			);
 			path = Containers;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				2D48CC3E242548B200D0FBBB /* ViewController.swift in Sources */,
 				2D7FCABC243263E800E2DEC4 /* ReminderViewController.swift in Sources */,
 				2D41EF28242D5CE20058C443 /* PhotoManager.swift in Sources */,
+				2DC5606F24A271D200D5AA57 /* MiniGameTwoViewController.swift in Sources */,
 				2DB1D48B2457415000512E4F /* ViewController+CoreData.swift in Sources */,
 				2DCC9C7B24672031006834B0 /* PlantManager.swift in Sources */,
 				2DC95DDD2485A9830085DD14 /* CompareImages.swift in Sources */,
