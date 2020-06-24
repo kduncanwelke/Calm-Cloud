@@ -106,6 +106,8 @@ class OutsideViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(removePlant), name: NSNotification.Name(rawValue: "removePlant"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCoins), name: NSNotification.Name(rawValue: "updateCoins"), object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(hideMiniGame), name: NSNotification.Name(rawValue: "hideMiniGame"), object: nil)
         
         
@@ -182,6 +184,14 @@ class OutsideViewController: UIViewController {
         // refresh these level labels when exp is gained outside
         levelLabel.text = "\(LevelManager.currentLevel)"
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
+    }
+    
+    @objc func updateCoins() {
+        coinCount.text = "\(MoneyManager.total)"
+        coinImage.animateBounce()
+        
+        // resave money
+        DataFunctions.saveMoney()
     }
     
     func showEXP(near: UIImageView, exp: Int) {

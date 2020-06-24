@@ -37,45 +37,21 @@ class ActivityTableViewCell: UITableViewCell {
     @IBAction func checkTapped(_ sender: UIButton) {
         var isChecked = false
         
-        // if first time opened today, allow cell to be checked
-        if TasksManager.lastOpened == nil {
-            // set cell selection by image
-            if sender.imageView?.image?.pngData() == UIImage(named: "incomplete")?.pngData() {
-                sender.setImage(UIImage(named: "complete"), for: .normal)
-                isChecked = true
-            }
-            
-            Recentness.lastCompleted()
-            self.cellDelegate?.didChangeSelectedState(sender: self, isChecked: isChecked)
-        } else if let lastOpened = TasksManager.lastOpened {
-            // if it's a new day, allow selection
-            if Calendar.current.isDateInToday(lastOpened) == false {
-                // set cell selection by image
-                if sender.imageView?.image?.pngData() == UIImage(named: "incomplete")?.pngData() {
-                    sender.setImage(UIImage(named: "complete"), for: .normal)
-                    isChecked = true
-                }
-                Recentness.lastCompleted()
-            } else {
-                Recentness.lastCompleted()
-                print("too soon!")
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showTooSoon"), object: nil)
-            }
-            
-        } else if Recentness.lastCompleted() {
+        if Recentness.lastCompleted() {
             // if time between this and last item is enough, allow completion
             // set cell selection by image
             if sender.imageView?.image?.pngData() == UIImage(named: "incomplete")?.pngData() {
                 sender.setImage(UIImage(named: "complete"), for: .normal)
                 isChecked = true
-            } /*else {
+            } else {
                 sender.setImage(UIImage(named: "incomplete"), for: .normal)
                 isChecked = false
-            }*/
+            }
             
+            print("enough time")
             self.cellDelegate?.didChangeSelectedState(sender: self, isChecked: isChecked)
         } else {
-            print("too soon!")
+            print("too soon")
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "showTooSoon"), object: nil)
         }
     }
