@@ -28,6 +28,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var darkOutside: UIView!
     @IBOutlet weak var containerView: UIView!
     
+    @IBOutlet weak var recordPlayer: UIImageView!
+    
     @IBOutlet weak var boxComingIn: UIImageView!
     @IBOutlet weak var boxInside: UIImageView!
     
@@ -60,6 +62,7 @@ class ViewController: UIViewController {
     var inPotty = false
     var stopped = false
     var lightsOff = false
+    var playingMusic = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -501,6 +504,27 @@ class ViewController: UIViewController {
             } else {
                 stopMoving()
             }
+        }
+    }
+    
+    @IBAction func recordPlayerTapped(_ sender: UITapGestureRecognizer) {
+        if playingMusic {
+            recordPlayer.stopAnimating()
+            playingMusic = false
+            // remove music and turn on ambient sound
+            Sound.stopPlaying()
+            Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
+            Sound.startPlaying()
+        } else {
+            playingMusic = true
+            recordPlayer.animationImages = [UIImage(named: "recordplay1")!, UIImage(named: "recordplay2")!]
+            recordPlayer.animationDuration = 2.0
+            recordPlayer.animationRepeatCount = 0
+            recordPlayer.startAnimating()
+            // remove ambient sound and turn on music
+            Sound.stopPlaying()
+            Sound.loadSound(resourceName: Sounds.music.resourceName, type: Sounds.music.type)
+            Sound.startPlaying()
         }
     }
     

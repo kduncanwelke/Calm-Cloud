@@ -600,6 +600,7 @@ class OutsideViewController: UIViewController {
     @IBAction func inventoryTapped(_ sender: UIButton) {
         PlantManager.area = .none
         view.bringSubviewToFront(inventoryContainer)
+        inventoryContainer.animateBounce()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
     }
     

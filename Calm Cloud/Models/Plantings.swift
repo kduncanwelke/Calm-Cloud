@@ -29,12 +29,14 @@ struct Plantings {
         Plant.pinkTulip: 0,
         Plant.whiteTulip: 0,
         Plant.lime: 0,
+        Plant.carrot: 0,
     ]
     
     // list of all available seedlings
     static let seedlings = [
         Seedling(name: "Red Tulip", image: UIImage(named: "redtulip")!, plant: .redTulip, allowedArea: .flowerStrips),
         Seedling(name: "Jade", image: UIImage(named: "jade")!, plant: .jade, allowedArea: .lowPot),
+        Seedling(name: "Carrot", image: UIImage(named: "carrot")!, plant: .carrot, allowedArea: .flowerStrips),
         Seedling(name: "Rainbow Chard", image: UIImage(named: "chard")!, plant: .chard, allowedArea: .planter),
         Seedling(name: "Lemon Tree", image: UIImage(named: "lemon")!, plant: .lemon, allowedArea: .tallPot),
         Seedling(name: "Pink Tulip", image: UIImage(named: "pinktulip")!, plant: .pinkTulip, allowedArea: .flowerStrips),

@@ -74,6 +74,8 @@
 		2DD50C21242D58F600073B49 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */; };
 		2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */; };
 		2DDEA32B242A98E800717E8C /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEA32A242A98E800717E8C /* AnimationManager.swift */; };
+		2DF4763D24A52BFF00EE7C2C /* you_will_know.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DF4763C24A52BFF00EE7C2C /* you_will_know.mp3 */; };
+		2DF4763F24A5317B00EE7C2C /* loire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DF4763E24A5317B00EE7C2C /* loire.mp3 */; };
 		2DFD54B124660B100096FD5C /* Plantings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFD54B024660B100096FD5C /* Plantings.swift */; };
 /* End PBXBuildFile section */
 
@@ -147,6 +149,8 @@
 		2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTimer.swift; sourceTree = "<group>"; };
 		2DDEA32A242A98E800717E8C /* AnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
+		2DF4763C24A52BFF00EE7C2C /* you_will_know.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = you_will_know.mp3; path = ../../../../../../Downloads/you_will_know.mp3; sourceTree = "<group>"; };
+		2DF4763E24A5317B00EE7C2C /* loire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = loire.mp3; path = ../../../../../../Downloads/loire.mp3; sourceTree = "<group>"; };
 		2DFD54B024660B100096FD5C /* Plantings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plantings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -284,6 +288,8 @@
 			children = (
 				2DD2C31A246353310070934D /* Sounds.swift */,
 				2D00EEB82494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 */,
+				2DF4763C24A52BFF00EE7C2C /* you_will_know.mp3 */,
+				2DF4763E24A5317B00EE7C2C /* loire.mp3 */,
 				2D00EEBC249424E3000DA1C8 /* gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3 */,
 				2DD2C318246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 */,
 			);
@@ -385,6 +391,8 @@
 			files = (
 				2D00EEBD249424E3000DA1C8 /* gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3 in Resources */,
 				2D48CC46242548B400D0FBBB /* LaunchScreen.storyboard in Resources */,
+				2DF4763F24A5317B00EE7C2C /* loire.mp3 in Resources */,
+				2DF4763D24A52BFF00EE7C2C /* you_will_know.mp3 in Resources */,
 				2D7E2AF324477CFA006C76BD /* Assets.xcassets in Resources */,
 				2D48CC41242548B200D0FBBB /* Main.storyboard in Resources */,
 				2DD2C319246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 in Resources */,

@@ -19,8 +19,8 @@ struct Recentness {
         let prevComponents = calendar.dateComponents([.hour, .minute], from: savedDate)
         let nowComponents = calendar.dateComponents([.hour, .minute], from: Date())
         
-        let difference = calendar.dateComponents([.minute], from: prevComponents, to: nowComponents).minute!
-        
+        let difference = calendar.dateComponents([.minute], from: nowComponents, to: prevComponents).minute!
+       
             if difference >= 15 {
                 // last completed item was more than 15 minutes ago
                 timeLeft = 0

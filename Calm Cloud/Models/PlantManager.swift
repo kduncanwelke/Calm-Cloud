@@ -111,7 +111,7 @@ struct PlantManager {
                 } else {
                     stage = 0
                 }
-            case .jade, .chard:
+            case .jade, .chard, .carrot:
                 // medium growers take ten days
                 if halfDaysCaredFor <= 2 {
                     stage = 1
@@ -191,6 +191,8 @@ struct PlantManager {
             return whiteTulip
         case .lime:
             return lime
+        case .carrot:
+            return carrot
         case .none:
             return nil
         }
@@ -799,6 +801,59 @@ struct PlantManager {
         }
     }
     
+    static var carrot: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "carrot1.png")
+                } else {
+                    return #imageLiteral(resourceName: "carrot1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "carrot2.png")
+                } else {
+                    return #imageLiteral(resourceName: "carrot2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "carrot3.png")
+                } else {
+                    return #imageLiteral(resourceName: "carrot3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "carrot4.png")
+                } else {
+                    return #imageLiteral(resourceName: "carrot4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "carrot5.png")
+                } else {
+                    return #imageLiteral(resourceName: "carrot5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "carrot6.png")
+                } else {
+                    return #imageLiteral(resourceName: "carrot6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "carrot7.png")
+                } else {
+                    return #imageLiteral(resourceName: "carrot7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "carrot8.png")
+            }
+        }
+    }
+    
     
     static let emptyPlots = [#imageLiteral(resourceName: "emptyplot.png"),#imageLiteral(resourceName: "emptyplotbig.png"),#imageLiteral(resourceName: "emptyplotsmallpot.png"),#imageLiteral(resourceName: "emptyplottree.png")]
     static let maturePlants = [#imageLiteral(resourceName: "chard7.png"),#imageLiteral(resourceName: "chard7water.png"),#imageLiteral(resourceName: "geranium7.png"),#imageLiteral(resourceName: "geranium7water.png"),#imageLiteral(resourceName: "jade7.png"),#imageLiteral(resourceName: "jade7water.png"),#imageLiteral(resourceName: "lemon7.png"),#imageLiteral(resourceName: "lemon7water.png"),#imageLiteral(resourceName: "pumpkin7.png"),#imageLiteral(resourceName: "pumpkin7water.png"),#imageLiteral(resourceName: "redtulip7.png"),#imageLiteral(resourceName: "redtulip7water.png")]
@@ -814,9 +869,10 @@ enum Plant: Int {
     case geranium   // 5
     case redGeranium // 6
     case yellowTulip // 7
-    case pinkTulip // 8
+    case pinkTulip  // 8
     case whiteTulip // 9
-    case lime
+    case lime       // 10
+    case carrot     // 11
     case none       
 }
 

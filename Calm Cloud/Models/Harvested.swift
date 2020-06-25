@@ -27,12 +27,14 @@ struct Harvested {
         Plant.yellowTulip: 0,
         Plant.whiteTulip: 0,
         Plant.lime: 0,
+        Plant.carrot: 0,
     ]
     
     // list of all possible basket items
     static var basketItems: [BasketItem] = [
         BasketItem(name: "Red tulip cuttings", plant: .redTulip),
         BasketItem(name: "Jade cuttings", plant: .jade),
+        BasketItem(name: "Carrots", plant: .carrot),
         BasketItem(name: "Chard stems", plant: .chard),
         BasketItem(name: "Lemons", plant: .lemon),
         BasketItem(name: "Pink tulip cuttings", plant: .pinkTulip),
@@ -59,6 +61,7 @@ struct Harvested {
         Plant.yellowTulip: 0,
         Plant.whiteTulip: 0,
         Plant.lime: 0,
+        Plant.carrot: 0,
     ]
     
     static func getStandImage(plant: Plant) -> UIImage {
@@ -87,6 +90,8 @@ struct Harvested {
             return #imageLiteral(resourceName: "whitetulipsale.png")
         case .lime:
             return #imageLiteral(resourceName: "limessale.png")
+        case .carrot:
+            return #imageLiteral(resourceName: "carrotsale.png")
         }
     }
     
