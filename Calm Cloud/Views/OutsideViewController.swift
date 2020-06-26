@@ -673,6 +673,10 @@ class OutsideViewController: UIViewController {
         honorStandMoney.isHidden = true
     }
     
+    @IBAction func storeTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "goToStore", sender: Any?.self)
+    }
+    
     @IBAction func fencePlot1Tapped(_ sender: UITapGestureRecognizer) {
         selectedPlot = 1
         tappedPlant(image: fencePlot1)

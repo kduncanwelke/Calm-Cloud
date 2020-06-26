@@ -30,6 +30,7 @@ struct Plantings {
         Plant.whiteTulip: 0,
         Plant.lime: 0,
         Plant.carrot: 0,
+        Plant.squash: 0,
     ]
     
     // list of all available seedlings
@@ -44,6 +45,7 @@ struct Plantings {
         Seedling(name: "Pink Geranium", image: UIImage(named: "geranium")!, plant: .geranium, allowedArea: .smallPot),
         Seedling(name: "Yellow Tulip", image: UIImage(named: "yellowtulip")!, plant: .yellowTulip, allowedArea: .flowerStrips),
         Seedling(name: "Lime Tree", image: UIImage(named: "lime")!, plant: .lime, allowedArea: .tallPot),
+        Seedling(name: "Yellow Squash", image: UIImage(named: "squash")!, plant: .squash, allowedArea: .vegetablePlot),
         Seedling(name: "Red Geranium", image: UIImage(named: "redgeranium")!, plant: .redGeranium, allowedArea: .smallPot),
         Seedling(name: "White Tulip", image: UIImage(named: "whitetulip")!, plant: .whiteTulip, allowedArea: .flowerStrips)
     ]

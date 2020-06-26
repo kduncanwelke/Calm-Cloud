@@ -45,6 +45,7 @@ class InventoryViewController: UIViewController {
             for seedling in Plantings.seedlings {
                 if Plantings.availableSeedlings[seedling.plant] != 0 {
                     validSeedlings.append(seedling)
+                    print(seedling.plant)
                 }
             }
         } else {
@@ -119,10 +120,15 @@ extension InventoryViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "inventoryCell", for: indexPath) as! InventoryCollectionViewCell
         
-        if let number = Plantings.availableSeedlings[validSeedlings[indexPath.row].plant] {
-            cell.cellLabel.text = validSeedlings[indexPath.row].name + "\nx\(number)"
+        var plant: Seedling
+        plant = validSeedlings[indexPath.row]
+        
+        if let number = Plantings.availableSeedlings[plant.plant] {
+            cell.numberLabel.text = "\(number) owned"
         }
-        cell.cellImage.image = validSeedlings[indexPath.row].image
+        
+        cell.cellLabel.text = plant.name
+        cell.cellImage.image = plant.image
         cell.backgroundColor = UIColor.white
         
         return cell
@@ -147,9 +153,14 @@ extension InventoryViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let availableWidth = collectionView.frame.width
-        let maxNumColumns = 3
+        var maxNumColumns = 3
+        
+        if (availableWidth / 3) < 130.0 {
+            maxNumColumns = 2
+        }
+        
         let cellWidth = (availableWidth / CGFloat(maxNumColumns)).rounded(.down)
         
-        return CGSize(width: cellWidth, height: cellWidth)
+        return CGSize(width: cellWidth, height: 150.0)
     }
 }

@@ -130,7 +130,7 @@ struct PlantManager {
                 } else {
                     stage = 0
                 }
-            case .lemon, .pumpkin, .lime:
+            case .lemon, .pumpkin, .lime, .squash:
                 // slow growers take two weeks
                 if halfDaysCaredFor <= 2 {
                     stage = 1
@@ -193,6 +193,8 @@ struct PlantManager {
             return lime
         case .carrot:
             return carrot
+        case .squash:
+            return squash
         case .none:
             return nil
         }
@@ -693,6 +695,61 @@ struct PlantManager {
         }
     }
     
+    // MARK: Yellow Squash
+    
+    static var squash: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplotbig.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "pumpkin1.png")
+                } else {
+                    return #imageLiteral(resourceName: "pumpkin1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "pumpkin2.png")
+                } else {
+                    return #imageLiteral(resourceName: "pumpkin2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "pumpkin3.png")
+                } else {
+                    return #imageLiteral(resourceName: "pumpkin3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "pumpkin4.png")
+                } else {
+                    return #imageLiteral(resourceName: "pumpkin4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "squash5.png")
+                } else {
+                    return #imageLiteral(resourceName: "squash5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "squash6.png")
+                } else {
+                    return #imageLiteral(resourceName: "squash6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "squash7.png")
+                } else {
+                    return #imageLiteral(resourceName: "squash7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "pumpkin8.png")
+            }
+        }
+    }
+    
     // MARK: Geranium
     
     static var geranium: UIImage {
@@ -873,6 +930,7 @@ enum Plant: Int {
     case whiteTulip // 9
     case lime       // 10
     case carrot     // 11
+    case squash     // 12
     case none       
 }
 

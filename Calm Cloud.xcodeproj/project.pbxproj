@@ -32,6 +32,9 @@
 		2D48CC41242548B200D0FBBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48CC3F242548B200D0FBBB /* Main.storyboard */; };
 		2D48CC46242548B400D0FBBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D48CC44242548B400D0FBBB /* LaunchScreen.storyboard */; };
 		2D5D6F362464830C00993969 /* MiniGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5D6F352464830C00993969 /* MiniGameViewController.swift */; };
+		2D60022E24A65DE0002188B1 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60022D24A65DE0002188B1 /* StoreViewController.swift */; };
+		2D60023024A6607C002188B1 /* Store+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60022F24A6607C002188B1 /* Store+CollectionView.swift */; };
+		2D60023224A66113002188B1 /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60023124A66113002188B1 /* StoreCollectionViewCell.swift */; };
 		2D70349C2490053200B952CA /* QuantityChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70349B2490053200B952CA /* QuantityChangeDelegate.swift */; };
 		2D70349E24903A7B00B952CA /* Recentness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70349D24903A7B00B952CA /* Recentness.swift */; };
 		2D7DF67D2469FCEE009B9291 /* Outside+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7DF67C2469FCEE009B9291 /* Outside+CoreData.swift */; };
@@ -107,6 +110,9 @@
 		2D48CC45242548B400D0FBBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D48CC47242548B400D0FBBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D5D6F352464830C00993969 /* MiniGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniGameViewController.swift; sourceTree = "<group>"; };
+		2D60022D24A65DE0002188B1 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
+		2D60022F24A6607C002188B1 /* Store+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+CollectionView.swift"; sourceTree = "<group>"; };
+		2D60023124A66113002188B1 /* StoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D70349B2490053200B952CA /* QuantityChangeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityChangeDelegate.swift; sourceTree = "<group>"; };
 		2D70349D24903A7B00B952CA /* Recentness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recentness.swift; sourceTree = "<group>"; };
 		2D7DF67C2469FCEE009B9291 /* Outside+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Outside+CoreData.swift"; sourceTree = "<group>"; };
@@ -244,6 +250,7 @@
 				2D2EF6A52466017E00E497DC /* InventoryCollectionViewCell.swift */,
 				2D875E102486F9480054B737 /* CalendarCollectionViewCell.swift */,
 				2DB6E53F248AD8CA007DA241 /* BasketTableViewCell.swift */,
+				2D60023124A66113002188B1 /* StoreCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -256,6 +263,7 @@
 				2D875E122486FA3F0054B737 /* Journal+CollectionView.swift */,
 				2D8F9048243FC51800211802 /* Activities+TableView.swift */,
 				2DB6E541248ADAE6007DA241 /* Basket+TableView.swift */,
+				2D60022F24A6607C002188B1 /* Store+CollectionView.swift */,
 			);
 			path = "Tables and Collection Views";
 			sourceTree = "<group>";
@@ -309,6 +317,7 @@
 				2D7DF67C2469FCEE009B9291 /* Outside+CoreData.swift */,
 				2DB781702477034000EDCAF9 /* Containers */,
 				2D7FCABB243263E800E2DEC4 /* ReminderViewController.swift */,
+				2D60022D24A65DE0002188B1 /* StoreViewController.swift */,
 				2D25AFF72489A126003BDBE6 /* BasketViewController.swift */,
 				2D7FCABD2432918C00E2DEC4 /* ReminderListViewController.swift */,
 				2D41EF30242D607C0058C443 /* FavoriteThingsViewController.swift */,
@@ -427,6 +436,7 @@
 				2D14EBDC243E752B004CB7E2 /* ReminderManager.swift in Sources */,
 				2DB6E542248ADAE6007DA241 /* Basket+TableView.swift in Sources */,
 				2D00EEBF24942EE2000DA1C8 /* TasksViewController.swift in Sources */,
+				2D60023024A6607C002188B1 /* Store+CollectionView.swift in Sources */,
 				2DC5EBCB2474886300741E5E /* Colors.swift in Sources */,
 				2D8F9049243FC51800211802 /* Activities+TableView.swift in Sources */,
 				2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */,
@@ -448,6 +458,8 @@
 				2D2654612441165800FBFF74 /* CellCheckDelegate.swift in Sources */,
 				2DAA52292472FDDA00171A7D /* LevelManager.swift in Sources */,
 				2DD50C1D242D535F00073B49 /* JournalViewController.swift in Sources */,
+				2D60023224A66113002188B1 /* StoreCollectionViewCell.swift in Sources */,
+				2D60022E24A65DE0002188B1 /* StoreViewController.swift in Sources */,
 				2D8F9042243F9E8F00211802 /* ActivityTableViewCell.swift in Sources */,
 				2DB6E540248AD8CA007DA241 /* BasketTableViewCell.swift in Sources */,
 				2D2EF6A62466017E00E497DC /* InventoryCollectionViewCell.swift in Sources */,
