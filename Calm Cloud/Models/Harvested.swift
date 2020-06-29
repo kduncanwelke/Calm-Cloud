@@ -29,6 +29,10 @@ struct Harvested {
         Plant.lime: 0,
         Plant.carrot: 0,
         Plant.squash: 0,
+        Plant.strawberry: 0,
+        Plant.watermelon: 0,
+        Plant.pepper: 0,
+        Plant.tomato: 0,
     ]
     
     // list of all possible basket items
@@ -39,12 +43,16 @@ struct Harvested {
         BasketItem(name: "Chard stems", plant: .chard),
         BasketItem(name: "Lemons", plant: .lemon),
         BasketItem(name: "Pink tulip cuttings", plant: .pinkTulip),
+        BasketItem(name: "Bell peppers", plant: .pepper),
         BasketItem(name: "Pumpkins", plant: .pumpkin),
         BasketItem(name: "Pink geranium flowers", plant: .geranium),
+        BasketItem(name: "Strawberries", plant: .strawberry),
         BasketItem(name: "Yellow tulip cuttings", plant: .yellowTulip),
         BasketItem(name: "Limes", plant: .lime),
         BasketItem(name: "Summer Squash", plant: .squash),
         BasketItem(name: "Red geranium flowers", plant: .redGeranium),
+        BasketItem(name: "Watermelons", plant: .watermelon),
+        BasketItem(name: "Grape tomatoes", plant: .tomato),
         BasketItem(name: "White tulip cuttings", plant: .whiteTulip),
     ]
     
@@ -65,6 +73,10 @@ struct Harvested {
         Plant.lime: 0,
         Plant.carrot: 0,
         Plant.squash: 0,
+        Plant.strawberry: 0,
+        Plant.watermelon: 0,
+        Plant.pepper: 0,
+        Plant.tomato: 0,
     ]
     
     static func getStandImage(plant: Plant) -> UIImage {
@@ -97,6 +109,14 @@ struct Harvested {
             return #imageLiteral(resourceName: "carrotsale.png")
         case .squash:
             return #imageLiteral(resourceName: "squashsale.png")
+        case .strawberry:
+            return #imageLiteral(resourceName: "strawberrysale.png")
+        case .watermelon:
+            return #imageLiteral(resourceName: "watermelonsale.png")
+        case .pepper:
+            return #imageLiteral(resourceName: "peppersale.png")
+        case .tomato:
+            return #imageLiteral(resourceName: "tomatosale.png")
         }
     }
     
@@ -131,7 +151,7 @@ struct Harvested {
                 Harvested.inStand[type] = newQuantity
                 
                 // random price paid
-                let prices = [10,15,20,25]
+                let prices = [7,10,14,18]
                 
                 if let price = prices.randomElement() {
                     income += (price * number)

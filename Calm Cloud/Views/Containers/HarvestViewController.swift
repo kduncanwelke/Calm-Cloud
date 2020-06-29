@@ -18,12 +18,16 @@ class HarvestViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(load), name: NSNotification.Name(rawValue: "load"), object: nil)
+        
         load()
     }
     
     @objc func load() {
         let planting = Plantings.plantings.filter { $0.id == Int16(PlantManager.chosen) }.first
-        let days = PlantManager.checkDiff(date: planting?.mature)
+        let daysLeft = PlantManager.checkDiff(date: planting?.mature)
+        print(daysLeft)
+        var days = 4 - daysLeft
        
         if let plant = planting {
             PlantManager.selected = Plant(rawValue: Int(plant.id))!

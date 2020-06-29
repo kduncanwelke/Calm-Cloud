@@ -31,6 +31,10 @@ struct Plantings {
         Plant.lime: 0,
         Plant.carrot: 0,
         Plant.squash: 0,
+        Plant.strawberry: 0,
+        Plant.watermelon: 0,
+        Plant.pepper: 0,
+        Plant.tomato: 0,
     ]
     
     // list of all available seedlings
@@ -41,12 +45,16 @@ struct Plantings {
         Seedling(name: "Rainbow Chard", image: UIImage(named: "chard")!, plant: .chard, allowedArea: .planter),
         Seedling(name: "Lemon Tree", image: UIImage(named: "lemon")!, plant: .lemon, allowedArea: .tallPot),
         Seedling(name: "Pink Tulip", image: UIImage(named: "pinktulip")!, plant: .pinkTulip, allowedArea: .flowerStrips),
+        Seedling(name: "Bell Pepper", image: UIImage(named: "pepper")!, plant: .pepper, allowedArea: .planter),
         Seedling(name: "Pumpkin", image: UIImage(named: "pumpkin")!, plant: .pumpkin, allowedArea: .vegetablePlot),
         Seedling(name: "Pink Geranium", image: UIImage(named: "geranium")!, plant: .geranium, allowedArea: .smallPot),
+        Seedling(name: "Strawberry", image: UIImage(named: "strawberry")!, plant: .strawberry, allowedArea: .vegetablePlot),
         Seedling(name: "Yellow Tulip", image: UIImage(named: "yellowtulip")!, plant: .yellowTulip, allowedArea: .flowerStrips),
         Seedling(name: "Lime Tree", image: UIImage(named: "lime")!, plant: .lime, allowedArea: .tallPot),
         Seedling(name: "Yellow Squash", image: UIImage(named: "squash")!, plant: .squash, allowedArea: .vegetablePlot),
         Seedling(name: "Red Geranium", image: UIImage(named: "redgeranium")!, plant: .redGeranium, allowedArea: .smallPot),
+        Seedling(name: "Watermelon", image: UIImage(named: "watermelon")!, plant: .watermelon, allowedArea: .vegetablePlot),
+        Seedling(name: "Grape Tomato", image: UIImage(named: "tomato")!, plant: .tomato, allowedArea: .planter),
         Seedling(name: "White Tulip", image: UIImage(named: "whitetulip")!, plant: .whiteTulip, allowedArea: .flowerStrips)
     ]
 }
