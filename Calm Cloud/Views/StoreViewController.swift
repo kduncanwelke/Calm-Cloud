@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class StoreViewController: UIViewController, UICollectionViewDelegate {
     
@@ -14,6 +15,12 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    // MARK: Variables
+    
+    var request: SKProductsRequest!
+    var products = [SKProduct]()
+    //var receipt: Receipt?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +28,29 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
         // Do any additional setup after loading the view.
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        getProducts()
     }
    
+    // MARK: Store functions
+    
+    func getProducts() {
+        var isAuthorizedForPayments: Bool {
+            return SKPaymentQueue.canMakePayments()
+        }
+        
+        if isAuthorizedForPayments {
+            validate(productIdentifiers: [Products.tenCoins])
+        }
+    }
+    
+    func validate(productIdentifiers: [String]) {
+        let productIdentifiers = Set(productIdentifiers)
+        
+        request = SKProductsRequest(productIdentifiers: productIdentifiers)
+        request.delegate = self
+        request.start()
+    }
 
     /*
     // MARK: - Navigation
@@ -38,10 +66,43 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
     // MARK: IBActions
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+        collectionView.reloadData()
     }
     
     @IBAction func backPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
+}
+
+extension StoreViewController: SKProductsRequestDelegate {
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        if response.products.count == Products.productQuantities.count {
+            products = response.products
+            for product in products {
+                print(product.localizedTitle)
+                print(product.price)
+                print(product.priceLocale)
+            }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+        }
+        
+        for invalidIdentifier in response.invalidProductIdentifiers {
+            // handle invalid case
+        }
+    }
+    
+    func request(_ request: SKRequest, didFailWithError error: Error) {
+        print("Failed to load list of products.")
+        print("Error: \(error.localizedDescription)")
+    }
+    
+    func requestDidFinish(_ request: SKRequest) {
+        /*if Receipt.isReceiptPresent() {
+            validateReceipt()
+        }*/
+    }
 }

@@ -29,7 +29,7 @@ class DeliveryViewController: UIViewController {
     }
     
     func randomSeeds() {
-        let random = Int.random(in: 0...16)
+        let random = Int.random(in: 0...17)
         let type = Plant(rawValue: random)
         selected = type
         
@@ -81,6 +81,8 @@ class DeliveryViewController: UIViewController {
             return "Bell Pepper"
         case .tomato:
             return "Grape Tomato"
+        case .kale:
+            return "Kale"
         default:
             return ""
         }

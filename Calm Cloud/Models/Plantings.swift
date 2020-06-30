@@ -35,6 +35,7 @@ struct Plantings {
         Plant.watermelon: 0,
         Plant.pepper: 0,
         Plant.tomato: 0,
+        Plant.kale: 0,
     ]
     
     // list of all available seedlings
@@ -49,6 +50,7 @@ struct Plantings {
         Seedling(name: "Pumpkin", image: UIImage(named: "pumpkin")!, plant: .pumpkin, allowedArea: .vegetablePlot),
         Seedling(name: "Pink Geranium", image: UIImage(named: "geranium")!, plant: .geranium, allowedArea: .smallPot),
         Seedling(name: "Strawberry", image: UIImage(named: "strawberry")!, plant: .strawberry, allowedArea: .vegetablePlot),
+        Seedling(name: "Kale", image: UIImage(named: "kale")!, plant: .kale, allowedArea: .planter),
         Seedling(name: "Yellow Tulip", image: UIImage(named: "yellowtulip")!, plant: .yellowTulip, allowedArea: .flowerStrips),
         Seedling(name: "Lime Tree", image: UIImage(named: "lime")!, plant: .lime, allowedArea: .tallPot),
         Seedling(name: "Yellow Squash", image: UIImage(named: "squash")!, plant: .squash, allowedArea: .vegetablePlot),

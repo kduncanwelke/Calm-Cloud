@@ -66,6 +66,7 @@
 		2DB6E542248ADAE6007DA241 /* Basket+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E541248ADAE6007DA241 /* Basket+TableView.swift */; };
 		2DB6E544248AF375007DA241 /* Harvested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E543248AF375007DA241 /* Harvested.swift */; };
 		2DB781722477039800EDCAF9 /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB781712477039800EDCAF9 /* DeliveryViewController.swift */; };
+		2DC3644B24ABE99C0059755A /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3644A24ABE99C0059755A /* Products.swift */; };
 		2DC5606F24A271D200D5AA57 /* MiniGameTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC5606E24A271D200D5AA57 /* MiniGameTwoViewController.swift */; };
 		2DC5EBCB2474886300741E5E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC5EBCA2474886300741E5E /* Colors.swift */; };
 		2DC95DDD2485A9830085DD14 /* CompareImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC95DDC2485A9830085DD14 /* CompareImages.swift */; };
@@ -145,6 +146,7 @@
 		2DB6E541248ADAE6007DA241 /* Basket+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Basket+TableView.swift"; sourceTree = "<group>"; };
 		2DB6E543248AF375007DA241 /* Harvested.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Harvested.swift; sourceTree = "<group>"; };
 		2DB781712477039800EDCAF9 /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
+		2DC3644A24ABE99C0059755A /* Products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
 		2DC5606E24A271D200D5AA57 /* MiniGameTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniGameTwoViewController.swift; sourceTree = "<group>"; };
 		2DC5EBCA2474886300741E5E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2DC95DDC2485A9830085DD14 /* CompareImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareImages.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				2D70349B2490053200B952CA /* QuantityChangeDelegate.swift */,
 				2D70349D24903A7B00B952CA /* Recentness.swift */,
 				2DC95DDC2485A9830085DD14 /* CompareImages.swift */,
+				2DC3644A24ABE99C0059755A /* Products.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				2D867DAE243E80B7005BE38F /* Alerts.swift in Sources */,
 				2D2654612441165800FBFF74 /* CellCheckDelegate.swift in Sources */,
 				2DAA52292472FDDA00171A7D /* LevelManager.swift in Sources */,
+				2DC3644B24ABE99C0059755A /* Products.swift in Sources */,
 				2DD50C1D242D535F00073B49 /* JournalViewController.swift in Sources */,
 				2D60023224A66113002188B1 /* StoreCollectionViewCell.swift in Sources */,
 				2D60022E24A65DE0002188B1 /* StoreViewController.swift in Sources */,

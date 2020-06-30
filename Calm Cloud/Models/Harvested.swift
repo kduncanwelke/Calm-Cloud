@@ -33,6 +33,7 @@ struct Harvested {
         Plant.watermelon: 0,
         Plant.pepper: 0,
         Plant.tomato: 0,
+        Plant.kale: 0,
     ]
     
     // list of all possible basket items
@@ -47,6 +48,7 @@ struct Harvested {
         BasketItem(name: "Pumpkins", plant: .pumpkin),
         BasketItem(name: "Pink geranium flowers", plant: .geranium),
         BasketItem(name: "Strawberries", plant: .strawberry),
+        BasketItem(name: "Kale", plant: .kale),
         BasketItem(name: "Yellow tulip cuttings", plant: .yellowTulip),
         BasketItem(name: "Limes", plant: .lime),
         BasketItem(name: "Summer Squash", plant: .squash),
@@ -77,6 +79,7 @@ struct Harvested {
         Plant.watermelon: 0,
         Plant.pepper: 0,
         Plant.tomato: 0,
+        Plant.kale: 0,
     ]
     
     static func getStandImage(plant: Plant) -> UIImage {
@@ -117,6 +120,8 @@ struct Harvested {
             return #imageLiteral(resourceName: "peppersale.png")
         case .tomato:
             return #imageLiteral(resourceName: "tomatosale.png")
+        case .kale:
+            return #imageLiteral(resourceName: "kalesale.png")
         }
     }
     

@@ -336,6 +336,61 @@ extension PlantManager {
         }
     }
     
+    // MARK: Kale
+    
+    static var kale: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "kale1.png")
+                } else {
+                    return #imageLiteral(resourceName: "kale1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "kale2.png")
+                } else {
+                    return #imageLiteral(resourceName: "kale2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "kale3.png")
+                } else {
+                    return #imageLiteral(resourceName: "kale3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "kale4.png")
+                } else {
+                    return #imageLiteral(resourceName: "kale4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "kale5.png")
+                } else {
+                    return #imageLiteral(resourceName: "kale5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "kale6.png")
+                } else {
+                    return #imageLiteral(resourceName: "kale6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "kale7.png")
+                } else {
+                    return #imageLiteral(resourceName: "kale7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "kale8.png")
+            }
+        }
+    }
+    
     // MARK: Bell Pepper
     
     static var pepper: UIImage {
