@@ -21,6 +21,10 @@ class DeliveryViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(loadDelivery), name: NSNotification.Name(rawValue: "loadDelivery"), object: nil)
+    }
+    
+    @objc func loadDelivery() {
         randomSeeds()
     }
     

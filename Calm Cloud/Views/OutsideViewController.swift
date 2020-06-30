@@ -317,6 +317,7 @@ class OutsideViewController: UIViewController {
     @objc func plant() {
         view.sendSubviewToBack(inventoryContainer)
         // change based on selected species
+        DataFunctions.saveInventory()
         savePlanting(id: selectedPlot, plant: PlantManager.selected.rawValue)
         
         var imageToUpdate: UIImageView
@@ -416,8 +417,8 @@ class OutsideViewController: UIViewController {
         } else if image.isMatch(with: PlantManager.wiltedPlants) {
             print("wilted plant")
             setPlotArea()
-            deletePlanting(id: selectedPlot)
-            PlantManager.getStage(halfDaysOfCare: nil, plant: .none, lastWatered: nil, mature: nil)
+            tappedImage = image
+            removePlant()
         } else {
             // plot is not empty, if watering update watering status
             if wateringModeOn {

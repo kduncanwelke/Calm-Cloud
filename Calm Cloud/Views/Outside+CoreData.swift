@@ -18,11 +18,13 @@ extension OutsideViewController {
         var fetchRequest = NSFetchRequest<InventoryItem>(entityName: "InventoryItem")
         
         do {
+            Plantings.loaded.removeAll()
             Plantings.loaded = try managedContext.fetch(fetchRequest)
             
             for item in Plantings.loaded {
                 Plantings.availableSeedlings[Plant(rawValue: Int(item.id))!] = Int(item.quantity)
             }
+            
             print("inventory loaded")
         } catch let error as NSError {
             showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")

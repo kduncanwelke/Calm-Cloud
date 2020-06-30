@@ -658,6 +658,7 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [unowned self] in
             // show message with received seedlings
             self.view.bringSubviewToFront(self.receivedPackageContainer)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadDelivery"), object: nil)
             self.receivedPackageContainer.animateBounce()
         }
     }

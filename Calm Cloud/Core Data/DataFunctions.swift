@@ -24,7 +24,7 @@ struct DataFunctions {
                 
                 inventorySave.id = Int16(type.rawValue)
                 inventorySave.quantity = Int16(quantity)
-                    
+               
                 Plantings.loaded.append(inventorySave)
                 
                 do {
@@ -42,19 +42,21 @@ struct DataFunctions {
         // otherwise rewrite data
         var resave: [InventoryItem] = []
         
-        for item in Plantings.loaded {
-            let quantity = Plantings.availableSeedlings[Plant(rawValue: Int(item.id))!]
-            item.quantity = Int16(quantity!)
-            
-            resave.append(item)
-            
-            do {
-                try managedContext.save()
-                print("resave successful")
-            } catch {
-                // this should never be displayed but is here to cover the possibility
-                print("failed to save inventory")
+        for (type, quantity) in Plantings.availableSeedlings {
+            for item in Plantings.loaded {
+                if Int(item.id) == type.rawValue {
+                    item.quantity = Int16(quantity)
+                    resave.append(item)
+                }
             }
+        }
+        
+        do {
+            try managedContext.save()
+            print("resave successful")
+        } catch {
+            // this should never be displayed but is here to cover the possibility
+            print("failed to save inventory")
         }
         
         Plantings.loaded.removeAll()
