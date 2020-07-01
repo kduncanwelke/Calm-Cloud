@@ -15,21 +15,62 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var purchaseContainer: UIView!
     
     // MARK: Variables
     
     var request: SKProductsRequest!
     var products = [SKProduct]()
-    //var receipt: Receipt?
+    var receipt: Receipt?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissPurchase), name: NSNotification.Name(rawValue: "dismissPurchase"), object: nil)
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        purchaseContainer.isHidden = true
         getProducts()
+    }
+    
+    // MARK: Custom functions
+    
+    @objc func dismissPurchase() {
+        purchaseContainer.isHidden = true
+    }
+    
+    @objc func networkRestored() {
+        if products.isEmpty {
+            getProducts()
+        }
+        
+        if Receipt.isReceiptPresent() {
+            validateReceipt()
+            print("validate on load")
+        } else {
+            refreshReceipt()
+            print("refresh on load")
+        }
+    }
+    
+    func refreshReceipt() {
+        print("Requesting refresh of receipt.")
+        let refreshRequest = SKReceiptRefreshRequest()
+        refreshRequest.delegate = self
+        refreshRequest.start()
+    }
+    
+    func validateReceipt() {
+        receipt = Receipt()
+        if let receiptStatus = receipt?.status {
+            guard receiptStatus == .validationSuccess else {
+                print(receiptStatus)
+                return
+            }
+        }
     }
    
     // MARK: Store functions
@@ -101,8 +142,8 @@ extension StoreViewController: SKProductsRequestDelegate {
     }
     
     func requestDidFinish(_ request: SKRequest) {
-        /*if Receipt.isReceiptPresent() {
+        if Receipt.isReceiptPresent() {
             validateReceipt()
-        }*/
+        }
     }
 }

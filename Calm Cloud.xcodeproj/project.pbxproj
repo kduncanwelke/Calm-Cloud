@@ -54,6 +54,15 @@
 		2D8F9045243FC2EF00211802 /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F9044243FC2EF00211802 /* ActivitiesViewController.swift */; };
 		2D8F9049243FC51800211802 /* Activities+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F9048243FC51800211802 /* Activities+TableView.swift */; };
 		2D8F904B243FC5B900211802 /* ActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F904A243FC5B900211802 /* ActivityManager.swift */; };
+		2D9B7CFB24AD15FF00CDFA8E /* StoreObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7CFA24AD15FF00CDFA8E /* StoreObserver.swift */; };
+		2D9B7CFD24AD17EB00CDFA8E /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7CFC24AD17EB00CDFA8E /* Receipt.swift */; };
+		2D9B7CFF24AD187B00CDFA8E /* StoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7CFE24AD187B00CDFA8E /* StoreHelper.swift */; };
+		2D9B7D0124AD18CF00CDFA8E /* ReceiptItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7D0024AD18CF00CDFA8E /* ReceiptItem.swift */; };
+		2D9B7D0324AD24EA00CDFA8E /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9B7D0224AD24A400CDFA8E /* libcrypto.a */; };
+		2D9B7D0524AD251E00CDFA8E /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9B7D0424AD250A00CDFA8E /* libssl.a */; };
+		2D9B7D0724AD253400CDFA8E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9B7D0624AD253400CDFA8E /* StoreKit.framework */; };
+		2D9B7D0A24AD342900CDFA8E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7D0924AD342900CDFA8E /* NetworkMonitor.swift */; };
+		2D9B7D0C24AD3CC200CDFA8E /* BuyPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7D0B24AD3CC200CDFA8E /* BuyPlantViewController.swift */; };
 		2DA33FBD24AA6E5400B4BCED /* PlantManager+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA33FBC24AA6E5400B4BCED /* PlantManager+Images.swift */; };
 		2DAA52292472FDDA00171A7D /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA52282472FDDA00171A7D /* LevelManager.swift */; };
 		2DB13216247835C100FA6D71 /* DataFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB13215247835C100FA6D71 /* DataFunctions.swift */; };
@@ -82,9 +91,11 @@
 		2DF4763D24A52BFF00EE7C2C /* you_will_know.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DF4763C24A52BFF00EE7C2C /* you_will_know.mp3 */; };
 		2DF4763F24A5317B00EE7C2C /* loire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DF4763E24A5317B00EE7C2C /* loire.mp3 */; };
 		2DFD54B124660B100096FD5C /* Plantings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFD54B024660B100096FD5C /* Plantings.swift */; };
+		B75AB16C8526E25F416A18D1 /* Pods_Calm_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 211AF311F66267DAA0A89D1C /* Pods_Calm_Cloud.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		211AF311F66267DAA0A89D1C /* Pods_Calm_Cloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calm_Cloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D00EEB82494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio_hero_ForestDay_DIGIX05_11_362.mp3; sourceTree = "<group>"; };
 		2D00EEBC249424E3000DA1C8 /* gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3; sourceTree = "<group>"; };
 		2D00EEBE24942EE2000DA1C8 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +145,16 @@
 		2D8F9044243FC2EF00211802 /* ActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
 		2D8F9048243FC51800211802 /* Activities+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activities+TableView.swift"; sourceTree = "<group>"; };
 		2D8F904A243FC5B900211802 /* ActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		2D9B7CFA24AD15FF00CDFA8E /* StoreObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreObserver.swift; sourceTree = "<group>"; };
+		2D9B7CFC24AD17EB00CDFA8E /* Receipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
+		2D9B7CFE24AD187B00CDFA8E /* StoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreHelper.swift; sourceTree = "<group>"; };
+		2D9B7D0024AD18CF00CDFA8E /* ReceiptItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItem.swift; sourceTree = "<group>"; };
+		2D9B7D0224AD24A400CDFA8E /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "Pods/OpenSSL-Universal/ios/lib/libcrypto.a"; sourceTree = "<group>"; };
+		2D9B7D0424AD250A00CDFA8E /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "Pods/OpenSSL-Universal/ios/lib/libssl.a"; sourceTree = "<group>"; };
+		2D9B7D0624AD253400CDFA8E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		2D9B7D0824AD268A00CDFA8E /* header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = header.h; sourceTree = "<group>"; };
+		2D9B7D0924AD342900CDFA8E /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		2D9B7D0B24AD3CC200CDFA8E /* BuyPlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyPlantViewController.swift; sourceTree = "<group>"; };
 		2DA33FBC24AA6E5400B4BCED /* PlantManager+Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlantManager+Images.swift"; sourceTree = "<group>"; };
 		2DAA52282472FDDA00171A7D /* LevelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
 		2DB13215247835C100FA6D71 /* DataFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFunctions.swift; sourceTree = "<group>"; };
@@ -162,6 +183,8 @@
 		2DF4763C24A52BFF00EE7C2C /* you_will_know.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = you_will_know.mp3; path = ../../../../../../Downloads/you_will_know.mp3; sourceTree = "<group>"; };
 		2DF4763E24A5317B00EE7C2C /* loire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = loire.mp3; path = ../../../../../../Downloads/loire.mp3; sourceTree = "<group>"; };
 		2DFD54B024660B100096FD5C /* Plantings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plantings.swift; sourceTree = "<group>"; };
+		7342098CA9156F3920FAC3AF /* Pods-Calm Cloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calm Cloud.debug.xcconfig"; path = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.debug.xcconfig"; sourceTree = "<group>"; };
+		E37AE3B8A5B8DED3AE9FFF65 /* Pods-Calm Cloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calm Cloud.release.xcconfig"; path = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +192,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D9B7D0324AD24EA00CDFA8E /* libcrypto.a in Frameworks */,
+				B75AB16C8526E25F416A18D1 /* Pods_Calm_Cloud.framework in Frameworks */,
+				2D9B7D0524AD251E00CDFA8E /* libssl.a in Frameworks */,
+				2D9B7D0724AD253400CDFA8E /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +211,10 @@
 				2D70349D24903A7B00B952CA /* Recentness.swift */,
 				2DC95DDC2485A9830085DD14 /* CompareImages.swift */,
 				2DC3644A24ABE99C0059755A /* Products.swift */,
+				2D9B7CFA24AD15FF00CDFA8E /* StoreObserver.swift */,
+				2D9B7CFC24AD17EB00CDFA8E /* Receipt.swift */,
+				2D9B7CFE24AD187B00CDFA8E /* StoreHelper.swift */,
+				2D9B7D0024AD18CF00CDFA8E /* ReceiptItem.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -192,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				2D41EF2E242D5EBB0058C443 /* DocumentsManager.swift */,
+				2D9B7D0924AD342900CDFA8E /* NetworkMonitor.swift */,
 				2D41EF27242D5CE20058C443 /* PhotoManager.swift */,
 				2D384C20243BCA3B00D0FFEB /* PageControllerManager.swift */,
 				2D384C22243BCB5E00D0FFEB /* EntryManager.swift */,
@@ -215,6 +247,8 @@
 			children = (
 				2D48CC38242548B200D0FBBB /* Calm Cloud */,
 				2D48CC37242548B200D0FBBB /* Products */,
+				76B069B5AFF26A257C908225 /* Pods */,
+				DFFCED311ABFD1645B72F9C7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -234,6 +268,7 @@
 				2D41EF2D242D5EAF0058C443 /* Models */,
 				2DD50C1E242D58CC00073B49 /* Views */,
 				2D48CC3F242548B200D0FBBB /* Main.storyboard */,
+				2D9B7D0824AD268A00CDFA8E /* header.h */,
 				2D8C838B2433CBB2006711F2 /* Data.xcdatamodeld */,
 				2D8C838E2433CDD9006711F2 /* CoreDataManager.swift */,
 				2DB132172478372D00FA6D71 /* Core Data */,
@@ -285,6 +320,7 @@
 		2DB781702477034000EDCAF9 /* Containers */ = {
 			isa = PBXGroup;
 			children = (
+				2D9B7D0B24AD3CC200CDFA8E /* BuyPlantViewController.swift */,
 				2D5D6F352464830C00993969 /* MiniGameViewController.swift */,
 				2DB781712477039800EDCAF9 /* DeliveryViewController.swift */,
 				2D00EEBE24942EE2000DA1C8 /* TasksViewController.swift */,
@@ -346,6 +382,26 @@
 			path = Animation;
 			sourceTree = "<group>";
 		};
+		76B069B5AFF26A257C908225 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7342098CA9156F3920FAC3AF /* Pods-Calm Cloud.debug.xcconfig */,
+				E37AE3B8A5B8DED3AE9FFF65 /* Pods-Calm Cloud.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DFFCED311ABFD1645B72F9C7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2D9B7D0624AD253400CDFA8E /* StoreKit.framework */,
+				2D9B7D0424AD250A00CDFA8E /* libssl.a */,
+				2D9B7D0224AD24A400CDFA8E /* libcrypto.a */,
+				211AF311F66267DAA0A89D1C /* Pods_Calm_Cloud.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -353,6 +409,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D48CC4A242548B400D0FBBB /* Build configuration list for PBXNativeTarget "Calm Cloud" */;
 			buildPhases = (
+				FC5EB765442F3CA6AE15A222 /* [CP] Check Pods Manifest.lock */,
 				2D48CC32242548B200D0FBBB /* Sources */,
 				2D48CC33242548B200D0FBBB /* Frameworks */,
 				2D48CC34242548B200D0FBBB /* Resources */,
@@ -417,6 +474,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		FC5EB765442F3CA6AE15A222 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Calm Cloud-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2D48CC32242548B200D0FBBB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -437,6 +519,7 @@
 				2DD2C31B246353310070934D /* Sounds.swift in Sources */,
 				2D14EBDE243E7740004CB7E2 /* NotificationManager.swift in Sources */,
 				2D07E98924A150E900FD6E66 /* RemoveViewController.swift in Sources */,
+				2D9B7CFB24AD15FF00CDFA8E /* StoreObserver.swift in Sources */,
 				2DFD54B124660B100096FD5C /* Plantings.swift in Sources */,
 				2DB1321B247843AD00FA6D71 /* Outside+Animations.swift in Sources */,
 				2DB781722477039800EDCAF9 /* DeliveryViewController.swift in Sources */,
@@ -446,6 +529,7 @@
 				2D60023024A6607C002188B1 /* Store+CollectionView.swift in Sources */,
 				2DC5EBCB2474886300741E5E /* Colors.swift in Sources */,
 				2D8F9049243FC51800211802 /* Activities+TableView.swift in Sources */,
+				2D9B7D0A24AD342900CDFA8E /* NetworkMonitor.swift in Sources */,
 				2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */,
 				2D41EF2A242D5DCF0058C443 /* Favorites+CollectionView.swift in Sources */,
 				2D7DF67D2469FCEE009B9291 /* Outside+CoreData.swift in Sources */,
@@ -454,13 +538,16 @@
 				2D7FCAB824324F2F00E2DEC4 /* PhotoViewController.swift in Sources */,
 				2D48CC3A242548B200D0FBBB /* AppDelegate.swift in Sources */,
 				2DB1D48924573DDD00512E4F /* CareManager.swift in Sources */,
+				2D9B7CFF24AD187B00CDFA8E /* StoreHelper.swift in Sources */,
 				2D41EF2F242D5EBB0058C443 /* DocumentsManager.swift in Sources */,
 				2DC95DDF2485AC160085DD14 /* HarvestViewController.swift in Sources */,
 				2D8C838D2433CBB2006711F2 /* Data.xcdatamodeld in Sources */,
 				2DD50C21242D58F600073B49 /* PhotoCollectionViewCell.swift in Sources */,
 				2D384C23243BCB5E00D0FFEB /* EntryManager.swift in Sources */,
 				2D26545E2440F6EE00FBFF74 /* OutsideViewController.swift in Sources */,
+				2D9B7D0C24AD3CC200CDFA8E /* BuyPlantViewController.swift in Sources */,
 				2DB13216247835C100FA6D71 /* DataFunctions.swift in Sources */,
+				2D9B7D0124AD18CF00CDFA8E /* ReceiptItem.swift in Sources */,
 				2D867DAE243E80B7005BE38F /* Alerts.swift in Sources */,
 				2D2654612441165800FBFF74 /* CellCheckDelegate.swift in Sources */,
 				2DAA52292472FDDA00171A7D /* LevelManager.swift in Sources */,
@@ -478,6 +565,7 @@
 				2D70349C2490053200B952CA /* QuantityChangeDelegate.swift in Sources */,
 				2D48CC3C242548B200D0FBBB /* SceneDelegate.swift in Sources */,
 				2D7FCABE2432918C00E2DEC4 /* ReminderListViewController.swift in Sources */,
+				2D9B7CFD24AD17EB00CDFA8E /* Receipt.swift in Sources */,
 				2D70349E24903A7B00B952CA /* Recentness.swift in Sources */,
 				2D384C21243BCA3B00D0FFEB /* PageControllerManager.swift in Sources */,
 				2DB1321924783F5500FA6D71 /* ViewController+Animations.swift in Sources */,
@@ -630,7 +718,10 @@
 		};
 		2D48CC4B242548B400D0FBBB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7342098CA9156F3920FAC3AF /* Pods-Calm Cloud.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A8R365GJ52;
@@ -640,16 +731,25 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/ios/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/Stuffs/Treehouse/Calm Cloud/Calm Cloud/header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/OpenSSL-Universal/ios/include";
 			};
 			name = Debug;
 		};
 		2D48CC4C242548B400D0FBBB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E37AE3B8A5B8DED3AE9FFF65 /* Pods-Calm Cloud.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A8R365GJ52;
@@ -659,10 +759,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/ios/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/Stuffs/Treehouse/Calm Cloud/Calm Cloud/header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/OpenSSL-Universal/ios/include";
 			};
 			name = Release;
 		};

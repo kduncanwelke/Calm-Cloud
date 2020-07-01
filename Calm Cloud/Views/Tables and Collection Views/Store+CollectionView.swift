@@ -61,6 +61,33 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            // in seedling shop view
+            let plant: Seedling
+            plant = Plantings.seedlings[indexPath.row]
+           
+            purchaseContainer.isHidden = false
+        } else {
+            // in coin shop view, make purchase
+            let isAuthorizedForPayments = SKPaymentQueue.canMakePayments()
+            
+            if isAuthorizedForPayments && !products.isEmpty {
+                if NetworkMonitor.connection {
+                    StoreObserver.iapObserver.buy(products[indexPath.row])
+                    print("tapped cell")
+                   // guard let points = Products.productQuantities[products[indexPath.row].productIdentifier] else { return }
+                    
+                    //pawPoints = points
+                } else {
+                    showAlert(title: "Purchases unavailable", message: "Purchases cannot be processed without a network connection - please try again")
+                }
+            } else {
+                showAlert(title: "Payments not authorized", message: "This device is not permitted to process payments")
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

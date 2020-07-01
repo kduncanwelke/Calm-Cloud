@@ -3024,7 +3024,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="closePressed:" destination="dQl-Bs-SyE" eventType="touchUpInside" id="jri-WM-L1w"/>
                                     <action selector="noPressed:" destination="zX6-ZO-hNr" eventType="touchUpInside" id="r1G-EO-5G5"/>
                                 </connections>
                             </button>
@@ -3039,7 +3038,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="goToInventory:" destination="dQl-Bs-SyE" eventType="touchUpInside" id="xxw-ww-xfF"/>
                                     <action selector="harvestPressed:" destination="zX6-ZO-hNr" eventType="touchUpInside" id="nP0-Xl-G2p"/>
                                 </connections>
                             </button>
@@ -3193,6 +3191,16 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1op-SQ-6tF">
+                                <rect key="frame" x="42" y="232" width="331" height="442"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1op-SQ-6tF" secondAttribute="height" multiplier="3:4" id="88z-Fg-peb"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="WMu-zT-Z2T"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="MwT-1M-P1X" kind="embed" id="hf2-DY-ZgG"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.88235294119999996" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -3204,9 +3212,12 @@
                             <constraint firstItem="SAg-ob-U8V" firstAttribute="trailing" secondItem="yDk-4f-1ts" secondAttribute="trailing" id="NU2-0b-UpN"/>
                             <constraint firstItem="kGw-2M-j8T" firstAttribute="centerX" secondItem="z6h-4a-qq1" secondAttribute="centerX" id="OZE-Ev-esj"/>
                             <constraint firstItem="9uP-V5-ZFd" firstAttribute="leading" secondItem="yDk-4f-1ts" secondAttribute="leading" id="RqV-79-p8U"/>
+                            <constraint firstItem="1op-SQ-6tF" firstAttribute="centerX" secondItem="yDk-4f-1ts" secondAttribute="centerX" id="SUd-rZ-7XT"/>
                             <constraint firstItem="kGw-2M-j8T" firstAttribute="top" secondItem="SAg-ob-U8V" secondAttribute="bottom" constant="20" id="WUK-GO-sE1"/>
                             <constraint firstItem="9Oh-3n-TGX" firstAttribute="leading" secondItem="yDk-4f-1ts" secondAttribute="leading" id="bAw-A2-6BR"/>
                             <constraint firstItem="rjI-8H-s1o" firstAttribute="leading" secondItem="yDk-4f-1ts" secondAttribute="leading" constant="20" id="bvX-CH-qQK"/>
+                            <constraint firstItem="1op-SQ-6tF" firstAttribute="width" secondItem="z6h-4a-qq1" secondAttribute="width" multiplier="0.8" priority="999" id="dX6-GR-TNl"/>
+                            <constraint firstItem="1op-SQ-6tF" firstAttribute="centerY" secondItem="yDk-4f-1ts" secondAttribute="centerY" id="fGW-ol-V5K"/>
                             <constraint firstItem="rjI-8H-s1o" firstAttribute="top" secondItem="9uP-V5-ZFd" secondAttribute="bottom" constant="23" id="fms-Wy-hjD"/>
                             <constraint firstItem="9uP-V5-ZFd" firstAttribute="top" secondItem="z6h-4a-qq1" secondAttribute="top" id="hHD-Ck-Src"/>
                             <constraint firstItem="yDk-4f-1ts" firstAttribute="bottom" secondItem="kGw-2M-j8T" secondAttribute="bottom" constant="20" id="iRE-DH-PqA"/>
@@ -3218,6 +3229,7 @@
                     <navigationItem key="navigationItem" id="1NI-YP-rmu"/>
                     <connections>
                         <outlet property="collectionView" destination="SAg-ob-U8V" id="oMi-cu-25r"/>
+                        <outlet property="purchaseContainer" destination="1op-SQ-6tF" id="xtg-ec-cdz"/>
                         <outlet property="segmentedControl" destination="afu-cr-XzG" id="OsV-rh-0bN"/>
                     </connections>
                 </viewController>
@@ -3606,7 +3618,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="closePressed:" destination="dQl-Bs-SyE" eventType="touchUpInside" id="AEw-iU-LMZ"/>
                                     <action selector="noTapped:" destination="BcL-y1-2Pk" eventType="touchUpInside" id="aP6-Bq-jfW"/>
                                 </connections>
                             </button>
@@ -3621,7 +3632,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="goToInventory:" destination="dQl-Bs-SyE" eventType="touchUpInside" id="b4B-zK-jBP"/>
                                     <action selector="yesTapped:" destination="BcL-y1-2Pk" eventType="touchUpInside" id="uFa-Ep-seo"/>
                                 </connections>
                             </button>
@@ -3682,7 +3692,6 @@
                                 </state>
                                 <connections>
                                     <action selector="donePressed:" destination="12w-ta-wt2" eventType="touchUpInside" id="TRd-D6-ebY"/>
-                                    <action selector="donePressed:" destination="0Fm-eM-Suj" eventType="touchUpInside" id="VJa-IZ-tXt"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7af-Xn-R1s">
@@ -3814,6 +3823,98 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1344.2028985507247" y="-679.6875"/>
+        </scene>
+        <!--Buy Plant View Controller-->
+        <scene sceneID="FBW-X2-UUH">
+            <objects>
+                <viewController id="MwT-1M-P1X" customClass="BuyPlantViewController" customModule="Calm_Cloud" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yfW-UC-TXv">
+                        <rect key="frame" x="0.0" y="0.0" width="331" height="442"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="bdU-pj-JLH">
+                                <rect key="frame" x="78" y="20" width="175" height="387"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buying Plant Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Kj-Si-PPn">
+                                        <rect key="frame" x="0.0" y="0.0" width="175" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dst-Xj-cUS">
+                                        <rect key="frame" x="35.5" y="44" width="104" height="101"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How many?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmT-th-Ypz">
+                                        <rect key="frame" x="45.5" y="159" width="84" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTb-3N-Af3">
+                                        <rect key="frame" x="82" y="192.5" width="11" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="LMW-yl-xK0">
+                                        <rect key="frame" x="40.5" y="227" width="94" height="32"/>
+                                        <connections>
+                                            <action selector="stepperChanged:" destination="MwT-1M-P1X" eventType="valueChanged" id="mvL-cs-j1V"/>
+                                        </connections>
+                                    </stepper>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rxH-8C-s0J">
+                                        <rect key="frame" x="37.5" y="273" width="100" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="rxH-8C-s0J" secondAttribute="height" multiplier="2:1" id="M4u-Cw-0HF"/>
+                                            <constraint firstAttribute="height" constant="50" id="Q2O-dt-7Ir"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <state key="normal" title="Buy" backgroundImage="buttonbackground">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buyPressed:" destination="MwT-1M-P1X" eventType="touchUpInside" id="Klt-7N-Ako"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flz-O4-tQQ">
+                                        <rect key="frame" x="37.5" y="337" width="100" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="flz-O4-tQQ" secondAttribute="height" multiplier="2:1" id="0mn-v7-b5P"/>
+                                            <constraint firstAttribute="height" constant="50" id="14X-eO-qk5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <state key="normal" title="Cancel" backgroundImage="backbackground">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelPressed:" destination="MwT-1M-P1X" eventType="touchUpInside" id="1A0-gY-RKP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="flz-O4-tQQ" firstAttribute="width" secondItem="flz-O4-tQQ" secondAttribute="height" multiplier="2:1" id="46S-vR-j6X"/>
+                                    <constraint firstItem="rxH-8C-s0J" firstAttribute="width" secondItem="rxH-8C-s0J" secondAttribute="height" multiplier="2:1" id="9uc-nv-ftb"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.88235294119999996" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="bdU-pj-JLH" secondAttribute="bottom" constant="35" id="6M9-HT-hsY"/>
+                            <constraint firstItem="bdU-pj-JLH" firstAttribute="centerX" secondItem="yfW-UC-TXv" secondAttribute="centerX" id="HDU-Pb-UdQ"/>
+                            <constraint firstItem="bdU-pj-JLH" firstAttribute="top" secondItem="yfW-UC-TXv" secondAttribute="top" constant="20" id="unP-tH-xA3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buyButton" destination="rxH-8C-s0J" id="BKW-2M-qk6"/>
+                        <outlet property="buyingLabel" destination="4Kj-Si-PPn" id="VUv-ow-7wd"/>
+                        <outlet property="numberLabel" destination="cTb-3N-Af3" id="qqc-98-w0j"/>
+                        <outlet property="plantImage" destination="Dst-Xj-cUS" id="lnw-sn-Mq5"/>
+                        <outlet property="stepper" destination="LMW-yl-xK0" id="ksf-wW-1ad"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0kW-Ep-SKg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="368.84057971014494" y="-1722.3214285714284"/>
         </scene>
     </scenes>
     <resources>
