@@ -35,17 +35,23 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
                 cell.backgroundColor = .white
             }
             
+            cell.priceLabel.text = "\(plant.price)"
+            cell.coinImage.isHidden = false
+            cell.area.text = plant.allowedArea.rawValue
+            
             if let number = Plantings.availableSeedlings[plant.plant] {
                 cell.numberOwned.text = "\(number) owned"
             } else {
                 cell.numberOwned.text = "0 owned"
             }
+            
+            cell.purchaseDescription.text = ""
         } else {
             let item: SKProduct
             item = products[indexPath.row]
             
             cell.nameLabel.text = item.localizedTitle
-            cell.itemImage.image = nil // add image later
+            cell.itemImage.image = UIImage(named: "coin") // add other images later
             cell.priceLabel.text = "\(item.price)"
             
             if indexPath.row % 2 == 0 {
@@ -54,8 +60,10 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
                 cell.backgroundColor = .white
             }
             
+            cell.coinImage.isHidden = true
             cell.numberOwned.text = ""
-            
+            cell.area.text = ""
+            cell.purchaseDescription.text = item.localizedDescription
         }
        
         return cell
@@ -66,8 +74,9 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
             // in seedling shop view
             let plant: Seedling
             plant = Plantings.seedlings[indexPath.row]
-           
+            PlantManager.buying = plant
             purchaseContainer.isHidden = false
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadUI"), object: nil)
         } else {
             // in coin shop view, make purchase
             let isAuthorizedForPayments = SKPaymentQueue.canMakePayments()
@@ -78,7 +87,7 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
                     print("tapped cell")
                    // guard let points = Products.productQuantities[products[indexPath.row].productIdentifier] else { return }
                     
-                    //pawPoints = points
+                    
                 } else {
                     showAlert(title: "Purchases unavailable", message: "Purchases cannot be processed without a network connection - please try again")
                 }
@@ -98,6 +107,6 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
         let maxNumColumns = 3
         let cellWidth = (availableWidth / CGFloat(maxNumColumns)).rounded(.down)
         
-        return CGSize(width: cellWidth, height: 170.00)
+        return CGSize(width: cellWidth, height: 192.00)
     }
 }

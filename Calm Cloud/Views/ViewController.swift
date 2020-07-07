@@ -154,6 +154,10 @@ class ViewController: UIViewController {
         // display level up image
         view.bringSubviewToFront(levelUpImage)
         levelUpImage.animateBounce()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
+            self.view.sendSubviewToBack(self.levelUpImage)
+        }
     }
     
     func showEXP(near: UIImageView, exp: Int) {
@@ -665,6 +669,7 @@ class ViewController: UIViewController {
     
     @IBAction func toDoTapped(_ sender: UIButton) {
         view.bringSubviewToFront(tasksView)
+        tasksView.animateBounce()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTasks"), object: nil)
     }
     

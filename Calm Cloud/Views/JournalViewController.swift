@@ -21,6 +21,8 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var darkOverlay: UIView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var savedImage: UIImageView!
+    @IBOutlet weak var viewButton: UIButton!
+    
     
     // MARK: Variables
     
@@ -47,6 +49,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
         loadUI()
         calendarView.isHidden = true
         darkOverlay.isHidden = true
+        viewButton.isEnabled = false
         getCalendar()
     }
     
@@ -100,6 +103,12 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
             }
         }
         
+        // clear any preexisting index path selections when reloading collectionview
+        if let selected = collectionView.indexPathsForSelectedItems?.first {
+            collectionView.deselectItem(at: selected, animated: false)
+        }
+        
+        viewButton.isEnabled = false
         collectionView.reloadData()
     }
     

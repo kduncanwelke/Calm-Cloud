@@ -63,8 +63,12 @@ extension JournalViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let tappedCell = collectionView.cellForItem(at:indexPath) as! CalendarCollectionViewCell
         let day = days[indexPath.row]
-        tappedCell.backgroundColor = Colors.blue
-        // show this journal entry or give option to go to
+        
+        if day == 0 {
+            tappedCell.backgroundColor = .white
+            viewButton.isEnabled = false
+            return
+        }
         
         if let beginning = monthBeginning {
             var components = DateComponents()
@@ -79,6 +83,9 @@ extension JournalViewController: UICollectionViewDataSource, UICollectionViewDel
                     if let date = entry.date {
                         if Calendar.current.isDate(date, inSameDayAs: calendarDate) {
                             selectedFromCalendar = index
+                            
+                            tappedCell.backgroundColor = Colors.blue
+                            viewButton.isEnabled = true
                             print("match found")
                             break
                         } else {
@@ -104,6 +111,7 @@ extension JournalViewController: UICollectionViewDataSource, UICollectionViewDel
             tappedCell.backgroundColor = .white
         }
         
+        viewButton.isEnabled = false
         collectionView.deselectItem(at: indexPath, animated: false)
     }
     

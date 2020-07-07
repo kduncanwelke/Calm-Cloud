@@ -16,6 +16,9 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var purchaseContainer: UIView!
+    @IBOutlet weak var totalCoins: UILabel!
+    @IBOutlet weak var paidImage: UIImageView!
+    
     
     // MARK: Variables
     
@@ -27,12 +30,16 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(dismissWithPurchase), name: NSNotification.Name(rawValue: "dismissWithPurchase"), object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(dismissPurchase), name: NSNotification.Name(rawValue: "dismissPurchase"), object: nil)
         
         collectionView.delegate = self
         collectionView.dataSource = self
         
         purchaseContainer.isHidden = true
+        totalCoins.text = "\(MoneyManager.total)"
         getProducts()
     }
     
@@ -40,6 +47,18 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
     
     @objc func dismissPurchase() {
         purchaseContainer.isHidden = true
+    }
+    
+    @objc func dismissWithPurchase() {
+        purchaseContainer.isHidden = true
+        totalCoins.text = "\(MoneyManager.total)"
+        
+        view.bringSubviewToFront(paidImage)
+        paidImage.animateBounce()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
+            self.view.sendSubviewToBack(self.paidImage)
+        }
     }
     
     @objc func networkRestored() {

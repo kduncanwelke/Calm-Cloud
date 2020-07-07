@@ -218,6 +218,7 @@ struct PlantManager {
     static var needsWater = false
     static var selected: Plant = .redTulip
     static var area: Area = .none
+    static var buying: Seedling?
     
     static let emptyPlots = [#imageLiteral(resourceName: "emptyplot.png"),#imageLiteral(resourceName: "emptyplotbig.png"),#imageLiteral(resourceName: "emptyplotsmallpot.png"),#imageLiteral(resourceName: "emptyplottree.png")]
     static let maturePlants = [#imageLiteral(resourceName: "carrot7.png"),#imageLiteral(resourceName: "carrot7water.png"),#imageLiteral(resourceName: "chard7.png"),#imageLiteral(resourceName: "chard7water.png"),#imageLiteral(resourceName: "geranium7.png"),#imageLiteral(resourceName: "geranium7water.png"),#imageLiteral(resourceName: "jade7.png"),#imageLiteral(resourceName: "jade7water.png"),#imageLiteral(resourceName: "lemon7.png"),#imageLiteral(resourceName: "lemon7water.png"),#imageLiteral(resourceName: "lime7.png"),#imageLiteral(resourceName: "lime7water.png"),#imageLiteral(resourceName: "pepper7.png"),#imageLiteral(resourceName: "pepper7water.png"),#imageLiteral(resourceName: "pinktulip7.png"),#imageLiteral(resourceName: "pinktulip7water.png"),#imageLiteral(resourceName: "pumpkin7.png"),#imageLiteral(resourceName: "pumpkin7water.png"),#imageLiteral(resourceName: "redgeranium.png"),#imageLiteral(resourceName: "redgeraniumwater.png"),#imageLiteral(resourceName: "redtulip7.png"),#imageLiteral(resourceName: "redtulip7water.png"),#imageLiteral(resourceName: "squash7.png"),#imageLiteral(resourceName: "squash7water.png"),#imageLiteral(resourceName: "strawberry7.png"),#imageLiteral(resourceName: "strawberry7water.png"),#imageLiteral(resourceName: "tomato7.png"),#imageLiteral(resourceName: "tomato7water.png"),#imageLiteral(resourceName: "watermelon7.png"),#imageLiteral(resourceName: "watermelon7water.png"),#imageLiteral(resourceName: "whitetulip7.png"),#imageLiteral(resourceName: "whitetulip7water.png"),#imageLiteral(resourceName: "yellowtulip7.png"),#imageLiteral(resourceName: "yellowtulip7water.png"),#imageLiteral(resourceName: "kale7.png"),#imageLiteral(resourceName: "kale7water.png")]
@@ -250,13 +251,13 @@ enum Stage: Int {
     case zero, one, two, three, four, five, six, seven, eight
 }
  
-enum Area {
-    case flowerStrips
-    case lowPot
-    case planter
-    case tallPot
-    case vegetablePlot
-    case smallPot
-    case none
+enum Area: String {
+    case flowerStrips = "Flower Bed"
+    case lowPot = "Wide Pot"
+    case planter = "Raised Bed"
+    case tallPot = "Large Pot"
+    case vegetablePlot = "Vegetable Plot"
+    case smallPot = "Small Pot"
+    case none = ""
 }
 

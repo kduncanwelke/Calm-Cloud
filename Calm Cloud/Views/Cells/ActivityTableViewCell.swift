@@ -36,8 +36,9 @@ class ActivityTableViewCell: UITableViewCell {
     
     @IBAction func checkTapped(_ sender: UIButton) {
         var isChecked = false
+        
         print(TasksManager.lastOpened)
-        if Recentness.lastCompleted() {
+        if Recentness.lastCompleted() || Calendar.current.isDateInToday(TasksManager.lastOpened ?? Date()) == false  {
             // if time between this and last item is enough, allow completion
             // set cell selection by image
             if sender.imageView?.image?.pngData() == UIImage(named: "incomplete")?.pngData() {

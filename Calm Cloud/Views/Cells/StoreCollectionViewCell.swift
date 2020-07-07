@@ -14,5 +14,8 @@ class StoreCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var numberOwned: UILabel!
+    @IBOutlet weak var coinImage: UIImageView!
+    @IBOutlet weak var area: UILabel!
+    @IBOutlet weak var purchaseDescription: UILabel!
     
 }

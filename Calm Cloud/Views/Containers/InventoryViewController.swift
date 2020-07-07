@@ -125,9 +125,21 @@ extension InventoryViewController: UICollectionViewDataSource, UICollectionViewD
             cell.numberLabel.text = "\(number) owned"
         }
         
+        let availableWidth = collectionView.frame.width
+       
+        if (availableWidth / 3) < 130.0 {
+            // don't add cell alternating colors if only two cells across
+            cell.backgroundColor = .white
+        } else {
+            if indexPath.row % 2 == 0 {
+                cell.backgroundColor = Colors.mint
+            } else {
+                cell.backgroundColor = .white
+            }
+        }
+        
         cell.cellLabel.text = plant.name
         cell.cellImage.image = plant.image
-        cell.backgroundColor = UIColor.white
         
         return cell
     }

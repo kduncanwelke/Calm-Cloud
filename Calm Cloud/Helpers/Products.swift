@@ -10,8 +10,10 @@ import Foundation
 
 struct Products {
     public static let tenCoins = "tenCoins"
+    public static let twentyCoins = "twentyCoins"
     
     public static let productQuantities = [
         "tenCoins" : 10,
+        "twentyCoins": 20,
     ]
 }
