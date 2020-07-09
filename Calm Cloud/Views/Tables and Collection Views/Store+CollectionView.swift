@@ -29,10 +29,16 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
             cell.nameLabel.text = plant.name
             cell.itemImage.image = plant.image
             
-            if indexPath.row % 2 == 0 {
-                cell.backgroundColor = Colors.mint
-            } else {
+            let availableWidth = collectionView.frame.width
+            if (availableWidth / 3) < 130.0 {
+                // don't add cell alternating colors if only two cells across
                 cell.backgroundColor = .white
+            } else {
+                if indexPath.row % 2 == 0 {
+                    cell.backgroundColor = Colors.mint
+                } else {
+                    cell.backgroundColor = .white
+                }
             }
             
             cell.priceLabel.text = "\(plant.price)"
@@ -54,10 +60,16 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
             cell.itemImage.image = UIImage(named: "coin") // add other images later
             cell.priceLabel.text = "\(item.price)"
             
-            if indexPath.row % 2 == 0 {
-                cell.backgroundColor = Colors.mint
-            } else {
+            let availableWidth = collectionView.frame.width
+            if (availableWidth / 3) < 130.0 {
+                // don't add cell alternating colors if only two cells across
                 cell.backgroundColor = .white
+            } else {
+                if indexPath.row % 2 == 0 {
+                    cell.backgroundColor = Colors.mint
+                } else {
+                    cell.backgroundColor = .white
+                }
             }
             
             cell.coinImage.isHidden = true
@@ -85,9 +97,8 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
                 if NetworkMonitor.connection {
                     StoreObserver.iapObserver.buy(products[indexPath.row])
                     print("tapped cell")
-                   // guard let points = Products.productQuantities[products[indexPath.row].productIdentifier] else { return }
-                    
-                    
+                    guard let coins = Products.productQuantities[products[indexPath.row].productIdentifier] else { return }
+                    StoreObserver.coins = coins
                 } else {
                     showAlert(title: "Purchases unavailable", message: "Purchases cannot be processed without a network connection - please try again")
                 }
@@ -104,7 +115,12 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let availableWidth = collectionView.frame.width
-        let maxNumColumns = 3
+        var maxNumColumns = 3
+        
+        if (availableWidth / 3) < 130.0 {
+            maxNumColumns = 2
+        }
+        
         let cellWidth = (availableWidth / CGFloat(maxNumColumns)).rounded(.down)
         
         return CGSize(width: cellWidth, height: 192.00)

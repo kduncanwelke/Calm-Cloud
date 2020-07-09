@@ -70,7 +70,9 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var coinImage: UIImageView!
     
     @IBOutlet weak var backgroundView: UIView!
-    @IBOutlet weak var modeMessage: UIButton!
+    @IBOutlet weak var waterButton: UIButton!
+    @IBOutlet weak var removeButton: UIButton!
+    
     
     // MARK: Variables
     
@@ -118,7 +120,6 @@ class OutsideViewController: UIViewController {
         plusEXPLabelAlt.alpha = 0.0
         honorStandMoney.isHidden = true
         coinCount.text = "\(MoneyManager.total)"
-        modeMessage.isHidden = true
         
         Sound.stopPlaying()
         Sound.loadSound(resourceName: Sounds.outside.resourceName, type: Sounds.outside.type)
@@ -610,17 +611,19 @@ class OutsideViewController: UIViewController {
         if wateringModeOn == false {
             if trowelModeOn == true {
                 trowelModeOn = false
+                removeButton.setTitle("", for: .normal)
+                removeButton.setBackgroundImage(UIImage(named: "removebutton"), for: .normal)
             }
             
             wateringModeOn = true
             backgroundView.backgroundColor = Colors.blue
-            modeMessage.setTitle("Tap Plants to Water", for: .normal)
-            modeMessage.setBackgroundImage(UIImage(named: "watermodebg"), for: .normal)
-            modeMessage.isHidden = false
+            waterButton.setTitle("           Tap Plants to Water", for: .normal)
+            waterButton.setBackgroundImage(UIImage(named: "watermodebg"), for: .normal)
         } else {
             wateringModeOn = false
             backgroundView.backgroundColor = Colors.pink
-            modeMessage.isHidden = true
+            waterButton.setTitle("", for: .normal)
+            waterButton.setBackgroundImage(UIImage(named: "watermode"), for: .normal)
         }
     }
     
@@ -628,17 +631,19 @@ class OutsideViewController: UIViewController {
         if trowelModeOn == false {
             if wateringModeOn == true {
                 wateringModeOn = false
+                waterButton.setTitle("", for: .normal)
+                waterButton.setBackgroundImage(UIImage(named: "watermode"), for: .normal)
             }
             
             trowelModeOn = true
             backgroundView.backgroundColor = Colors.tan
-            modeMessage.setTitle("Tap Plant to Dig Up", for: .normal)
-            modeMessage.setBackgroundImage(UIImage(named: "removebg"), for: .normal)
-            modeMessage.isHidden = false
+            removeButton.setTitle("       Tap Plants to Dig Up", for: .normal)
+            removeButton.setBackgroundImage(UIImage(named: "removebg"), for: .normal)
         } else {
             trowelModeOn = false
             backgroundView.backgroundColor = Colors.pink
-            modeMessage.isHidden = true
+            removeButton.setTitle("", for: .normal)
+            removeButton.setBackgroundImage(UIImage(named: "removebutton"), for: .normal)
         }
     }
     

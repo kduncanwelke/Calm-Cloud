@@ -124,6 +124,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
             showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
         }
         
+        TasksManager.lastOpened = Date()
         DataFunctions.saveTasks()
         loadCompleted()
     }

@@ -31,6 +31,10 @@ class InventoryViewController: UIViewController {
         setSeedlings()
     }
     
+    override func viewWillLayoutSubviews() {
+        collectionView.reloadData()
+    }
+    
     @objc func reload() {
         // reload when re-shown
         validSeedlings.removeAll()
@@ -138,6 +142,7 @@ extension InventoryViewController: UICollectionViewDataSource, UICollectionViewD
             }
         }
         
+        cell.areaLabel.text = plant.allowedArea.rawValue
         cell.cellLabel.text = plant.name
         cell.cellImage.image = plant.image
         
@@ -171,6 +176,6 @@ extension InventoryViewController: UICollectionViewDataSource, UICollectionViewD
         
         let cellWidth = (availableWidth / CGFloat(maxNumColumns)).rounded(.down)
         
-        return CGSize(width: cellWidth, height: 150.0)
+        return CGSize(width: cellWidth, height: 170.0)
     }
 }

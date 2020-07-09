@@ -48,6 +48,7 @@
 		2D867DAE243E80B7005BE38F /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D867DAD243E80B7005BE38F /* Alerts.swift */; };
 		2D875E112486F9480054B737 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D875E102486F9480054B737 /* CalendarCollectionViewCell.swift */; };
 		2D875E132486FA3F0054B737 /* Journal+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D875E122486FA3F0054B737 /* Journal+CollectionView.swift */; };
+		2D8BA7D924B672E90020E6EF /* AppleIncRootCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 2D8BA7D824B671E00020E6EF /* AppleIncRootCertificate.cer */; };
 		2D8C838D2433CBB2006711F2 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C838B2433CBB2006711F2 /* Data.xcdatamodeld */; };
 		2D8C838F2433CDD9006711F2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C838E2433CDD9006711F2 /* CoreDataManager.swift */; };
 		2D8F9042243F9E8F00211802 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F9041243F9E8F00211802 /* ActivityTableViewCell.swift */; };
@@ -139,6 +140,7 @@
 		2D867DAD243E80B7005BE38F /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		2D875E102486F9480054B737 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D875E122486FA3F0054B737 /* Journal+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+CollectionView.swift"; sourceTree = "<group>"; };
+		2D8BA7D824B671E00020E6EF /* AppleIncRootCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppleIncRootCertificate.cer; sourceTree = "<group>"; };
 		2D8C838C2433CBB2006711F2 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		2D8C838E2433CDD9006711F2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		2D8F9041243F9E8F00211802 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				2D48CC39242548B200D0FBBB /* AppDelegate.swift */,
+				2D8BA7D824B671E00020E6EF /* AppleIncRootCertificate.cer */,
 				2D48CC3B242548B200D0FBBB /* SceneDelegate.swift */,
 				2D41EF2D242D5EAF0058C443 /* Models */,
 				2DD50C1E242D58CC00073B49 /* Views */,
@@ -462,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D00EEBD249424E3000DA1C8 /* gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3 in Resources */,
+				2D8BA7D924B672E90020E6EF /* AppleIncRootCertificate.cer in Resources */,
 				2D48CC46242548B400D0FBBB /* LaunchScreen.storyboard in Resources */,
 				2DF4763F24A5317B00EE7C2C /* loire.mp3 in Resources */,
 				2DF4763D24A52BFF00EE7C2C /* you_will_know.mp3 in Resources */,

@@ -15,6 +15,7 @@ class StoreObserver: NSObject, SKPaymentTransactionObserver {
     var restored: [String] = []
     var purchased: [String] = []
     static var isComplete = false
+    static var coins = 0
     
     override init() {
         super.init()
@@ -32,7 +33,11 @@ class StoreObserver: NSObject, SKPaymentTransactionObserver {
             case .purchased:
                 complete(transaction: transaction)
                 print("purchase succeeded")
-                //NotificationCenter.default.post(name: NSNotification.Name(rawValue: ""), object: nil)
+                MoneyManager.total += StoreObserver.coins
+                DataFunctions.saveMoney()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refresh"), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateCoins"), object: nil)
             // The transaction failed.
             case .failed:
                 fail(transaction: transaction)
@@ -52,6 +57,7 @@ class StoreObserver: NSObject, SKPaymentTransactionObserver {
     func buy(_ product: SKProduct) {
         let payment = SKMutablePayment(product: product)
         SKPaymentQueue.default().add(payment)
+        print("buy called")
     }
     
     private func complete(transaction: SKPaymentTransaction) {

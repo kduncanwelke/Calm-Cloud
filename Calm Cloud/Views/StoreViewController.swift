@@ -18,7 +18,7 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var purchaseContainer: UIView!
     @IBOutlet weak var totalCoins: UILabel!
     @IBOutlet weak var paidImage: UIImageView!
-    
+    @IBOutlet weak var coin: UIImageView!
     
     // MARK: Variables
     
@@ -35,12 +35,18 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(dismissPurchase), name: NSNotification.Name(rawValue: "dismissPurchase"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "refresh"), object: nil)
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
         purchaseContainer.isHidden = true
         totalCoins.text = "\(MoneyManager.total)"
         getProducts()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        collectionView.reloadData()
     }
     
     // MARK: Custom functions
@@ -59,6 +65,12 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
             self.view.sendSubviewToBack(self.paidImage)
         }
+    }
+    
+    @objc func refresh() {
+        totalCoins.text = "\(MoneyManager.total)"
+        totalCoins.animateBounce()
+        coin.animateBounce()
     }
     
     @objc func networkRestored() {
@@ -100,7 +112,7 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
         }
         
         if isAuthorizedForPayments {
-            validate(productIdentifiers: [Products.tenCoins])
+            validate(productIdentifiers: [Products.tenCoins, Products.twentyCoins, Products.thirtyCoins, Products.fortyCoins, Products.fiftyCoins, Products.seventyCoins, Products.oneHundredCoins, Products.twoHundredCoins, Products.twoHundredFiftyCoins, Products.fiveHundredCoins])
         }
     }
     
