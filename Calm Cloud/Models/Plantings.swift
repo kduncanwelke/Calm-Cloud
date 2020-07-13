@@ -36,28 +36,32 @@ struct Plantings {
         Plant.pepper: 0,
         Plant.tomato: 0,
         Plant.kale: 0,
+        Plant.orange: 0,
+        Plant.daffodil: 0,
     ]
     
     // list of all available seedlings
     static let seedlings = [
-        Seedling(name: "Red Tulip", image: UIImage(named: "redtulip")!, plant: .redTulip, allowedArea: .flowerStrips, price: 10),
+        Seedling(name: "Red Tulip", image: UIImage(named: "redtulip")!, plant: .redTulip, allowedArea: .rows, price: 10),
         Seedling(name: "Jade", image: UIImage(named: "jade")!, plant: .jade, allowedArea: .lowPot, price: 25),
-        Seedling(name: "Carrot", image: UIImage(named: "carrot")!, plant: .carrot, allowedArea: .flowerStrips, price: 15),
-        Seedling(name: "Rainbow Chard", image: UIImage(named: "chard")!, plant: .chard, allowedArea: .planter, price: 20),
+        Seedling(name: "Daffodil", image: UIImage(named: "daffodil")!, plant: .daffodil, allowedArea: .rows, price: 20),
+        Seedling(name: "Carrot", image: UIImage(named: "carrot")!, plant: .carrot, allowedArea: .rows, price: 15),
+        Seedling(name: "Rainbow Chard", image: UIImage(named: "chard")!, plant: .chard, allowedArea: .multi, price: 20),
         Seedling(name: "Lemon Tree", image: UIImage(named: "lemon")!, plant: .lemon, allowedArea: .tallPot, price: 50),
-        Seedling(name: "Pink Tulip", image: UIImage(named: "pinktulip")!, plant: .pinkTulip, allowedArea: .flowerStrips, price: 15),
-        Seedling(name: "Bell Pepper", image: UIImage(named: "pepper")!, plant: .pepper, allowedArea: .planter, price: 25),
+        Seedling(name: "Pink Tulip", image: UIImage(named: "pinktulip")!, plant: .pinkTulip, allowedArea: .rows, price: 15),
+        Seedling(name: "Bell Pepper", image: UIImage(named: "pepper")!, plant: .pepper, allowedArea: .multi, price: 25),
         Seedling(name: "Pumpkin", image: UIImage(named: "pumpkin")!, plant: .pumpkin, allowedArea: .vegetablePlot, price: 30),
         Seedling(name: "Pink Geranium", image: UIImage(named: "geranium")!, plant: .geranium, allowedArea: .smallPot, price: 18),
         Seedling(name: "Strawberry", image: UIImage(named: "strawberry")!, plant: .strawberry, allowedArea: .vegetablePlot, price: 20),
-        Seedling(name: "Kale", image: UIImage(named: "kale")!, plant: .kale, allowedArea: .planter, price: 15),
-        Seedling(name: "Yellow Tulip", image: UIImage(named: "yellowtulip")!, plant: .yellowTulip, allowedArea: .flowerStrips, price: 15),
+        Seedling(name: "Kale", image: UIImage(named: "kale")!, plant: .kale, allowedArea: .multi, price: 15),
+        Seedling(name: "Yellow Tulip", image: UIImage(named: "yellowtulip")!, plant: .yellowTulip, allowedArea: .rows, price: 15),
         Seedling(name: "Lime Tree", image: UIImage(named: "lime")!, plant: .lime, allowedArea: .tallPot, price: 50),
         Seedling(name: "Yellow Squash", image: UIImage(named: "squash")!, plant: .squash, allowedArea: .vegetablePlot, price: 25),
         Seedling(name: "Red Geranium", image: UIImage(named: "redgeranium")!, plant: .redGeranium, allowedArea: .smallPot, price: 18),
         Seedling(name: "Watermelon", image: UIImage(named: "watermelon")!, plant: .watermelon, allowedArea: .vegetablePlot, price: 30),
-        Seedling(name: "Grape Tomato", image: UIImage(named: "tomato")!, plant: .tomato, allowedArea: .planter, price: 25),
-        Seedling(name: "White Tulip", image: UIImage(named: "whitetulip")!, plant: .whiteTulip, allowedArea: .flowerStrips, price: 12)
+        Seedling(name: "Orange Tree", image: UIImage(named: "orange")!, plant: .orange, allowedArea: .tallPot, price: 60),
+        Seedling(name: "Cherry Tomato", image: UIImage(named: "tomato")!, plant: .tomato, allowedArea: .planter, price: 25),
+        Seedling(name: "White Tulip", image: UIImage(named: "whitetulip")!, plant: .whiteTulip, allowedArea: .rows, price: 12)
     ]
 }
 

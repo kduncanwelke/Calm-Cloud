@@ -1405,42 +1405,42 @@
                                                 <rect key="frame" x="665" y="158" width="65.5" height="65"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="55D-2o-WYZ">
-                                                <rect key="frame" x="398" y="313" width="54" height="79"/>
+                                                <rect key="frame" x="398" y="313" width="73" height="79"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="TbK-Ik-TPE" appends="YES" id="6fS-hB-qAQ"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="XYI-uO-ovu">
-                                                <rect key="frame" x="468" y="313" width="54" height="79"/>
+                                                <rect key="frame" x="468" y="313" width="73" height="79"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="Tka-tu-zqd" appends="YES" id="8QX-3N-QCm"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="wyJ-9t-Nrc">
-                                                <rect key="frame" x="538" y="313" width="54" height="79"/>
+                                                <rect key="frame" x="538" y="313" width="73" height="79"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="z3O-Ve-Y5S" appends="YES" id="2KC-qc-O6a"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="4" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="kl5-UE-pc3">
-                                                <rect key="frame" x="611.5" y="313" width="54" height="79"/>
+                                                <rect key="frame" x="611.5" y="313" width="73" height="79"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="ktp-M6-5If" appends="YES" id="8NL-OT-3iM"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="W7s-f1-s4L">
-                                                <rect key="frame" x="687" y="313" width="54" height="79"/>
+                                                <rect key="frame" x="687" y="313" width="73" height="79"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="AGn-Af-0Nn" appends="YES" id="WCs-hn-gLS"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="6" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="yZS-ou-s7f">
-                                                <rect key="frame" x="763.5" y="313" width="54" height="79"/>
+                                                <rect key="frame" x="763.5" y="313" width="73" height="79"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="ZM4-D2-fQK" appends="YES" id="bnz-1b-qpD"/>
@@ -1533,56 +1533,56 @@
                                                 <rect key="frame" x="11.5" y="547.5" width="212" height="138"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="7" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="5G9-9y-sgO">
-                                                <rect key="frame" x="263.5" y="583" width="54" height="79"/>
+                                                <rect key="frame" x="263.5" y="583" width="73" height="79"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="kZc-dw-nv8" appends="YES" id="2pi-df-FSC"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="8" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="ayI-fc-mFt">
-                                                <rect key="frame" x="333.5" y="583" width="54" height="79"/>
+                                                <rect key="frame" x="333.5" y="583" width="73" height="79"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="ZCk-4i-JZ1" appends="YES" id="71T-YF-BFL"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="9" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="l5z-AF-RIJ">
-                                                <rect key="frame" x="402" y="583" width="54" height="79"/>
+                                                <rect key="frame" x="402" y="583" width="73" height="79"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="F4s-wZ-p8w" appends="YES" id="Lpl-dU-yea"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="10" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="7nK-5s-zon">
-                                                <rect key="frame" x="467.5" y="583" width="54" height="79"/>
+                                                <rect key="frame" x="467.5" y="583" width="73" height="79"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="sIz-w2-qe0" appends="YES" id="ieY-0f-1bh"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="11" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="LC2-Ez-byZ">
-                                                <rect key="frame" x="537" y="583" width="54" height="79"/>
+                                                <rect key="frame" x="537" y="583" width="73" height="79"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="8XP-oJ-ixZ" appends="YES" id="Dti-ZG-kts"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="12" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="bm9-ct-Qk7">
-                                                <rect key="frame" x="610.5" y="583" width="54" height="79"/>
+                                                <rect key="frame" x="610.5" y="583" width="73" height="79"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="ce2-Gd-NKc" appends="YES" id="fi4-NO-YNB"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="13" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="UYL-Pz-Msa">
-                                                <rect key="frame" x="678" y="583" width="54" height="79"/>
+                                                <rect key="frame" x="678" y="583" width="73" height="79"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="jE8-aR-YCh" appends="YES" id="MI2-im-ftx"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="14" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="Khd-eO-9CX">
-                                                <rect key="frame" x="737" y="583" width="54" height="79"/>
+                                                <rect key="frame" x="737" y="583" width="73" height="79"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="nh3-My-9fk" appends="YES" id="4Hk-UZ-IgP"/>
@@ -1711,7 +1711,7 @@
                                             <constraint firstItem="FDy-Kh-j0I" firstAttribute="leading" secondItem="im4-HZ-8jU" secondAttribute="centerX" id="Kie-AD-9Mr"/>
                                             <constraint firstItem="Khd-eO-9CX" firstAttribute="width" secondItem="UYL-Pz-Msa" secondAttribute="width" id="Ktk-pV-96R"/>
                                             <constraint firstItem="Bda-th-Vu7" firstAttribute="top" secondItem="9fr-Sb-sVE" secondAttribute="top" id="LAL-c1-6eB"/>
-                                            <constraint firstItem="55D-2o-WYZ" firstAttribute="width" secondItem="gtY-D3-WJv" secondAttribute="width" multiplier="0.0467938" id="LPg-b3-mHX"/>
+                                            <constraint firstItem="55D-2o-WYZ" firstAttribute="width" secondItem="gtY-D3-WJv" secondAttribute="width" multiplier="0.0632582" id="LPg-b3-mHX"/>
                                             <constraint firstItem="Es5-lZ-EHS" firstAttribute="top" secondItem="gtY-D3-WJv" secondAttribute="baseline" multiplier="1:2.5" id="Lfk-Ug-Bw8"/>
                                             <constraint firstItem="0yc-pF-Qaz" firstAttribute="width" secondItem="0yc-pF-Qaz" secondAttribute="height" multiplier="1:1" id="LsO-8v-AYS"/>
                                             <constraint firstItem="u1q-yC-f1k" firstAttribute="leading" secondItem="R8q-MV-ifJ" secondAttribute="trailing" id="Lv1-VO-mV8"/>
@@ -1877,8 +1877,8 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Umd-jr-oMe">
                                         <rect key="frame" x="0.0" y="0.0" width="204.5" height="49"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                        <state key="normal" title="          Tap Empty Plots to Plant" backgroundImage="normalmodebg">
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                        <state key="normal" title="          Tap to Plant or Harvest" backgroundImage="normalmodebg">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -1887,8 +1887,8 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7GB-Q8-0DW">
                                         <rect key="frame" x="0.0" y="54" width="204.5" height="49.5"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                        <state key="normal" title="          Tap Plants to Add Water" backgroundImage="watermodebg">
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                        <state key="normal" title="           Tap Plants to Add Water" backgroundImage="watermodebg">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -1897,8 +1897,8 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xAR-j8-7Ah">
                                         <rect key="frame" x="0.0" y="108.5" width="204.5" height="49"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                        <state key="normal" title="      Tap Plants to Unearth" backgroundImage="removebg">
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                        <state key="normal" title="       Tap Plants to Remove" backgroundImage="removebg">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>

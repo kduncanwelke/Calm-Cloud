@@ -226,6 +226,61 @@ extension PlantManager {
         }
     }
     
+    // MARK: Daffodil
+    
+    static var daffodil: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "daffodil1.png")
+                } else {
+                    return #imageLiteral(resourceName: "daffodil1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "daffodil2.png")
+                } else {
+                    return #imageLiteral(resourceName: "daffodil2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "daffodil3.png")
+                } else {
+                    return #imageLiteral(resourceName: "daffodil3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "daffodil4.png")
+                } else {
+                    return #imageLiteral(resourceName: "daffodil4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "daffodil5.png")
+                } else {
+                    return #imageLiteral(resourceName: "daffodil5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "daffodil6.png")
+                } else {
+                    return #imageLiteral(resourceName: "daffodil6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "daffodil7.png")
+                } else {
+                    return #imageLiteral(resourceName: "daffodil7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "daffodil8.png")
+            }
+        }
+    }
+    
     // MARK: Jade
     
     static var jade: UIImage {
@@ -607,6 +662,61 @@ extension PlantManager {
                 }
             case .eight:
                 return #imageLiteral(resourceName: "lime8.png")
+            }
+        }
+    }
+    
+    // MARK: Orange
+    
+    static var orange: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplottree.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "orange1.png")
+                } else {
+                    return #imageLiteral(resourceName: "orange1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "orange2.png")
+                } else {
+                    return #imageLiteral(resourceName: "orange2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "orange3.png")
+                } else {
+                    return #imageLiteral(resourceName: "orange3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "orange4.png")
+                } else {
+                    return #imageLiteral(resourceName: "orange4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "orange5.png")
+                } else {
+                    return #imageLiteral(resourceName: "orange5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "orange6.png")
+                } else {
+                    return #imageLiteral(resourceName: "orange6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "orange7.png")
+                } else {
+                    return #imageLiteral(resourceName: "orange7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "orange8.png")
             }
         }
     }

@@ -21,3 +21,9 @@ struct TasksManager {
     static var rewardCollected = true
     static var lastOpened: Date?
 }
+
+enum Mode {
+    case planting
+    case watering
+    case removal
+}

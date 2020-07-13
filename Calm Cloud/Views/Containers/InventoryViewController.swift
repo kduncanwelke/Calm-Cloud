@@ -57,6 +57,10 @@ class InventoryViewController: UIViewController {
             for seedling in Plantings.seedlings {
                 if seedling.allowedArea == PlantManager.area && Plantings.availableSeedlings[seedling.plant] != 0 {
                     validSeedlings.append(seedling)
+                } else if (PlantManager.area == .rows || PlantManager.area == .planter) && Plantings.availableSeedlings[seedling.plant] != 0 {
+                    if seedling.allowedArea == .multi {
+                        validSeedlings.append(seedling)
+                    }
                 }
             }
         }

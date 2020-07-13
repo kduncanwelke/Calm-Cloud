@@ -87,6 +87,7 @@ class OutsideViewController: UIViewController {
     var trowelModeOn = false
     var tappedImage: UIImageView?
     var stopped = false
+    var mode: Mode = .planting
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -400,7 +401,7 @@ class OutsideViewController: UIViewController {
     
     func setPlotArea() {
         if selectedPlot < 15 {
-            PlantManager.area = .flowerStrips
+            PlantManager.area = .rows
             print("flower strip")
         } else if selectedPlot > 14 && selectedPlot < 18 {
             PlantManager.area = .lowPot
@@ -421,30 +422,32 @@ class OutsideViewController: UIViewController {
     }
     
     func tappedPlant(image: UIImageView) {
-        // determine if plot is empty
-        if image.isMatch(with: PlantManager.emptyPlots) {
+        switch mode {
+        case .planting:
             setPlotArea()
-            view.bringSubviewToFront(messageContainer)
-        } else if image.isMatch(with: PlantManager.wiltedPlants) {
-            print("wilted plant")
-            setPlotArea()
-            tappedImage = image
-            removePlant()
-        } else {
-            // plot is not empty, if watering update watering status
-            if wateringModeOn {
-                saveWatering(id: selectedPlot)
-            } else if trowelModeOn {
-                setPlotArea()
-                tappedImage = image
-                view.bringSubviewToFront(removeContainer)
+            
+            // determine if plot is empty
+            if image.isMatch(with: PlantManager.emptyPlots) {
+                view.bringSubviewToFront(messageContainer)
             } else if image.isMatch(with: PlantManager.maturePlants) {
                 print("mature plant")
-                setPlotArea()
                 tappedImage = image
                 PlantManager.chosen = selectedPlot
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
                 view.bringSubviewToFront(harvestContainer)
+            }
+        case .watering:
+            saveWatering(id: selectedPlot)
+        case .removal:
+            setPlotArea()
+            tappedImage = image
+            
+            // determine if plot has wilted plant
+            if image.isMatch(with: PlantManager.wiltedPlants) {
+                print("wilted plant")
+                removePlant()
+            } else {
+                view.bringSubviewToFront(removeContainer)
             }
         }
     }
@@ -617,9 +620,8 @@ class OutsideViewController: UIViewController {
     }
     
     @IBAction func normalModeTapped(_ sender: UIButton) {
-        if wateringModeOn || trowelModeOn {
-            wateringModeOn = false
-            trowelModeOn = false
+        if mode != .planting {
+            mode = .planting
             normalText.alpha = 1.0
             waterText.alpha = 0.0
             removeText.alpha = 0.0
@@ -635,38 +637,36 @@ class OutsideViewController: UIViewController {
     
     @IBAction func waterModeTapped(_ sender: UIButton) {
         // toggle watering mode
-        if wateringModeOn == false {
-            if trowelModeOn == true {
-                trowelModeOn = false
+        if mode != .watering {
+            if mode == .removal {
                 removeText.alpha = 0.0
             }
             
-            wateringModeOn = true
+            mode = .watering
             backgroundView.backgroundColor = Colors.blue
            
             waterText.alpha = 1.0
             normalText.alpha = 0.0
         } else {
-            wateringModeOn = false
+            mode = .planting
             backgroundView.backgroundColor = Colors.pink
             waterText.alpha = 0.0
         }
     }
     
     @IBAction func trowelModeTapped(_ sender: UIButton) {
-        if trowelModeOn == false {
-            if wateringModeOn == true {
-                wateringModeOn = false
+        if mode != .removal {
+            if mode == .watering {
                 waterText.alpha = 0.0
             }
             
-            trowelModeOn = true
+            mode = .removal
             backgroundView.backgroundColor = Colors.tan
             
             removeText.alpha = 1.0
             normalText.alpha = 0.0
         } else {
-            trowelModeOn = false
+            mode = .planting
             backgroundView.backgroundColor = Colors.pink
             removeText.alpha = 0.0
         }
@@ -692,16 +692,18 @@ class OutsideViewController: UIViewController {
         print("honor stand tapped")
         print("\(MoneyManager.earnings)")
         // add earnings to total
-        MoneyManager.total += MoneyManager.earnings
-        coinCount.text = "\(MoneyManager.total)"
-        coinImage.animateBounce()
-        
-        // clear out earnings
-        MoneyManager.earnings = 0
-        
-        // resave money
-        DataFunctions.saveMoney()
-        honorStandMoney.isHidden = true
+        if MoneyManager.earnings != 0 {
+            MoneyManager.total += MoneyManager.earnings
+            coinCount.text = "\(MoneyManager.total)"
+            coinImage.animateBounce()
+            
+            // clear out earnings
+            MoneyManager.earnings = 0
+            
+            // resave money
+            DataFunctions.saveMoney()
+            honorStandMoney.isHidden = true
+        }
     }
     
     @IBAction func storeTapped(_ sender: UIButton) {
