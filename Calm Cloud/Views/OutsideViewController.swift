@@ -422,10 +422,10 @@ class OutsideViewController: UIViewController {
     }
     
     func tappedPlant(image: UIImageView) {
+        setPlotArea()
+        
         switch mode {
         case .planting:
-            setPlotArea()
-            
             // determine if plot is empty
             if image.isMatch(with: PlantManager.emptyPlots) {
                 view.bringSubviewToFront(messageContainer)
@@ -439,8 +439,8 @@ class OutsideViewController: UIViewController {
         case .watering:
             saveWatering(id: selectedPlot)
         case .removal:
-            setPlotArea()
             tappedImage = image
+            PlantManager.chosen = selectedPlot
             
             // determine if plot has wilted plant
             if image.isMatch(with: PlantManager.wiltedPlants) {
@@ -448,6 +448,7 @@ class OutsideViewController: UIViewController {
                 removePlant()
             } else {
                 view.bringSubviewToFront(removeContainer)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadRemove"), object: nil)
             }
         }
     }

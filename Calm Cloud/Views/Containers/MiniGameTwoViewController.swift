@@ -23,6 +23,7 @@ class MiniGameTwoViewController: UIViewController {
     
     var correctPot = 0
     var selection = 0
+    var gameEnded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,7 @@ class MiniGameTwoViewController: UIViewController {
     }
     
     func newRound() {
+        gameEnded = false
         coin.isHidden = true
         leftPot.image = UIImage(named: "gamepot")
         middlePot.image = UIImage(named: "gamepot")
@@ -83,50 +85,59 @@ class MiniGameTwoViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func leftPotTapped(_ sender: UITapGestureRecognizer) {
-        selection = 1
-        cloudKitty.startAnimating()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
-            if self.selection == self.correctPot {
-                self.leftPot.image = UIImage(named: "snailpot")
-                self.results()
-            } else {
-                self.leftPot.image = UIImage(named: "potnosnail")
-            }
+        if gameEnded == false {
+            selection = 1
+            cloudKitty.startAnimating()
             
-            self.againButton.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
+                if self.selection == self.correctPot {
+                    self.leftPot.image = UIImage(named: "snailpot")
+                    self.results()
+                } else {
+                    self.leftPot.image = UIImage(named: "potnosnail")
+                }
+                
+                self.gameEnded = true
+                self.againButton.isHidden = false
+            }
         }
     }
     
     @IBAction func middlePotTapped(_ sender: UITapGestureRecognizer) {
-        selection = 2
-        cloudKitty.startAnimating()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
-            if self.selection == self.correctPot {
-                self.middlePot.image = UIImage(named: "snailpot")
-                self.results()
-            } else {
-                self.middlePot.image = UIImage(named: "potnosnail")
-            }
+        if gameEnded == false {
+            selection = 2
+            cloudKitty.startAnimating()
             
-            self.againButton.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
+                if self.selection == self.correctPot {
+                    self.middlePot.image = UIImage(named: "snailpot")
+                    self.results()
+                } else {
+                    self.middlePot.image = UIImage(named: "potnosnail")
+                }
+                
+                self.gameEnded = true
+                self.againButton.isHidden = false
+            }
         }
     }
     
     @IBAction func rightPotTapped(_ sender: UITapGestureRecognizer) {
-        selection = 3
-        cloudKitty.startAnimating()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
-            if self.selection == self.correctPot {
-                self.rightPot.image = UIImage(named: "snailpot")
-                self.results()
-            } else {
-                self.rightPot.image = UIImage(named: "potnosnail")
-            }
+        if gameEnded == false {
+            selection = 3
+            cloudKitty.startAnimating()
             
-            self.againButton.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
+                if self.selection == self.correctPot {
+                    self.rightPot.image = UIImage(named: "snailpot")
+                    self.results()
+                } else {
+                    self.rightPot.image = UIImage(named: "potnosnail")
+                }
+                
+                self.gameEnded = true
+                self.againButton.isHidden = false
+            }
         }
     }
     

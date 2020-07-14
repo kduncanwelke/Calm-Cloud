@@ -9,13 +9,39 @@
 import UIKit
 
 class RemoveViewController: UIViewController {
+    
+    // MARK: IBOutlets
+    
+    @IBOutlet weak var message: UILabel!
 
+    // MARK: Variables
+    
+    var remove = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(loadRemove), name: NSNotification.Name(rawValue: "loadRemove"), object: nil)
     }
     
+    @objc func loadRemove() {
+        getName()
+        
+        message.text = "This plant, a \(remove), will be gone forever once removed. Proceed?"
+    }
+    
+    func getName() {
+        let planting = Plantings.plantings.filter { $0.id == PlantManager.chosen }.first
+        
+        guard let plant = planting else { return }
+        
+        for seedling in Plantings.seedlings {
+            if seedling.plant == Plant(rawValue: Int(plant.plant))! {
+                remove = seedling.name
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation

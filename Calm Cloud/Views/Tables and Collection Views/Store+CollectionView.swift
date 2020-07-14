@@ -30,9 +30,13 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
             cell.itemImage.image = plant.image
             
             let availableWidth = collectionView.frame.width
-            if (availableWidth / 3) < 130.0 {
+            if (availableWidth / 3) < 160.0 {
                 // don't add cell alternating colors if only two cells across
-                cell.backgroundColor = .white
+                if Colors.colorfulCells.contains(indexPath.row) {
+                    cell.backgroundColor = Colors.mint
+                } else {
+                    cell.backgroundColor = .white
+                }
             } else {
                 if indexPath.row % 2 == 0 {
                     cell.backgroundColor = Colors.mint
@@ -61,9 +65,12 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
             cell.priceLabel.text = "\(item.price)"
             
             let availableWidth = collectionView.frame.width
-            if (availableWidth / 3) < 130.0 {
-                // don't add cell alternating colors if only two cells across
-                cell.backgroundColor = .white
+            if (availableWidth / 3) < 160.0 {
+                if Colors.colorfulCells.contains(indexPath.row) {
+                    cell.backgroundColor = Colors.mint
+                } else {
+                    cell.backgroundColor = .white
+                }
             } else {
                 if indexPath.row % 2 == 0 {
                     cell.backgroundColor = Colors.mint
@@ -117,7 +124,7 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
         let availableWidth = collectionView.frame.width
         var maxNumColumns = 3
         
-        if (availableWidth / 3) < 130.0 {
+        if (availableWidth / 3) < 160.0 {
             maxNumColumns = 2
         }
         

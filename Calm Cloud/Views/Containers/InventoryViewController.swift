@@ -136,8 +136,11 @@ extension InventoryViewController: UICollectionViewDataSource, UICollectionViewD
         let availableWidth = collectionView.frame.width
        
         if (availableWidth / 3) < 130.0 {
-            // don't add cell alternating colors if only two cells across
-            cell.backgroundColor = .white
+            if Colors.colorfulCells.contains(indexPath.row) {
+                cell.backgroundColor = Colors.mint
+            } else {
+                cell.backgroundColor = .white
+            }
         } else {
             if indexPath.row % 2 == 0 {
                 cell.backgroundColor = Colors.mint

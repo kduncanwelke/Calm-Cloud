@@ -81,6 +81,9 @@ class BuyPlantViewController: UIViewController {
             // deduct funds
             MoneyManager.total -= costPer * number
             DataFunctions.saveMoney()
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateCoins"), object: nil)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dismissWithPurchase"), object: nil)
             // ring sound?
         }
