@@ -36,6 +36,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var expLabel: UILabel!
     @IBOutlet weak var levelUpImage: UIImageView!
+    @IBOutlet weak var levelProgress: UIProgressView!
+    
     @IBOutlet weak var receivedPackageContainer: UIView!
     
     @IBOutlet weak var plusEXPLabel: UILabel!
@@ -102,7 +104,6 @@ class ViewController: UIViewController {
         loadTasks()
         DataFunctions.loadLevel()
         DataFunctions.loadMoney()
-        loadUI()
         
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
@@ -110,7 +111,8 @@ class ViewController: UIViewController {
         AnimationManager.location = .middle
         AnimationManager.movement = .staying
         sleep()
-
+        
+        loadUI()
         setMood()
     }
     
@@ -147,6 +149,8 @@ class ViewController: UIViewController {
         
         levelLabel.text = "\(LevelManager.currentLevel)"
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
+        var prog: Float = Float(LevelManager.currentEXP) / Float(LevelManager.maxEXP)
+        levelProgress.setProgress(prog, animated: true)
         coinCount.text = "\(MoneyManager.total)"
     }
     
@@ -201,6 +205,8 @@ class ViewController: UIViewController {
         }
         
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
+        var prog: Float = Float(LevelManager.currentEXP) / Float(LevelManager.maxEXP)
+        levelProgress.setProgress(prog, animated: true)
         DataFunctions.saveLevel()
     }
     
@@ -216,6 +222,8 @@ class ViewController: UIViewController {
         // refresh these level labels when exp is gained outside
         levelLabel.text = "\(LevelManager.currentLevel)"
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
+        var prog: Float = Float(LevelManager.currentEXP) / Float(LevelManager.maxEXP)
+        levelProgress.setProgress(prog, animated: true)
     }
     
     @objc func levelUp() {

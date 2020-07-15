@@ -29,7 +29,7 @@ class DeliveryViewController: UIViewController {
     }
     
     func randomSeeds() {
-        let random = Int.random(in: 0...19)
+        let random = Int.random(in: 0...22)
         let type = Plant(rawValue: random)
         selected = type
         

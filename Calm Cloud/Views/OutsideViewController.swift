@@ -58,6 +58,7 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var expLabel: UILabel!
     @IBOutlet weak var levelUpImage: UIImageView!
+    @IBOutlet weak var levelProgress: UIProgressView!
     
     @IBOutlet weak var plusEXPLabel: UILabel!
     @IBOutlet weak var plusEXPLabelAlt: UILabel!
@@ -163,6 +164,8 @@ class OutsideViewController: UIViewController {
         // update level
         levelLabel.text = "\(LevelManager.currentLevel)"
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
+        var prog: Float = Float(LevelManager.currentEXP) / Float(LevelManager.maxEXP)
+        levelProgress.setProgress(prog, animated: true)
     }
     
     func checkForPurchases() {
@@ -245,6 +248,10 @@ class OutsideViewController: UIViewController {
         }
         
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
+        print(LevelManager.currentEXP)
+        print(LevelManager.maxEXP)
+        var prog: Float = Float(LevelManager.currentEXP) / Float(LevelManager.maxEXP)
+        levelProgress.setProgress(prog, animated: true)
         DataFunctions.saveLevel()
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromOutside"), object: nil)

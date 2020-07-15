@@ -281,6 +281,171 @@ extension PlantManager {
         }
     }
     
+    // MARK: Zinnia
+    
+    static var zinnia: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia1.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia2.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia3.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia4.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia5.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia6.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia7.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "zinnia8.png")
+            }
+        }
+    }
+    
+    // MARK: Lavendar Zinniz
+    
+    static var lavendarZinnia: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia1.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia2.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia3.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia4.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia5.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "lavendarzinnia6.png")
+                } else {
+                    return #imageLiteral(resourceName: "lavendarzinnia6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "lavendarzinnia7.png")
+                } else {
+                    return #imageLiteral(resourceName: "lavendarzinnia7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "zinnia8.png")
+            }
+        }
+    }
+    
+    // MARK: Salmon Zinnia
+    
+    static var salmonZinnia: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia1.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia2.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia3.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia4.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "zinnia5.png")
+                } else {
+                    return #imageLiteral(resourceName: "zinnia5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "salmonzinnia6.png")
+                } else {
+                    return #imageLiteral(resourceName: "salmonzinnia6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "salmonzinnia7.png")
+                } else {
+                    return #imageLiteral(resourceName: "salmonzinnia7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "zinnia8.png")
+            }
+        }
+    }
+    
     // MARK: Jade
     
     static var jade: UIImage {

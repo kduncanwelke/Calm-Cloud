@@ -105,7 +105,7 @@ struct PlantManager {
                 } else {
                     stage = 0
                 }
-            case .jade, .chard, .carrot, .strawberry, .pepper, .tomato:
+            case .jade, .chard, .carrot, .strawberry, .pepper, .tomato, .zinnia, .lavendarZinnia, .salmonZinnia:
                 // medium growers take ten days
                 if halfDaysCaredFor <= 2 {
                     stage = 1
@@ -212,6 +212,12 @@ struct PlantManager {
             return orange
         case .daffodil:
             return daffodil
+        case .zinnia:
+            return zinnia
+        case .lavendarZinnia:
+            return lavendarZinnia
+        case .salmonZinnia:
+            return salmonZinnia
         case .none:
             return nil
         }
@@ -250,6 +256,9 @@ enum Plant: Int {
     case kale       // 17
     case orange     // 18
     case daffodil   // 19
+    case zinnia     // 20
+    case lavendarZinnia // 21
+    case salmonZinnia // 22
     case none       
 }
 
