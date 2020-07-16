@@ -29,15 +29,15 @@ class DeliveryViewController: UIViewController {
     }
     
     func randomSeeds() {
-        let random = Int.random(in: 0...22)
+        let random = Int.random(in: 0...25)
         let type = Plant(rawValue: random)
         selected = type
         
         // if geranium or tree (single pot plants) only give one seedling
-        if random == 3 || random == 5 || random == 6 || random == 18 {
+        if random == 3 || random == 5 || random == 6 || random == 10 || random == 18 {
             number = 1
         } else {
-            number = Int.random(in: 1...3)
+            number = Int.random(in: 1...2)
         }
         
         let name = getName()
@@ -66,7 +66,7 @@ class DeliveryViewController: UIViewController {
         case .carrot:
             return "Carrot"
         case .lime:
-            return "Lime"
+            return "Lime Tree"
         case .pinkTulip:
             return "Pink Tulip"
         case .squash:
@@ -83,6 +83,22 @@ class DeliveryViewController: UIViewController {
             return "Grape Tomato"
         case .kale:
             return "Kale"
+        case .daffodil:
+            return "Daffodil"
+        case .orange:
+            return "Orange Tree"
+        case .zinnia:
+            return "Fuchsia Zinnia"
+        case .lavendarZinnia:
+            return "Lavendar Zinnia"
+        case .salmonZinnia:
+            return "Salmon Zinnia"
+        case .aloe:
+            return "Tiger Aloe"
+        case .paddle:
+            return "Paddle Plant"
+        case .marigold:
+            return "Marigold"
         default:
             return ""
         }

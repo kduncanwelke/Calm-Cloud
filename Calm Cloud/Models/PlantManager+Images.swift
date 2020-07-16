@@ -281,6 +281,61 @@ extension PlantManager {
         }
     }
     
+    // MARK: Marigold
+    
+    static var marigold: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "marigold1.png")
+                } else {
+                    return #imageLiteral(resourceName: "marigold1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "marigold2.png")
+                } else {
+                    return #imageLiteral(resourceName: "marigold2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "marigold3.png")
+                } else {
+                    return #imageLiteral(resourceName: "marigold3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "marigold4.png")
+                } else {
+                    return #imageLiteral(resourceName: "marigold4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "marigold5.png")
+                } else {
+                    return #imageLiteral(resourceName: "marigold5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "marigold6.png")
+                } else {
+                    return #imageLiteral(resourceName: "marigold6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "marigold7.png")
+                } else {
+                    return #imageLiteral(resourceName: "marigold7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "marigold8.png")
+            }
+        }
+    }
+    
     // MARK: Zinnia
     
     static var zinnia: UIImage {
@@ -497,6 +552,116 @@ extension PlantManager {
                 }
             case .eight:
                 return #imageLiteral(resourceName: "jade8.png")
+            }
+        }
+    }
+    
+    // MARK: Aloe
+    
+    static var aloe: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "aloe1.png")
+                } else {
+                    return #imageLiteral(resourceName: "aloe1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "aloe2.png")
+                } else {
+                    return #imageLiteral(resourceName: "aloe2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "aloe3.png")
+                } else {
+                    return #imageLiteral(resourceName: "aloe3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "aloe4.png")
+                } else {
+                    return #imageLiteral(resourceName: "aloe4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "aloe5.png")
+                } else {
+                    return #imageLiteral(resourceName: "aloe5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "aloe6.png")
+                } else {
+                    return #imageLiteral(resourceName: "aloe6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "aloe7.png")
+                } else {
+                    return #imageLiteral(resourceName: "aloe7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "aloe8.png")
+            }
+        }
+    }
+    
+    // MARK: Paddle plant
+    
+    static var paddle: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "paddle1.png")
+                } else {
+                    return #imageLiteral(resourceName: "paddle1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "paddle2.png")
+                } else {
+                    return #imageLiteral(resourceName: "paddle2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "paddle3.png")
+                } else {
+                    return #imageLiteral(resourceName: "paddle3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "paddle4.png")
+                } else {
+                    return #imageLiteral(resourceName: "paddle4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "paddle5.png")
+                } else {
+                    return #imageLiteral(resourceName: "paddle5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "paddle6.png")
+                } else {
+                    return #imageLiteral(resourceName: "paddle6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "paddle7.png")
+                } else {
+                    return #imageLiteral(resourceName: "paddle7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "paddle8.png")
             }
         }
     }

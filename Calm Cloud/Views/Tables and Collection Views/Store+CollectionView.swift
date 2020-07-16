@@ -61,7 +61,7 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
             item = products[indexPath.row]
             
             cell.nameLabel.text = item.localizedTitle
-            cell.itemImage.image = UIImage(named: "coin") // add other images later
+            cell.itemImage.image = Products.productImages[item.productIdentifier]
             cell.priceLabel.text = "\(item.price)"
             
             let availableWidth = collectionView.frame.width

@@ -38,6 +38,9 @@ struct Harvested {
         Plant.zinnia: 0,
         Plant.lavendarZinnia: 0,
         Plant.salmonZinnia: 0,
+        Plant.aloe: 0,
+        Plant.paddle: 0,
+        Plant.marigold: 0,
     ]
     
     // list of all possible basket items
@@ -52,7 +55,9 @@ struct Harvested {
         BasketItem(name: "Lavendar zinnia cuttings", plant: .lavendarZinnia),
         BasketItem(name: "Lemons", plant: .lemon),
         BasketItem(name: "Limes", plant: .lime),
+        BasketItem(name: "Marigold", plant: .marigold),
         BasketItem(name: "Oranges", plant: .orange),
+        BasketItem(name: "Paddle Plant", plant: .paddle),
         BasketItem(name: "Pink geranium flowers", plant: .geranium),
         BasketItem(name: "Pink tulip cuttings", plant: .pinkTulip),
         BasketItem(name: "Pumpkins", plant: .pumpkin),
@@ -62,6 +67,7 @@ struct Harvested {
         BasketItem(name: "Salmon zinnia cuttings", plant: .salmonZinnia),
         BasketItem(name: "Strawberries", plant: .strawberry),
         BasketItem(name: "Summer Squash", plant: .squash),
+        BasketItem(name: "Tiger Aloe", plant: .aloe),
         BasketItem(name: "Watermelons", plant: .watermelon),
         BasketItem(name: "White tulip cuttings", plant: .whiteTulip),
         BasketItem(name: "Yellow tulip cuttings", plant: .yellowTulip),
@@ -94,6 +100,9 @@ struct Harvested {
         Plant.zinnia: 0,
         Plant.lavendarZinnia: 0,
         Plant.salmonZinnia: 0,
+        Plant.aloe: 0,
+        Plant.paddle: 0,
+        Plant.marigold: 0,
     ]
     
     static func getStandImage(plant: Plant) -> UIImage {
@@ -146,6 +155,12 @@ struct Harvested {
             return #imageLiteral(resourceName: "lavendarzinniasale.png")
         case .salmonZinnia:
             return #imageLiteral(resourceName: "salmonzinniasale.png")
+        case .aloe:
+            return #imageLiteral(resourceName: "aloesale.png")
+        case .paddle:
+            return #imageLiteral(resourceName: "paddlesale.png")
+        case .marigold:
+            return #imageLiteral(resourceName: "marigoldsale.png")
         }
     }
     

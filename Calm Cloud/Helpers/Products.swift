@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Products {
     public static let tenCoins = "a"
@@ -31,5 +32,18 @@ struct Products {
         "twoHundredCoins": 200,
         "twoHundredFiftyCoins": 250,
         "fiveHundredCoins": 500,
+    ]
+    
+    public static let productImages: [String: UIImage] = [
+        "a" : #imageLiteral(resourceName: "tencoins.png"),
+        "b" : #imageLiteral(resourceName: "twentycoins.png"),
+        "c" : #imageLiteral(resourceName: "thirtycoins.png"),
+        "d" : #imageLiteral(resourceName: "fourtycoins.png"),
+        "e" : #imageLiteral(resourceName: "fiftycoins.png"),
+        "f" : #imageLiteral(resourceName: "seventycoins.png"),
+        "g" : #imageLiteral(resourceName: "onehundredcoins.png"),
+        "h" : #imageLiteral(resourceName: "twohundredcoins.png"),
+        "i" : #imageLiteral(resourceName: "twohundredfiftycoins.png"),
+        "j" : #imageLiteral(resourceName: "fivehundredcoins.png"),
     ]
 }

@@ -40,6 +40,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var receivedPackageContainer: UIView!
     
+    @IBOutlet weak var stringLights: UIImageView!
+    
     @IBOutlet weak var plusEXPLabel: UILabel!
     @IBOutlet weak var plusEXPLabelAlt: UILabel!
     
@@ -65,6 +67,7 @@ class ViewController: UIViewController {
     var stopped = false
     var lightsOff = false
     var playingMusic = false
+    var stringLightsOn = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -516,6 +519,16 @@ class ViewController: UIViewController {
             } else {
                 stopMoving()
             }
+        }
+    }
+    
+    @IBAction func lightsOnOff(_ sender: UIButton) {
+        if stringLightsOn {
+            stringLights.image = UIImage(named: "lights")
+            stringLightsOn = false
+        } else {
+            stringLights.image = UIImage(named: "lightsglow")
+            stringLightsOn = true
         }
     }
     

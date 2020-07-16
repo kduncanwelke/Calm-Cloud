@@ -86,7 +86,7 @@ struct PlantManager {
         // determine which stage of growth, half days of care because plants should be watered every 12 hours
         if let halfDaysCaredFor = halfDaysOfCare {
             switch plant {
-            case .geranium, .redTulip, .redGeranium, .yellowTulip, .pinkTulip, .whiteTulip, .daffodil:
+            case .geranium, .redTulip, .redGeranium, .yellowTulip, .pinkTulip, .whiteTulip, .daffodil, .aloe, .paddle, .marigold:
                 // fast growers, take one week
                 if halfDaysCaredFor <= 2 {
                     stage = 1
@@ -218,6 +218,12 @@ struct PlantManager {
             return lavendarZinnia
         case .salmonZinnia:
             return salmonZinnia
+        case .aloe:
+            return aloe
+        case .paddle:
+            return paddle
+        case .marigold:
+            return marigold
         case .none:
             return nil
         }
@@ -231,8 +237,8 @@ struct PlantManager {
     static var buying: Seedling?
     
     static let emptyPlots = [#imageLiteral(resourceName: "emptyplot.png"),#imageLiteral(resourceName: "emptyplotbig.png"),#imageLiteral(resourceName: "emptyplotsmallpot.png"),#imageLiteral(resourceName: "emptyplottree.png")]
-    static let maturePlants = [#imageLiteral(resourceName: "carrot7.png"),#imageLiteral(resourceName: "carrot7water.png"),#imageLiteral(resourceName: "chard7.png"),#imageLiteral(resourceName: "chard7water.png"),#imageLiteral(resourceName: "geranium7.png"),#imageLiteral(resourceName: "geranium7water.png"),#imageLiteral(resourceName: "jade7.png"),#imageLiteral(resourceName: "jade7water.png"),#imageLiteral(resourceName: "lemon7.png"),#imageLiteral(resourceName: "lemon7water.png"),#imageLiteral(resourceName: "lime7.png"),#imageLiteral(resourceName: "lime7water.png"),#imageLiteral(resourceName: "pepper7.png"),#imageLiteral(resourceName: "pepper7water.png"),#imageLiteral(resourceName: "pinktulip7.png"),#imageLiteral(resourceName: "pinktulip7water.png"),#imageLiteral(resourceName: "pumpkin7.png"),#imageLiteral(resourceName: "pumpkin7water.png"),#imageLiteral(resourceName: "redgeranium.png"),#imageLiteral(resourceName: "geranium7water.png"),#imageLiteral(resourceName: "redtulip7.png"),#imageLiteral(resourceName: "redtulip7water.png"),#imageLiteral(resourceName: "squash7.png"),#imageLiteral(resourceName: "squash7water.png"),#imageLiteral(resourceName: "strawberry7.png"),#imageLiteral(resourceName: "strawberry7water.png"),#imageLiteral(resourceName: "tomato7.png"),#imageLiteral(resourceName: "tomato7water.png"),#imageLiteral(resourceName: "watermelon7.png"),#imageLiteral(resourceName: "watermelon7water.png"),#imageLiteral(resourceName: "whitetulip7.png"),#imageLiteral(resourceName: "whitetulip7water.png"),#imageLiteral(resourceName: "yellowtulip7.png"),#imageLiteral(resourceName: "yellowtulip7water.png"),#imageLiteral(resourceName: "kale7.png"),#imageLiteral(resourceName: "kale7water.png"),#imageLiteral(resourceName: "orange7.png"),#imageLiteral(resourceName: "orange7water.png"),#imageLiteral(resourceName: "daffodil7.png"),#imageLiteral(resourceName: "daffodil7water.png")]
-    static let wiltedPlants = [#imageLiteral(resourceName: "carrot8.png"),#imageLiteral(resourceName: "chard8.png"),#imageLiteral(resourceName: "geranium8.png"),#imageLiteral(resourceName: "jade8.png"),#imageLiteral(resourceName: "lemon8.png"),#imageLiteral(resourceName: "lime8.png"),#imageLiteral(resourceName: "pepper8.png"),#imageLiteral(resourceName: "pumpkin8.png"),#imageLiteral(resourceName: "redtulip8.png"),#imageLiteral(resourceName: "strawberry8.png"),#imageLiteral(resourceName: "tomato8.png"),#imageLiteral(resourceName: "watermelon8.png"),#imageLiteral(resourceName: "kale8.png"),#imageLiteral(resourceName: "orange8.png"),#imageLiteral(resourceName: "daffodil8.png")]
+    static let maturePlants = [#imageLiteral(resourceName: "carrot7.png"),#imageLiteral(resourceName: "carrot7water.png"),#imageLiteral(resourceName: "chard7.png"),#imageLiteral(resourceName: "chard7water.png"),#imageLiteral(resourceName: "geranium7.png"),#imageLiteral(resourceName: "geranium7water.png"),#imageLiteral(resourceName: "jade7.png"),#imageLiteral(resourceName: "jade7water.png"),#imageLiteral(resourceName: "lemon7.png"),#imageLiteral(resourceName: "lemon7water.png"),#imageLiteral(resourceName: "lime7.png"),#imageLiteral(resourceName: "lime7water.png"),#imageLiteral(resourceName: "pepper7.png"),#imageLiteral(resourceName: "pepper7water.png"),#imageLiteral(resourceName: "pinktulip7.png"),#imageLiteral(resourceName: "pinktulip7water.png"),#imageLiteral(resourceName: "pumpkin7.png"),#imageLiteral(resourceName: "pumpkin7water.png"),#imageLiteral(resourceName: "redgeranium.png"),#imageLiteral(resourceName: "geranium7water.png"),#imageLiteral(resourceName: "redtulip7.png"),#imageLiteral(resourceName: "redtulip7water.png"),#imageLiteral(resourceName: "squash7.png"),#imageLiteral(resourceName: "squash7water.png"),#imageLiteral(resourceName: "strawberry7.png"),#imageLiteral(resourceName: "strawberry7water.png"),#imageLiteral(resourceName: "tomato7.png"),#imageLiteral(resourceName: "tomato7water.png"),#imageLiteral(resourceName: "watermelon7.png"),#imageLiteral(resourceName: "watermelon7water.png"),#imageLiteral(resourceName: "whitetulip7.png"),#imageLiteral(resourceName: "whitetulip7water.png"),#imageLiteral(resourceName: "yellowtulip7.png"),#imageLiteral(resourceName: "yellowtulip7water.png"),#imageLiteral(resourceName: "kale7.png"),#imageLiteral(resourceName: "kale7water.png"),#imageLiteral(resourceName: "orange7.png"),#imageLiteral(resourceName: "orange7water.png"),#imageLiteral(resourceName: "daffodil7.png"),#imageLiteral(resourceName: "daffodil7water.png"),#imageLiteral(resourceName: "lavendarzinnia7.png"),#imageLiteral(resourceName: "lavendarzinnia7water.png"),#imageLiteral(resourceName: "salmonzinnia7.png"),#imageLiteral(resourceName: "salmonzinnia7water.png"),#imageLiteral(resourceName: "zinnia7.png"),#imageLiteral(resourceName: "zinnia7water.png"),#imageLiteral(resourceName: "aloe7.png"),#imageLiteral(resourceName: "aloe7water.png"),#imageLiteral(resourceName: "paddle7.png"),#imageLiteral(resourceName: "paddle7water.png"),#imageLiteral(resourceName: "marigold7.png"),#imageLiteral(resourceName: "marigold7water.png")]
+    static let wiltedPlants = [#imageLiteral(resourceName: "carrot8.png"),#imageLiteral(resourceName: "chard8.png"),#imageLiteral(resourceName: "geranium8.png"),#imageLiteral(resourceName: "jade8.png"),#imageLiteral(resourceName: "lemon8.png"),#imageLiteral(resourceName: "lime8.png"),#imageLiteral(resourceName: "pepper8.png"),#imageLiteral(resourceName: "pumpkin8.png"),#imageLiteral(resourceName: "redtulip8.png"),#imageLiteral(resourceName: "strawberry8.png"),#imageLiteral(resourceName: "tomato8.png"),#imageLiteral(resourceName: "watermelon8.png"),#imageLiteral(resourceName: "kale8.png"),#imageLiteral(resourceName: "orange8.png"),#imageLiteral(resourceName: "daffodil8.png"),#imageLiteral(resourceName: "zinnia8.png"),#imageLiteral(resourceName: "aloe8.png"),#imageLiteral(resourceName: "paddle8.png"),#imageLiteral(resourceName: "marigold8.png")]
 }
 
 enum Plant: Int {
@@ -259,6 +265,9 @@ enum Plant: Int {
     case zinnia     // 20
     case lavendarZinnia // 21
     case salmonZinnia // 22
+    case aloe       // 23
+    case paddle     // 24
+    case marigold   // 25
     case none       
 }
 

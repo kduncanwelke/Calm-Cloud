@@ -41,6 +41,9 @@ struct Plantings {
         Plant.zinnia: 0,
         Plant.lavendarZinnia: 0,
         Plant.salmonZinnia: 0,
+        Plant.aloe: 0,
+        Plant.paddle: 0,
+        Plant.marigold: 0,
     ]
     
     // list of all available seedlings
@@ -55,7 +58,9 @@ struct Plantings {
         Seedling(name: "Lavendar Zinnia", image: UIImage(named: "lavendarzinnia")!, plant: .lavendarZinnia, allowedArea: .rows, price: 20),
         Seedling(name: "Lemon Tree", image: UIImage(named: "lemon")!, plant: .lemon, allowedArea: .tallPot, price: 50),
         Seedling(name: "Lime Tree", image: UIImage(named: "lime")!, plant: .lime, allowedArea: .tallPot, price: 50),
+        Seedling(name: "Marigold", image: UIImage(named: "marigold")!, plant: .marigold, allowedArea: .rows, price: 20),
         Seedling(name: "Orange Tree", image: UIImage(named: "orange")!, plant: .orange, allowedArea: .tallPot, price: 60),
+        Seedling(name: "Paddle Plant", image: UIImage(named: "paddle")!, plant: .paddle, allowedArea: .lowPot, price: 30),
         Seedling(name: "Pink Geranium", image: UIImage(named: "geranium")!, plant: .geranium, allowedArea: .smallPot, price: 18),
         Seedling(name: "Pink Tulip", image: UIImage(named: "pinktulip")!, plant: .pinkTulip, allowedArea: .rows, price: 15),
         Seedling(name: "Pumpkin", image: UIImage(named: "pumpkin")!, plant: .pumpkin, allowedArea: .vegetablePlot, price: 30),
@@ -65,6 +70,7 @@ struct Plantings {
         Seedling(name: "Salmon Zinnia", image: UIImage(named: "salmonzinnia")!, plant: .salmonZinnia, allowedArea: .rows, price: 20),
         Seedling(name: "Strawberry", image: UIImage(named: "strawberry")!, plant: .strawberry, allowedArea: .vegetablePlot, price: 20),
         Seedling(name: "Summer Squash", image: UIImage(named: "squash")!, plant: .squash, allowedArea: .vegetablePlot, price: 25),
+        Seedling(name: "Tiger Aloe", image: UIImage(named: "aloe")!, plant: .aloe, allowedArea: .lowPot, price: 25),
         Seedling(name: "Yellow Tulip", image: UIImage(named: "yellowtulip")!, plant: .yellowTulip, allowedArea: .rows, price: 15),
         Seedling(name: "Watermelon", image: UIImage(named: "watermelon")!, plant: .watermelon, allowedArea: .vegetablePlot, price: 30),
         Seedling(name: "White Tulip", image: UIImage(named: "whitetulip")!, plant: .whiteTulip, allowedArea: .rows, price: 12)
