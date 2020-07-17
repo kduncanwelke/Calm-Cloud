@@ -53,8 +53,8 @@ struct Plantings {
         Seedling(name: "Cherry Tomato", image: UIImage(named: "tomato")!, plant: .tomato, allowedArea: .planter, price: 25),
         Seedling(name: "Daffodil", image: UIImage(named: "daffodil")!, plant: .daffodil, allowedArea: .rows, price: 20),
         Seedling(name: "Fuchsia Zinnia", image: UIImage(named: "zinnia")!, plant: .zinnia, allowedArea: .rows, price: 20),
-        Seedling(name: "Jade", image: UIImage(named: "jade")!, plant: .jade, allowedArea: .lowPot, price: 25),
-        Seedling(name: "Kale", image: UIImage(named: "kale")!, plant: .kale, allowedArea: .multi, price: 15),
+        Seedling(name: "Jade", image: UIImage(named: "jade")!, plant: .jade, allowedArea: .lowPot, price: 20),
+        Seedling(name: "Kale", image: UIImage(named: "kale")!, plant: .kale, allowedArea: .multi, price: 25),
         Seedling(name: "Lavendar Zinnia", image: UIImage(named: "lavendarzinnia")!, plant: .lavendarZinnia, allowedArea: .rows, price: 20),
         Seedling(name: "Lemon Tree", image: UIImage(named: "lemon")!, plant: .lemon, allowedArea: .tallPot, price: 50),
         Seedling(name: "Lime Tree", image: UIImage(named: "lime")!, plant: .lime, allowedArea: .tallPot, price: 50),
@@ -63,17 +63,17 @@ struct Plantings {
         Seedling(name: "Paddle Plant", image: UIImage(named: "paddle")!, plant: .paddle, allowedArea: .lowPot, price: 30),
         Seedling(name: "Pink Geranium", image: UIImage(named: "geranium")!, plant: .geranium, allowedArea: .smallPot, price: 18),
         Seedling(name: "Pink Tulip", image: UIImage(named: "pinktulip")!, plant: .pinkTulip, allowedArea: .rows, price: 15),
-        Seedling(name: "Pumpkin", image: UIImage(named: "pumpkin")!, plant: .pumpkin, allowedArea: .vegetablePlot, price: 30),
-        Seedling(name: "Rainbow Chard", image: UIImage(named: "chard")!, plant: .chard, allowedArea: .multi, price: 20),
-        Seedling(name: "Red Geranium", image: UIImage(named: "redgeranium")!, plant: .redGeranium, allowedArea: .smallPot, price: 18),
+        Seedling(name: "Pumpkin", image: UIImage(named: "pumpkin")!, plant: .pumpkin, allowedArea: .vegetablePlot, price: 40),
+        Seedling(name: "Rainbow Chard", image: UIImage(named: "chard")!, plant: .chard, allowedArea: .multi, price: 30),
+        Seedling(name: "Red Geranium", image: UIImage(named: "redgeranium")!, plant: .redGeranium, allowedArea: .smallPot, price: 20),
         Seedling(name: "Red Tulip", image: UIImage(named: "redtulip")!, plant: .redTulip, allowedArea: .rows, price: 10),
-        Seedling(name: "Salmon Zinnia", image: UIImage(named: "salmonzinnia")!, plant: .salmonZinnia, allowedArea: .rows, price: 20),
-        Seedling(name: "Strawberry", image: UIImage(named: "strawberry")!, plant: .strawberry, allowedArea: .vegetablePlot, price: 20),
+        Seedling(name: "Salmon Zinnia", image: UIImage(named: "salmonzinnia")!, plant: .salmonZinnia, allowedArea: .rows, price: 10),
+        Seedling(name: "Strawberry", image: UIImage(named: "strawberry")!, plant: .strawberry, allowedArea: .vegetablePlot, price: 30),
         Seedling(name: "Summer Squash", image: UIImage(named: "squash")!, plant: .squash, allowedArea: .vegetablePlot, price: 25),
         Seedling(name: "Tiger Aloe", image: UIImage(named: "aloe")!, plant: .aloe, allowedArea: .lowPot, price: 25),
-        Seedling(name: "Yellow Tulip", image: UIImage(named: "yellowtulip")!, plant: .yellowTulip, allowedArea: .rows, price: 15),
-        Seedling(name: "Watermelon", image: UIImage(named: "watermelon")!, plant: .watermelon, allowedArea: .vegetablePlot, price: 30),
-        Seedling(name: "White Tulip", image: UIImage(named: "whitetulip")!, plant: .whiteTulip, allowedArea: .rows, price: 12)
+        Seedling(name: "Yellow Tulip", image: UIImage(named: "yellowtulip")!, plant: .yellowTulip, allowedArea: .rows, price: 10),
+        Seedling(name: "Watermelon", image: UIImage(named: "watermelon")!, plant: .watermelon, allowedArea: .vegetablePlot, price: 40),
+        Seedling(name: "White Tulip", image: UIImage(named: "whitetulip")!, plant: .whiteTulip, allowedArea: .rows, price: 15)
     ]
 }
 

@@ -139,6 +139,10 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         collectionView.reloadData()
+        
+        if products.isEmpty == false {
+            collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
     }
     
     @IBAction func backPressed(_ sender: UIButton) {

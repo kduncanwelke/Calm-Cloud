@@ -154,19 +154,21 @@ struct DataFunctions {
         // otherwise rewrite data
         var resave: [HarvestedItem] = []
         
-        for item in Harvested.loaded {
-            let quantity = Harvested.basketCounts[Plant(rawValue: Int(item.id))!]
-            item.quantity = Int16(quantity!)
-            
-            resave.append(item)
-            
-            do {
-                try managedContext.save()
-                print("resave successful")
-            } catch {
-                // this should never be displayed but is here to cover the possibility
-                print("failed to save inventory")
+        for (type, quantity) in Harvested.basketCounts {
+            for item in Harvested.loaded {
+                if Int(item.id) == type.rawValue {
+                    item.quantity = Int16(quantity)
+                    resave.append(item)
+                }
             }
+        }
+        
+        do {
+            try managedContext.save()
+            print("resave successful")
+        } catch {
+            // this should never be displayed but is here to cover the possibility
+            print("failed to save harvest")
         }
         
         Harvested.loaded.removeAll()
@@ -182,7 +184,16 @@ struct DataFunctions {
             Harvested.loaded = try managedContext.fetch(fetchRequest)
             
             for item in Harvested.loaded {
+                print(item.id)
+                print(item.quantity)
                 Harvested.basketCounts[Plant(rawValue: Int(item.id))!] = Int(item.quantity)
+            }
+            
+            // if no harvest loaded, set all counts to zero
+            if Harvested.loaded.isEmpty {
+                for (plant, quantity) in Harvested.basketCounts {
+                    Harvested.basketCounts[plant] = 0
+                }
             }
             print("harvest loaded")
         } catch let error as NSError {

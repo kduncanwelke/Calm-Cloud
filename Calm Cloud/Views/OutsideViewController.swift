@@ -70,6 +70,9 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var coinCount: UILabel!
     @IBOutlet weak var coinImage: UIImageView!
     
+    @IBOutlet weak var earningsView: UIView!
+    @IBOutlet weak var earningsMessage: UILabel!
+    
     @IBOutlet weak var backgroundView: UIView!
     
     @IBOutlet weak var normalButton: UIButton!
@@ -128,6 +131,7 @@ class OutsideViewController: UIViewController {
         plusEXPLabelAlt.alpha = 0.0
         honorStandMoney.isHidden = true
         coinCount.text = "\(MoneyManager.total)"
+        earningsView.isHidden = true
         
         normalText.alpha = 1.0
         waterText.alpha = 0.0
@@ -174,6 +178,7 @@ class OutsideViewController: UIViewController {
             MoneyManager.earnings += income
             if income != 0 {
                 honorStandMoney.isHidden = false
+                DataFunctions.saveMoney()
                 DataFunctions.saveHonorStandItems()
             }
         }
@@ -183,6 +188,10 @@ class OutsideViewController: UIViewController {
     
     @objc func loadHonorStand() {
         var index = 0
+        
+        if MoneyManager.earnings != 0 {
+            honorStandMoney.isHidden = false
+        }
         
         // show more crowded image if more quantity
         for (type, quantity) in Harvested.inStand {
@@ -701,6 +710,10 @@ class OutsideViewController: UIViewController {
         print("\(MoneyManager.earnings)")
         // add earnings to total
         if MoneyManager.earnings != 0 {
+            earningsView.isHidden = false
+            earningsMessage.text = "You made \(MoneyManager.earnings) coins in honor stand earnings!"
+            earningsView.animateBounce()
+            
             MoneyManager.total += MoneyManager.earnings
             coinCount.text = "\(MoneyManager.total)"
             coinImage.animateBounce()
@@ -711,6 +724,9 @@ class OutsideViewController: UIViewController {
             // resave money
             DataFunctions.saveMoney()
             honorStandMoney.isHidden = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [unowned self] in
+                self.earningsView.isHidden = true
+            }
         }
     }
     

@@ -30,6 +30,7 @@ class BasketViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
         DataFunctions.loadHarvest()
         
         addedImage.alpha = 0.0
