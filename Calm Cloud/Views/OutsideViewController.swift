@@ -162,6 +162,11 @@ class OutsideViewController: UIViewController {
         }
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        print("view will transition")
+        stopMovingOutside()
+    }
+    
     // MARK: Custom functions
     
     func loadUI() {
@@ -453,6 +458,12 @@ class OutsideViewController: UIViewController {
                 view.bringSubviewToFront(harvestContainer)
             }
         case .watering:
+            if image.isMatch(with: PlantManager.wiltedPlants) {
+                // show message?
+                // cannot water wilted plant
+                return
+            }
+            
             saveWatering(id: selectedPlot)
         case .removal:
             tappedImage = image
@@ -461,8 +472,10 @@ class OutsideViewController: UIViewController {
             // determine if plot has wilted plant
             if image.isMatch(with: PlantManager.wiltedPlants) {
                 print("wilted plant")
-                removePlant()
-            } else {
+                view.bringSubviewToFront(removeContainer)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadRemove"), object: nil)
+            } else if !image.isMatch(with: PlantManager.emptyPlots) {
+                // make sure plot is not empty
                 view.bringSubviewToFront(removeContainer)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadRemove"), object: nil)
             }

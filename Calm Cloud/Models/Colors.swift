@@ -17,6 +17,6 @@ struct Colors {
     static let tan = UIColor(red: 0.80, green: 0.74, blue: 0.64, alpha: 1.00)
     
     // alternating cells with color for collection views with two cells across
-    static let colorfulCells = [0, 3, 4, 7, 8, 11, 12, 15, 16, 19, 20, 23, 24]
+    static let colorfulCells = [0, 3, 4, 7, 8, 11, 12, 15, 16, 19, 20, 23, 24, 27, 28, 31, 32, 35]
 }
 

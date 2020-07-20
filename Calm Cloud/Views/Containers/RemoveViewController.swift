@@ -39,6 +39,10 @@ class RemoveViewController: UIViewController {
         for seedling in Plantings.seedlings {
             if seedling.plant == Plant(rawValue: Int(plant.plant))! {
                 remove = seedling.name
+                
+                if seedling.image.isMatch(with: PlantManager.wiltedPlants) {
+                    remove = "wilted \(seedling.name)"
+                }
             }
         }
     }

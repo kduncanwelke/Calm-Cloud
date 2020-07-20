@@ -61,6 +61,10 @@ class BuyPlantViewController: UIViewController {
     }
     
     @IBAction func buyPressed(_ sender: UIButton) {
+        if number == 0 {
+            return
+        }
+        
         if costPer * number > MoneyManager.total {
             print("not enough funds!")
             insufficientFunds.isHidden = false

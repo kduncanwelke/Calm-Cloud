@@ -391,7 +391,7 @@ extension PlantManager {
         }
     }
     
-    // MARK: Lavendar Zinniz
+    // MARK: Lavendar Zinnia
     
     static var lavendarZinnia: UIImage {
         get {
@@ -497,6 +497,59 @@ extension PlantManager {
                 }
             case .eight:
                 return #imageLiteral(resourceName: "zinnia8.png")
+            }
+        }
+    }
+    
+    static var carrot: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "carrot1.png")
+                } else {
+                    return #imageLiteral(resourceName: "carrot1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "carrot2.png")
+                } else {
+                    return #imageLiteral(resourceName: "carrot2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "carrot3.png")
+                } else {
+                    return #imageLiteral(resourceName: "carrot3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "carrot4.png")
+                } else {
+                    return #imageLiteral(resourceName: "carrot4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "carrot5.png")
+                } else {
+                    return #imageLiteral(resourceName: "carrot5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "carrot6.png")
+                } else {
+                    return #imageLiteral(resourceName: "carrot6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "carrot7.png")
+                } else {
+                    return #imageLiteral(resourceName: "carrot7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "carrot8.png")
             }
         }
     }
@@ -1379,55 +1432,332 @@ extension PlantManager {
         }
     }
     
-    static var carrot: UIImage {
+    // MARK: Lobelia
+    
+    static var lobelia: UIImage {
         get {
             switch PlantManager.currentStage {
             case .zero:
-                return #imageLiteral(resourceName: "emptyplot.png")
+                return #imageLiteral(resourceName: "emptyplotsmallpot.png")
             case .one:
                 if needsWater {
-                    return #imageLiteral(resourceName: "carrot1.png")
+                    return #imageLiteral(resourceName: "lobelia1.png")
                 } else {
-                    return #imageLiteral(resourceName: "carrot1water.png")
+                    return #imageLiteral(resourceName: "lobelia1water.png")
                 }
             case .two:
                 if needsWater {
-                    return #imageLiteral(resourceName: "carrot2.png")
+                    return #imageLiteral(resourceName: "lobelia2.png")
                 } else {
-                    return #imageLiteral(resourceName: "carrot2water.png")
+                    return #imageLiteral(resourceName: "lobelia2water.png")
                 }
             case .three:
                 if needsWater {
-                    return #imageLiteral(resourceName: "carrot3.png")
+                    return #imageLiteral(resourceName: "lobelia3.png")
                 } else {
-                    return #imageLiteral(resourceName: "carrot3water.png")
+                    return #imageLiteral(resourceName: "lobelia3water.png")
                 }
             case .four:
                 if needsWater {
-                    return #imageLiteral(resourceName: "carrot4.png")
+                    return #imageLiteral(resourceName: "lobelia4.png")
                 } else {
-                    return #imageLiteral(resourceName: "carrot4water.png")
+                    return #imageLiteral(resourceName: "lobelia4water.png")
                 }
             case .five:
                 if needsWater {
-                    return #imageLiteral(resourceName: "carrot5.png")
+                    return #imageLiteral(resourceName: "lobelia5.png")
                 } else {
-                    return #imageLiteral(resourceName: "carrot5water.png")
+                    return #imageLiteral(resourceName: "lobelia5water.png")
                 }
             case .six:
                 if needsWater {
-                    return #imageLiteral(resourceName: "carrot6.png")
+                    return #imageLiteral(resourceName: "lobelia6.png")
                 } else {
-                    return #imageLiteral(resourceName: "carrot6water.png")
+                    return #imageLiteral(resourceName: "lobelia6water.png")
                 }
             case .seven:
                 if needsWater {
-                    return #imageLiteral(resourceName: "carrot7.png")
+                    return #imageLiteral(resourceName: "lobelia7.png")
                 } else {
-                    return #imageLiteral(resourceName: "carrot7water.png")
+                    return #imageLiteral(resourceName: "lobelia7water.png")
                 }
             case .eight:
-                return #imageLiteral(resourceName: "carrot8.png")
+                return #imageLiteral(resourceName: "lobelia8.png")
+            }
+        }
+    }
+    
+    // MARK: Purple petunia
+    
+    static var purplePetunia: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplotsmallpot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia1.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia2.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia3.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia4.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia5.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia6.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia7.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "purplepetunia8.png")
+            }
+        }
+    }
+    
+    // MARK: White petunia
+    
+    static var whitePetunia: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplotsmallpot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia1.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia2.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia3.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia4.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia5.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia6.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "whitepetunia7.png")
+                } else {
+                    return #imageLiteral(resourceName: "whitepetunia7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "purplepetunia8.png")
+            }
+        }
+    }
+    
+    // MARK: Striped petunia
+    
+    static var stripedPetunia: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplotsmallpot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia1.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia2.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia3.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia4.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia5.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia6.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "stripedpetunia7.png")
+                } else {
+                    return #imageLiteral(resourceName: "stripedpetunia7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "purplepetunia8.png")
+            }
+        }
+    }
+    
+    // MARK: Black petunia
+    
+    static var blackPetunia: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplotsmallpot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia1.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia2.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia3.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia4.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia5.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia6.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "blackpetunia7.png")
+                } else {
+                    return #imageLiteral(resourceName: "blackpetunia7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "purplepetunia8.png")
+            }
+        }
+    }
+    
+    // MARK: Blue petunia
+    
+    static var bluePetunia: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplotsmallpot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia1.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia2.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia3.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia4.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia5.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "purplepetunia6.png")
+                } else {
+                    return #imageLiteral(resourceName: "purplepetunia6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "bluepetunia7.png")
+                } else {
+                    return #imageLiteral(resourceName: "bluepetunia7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "purplepetunia8.png")
             }
         }
     }

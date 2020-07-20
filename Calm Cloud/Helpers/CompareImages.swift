@@ -20,3 +20,15 @@ extension UIImageView {
         return false
     }
 }
+
+extension UIImage {
+    func isMatch(with images: [UIImage]) -> Bool {
+        for image in images {
+            if self.pngData() == image.pngData() {
+                return true
+            }
+        }
+        
+        return false
+    }
+}

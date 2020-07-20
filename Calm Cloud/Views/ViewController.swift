@@ -41,6 +41,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var receivedPackageContainer: UIView!
     
     @IBOutlet weak var stringLights: UIImageView!
+    @IBOutlet weak var insideNightOverlay: UIImageView!
     
     @IBOutlet weak var plusEXPLabel: UILabel!
     @IBOutlet weak var plusEXPLabelAlt: UILabel!
@@ -91,7 +92,6 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateMoney), name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(closeTasks), name: NSNotification.Name(rawValue: "closeTasks"), object: nil)
-        
 
         openDoor.isHidden = true
         plusEXPLabel.alpha = 0.0
@@ -126,6 +126,11 @@ class ViewController: UIViewController {
             // Fallback on earlier versions
             return .default
         }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        print("view will transition")
+        stopMoving()
     }
     
     // MARK: Custom functions
@@ -526,9 +531,17 @@ class ViewController: UIViewController {
         if stringLightsOn {
             stringLights.image = UIImage(named: "lights")
             stringLightsOn = false
+            
+            if lightsOff {
+                insideNightOverlay.image = UIImage(named: "nightoverlay")
+            }
         } else {
             stringLights.image = UIImage(named: "lightsglow")
             stringLightsOn = true
+            
+            if lightsOff {
+                insideNightOverlay.image = UIImage(named: "glowstars")
+            }
         }
     }
     
@@ -630,6 +643,7 @@ class ViewController: UIViewController {
         if lightsOff {
             // if lights are currently off, remove dark layers and return to normal
             darkOutside.fadeOut()
+            insideNightOverlay.fadeOut()
             nightOverlay.fadeOut()
             lightsOffButton.setBackgroundImage(UIImage(named: "lightsoff"), for: .normal)
             lightsOffButton.setTitle("  Lights Off", for: .normal)
@@ -662,7 +676,14 @@ class ViewController: UIViewController {
                 goToSleep()
             }
             
+            if stringLightsOn {
+                insideNightOverlay.image = UIImage(named: "glowstars")
+            } else {
+                insideNightOverlay.image = UIImage(named: "nightoverlay")
+            }
+            
             nightOverlay.fadeIn()
+            insideNightOverlay.fadeIn()
             darkOutside.fadeIn()
             lightsOffButton.setBackgroundImage(UIImage(named: "lightson"), for: .normal)
             lightsOffButton.setTitle("  Lights On", for: .normal)

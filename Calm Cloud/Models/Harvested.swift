@@ -41,11 +41,19 @@ struct Harvested {
         Plant.aloe: 0,
         Plant.paddle: 0,
         Plant.marigold: 0,
+        Plant.lobelia: 0,
+        Plant.purplePetunia: 0,
+        Plant.whitePetunia: 0,
+        Plant.stripedPetunia: 0,
+        Plant.blackPetunia: 0,
+        Plant.bluePetunia: 0,
     ]
     
     // list of all possible basket items
     static var basketItems: [BasketItem] = [
         BasketItem(name: "Bell peppers", plant: .pepper),
+        BasketItem(name: "Black petunia cuttings", plant: .blackPetunia),
+        BasketItem(name: "Blue petunia cuttings", plant: .bluePetunia),
         BasketItem(name: "Carrots", plant: .carrot),
         BasketItem(name: "Daffodil", plant: .daffodil),
         BasketItem(name: "Fushsia Zinnia Cuttings", plant: .zinnia),
@@ -55,20 +63,24 @@ struct Harvested {
         BasketItem(name: "Lavendar zinnia cuttings", plant: .lavendarZinnia),
         BasketItem(name: "Lemons", plant: .lemon),
         BasketItem(name: "Limes", plant: .lime),
+        BasketItem(name: "Lobelia cuttings", plant: .lobelia),
         BasketItem(name: "Marigold", plant: .marigold),
         BasketItem(name: "Oranges", plant: .orange),
         BasketItem(name: "Paddle Plant", plant: .paddle),
         BasketItem(name: "Pink geranium flowers", plant: .geranium),
         BasketItem(name: "Pink tulip cuttings", plant: .pinkTulip),
         BasketItem(name: "Pumpkins", plant: .pumpkin),
+        BasketItem(name: "Purple petunia cuttings", plant: .purplePetunia),
         BasketItem(name: "Rainbow chard stems", plant: .chard),
         BasketItem(name: "Red geranium flowers", plant: .redGeranium),
         BasketItem(name: "Red tulip cuttings", plant: .redTulip),
         BasketItem(name: "Salmon zinnia cuttings", plant: .salmonZinnia),
         BasketItem(name: "Strawberries", plant: .strawberry),
+        BasketItem(name: "Striped petunia cuttings", plant: .stripedPetunia),
         BasketItem(name: "Summer Squash", plant: .squash),
         BasketItem(name: "Tiger Aloe", plant: .aloe),
         BasketItem(name: "Watermelons", plant: .watermelon),
+        BasketItem(name: "White petunia cuttings", plant: .whitePetunia),
         BasketItem(name: "White tulip cuttings", plant: .whiteTulip),
         BasketItem(name: "Yellow tulip cuttings", plant: .yellowTulip),
     ]
@@ -103,6 +115,12 @@ struct Harvested {
         Plant.aloe: 0,
         Plant.paddle: 0,
         Plant.marigold: 0,
+        Plant.lobelia: 0,
+        Plant.purplePetunia: 0,
+        Plant.whitePetunia: 0,
+        Plant.stripedPetunia: 0,
+        Plant.blackPetunia: 0,
+        Plant.bluePetunia: 0,
     ]
     
     static func getStandImage(plant: Plant) -> UIImage {
@@ -161,6 +179,18 @@ struct Harvested {
             return #imageLiteral(resourceName: "paddlesale.png")
         case .marigold:
             return #imageLiteral(resourceName: "marigoldsale.png")
+        case .lobelia:
+            return #imageLiteral(resourceName: "lobeliasale.png")
+        case .purplePetunia:
+            return #imageLiteral(resourceName: "purplepetuniasale.png")
+        case .whitePetunia:
+            return #imageLiteral(resourceName: "whitepetuniasale.png")
+        case .stripedPetunia:
+            return #imageLiteral(resourceName: "stripedpetuniasale.png")
+        case .blackPetunia:
+            return #imageLiteral(resourceName: "blackpetuniasale.png")
+        case .bluePetunia:
+            return #imageLiteral(resourceName: "bluepetuniasale.png")
         }
     }
     

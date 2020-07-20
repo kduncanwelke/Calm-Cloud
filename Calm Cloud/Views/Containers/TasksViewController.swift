@@ -75,8 +75,10 @@ class TasksViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func rewardPressed(_ sender: UIButton) {
-        // add coin reward
-        MoneyManager.total += Int.random(in: 10...15)
+        // add coin and exp reward
+        MoneyManager.total += 10
+        LevelManager.currentEXP += 15
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromOutside"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
         getReward.isHidden = true
         TasksManager.rewardCollected = true
