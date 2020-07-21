@@ -83,6 +83,7 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var waterText: UIButton!
     @IBOutlet weak var removeText: UIButton!
     
+    @IBOutlet weak var lanterns: UIImageView!
     
     // MARK: Variables
     
@@ -92,6 +93,7 @@ class OutsideViewController: UIViewController {
     var tappedImage: UIImageView?
     var stopped = false
     var mode: Mode = .planting
+    var lightsOn = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -648,6 +650,17 @@ class OutsideViewController: UIViewController {
         inventoryContainer.animateBounce()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
     }
+    
+    @IBAction func onOffPressed(_ sender: UIButton) {
+        if lightsOn {
+            lightsOn = false
+            lanterns.image = UIImage(named: "lanternsoff")
+        } else {
+            lightsOn = true
+            lanterns.image = UIImage(named: "lanternson")
+        }
+    }
+    
     
     @IBAction func normalModeTapped(_ sender: UIButton) {
         if mode != .planting {

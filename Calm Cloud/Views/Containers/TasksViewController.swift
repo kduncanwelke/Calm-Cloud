@@ -17,12 +17,15 @@ class TasksViewController: UIViewController {
     @IBOutlet weak var activitiesComplete: UIImageView!
     @IBOutlet weak var allComplete: UILabel!
     @IBOutlet weak var getReward: UIButton!
+    @IBOutlet weak var rewardDetails: UIStackView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTasks), name: NSNotification.Name(rawValue: "reloadTasks"), object: nil)
+        rewardDetails.alpha = 0
         toggleChecks()
     }
     
@@ -78,9 +81,11 @@ class TasksViewController: UIViewController {
         // add coin and exp reward
         MoneyManager.total += 10
         LevelManager.currentEXP += 15
+        allComplete.isHidden = true
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromOutside"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
         getReward.isHidden = true
+        rewardDetails.animateFadeIn()
         TasksManager.rewardCollected = true
         DataFunctions.saveTasks()
     }
