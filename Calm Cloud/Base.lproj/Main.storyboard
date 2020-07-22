@@ -1009,7 +1009,7 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WIO-ec-KQR">
-                                <rect key="frame" x="41.5" y="310" width="331" height="276"/>
+                                <rect key="frame" x="41.5" y="337.5" width="331" height="221"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RLP-bb-Bg0">
                                         <rect key="frame" x="15" y="18" width="301" height="104.5"/>
@@ -1036,7 +1036,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zIT-nj-vf9">
-                                        <rect key="frame" x="115.5" y="132.5" width="100" height="50"/>
+                                        <rect key="frame" x="115.5" y="151" width="100" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="j9l-Ig-FmX"/>
                                             <constraint firstAttribute="width" secondItem="zIT-nj-vf9" secondAttribute="height" multiplier="2:1" id="uLk-P4-ji2"/>
@@ -1054,12 +1054,12 @@
                                 <constraints>
                                     <constraint firstItem="RLP-bb-Bg0" firstAttribute="top" secondItem="WIO-ec-KQR" secondAttribute="top" constant="18" id="CgZ-r6-oIS"/>
                                     <constraint firstItem="zIT-nj-vf9" firstAttribute="centerX" secondItem="WIO-ec-KQR" secondAttribute="centerX" id="FTC-IJ-MlT"/>
-                                    <constraint firstItem="zIT-nj-vf9" firstAttribute="top" secondItem="RLP-bb-Bg0" secondAttribute="bottom" constant="10" id="Kgq-2N-lZU"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zIT-nj-vf9" secondAttribute="bottom" constant="15" id="fpH-Mi-mKV"/>
+                                    <constraint firstItem="zIT-nj-vf9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="RLP-bb-Bg0" secondAttribute="bottom" constant="15" id="Kgq-2N-lZU"/>
+                                    <constraint firstAttribute="bottom" secondItem="zIT-nj-vf9" secondAttribute="bottom" constant="20" id="fpH-Mi-mKV"/>
                                     <constraint firstItem="RLP-bb-Bg0" firstAttribute="leading" secondItem="WIO-ec-KQR" secondAttribute="leading" constant="15" id="gWJ-EL-QH4"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="p1v-bh-JO1"/>
                                     <constraint firstAttribute="trailing" secondItem="RLP-bb-Bg0" secondAttribute="trailing" constant="15" id="tRJ-Js-KOm"/>
-                                    <constraint firstAttribute="width" secondItem="WIO-ec-KQR" secondAttribute="height" multiplier="3:2.5" id="ytg-uh-pl9"/>
+                                    <constraint firstAttribute="width" secondItem="WIO-ec-KQR" secondAttribute="height" multiplier="3:2" id="ytg-uh-pl9"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1586,8 +1586,8 @@
                                                     <constraint firstAttribute="width" secondItem="ACo-sM-PKy" secondAttribute="height" multiplier="2:1" id="1M3-A0-ewz"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                <state key="normal" title="On/Off" backgroundImage="buttonbackground">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="On/Off" backgroundImage="whitebutton">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="onOffPressed:" destination="5Xa-cm-e5B" eventType="touchUpInside" id="ixE-9q-4VW"/>
@@ -2224,11 +2224,6 @@
                             <constraint firstItem="ooQ-d5-e0H" firstAttribute="leading" secondItem="K4w-br-9dW" secondAttribute="leading" constant="8" id="zB4-eB-a1b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K4w-br-9dW"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="egq-05-vQk"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="ozS-Le-Qg1"/>
                     <connections>

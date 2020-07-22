@@ -150,6 +150,7 @@ class OutsideViewController: UIViewController {
         loadUI()
         loadInventory()
         loadPlots()
+        DataFunctions.loadHarvest()
         DataFunctions.loadHonorStand()
         DataFunctions.saveInventory()
         checkForPurchases()

@@ -268,23 +268,30 @@ struct DataFunctions {
             
             // update quantity in basket
             if let oldCount = Harvested.basketCounts[Plant(rawValue: Int(item.id))!], let number = quantity {
-                let newCount = oldCount - number
+                var newCount: Int {
+                    get {
+                        if oldCount - number > 0 {
+                            return oldCount - number
+                        } else {
+                            return 0
+                        }
+                    }
+                }
                 
                 Harvested.basketCounts[Plant(rawValue: Int(item.id))!] = newCount
             }
-            
-            do {
-                try managedContext.save()
-                print("resave successful")
-            } catch {
-                // this should never be displayed but is here to cover the possibility
-                print("failed to save honor stand")
-            }
+        }
+        
+        do {
+            try managedContext.save()
+            print("resave successful")
+        } catch {
+            // this should never be displayed but is here to cover the possibility
+            print("failed to save honor stand")
         }
         
         Harvested.stand.removeAll()
         Harvested.stand = resave
-        
         DataFunctions.saveHarvest()
     }
     

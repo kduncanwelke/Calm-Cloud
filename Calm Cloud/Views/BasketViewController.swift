@@ -139,8 +139,8 @@ class BasketViewController: UIViewController {
         if segmentedControl.selectedSegmentIndex == 0 {
             if numberSentToStand != 0 {
                 DataFunctions.saveHonorStandItems()
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadHonorStand"), object: nil)
                 addedImage.animateFadeInSlow()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadHonorStand"), object: nil)
             }
         } else if segmentedControl.selectedSegmentIndex == 1 {
             if numberDonated != 0 {

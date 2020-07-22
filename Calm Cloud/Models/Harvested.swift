@@ -197,46 +197,61 @@ struct Harvested {
     // handle random purchases 'disappearance' from mysterious buyers we never see
     static func randomPurchases() -> Int? {
         // only check once per day, if not a new day exit
-        if let lastOpened = TasksManager.lastOpened {
-            if Calendar.current.isDateInToday(lastOpened) == false {
-                // if same day exit
-                return nil
-            }
-        }
+        let isSameDay = Recentness.isSameDay()
         
-        var income = 0
-        
-        for (type, quantity) in Harvested.inStand {
-            // cannot purchase what is not there
-            if quantity == 0 {
-                continue
-            }
+        if isSameDay == false {
+            print("honor stand purchase is new day")
+           
+            var income = 0
             
-            // random purchase bool
-            var purchasesMade = Bool.random()
-            
-            if purchasesMade {
-                // random number bought
-                var number = Int.random(in: 1...quantity)
-                let newQuantity = quantity - number
-                
-                // subtract items purchased and change quantity
-                // (new amount gets saved when this function is called)
-                Harvested.inStand[type] = newQuantity
-                
-                // random price paid
-                let prices = [7,10,14,18]
-                
-                if let price = prices.randomElement() {
-                    income += (price * number)
+            for (type, quantity) in Harvested.inStand {
+                // cannot purchase what is not there
+                if quantity == 0 {
+                    print("honor stand item quantity zero")
+                    continue
                 }
-            } else {
-                // no purchase
-                continue
+                
+                // random purchase bool
+                var purchasesMade = Bool.random()
+                
+                if purchasesMade {
+                    print("honor stand item purchased")
+                    // random number bought
+                    var number = Int.random(in: 1...quantity)
+                    
+                    var newQuantity: Int {
+                        get {
+                            if quantity - number > 0 {
+                                return quantity - number
+                            } else {
+                                return 0
+                            }
+                        }
+                    }
+                    
+                    // subtract items purchased and change quantity
+                    // (new amount gets saved when this function is called)
+                    Harvested.inStand[type] = newQuantity
+                    
+                    // random price paid
+                    let prices = [7,10,14,18]
+                    
+                    if let price = prices.randomElement() {
+                        income += (price * number)
+                    }
+                } else {
+                    // no purchase
+                    print("no purchase from honor stand")
+                    continue
+                }
             }
+            
+            return income
+        } else {
+            // if same day exit
+            print("honor stand purchase not new day")
+            return nil
         }
-        
-        return income
     }
 }
 

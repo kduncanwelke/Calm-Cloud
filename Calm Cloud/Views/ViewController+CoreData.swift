@@ -170,7 +170,7 @@ extension ViewController {
                     TasksManager.photo = false
                     TasksManager.activities = false
                     TasksManager.rewardCollected = false
-                    print("new day")
+                    print("tasks all clear")
                 }
             }
             

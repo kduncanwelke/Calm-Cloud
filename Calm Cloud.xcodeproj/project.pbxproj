@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2D00EEB92494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D00EEB82494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 */; };
-		2D00EEBD249424E3000DA1C8 /* gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D00EEBC249424E3000DA1C8 /* gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3 */; };
 		2D00EEBF24942EE2000DA1C8 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00EEBE24942EE2000DA1C8 /* TasksViewController.swift */; };
 		2D07E98924A150E900FD6E66 /* RemoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D07E98824A150E900FD6E66 /* RemoveViewController.swift */; };
 		2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D11FD6824367EA900EC89D9 /* Journal+TextViewDelegate.swift */; };
@@ -72,6 +71,7 @@
 		2DB1D48924573DDD00512E4F /* CareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48824573DDD00512E4F /* CareManager.swift */; };
 		2DB1D48B2457415000512E4F /* ViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */; };
 		2DB4106524916E8C00EFD088 /* MoneyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4106424916E8C00EFD088 /* MoneyManager.swift */; };
+		2DB6180024C8BC4A00EA9322 /* tspt_city_spring_indoor_ambience_loop_019.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DB617FF24C8BC4A00EA9322 /* tspt_city_spring_indoor_ambience_loop_019.mp3 */; };
 		2DB6E540248AD8CA007DA241 /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E53F248AD8CA007DA241 /* BasketTableViewCell.swift */; };
 		2DB6E542248ADAE6007DA241 /* Basket+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E541248ADAE6007DA241 /* Basket+TableView.swift */; };
 		2DB6E544248AF375007DA241 /* Harvested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E543248AF375007DA241 /* Harvested.swift */; };
@@ -98,7 +98,6 @@
 /* Begin PBXFileReference section */
 		211AF311F66267DAA0A89D1C /* Pods_Calm_Cloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calm_Cloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D00EEB82494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio_hero_ForestDay_DIGIX05_11_362.mp3; sourceTree = "<group>"; };
-		2D00EEBC249424E3000DA1C8 /* gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3; sourceTree = "<group>"; };
 		2D00EEBE24942EE2000DA1C8 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		2D07E98824A150E900FD6E66 /* RemoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveViewController.swift; sourceTree = "<group>"; };
 		2D11FD6824367EA900EC89D9 /* Journal+TextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+TextViewDelegate.swift"; sourceTree = "<group>"; };
@@ -165,6 +164,7 @@
 		2DB1D48824573DDD00512E4F /* CareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareManager.swift; sourceTree = "<group>"; };
 		2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CoreData.swift"; sourceTree = "<group>"; };
 		2DB4106424916E8C00EFD088 /* MoneyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyManager.swift; sourceTree = "<group>"; };
+		2DB617FF24C8BC4A00EA9322 /* tspt_city_spring_indoor_ambience_loop_019.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tspt_city_spring_indoor_ambience_loop_019.mp3; path = ../../../../../../Downloads/tspt_city_spring_indoor_ambience_loop_019.mp3; sourceTree = "<group>"; };
 		2DB6E53F248AD8CA007DA241 /* BasketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
 		2DB6E541248ADAE6007DA241 /* Basket+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Basket+TableView.swift"; sourceTree = "<group>"; };
 		2DB6E543248AF375007DA241 /* Harvested.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Harvested.swift; sourceTree = "<group>"; };
@@ -342,8 +342,8 @@
 				2DD2C31A246353310070934D /* Sounds.swift */,
 				2D00EEB82494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 */,
 				2DF4763C24A52BFF00EE7C2C /* you_will_know.mp3 */,
+				2DB617FF24C8BC4A00EA9322 /* tspt_city_spring_indoor_ambience_loop_019.mp3 */,
 				2DF4763E24A5317B00EE7C2C /* loire.mp3 */,
-				2D00EEBC249424E3000DA1C8 /* gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3 */,
 				2DD2C318246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 */,
 			);
 			path = Sounds;
@@ -464,7 +464,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D00EEBD249424E3000DA1C8 /* gain_walkers_RESIDENTIAL_Early_Morning_Birds_Distant_Traffic.mp3 in Resources */,
+				2DB6180024C8BC4A00EA9322 /* tspt_city_spring_indoor_ambience_loop_019.mp3 in Resources */,
 				2D8BA7D924B672E90020E6EF /* AppleIncRootCertificate.cer in Resources */,
 				2D48CC46242548B400D0FBBB /* LaunchScreen.storyboard in Resources */,
 				2DF4763F24A5317B00EE7C2C /* loire.mp3 in Resources */,

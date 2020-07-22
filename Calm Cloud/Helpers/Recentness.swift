@@ -36,4 +36,21 @@ struct Recentness {
         
         return true
     }
+    
+    static let userDefaultDate = "userDefaultDate"
+    
+    static func isSameDay() -> Bool {
+        let date = Date()
+        let calendar = Calendar.current
+        let dateToCompare = calendar.component(.day , from: date)
+        
+        let userDefaultDate = UserDefaults.standard.integer(forKey: "userDefaultDate")
+        
+        if userDefaultDate != dateToCompare {
+            UserDefaults.standard.set(dateToCompare, forKey: self.userDefaultDate)
+            return false
+        } else {
+            return true
+        }
+    }
 }
