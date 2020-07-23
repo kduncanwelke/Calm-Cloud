@@ -73,6 +73,7 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var earningsView: UIView!
     @IBOutlet weak var earningsMessage: UILabel!
     
+    @IBOutlet weak var outsideImage: UIImageView!
     @IBOutlet weak var backgroundView: UIView!
     
     @IBOutlet weak var normalButton: UIButton!
@@ -94,6 +95,7 @@ class OutsideViewController: UIViewController {
     var stopped = false
     var mode: Mode = .planting
     var lightsOn = false
+    var rotated = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,17 +169,30 @@ class OutsideViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         print("view will transition")
+        rotated = true
         stopMovingOutside()
     }
     
     // MARK: Custom functions
     
     func loadUI() {
+        setTimeOfDay()
+        
         // update level
         levelLabel.text = "\(LevelManager.currentLevel)"
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
         var prog: Float = Float(LevelManager.currentEXP) / Float(LevelManager.maxEXP)
         levelProgress.setProgress(prog, animated: true)
+    }
+    
+    func setTimeOfDay() {
+        let hour = Calendar.current.component(.hour, from: Date())
+        
+        if hour > 6 && hour < 20 {
+            outsideImage.image = UIImage(named: "outside")
+        } else {
+            outsideImage.image = UIImage(named: "backgroudnight")
+        }
     }
     
     func checkForPurchases() {
@@ -576,6 +591,11 @@ class OutsideViewController: UIViewController {
         
         if stopped {
             return
+        }
+        
+        if rotated {
+            AnimationTimer.stop()
+            rotated = false
         }
         
         if animation == 1 {

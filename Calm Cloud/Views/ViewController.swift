@@ -26,6 +26,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var nightOverlay: UIView!
     @IBOutlet weak var lightsOffButton: UIButton!
     @IBOutlet weak var darkOutside: UIView!
+    @IBOutlet weak var outsideBackground: UIImageView!
+    
     @IBOutlet weak var containerView: UIView!
     
     @IBOutlet weak var recordPlayer: UIImageView!
@@ -50,6 +52,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var coinImage: UIImageView!
     @IBOutlet weak var tasksView: UIView!
     
+    @IBOutlet weak var game: UIImageView!
+    
+    
     // MARK: Variables
     
     var hasFood = false
@@ -69,6 +74,9 @@ class ViewController: UIViewController {
     var lightsOff = false
     var playingMusic = false
     var stringLightsOn = false
+    var rotated = false
+    var summonedToGame = false
+    var playingGame = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,12 +138,15 @@ class ViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         print("view will transition")
+        rotated = true
         stopMoving()
     }
     
     // MARK: Custom functions
     
     func loadUI() {
+        setTimeOfDay()
+        
         // set images and exp
         if hasFood {
             foodImage.isHidden = false
@@ -160,6 +171,17 @@ class ViewController: UIViewController {
         var prog: Float = Float(LevelManager.currentEXP) / Float(LevelManager.maxEXP)
         levelProgress.setProgress(prog, animated: true)
         coinCount.text = "\(MoneyManager.total)"
+    }
+    
+    func setTimeOfDay() {
+        // change background if night
+        let hour = Calendar.current.component(.hour, from: Date())
+        
+        if hour > 6 && hour < 20 {
+            outsideBackground.image = UIImage(named: "outsidebackground")
+        } else {
+            outsideBackground.image = UIImage(named: "outsidebackgroudnight")
+        }
     }
     
     func showLevelUp() {
@@ -244,6 +266,8 @@ class ViewController: UIViewController {
         Sound.stopPlaying()
         Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
         Sound.startPlaying()
+        
+        setTimeOfDay()
         door.isHidden = false
         openDoor.isHidden = true
         stopped = false
@@ -330,6 +354,8 @@ class ViewController: UIViewController {
                 moveLeftToBed()
             case .ceiling:
                 moveLeftToBed()
+            case .game:
+                moveRightToPotty()
             }
         } else if animation == 2 {
             switch AnimationManager.location {
@@ -347,6 +373,8 @@ class ViewController: UIViewController {
                 moveLeftToFood()
             case .ceiling:
                moveRightToToy()
+            case .game:
+                moveRightToCenter()
             }
         } else if animation == 3 {
             switch AnimationManager.location {
@@ -364,6 +392,8 @@ class ViewController: UIViewController {
                 moveLeftToWater()
             case .ceiling:
                 moveLeftToWater()
+            case .game:
+               moveRightToFood()
             }
         } else if animation == 4 {
             switch AnimationManager.location {
@@ -381,6 +411,8 @@ class ViewController: UIViewController {
                 moveLeftToToy()
             case .ceiling:
                 moveRightToFood()
+            case .game:
+                moveRightToWater()
             }
         } else {
             if AnimationManager.mood == .happy && AnimationManager.location != .ceiling {
@@ -395,6 +427,8 @@ class ViewController: UIViewController {
         // if summoned to location by user tap and conditions are met, execute action
         if summonedToToy && AnimationManager.location != .toy && hasPlayed == false {
             moveRightToToy()
+        } else if summonedToGame && AnimationManager.location != .game && hasPlayed == false {
+            moveLeftToGame()
         } else if summonedToWater && hasDrunk == false {
             switch AnimationManager.location {
             case .water:
@@ -411,6 +445,8 @@ class ViewController: UIViewController {
                 moveLeftToWater()
             case .ceiling:
                 moveLeftToWater()
+            case .game:
+                moveRightToWater()
             }
         } else if summonedToFood && hasEaten == false {
             switch AnimationManager.location {
@@ -427,6 +463,8 @@ class ViewController: UIViewController {
             case .potty:
                 moveLeftToFood()
             case .ceiling:
+                moveRightToFood()
+            case .game:
                 moveRightToFood()
             }
         } else if summonedToPotty && hasCleanPotty {
@@ -447,8 +485,21 @@ class ViewController: UIViewController {
             return
         }
         
+        if rotated {
+            AnimationTimer.stop()
+            rotated = false
+        }
+        
         if toyImage.isAnimating {
             toyImage.stopAnimating()
+        }
+        
+        if playingGame {
+            playingGame = false
+        }
+         
+        if game.isAnimating {
+            game.stopAnimating()
         }
         
         if isPlaying {
@@ -481,6 +532,8 @@ class ViewController: UIViewController {
                 randomPottyAnimation()
             case .ceiling:
                 randomCeilingAnimation()
+            case .game:
+                randomGameAnimation()
             }
         } else if animation == 3 {
             AnimationManager.movement = .staying
@@ -694,6 +747,18 @@ class ViewController: UIViewController {
             Sound.stopPlaying()
             Sound.loadSound(resourceName: Sounds.night.resourceName, type: Sounds.night.type)
             Sound.startPlaying()
+        }
+    }
+    
+    @IBAction func gameTapped(_ sender: UITapGestureRecognizer) {
+        summonedToGame = true
+        if playingGame {
+            // do nothing, cat is playing with game already
+        } else {
+            game.animationImages = AnimationManager.gameAnimation
+            game.animationDuration = 0.3
+            game.animationRepeatCount = 1
+            game.startAnimating()
         }
     }
     

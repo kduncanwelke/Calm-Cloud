@@ -145,6 +145,8 @@ struct AnimationManager {
         }
     }
     
+    static let playGameAnimation: [UIImage] = [#imageLiteral(resourceName: "cloudkitty.png"),#imageLiteral(resourceName: "playleft.png")]
+    
     static var movement: Movement = .staying
     static var location: Location = .middle
     static var outsideLocation: OutsideLocation = .back
@@ -172,6 +174,7 @@ struct AnimationManager {
     
     static let toyAnimation: [UIImage] = [#imageLiteral(resourceName: "toy.png"),#imageLiteral(resourceName: "toy2.png")]
     static let revealAnimation: [UIImage] = [#imageLiteral(resourceName: "cloudkittyright.png"),#imageLiteral(resourceName: "play2.png")]
+    static let gameAnimation: [UIImage] = [#imageLiteral(resourceName: "game1.png"),#imageLiteral(resourceName: "game2.png"),#imageLiteral(resourceName: "game3.png"),#imageLiteral(resourceName: "game4.png"),#imageLiteral(resourceName: "game5.png")]
 }
 
 enum Movement {
@@ -196,6 +199,7 @@ enum Location {
     case toy
     case potty
     case ceiling
+    case game
 }
 
 enum OutsideLocation {

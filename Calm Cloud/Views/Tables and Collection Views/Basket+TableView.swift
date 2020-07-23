@@ -70,11 +70,17 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource, Quan
                 case .up:
                 if let oldCount = Harvested.basketCounts[item.plant] {
                     let newCount = oldCount - 1
-                    Harvested.basketCounts[item.plant] = newCount
+                    
+                    if newCount > 0 {
+                        Harvested.basketCounts[item.plant] = newCount
+                    } else {
+                        Harvested.basketCounts[item.plant] = 0
+                    }
+                    
                     numberDonated += 1
                 }
-                }
             }
+        }
             
             // toggle buttons based on selection, not active if no items are selected
             toggleButtons()

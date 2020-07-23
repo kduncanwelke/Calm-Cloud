@@ -95,6 +95,15 @@ extension ViewController {
         AnimationManager.location = .toy
     }
     
+    func moveLeftToGame() {
+        print("left to game")
+        cloudKitty.animationImages = AnimationManager.movingLeftAnimation
+        cloudKitty.startAnimating()
+        let toyDestination = CGPoint(x: container.frame.width/3.5, y: (container.frame.height/3)*2.3)
+        cloudKitty.move(to: toyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
+        AnimationManager.location = .game
+    }
+    
     // right movement
     
     func floatRight() {
@@ -159,6 +168,15 @@ extension ViewController {
         AnimationManager.location = .middle
     }
     
+    func moveRightToGame() {
+        print("right to game")
+        cloudKitty.animationImages = AnimationManager.movingRightAnimation
+        cloudKitty.startAnimating()
+        let toyDestination = CGPoint(x: container.frame.width/3.5, y: (container.frame.height/3)*2.3)
+        cloudKitty.move(to: toyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
+        AnimationManager.location = .game
+    }
+    
     // bed animations
     
     func sleep() {
@@ -194,6 +212,8 @@ extension ViewController {
             destination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*2)
         case .ceiling:
             destination = CGPoint(x: cloudKitty.frame.midX, y: cloudKitty.frame.midY)
+        case .game:
+            destination = CGPoint(x: container.frame.width/3.5, y: (container.frame.height/3)*2.3)
         }
         
         let floatDestination = CGPoint(x: destination.x, y: destination.y-20)
@@ -241,6 +261,24 @@ extension ViewController {
         AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
         hasPlayed = true
         isPlaying = true
+        setMood()
+    }
+    
+    // game animation
+    
+    func playGame() {
+        print("game")
+        cloudKitty.animationImages = AnimationManager.playGameAnimation
+        game.animationImages = AnimationManager.gameAnimation
+        cloudKitty.animationDuration = 1.0
+        game.animationDuration = 1.0
+        cloudKitty.animationRepeatCount = 0
+        game.animationRepeatCount = 0
+        cloudKitty.startAnimating()
+        game.startAnimating()
+        AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
+        hasPlayed = true
+        playingGame = true
         setMood()
     }
     
@@ -346,6 +384,20 @@ extension ViewController {
             summonedToToy = false
         } else if animation == 1 {
             play()
+        } else {
+            bounce()
+        }
+    }
+    
+    func randomGameAnimation() {
+        let range = [1,2]
+        let animation = range.randomElement()
+        
+        if summonedToGame {
+            playGame()
+            summonedToGame = false
+        } else if animation == 1 {
+            playGame()
         } else {
             bounce()
         }
