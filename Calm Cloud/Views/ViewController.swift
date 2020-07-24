@@ -53,6 +53,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tasksView: UIView!
     
     @IBOutlet weak var game: UIImageView!
+    @IBOutlet weak var unlockNotice: UIButton!
     
     
     // MARK: Variables
@@ -180,7 +181,7 @@ class ViewController: UIViewController {
         if hour > 6 && hour < 20 {
             outsideBackground.image = UIImage(named: "outsidebackground")
         } else {
-            outsideBackground.image = UIImage(named: "outsidebackgroudnight")
+            outsideBackground.image = UIImage(named: "outsidebackgroundnight")
         }
     }
     
@@ -482,6 +483,7 @@ class ViewController: UIViewController {
         cloudKitty.stopAnimating()
         
         if stopped {
+            goNightNight()
             return
         }
         
@@ -581,41 +583,51 @@ class ViewController: UIViewController {
     }
     
     @IBAction func lightsOnOff(_ sender: UIButton) {
-        if stringLightsOn {
-            stringLights.image = UIImage(named: "lights")
-            stringLightsOn = false
-            
-            if lightsOff {
-                insideNightOverlay.image = UIImage(named: "nightoverlay")
+        if LevelManager.currentLevel >= LevelManager.lightsUnlock {
+            if stringLightsOn {
+                stringLights.image = UIImage(named: "lights")
+                stringLightsOn = false
+                
+                if lightsOff {
+                    insideNightOverlay.image = UIImage(named: "nightoverlay")
+                }
+            } else {
+                stringLights.image = UIImage(named: "lightsglow")
+                stringLightsOn = true
+                
+                if lightsOff {
+                    insideNightOverlay.image = UIImage(named: "glowstars")
+                }
             }
         } else {
-            stringLights.image = UIImage(named: "lightsglow")
-            stringLightsOn = true
-            
-            if lightsOff {
-                insideNightOverlay.image = UIImage(named: "glowstars")
-            }
+            unlockNotice.setTitle("Unlocks at level \(LevelManager.lightsUnlock)", for: .normal)
+            unlockNotice.animateFadeInSlow()
         }
     }
     
     @IBAction func recordPlayerTapped(_ sender: UITapGestureRecognizer) {
-        if playingMusic {
-            recordPlayer.stopAnimating()
-            playingMusic = false
-            // remove music and turn on ambient sound
-            Sound.stopPlaying()
-            Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
-            Sound.startPlaying()
+        if LevelManager.currentLevel >= LevelManager.playerUnlock {
+            if playingMusic {
+                recordPlayer.stopAnimating()
+                playingMusic = false
+                // remove music and turn on ambient sound
+                Sound.stopPlaying()
+                Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
+                Sound.startPlaying()
+            } else {
+                playingMusic = true
+                recordPlayer.animationImages = [UIImage(named: "recordplay1")!, UIImage(named: "recordplay2")!]
+                recordPlayer.animationDuration = 2.0
+                recordPlayer.animationRepeatCount = 0
+                recordPlayer.startAnimating()
+                // remove ambient sound and turn on music
+                Sound.stopPlaying()
+                Sound.loadSound(resourceName: Sounds.music.resourceName, type: Sounds.music.type)
+                Sound.startPlaying()
+            }
         } else {
-            playingMusic = true
-            recordPlayer.animationImages = [UIImage(named: "recordplay1")!, UIImage(named: "recordplay2")!]
-            recordPlayer.animationDuration = 2.0
-            recordPlayer.animationRepeatCount = 0
-            recordPlayer.startAnimating()
-            // remove ambient sound and turn on music
-            Sound.stopPlaying()
-            Sound.loadSound(resourceName: Sounds.music.resourceName, type: Sounds.music.type)
-            Sound.startPlaying()
+            unlockNotice.setTitle("Unlocks at level \(LevelManager.playerUnlock)", for: .normal)
+            unlockNotice.animateFadeInSlow()
         }
     }
     
@@ -712,21 +724,18 @@ class ViewController: UIViewController {
             stopMoving()
         } else {
             // if lights are currently on, activate dark layers and send kitty to sleep
-            cloudKitty.stopAnimating()
-            AnimationTimer.stop()
             stopped = true
-            stopMoving()
             
-            // if cloud kitty is not on bed, move over to it
-            if AnimationManager.location != .bed {
-                print("left to bed")
-                cloudKitty.animationImages = AnimationManager.movingLeftAnimation
-                cloudKitty.startAnimating()
-                let bedDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/2)
-                cloudKitty.goToSleep(to: bedDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
-                AnimationManager.location = .bed
-            } else {
-                goToSleep()
+            if AnimationManager.movement == .staying {
+                cloudKitty.stopAnimating()
+                AnimationTimer.stop()
+                
+                // if cloud kitty is not on bed, move over to it
+                if AnimationManager.location != .bed {
+                    goNightNight()
+                } else {
+                    goToSleep()
+                }
             }
             
             if stringLightsOn {

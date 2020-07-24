@@ -99,7 +99,7 @@ extension ViewController {
         print("left to game")
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.startAnimating()
-        let toyDestination = CGPoint(x: container.frame.width/3.5, y: (container.frame.height/3)*2.3)
+        let toyDestination = CGPoint(x: container.frame.width/3.3, y: (container.frame.height/3)*2.35)
         cloudKitty.move(to: toyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .game
     }
@@ -172,7 +172,7 @@ extension ViewController {
         print("right to game")
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
-        let toyDestination = CGPoint(x: container.frame.width/3.5, y: (container.frame.height/3)*2.3)
+        let toyDestination = CGPoint(x: container.frame.width/3.3, y: (container.frame.height/3)*2.35)
         cloudKitty.move(to: toyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .game
     }
@@ -213,11 +213,20 @@ extension ViewController {
         case .ceiling:
             destination = CGPoint(x: cloudKitty.frame.midX, y: cloudKitty.frame.midY)
         case .game:
-            destination = CGPoint(x: container.frame.width/3.5, y: (container.frame.height/3)*2.3)
+            destination = CGPoint(x: container.frame.width/3.3, y: (container.frame.height/3)*2.35)
         }
         
         let floatDestination = CGPoint(x: destination.x, y: destination.y-20)
         cloudKitty.floatMove(to: floatDestination, returnTo: destination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
+    }
+    
+    func goNightNight() {
+        print("left to bed")
+        cloudKitty.animationImages = AnimationManager.movingLeftAnimation
+        cloudKitty.startAnimating()
+        let bedDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/2)
+        cloudKitty.goToSleep(to: bedDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
+        AnimationManager.location = .bed
     }
     
     // food bowl animation

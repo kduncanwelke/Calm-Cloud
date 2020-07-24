@@ -112,10 +112,10 @@ extension UIView {
     }
     
     func animateFadeInSlow() {
-        UIView.animate(withDuration: 1.0, animations: {
+        UIView.animate(withDuration: 1.5, animations: {
             self.alpha = 1.0
         }, completion: { [unowned self] _ in
-            UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 1.0) {
                 self.alpha = 0.0
             }
         })

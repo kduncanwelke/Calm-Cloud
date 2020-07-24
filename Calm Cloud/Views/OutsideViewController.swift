@@ -85,6 +85,8 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var removeText: UIButton!
     
     @IBOutlet weak var lanterns: UIImageView!
+    @IBOutlet weak var unlockNotice: UIButton!
+    
     
     // MARK: Variables
     
@@ -191,7 +193,7 @@ class OutsideViewController: UIViewController {
         if hour > 6 && hour < 20 {
             outsideImage.image = UIImage(named: "outside")
         } else {
-            outsideImage.image = UIImage(named: "backgroudnight")
+            outsideImage.image = UIImage(named: "backgroundnight")
         }
     }
     
@@ -314,10 +316,6 @@ class OutsideViewController: UIViewController {
         // close message popup
         view.sendSubviewToBack(harvestContainer)
         
-        // update count and save
-        Harvested.basketCounts[PlantManager.selected]! += 1
-        DataFunctions.saveHarvest()
-        
         // remove plant image and delete save
         
         deletePlanting(id: selectedPlot)
@@ -330,6 +328,11 @@ class OutsideViewController: UIViewController {
             // update image
             image.image = PlantManager.getStage(halfDaysOfCare: nil, plant: .none, lastWatered: nil, mature: nil)
         }
+        
+        // update count and save
+        print(PlantManager.selected)
+        Harvested.basketCounts[PlantManager.selected]! += 1
+        DataFunctions.saveHarvest()
     }
     
     @objc func removePlant() {
@@ -673,12 +676,17 @@ class OutsideViewController: UIViewController {
     }
     
     @IBAction func onOffPressed(_ sender: UIButton) {
-        if lightsOn {
-            lightsOn = false
-            lanterns.image = UIImage(named: "lanternsoff")
+        if LevelManager.currentLevel >= LevelManager.lanternsUnlock {
+            if lightsOn {
+                lightsOn = false
+                lanterns.image = UIImage(named: "lanternsoff")
+            } else {
+                lightsOn = true
+                lanterns.image = UIImage(named: "lanternson")
+            }
         } else {
-            lightsOn = true
-            lanterns.image = UIImage(named: "lanternson")
+            unlockNotice.setTitle("Unlocks at level \(LevelManager.lanternsUnlock)", for: .normal)
+            unlockNotice.animateFadeInSlow()
         }
     }
     

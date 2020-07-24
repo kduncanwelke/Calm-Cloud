@@ -24,4 +24,8 @@ struct LevelManager {
         currentEXP = newEXP
         maxEXP = Int(expToLevelUp)
     }
+    
+    static let lightsUnlock = 12
+    static let playerUnlock = 17
+    static let lanternsUnlock = 25
 }
