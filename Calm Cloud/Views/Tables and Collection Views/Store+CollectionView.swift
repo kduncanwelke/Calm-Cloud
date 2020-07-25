@@ -55,6 +55,19 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
                 cell.numberOwned.text = "0 owned"
             }
             
+            cell.growthSpeed.setTitle(plant.growthSpeed.rawValue, for: .normal)
+            
+            switch plant.growthSpeed {
+            case .fast:
+                cell.growthSpeed.setBackgroundImage(UIImage(named: "fast"), for: .normal)
+            case .medium:
+                cell.growthSpeed.setBackgroundImage(UIImage(named: "medium"), for: .normal)
+            case .slow:
+                cell.growthSpeed.setBackgroundImage(UIImage(named: "slow"), for: .normal)
+            }
+            
+            cell.growthSpeed.isHidden = false
+            
             cell.purchaseDescription.text = ""
         } else {
             let item: SKProduct
@@ -83,6 +96,7 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
             cell.numberOwned.text = ""
             cell.area.text = ""
             cell.purchaseDescription.text = item.localizedDescription
+            cell.growthSpeed.isHidden = true
         }
        
         return cell

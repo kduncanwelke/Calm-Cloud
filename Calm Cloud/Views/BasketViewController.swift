@@ -111,7 +111,7 @@ class BasketViewController: UIViewController {
         
         // update exp amounts where displayed, in home view and outside view
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromOutside"), object: nil)
-         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromBasket"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromBasket"), object: nil)
         
         DataFunctions.saveLevel()
         

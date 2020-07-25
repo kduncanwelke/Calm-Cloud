@@ -86,7 +86,7 @@ struct PlantManager {
         // determine which stage of growth, half days of care because plants should be watered every 12 hours
         if let halfDaysCaredFor = halfDaysOfCare {
             switch plant {
-            case .geranium, .redTulip, .redGeranium, .yellowTulip, .pinkTulip, .whiteTulip, .daffodil, .aloe, .paddle, .marigold, .purplePetunia, .whitePetunia, .stripedPetunia, .blackPetunia, .bluePetunia:
+            case .geranium, .redTulip, .redGeranium, .yellowTulip, .pinkTulip, .whiteTulip, .daffodil, .aloe, .purplePetunia, .whitePetunia, .stripedPetunia, .blackPetunia, .bluePetunia:
                 // fast growers, take one week
                 if halfDaysCaredFor <= 2 {
                     stage = 1
@@ -105,7 +105,7 @@ struct PlantManager {
                 } else {
                     stage = 0
                 }
-            case .jade, .chard, .carrot, .strawberry, .pepper, .tomato, .zinnia, .lavendarZinnia, .salmonZinnia, .lobelia:
+            case .jade, .chard, .carrot, .strawberry, .pepper, .tomato, .zinnia, .lavendarZinnia, .salmonZinnia, .lobelia, .marigold, .paddle:
                 // medium growers take ten days
                 if halfDaysCaredFor <= 2 {
                     stage = 1

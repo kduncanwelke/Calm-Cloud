@@ -188,7 +188,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lights" translatesAutoresizingMaskIntoConstraints="NO" id="kg9-p4-xQg">
-                                                <rect key="frame" x="0.0" y="0.0" width="596" height="423"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="596.00000000000023" height="423"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="kg9-p4-xQg" secondAttribute="height" multiplier="1:0.71" id="qXB-es-WI8"/>
                                                 </constraints>
@@ -513,9 +513,9 @@
                             <constraint firstItem="IGz-9O-3yK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.23" priority="999" id="YVi-RF-53t"/>
                             <constraint firstItem="jDO-ff-ZYO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="TLo-vg-bcF" secondAttribute="trailing" constant="5" id="dnK-B6-5dH"/>
                             <constraint firstItem="QYZ-GU-7jU" firstAttribute="centerX" secondItem="9Ni-dB-KId" secondAttribute="centerX" id="f3U-AZ-12q"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0b4-op-WCt" secondAttribute="trailing" constant="8" id="fE9-qy-G2Y"/>
                             <constraint firstItem="9Ni-dB-KId" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.8" priority="999" id="faR-P4-Qe9"/>
                             <constraint firstItem="w8B-fX-lrW" firstAttribute="top" secondItem="jDO-ff-ZYO" secondAttribute="bottom" constant="3" id="gYL-yF-Rrp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0b4-op-WCt" secondAttribute="trailingMargin" constant="16" id="mUk-9g-GKo"/>
                             <constraint firstItem="TLo-vg-bcF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="3" id="oRB-Zs-Whj"/>
                             <constraint firstItem="jDO-ff-ZYO" firstAttribute="width" secondItem="0b4-op-WCt" secondAttribute="width" id="ocq-4b-4Ol"/>
                             <constraint firstItem="f1n-Wi-KAT" firstAttribute="height" secondItem="tkr-am-k5F" secondAttribute="width" multiplier="0.33" id="qHf-cy-yO2"/>
@@ -1577,42 +1577,42 @@
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="25" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplotbig" translatesAutoresizingMaskIntoConstraints="NO" id="nCi-nz-lbx">
-                                                <rect key="frame" x="331.5" y="418.5" width="181" height="86.5"/>
+                                                <rect key="frame" x="331.5" y="418.5" width="181" height="86.500000000000057"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="DKg-7e-ncD" appends="YES" id="ztN-7e-5vC"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="26" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplotbig" translatesAutoresizingMaskIntoConstraints="NO" id="lIf-Zr-boi">
-                                                <rect key="frame" x="512.5" y="418.5" width="181" height="86.5"/>
+                                                <rect key="frame" x="512.5" y="418.5" width="181" height="86.500000000000057"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="9hs-lc-Duv" appends="YES" id="ZDp-je-DPX"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="27" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplotbig" translatesAutoresizingMaskIntoConstraints="NO" id="A3i-V1-qgD">
-                                                <rect key="frame" x="693.5" y="418.5" width="181" height="86.5"/>
+                                                <rect key="frame" x="693.5" y="418.5" width="181" height="86.500000000000057"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="n7b-5G-2XM" appends="YES" id="Zl1-NZ-IJi"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="22" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplotbig" translatesAutoresizingMaskIntoConstraints="NO" id="9fr-Sb-sVE">
-                                                <rect key="frame" x="288.5" y="479.5" width="201" height="96"/>
+                                                <rect key="frame" x="288.5" y="479.5" width="201" height="96.000000000000057"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="MzD-EG-saR" appends="YES" id="v5s-1y-obb"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="23" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplotbig" translatesAutoresizingMaskIntoConstraints="NO" id="Bda-th-Vu7">
-                                                <rect key="frame" x="489.5" y="479.5" width="201" height="96"/>
+                                                <rect key="frame" x="489.5" y="479.5" width="201" height="96.000000000000057"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="mu2-P5-xaU" appends="YES" id="ETx-xR-bnP"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="24" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplotbig" translatesAutoresizingMaskIntoConstraints="NO" id="Uq5-0c-fm1">
-                                                <rect key="frame" x="690.5" y="479.5" width="201" height="96"/>
+                                                <rect key="frame" x="690.5" y="479.5" width="201" height="96.000000000000057"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="LKg-bi-JGp" appends="YES" id="SQX-JM-Je3"/>
@@ -1639,7 +1639,7 @@
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tallpot" translatesAutoresizingMaskIntoConstraints="NO" id="gCe-of-jIg">
-                                                <rect key="frame" x="946" y="486" width="203.5" height="202.5"/>
+                                                <rect key="frame" x="946" y="486" width="203.50000000000011" height="202.5"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="21" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="2CD-gR-laf">
                                                 <rect key="frame" x="946" y="278" width="208" height="259"/>
@@ -3109,6 +3109,16 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qp4-8x-oiR">
+                                                    <rect key="frame" x="5" y="31.5" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="qp4-8x-oiR" secondAttribute="height" multiplier="2:1" id="82b-kx-HDi"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                                    <state key="normal" title="FAST" backgroundImage="fast">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="47C-s4-XGk" secondAttribute="trailing" constant="3" id="4F1-ZC-g8b"/>
@@ -3116,9 +3126,12 @@
                                                 <constraint firstItem="nba-LS-iQH" firstAttribute="centerX" secondItem="CNJ-2X-yiu" secondAttribute="centerX" id="IFV-d0-ifK"/>
                                                 <constraint firstItem="47C-s4-XGk" firstAttribute="leading" secondItem="CNJ-2X-yiu" secondAttribute="leading" constant="3" id="IG9-xg-Z2c"/>
                                                 <constraint firstItem="47C-s4-XGk" firstAttribute="top" secondItem="CNJ-2X-yiu" secondAttribute="top" constant="8" id="MYn-Nx-x0M"/>
+                                                <constraint firstItem="qp4-8x-oiR" firstAttribute="leading" secondItem="II6-vy-zQu" secondAttribute="leading" id="UzB-FN-vNf"/>
+                                                <constraint firstItem="qp4-8x-oiR" firstAttribute="width" secondItem="II6-vy-zQu" secondAttribute="width" multiplier="0.3" id="XDD-SJ-hM8"/>
                                                 <constraint firstItem="II6-vy-zQu" firstAttribute="top" secondItem="47C-s4-XGk" secondAttribute="bottom" constant="4" id="ZmP-Q7-jQl"/>
                                                 <constraint firstAttribute="trailing" secondItem="II6-vy-zQu" secondAttribute="trailing" constant="5" id="fdD-Mh-OWh"/>
                                                 <constraint firstItem="IQD-bY-E3s" firstAttribute="top" secondItem="nba-LS-iQH" secondAttribute="bottom" constant="3" id="pPo-mg-YWI"/>
+                                                <constraint firstItem="qp4-8x-oiR" firstAttribute="top" secondItem="II6-vy-zQu" secondAttribute="top" id="qjH-6i-EPp"/>
                                                 <constraint firstAttribute="bottom" secondItem="IQD-bY-E3s" secondAttribute="bottom" constant="8.5" id="r7d-tM-vvC"/>
                                                 <constraint firstItem="IQD-bY-E3s" firstAttribute="centerX" secondItem="CNJ-2X-yiu" secondAttribute="centerX" id="wxj-z2-e3i"/>
                                                 <constraint firstItem="nba-LS-iQH" firstAttribute="top" secondItem="II6-vy-zQu" secondAttribute="bottom" constant="3" id="zHl-Sl-1BU"/>
@@ -3129,6 +3142,7 @@
                                             <outlet property="areaLabel" destination="nba-LS-iQH" id="gIh-df-EkT"/>
                                             <outlet property="cellImage" destination="II6-vy-zQu" id="P9Q-7j-xwK"/>
                                             <outlet property="cellLabel" destination="47C-s4-XGk" id="5aH-9J-bty"/>
+                                            <outlet property="growthSpeed" destination="qp4-8x-oiR" id="mXG-R1-nG7"/>
                                             <outlet property="numberLabel" destination="IQD-bY-E3s" id="DCU-1L-uEe"/>
                                         </connections>
                                     </collectionViewCell>
@@ -3452,9 +3466,20 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAk-Fc-736">
+                                                    <rect key="frame" x="5" y="31.5" width="37.5" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="kAk-Fc-736" secondAttribute="height" multiplier="2:1" id="zbZ-Yi-1ZM"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
+                                                    <state key="normal" title="FAST" backgroundImage="fast">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="7mD-J1-W5S" firstAttribute="top" secondItem="SD5-bW-Fn7" secondAttribute="top" constant="8" id="25U-Ja-5Fs"/>
+                                                <constraint firstItem="kAk-Fc-736" firstAttribute="width" secondItem="3iL-dO-za6" secondAttribute="width" multiplier="0.25" id="4ur-kz-GWO"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Fjc-BB-s1L" secondAttribute="bottom" constant="3" id="7NF-xk-2Mh"/>
                                                 <constraint firstItem="16y-C9-N1Q" firstAttribute="centerY" secondItem="NBq-E9-Gyu" secondAttribute="centerY" id="95f-Mf-8RV"/>
                                                 <constraint firstAttribute="trailing" secondItem="Fjc-BB-s1L" secondAttribute="trailing" constant="3" id="ArK-lM-jGk"/>
@@ -3462,7 +3487,9 @@
                                                 <constraint firstItem="Fjc-BB-s1L" firstAttribute="leading" secondItem="SD5-bW-Fn7" secondAttribute="leading" constant="3" id="Gz1-va-uKY"/>
                                                 <constraint firstItem="5i7-mA-H9x" firstAttribute="centerX" secondItem="SD5-bW-Fn7" secondAttribute="centerX" id="SV9-55-ktC"/>
                                                 <constraint firstItem="Ing-jI-Gzb" firstAttribute="top" secondItem="5i7-mA-H9x" secondAttribute="bottom" constant="3" id="X5M-dN-Nhf"/>
+                                                <constraint firstItem="kAk-Fc-736" firstAttribute="top" secondItem="3iL-dO-za6" secondAttribute="top" id="aJH-zC-yK5"/>
                                                 <constraint firstItem="NBq-E9-Gyu" firstAttribute="top" secondItem="3iL-dO-za6" secondAttribute="bottom" constant="3" id="dG3-qG-kzs"/>
+                                                <constraint firstItem="kAk-Fc-736" firstAttribute="leading" secondItem="3iL-dO-za6" secondAttribute="leading" id="gb0-1O-MyK"/>
                                                 <constraint firstItem="NBq-E9-Gyu" firstAttribute="leading" secondItem="16y-C9-N1Q" secondAttribute="trailing" constant="3" id="gco-Xi-QsI"/>
                                                 <constraint firstItem="Ing-jI-Gzb" firstAttribute="centerX" secondItem="SD5-bW-Fn7" secondAttribute="centerX" id="gzp-gi-AiR"/>
                                                 <constraint firstItem="3iL-dO-za6" firstAttribute="top" secondItem="7mD-J1-W5S" secondAttribute="bottom" constant="4" id="jyo-ey-euT"/>
@@ -3477,6 +3504,7 @@
                                         <connections>
                                             <outlet property="area" destination="5i7-mA-H9x" id="0En-fF-iEP"/>
                                             <outlet property="coinImage" destination="16y-C9-N1Q" id="Js5-1p-E7R"/>
+                                            <outlet property="growthSpeed" destination="kAk-Fc-736" id="kzi-Ox-qgH"/>
                                             <outlet property="itemImage" destination="3iL-dO-za6" id="Kqs-Jw-8qt"/>
                                             <outlet property="nameLabel" destination="7mD-J1-W5S" id="OjP-1E-za1"/>
                                             <outlet property="numberOwned" destination="Ing-jI-Gzb" id="waY-JB-Nf1"/>
@@ -4335,6 +4363,7 @@
         <image name="emptyplot" width="119" height="227"/>
         <image name="emptyplotbig" width="510" height="253"/>
         <image name="emptyplotsmallpot" width="416" height="370"/>
+        <image name="fast" width="700" height="350"/>
         <image name="food" width="200" height="64"/>
         <image name="foodbowl" width="252" height="131"/>
         <image name="game1" width="534" height="279"/>

@@ -661,9 +661,12 @@ class OutsideViewController: UIViewController {
     
     @IBAction func miniGameTapped(_ sender: UIButton) {
         // show mini game
-        cloudKitty.stopAnimating()
-        AnimationTimer.stop()
         stopped = true
+        if AnimationManager.movement == .staying {
+            cloudKitty.stopAnimating()
+            AnimationTimer.stop()
+        }
+        
         view.bringSubviewToFront(cupsMiniGameContainer)
         cupsMiniGameContainer.animateBounce()
     }
@@ -779,6 +782,10 @@ class OutsideViewController: UIViewController {
             // resave money
             DataFunctions.saveMoney()
             honorStandMoney.isHidden = true
+            
+            // update money inside
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [unowned self] in
                 self.earningsView.isHidden = true
             }

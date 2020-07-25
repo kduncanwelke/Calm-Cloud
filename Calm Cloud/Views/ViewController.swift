@@ -483,7 +483,9 @@ class ViewController: UIViewController {
         cloudKitty.stopAnimating()
         
         if stopped {
-            goNightNight()
+            if lightsOff {
+                goNightNight()
+            }
             return
         }
         
@@ -606,28 +608,33 @@ class ViewController: UIViewController {
     }
     
     @IBAction func recordPlayerTapped(_ sender: UITapGestureRecognizer) {
-        if LevelManager.currentLevel >= LevelManager.playerUnlock {
-            if playingMusic {
-                recordPlayer.stopAnimating()
-                playingMusic = false
-                // remove music and turn on ambient sound
-                Sound.stopPlaying()
-                Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
-                Sound.startPlaying()
-            } else {
-                playingMusic = true
-                recordPlayer.animationImages = [UIImage(named: "recordplay1")!, UIImage(named: "recordplay2")!]
-                recordPlayer.animationDuration = 2.0
-                recordPlayer.animationRepeatCount = 0
-                recordPlayer.startAnimating()
-                // remove ambient sound and turn on music
-                Sound.stopPlaying()
-                Sound.loadSound(resourceName: Sounds.music.resourceName, type: Sounds.music.type)
-                Sound.startPlaying()
-            }
+        if lightsOff {
+            // don't turn on music with lights off
+            return
         } else {
-            unlockNotice.setTitle("Unlocks at level \(LevelManager.playerUnlock)", for: .normal)
-            unlockNotice.animateFadeInSlow()
+            if LevelManager.currentLevel >= LevelManager.playerUnlock {
+                if playingMusic {
+                    recordPlayer.stopAnimating()
+                    playingMusic = false
+                    // remove music and turn on ambient sound
+                    Sound.stopPlaying()
+                    Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
+                    Sound.startPlaying()
+                } else {
+                    playingMusic = true
+                    recordPlayer.animationImages = [UIImage(named: "recordplay1")!, UIImage(named: "recordplay2")!]
+                    recordPlayer.animationDuration = 2.0
+                    recordPlayer.animationRepeatCount = 0
+                    recordPlayer.startAnimating()
+                    // remove ambient sound and turn on music
+                    Sound.stopPlaying()
+                    Sound.loadSound(resourceName: Sounds.music.resourceName, type: Sounds.music.type)
+                    Sound.startPlaying()
+                }
+            } else {
+                unlockNotice.setTitle("Unlocks at level \(LevelManager.playerUnlock)", for: .normal)
+                unlockNotice.animateFadeInSlow()
+            }
         }
     }
     
@@ -696,12 +703,20 @@ class ViewController: UIViewController {
     }
     
     @IBAction func miniGameTapped(_ sender: UIButton) {
-        // show mini game
-        cloudKitty.stopAnimating()
-        AnimationTimer.stop()
-        stopped = true
-        view.bringSubviewToFront(containerView)
-        containerView.animateBounce()
+        if lightsOff {
+            // don't allow mini game when lights are off
+            return
+        } else {
+            // show mini game
+            stopped = true
+            if AnimationManager.movement == .staying {
+                cloudKitty.stopAnimating()
+                AnimationTimer.stop()
+            }
+        
+            view.bringSubviewToFront(containerView)
+            containerView.animateBounce()
+        }
     }
     
     @IBAction func lightsOffTapped(_ sender: UIButton) {
@@ -725,6 +740,7 @@ class ViewController: UIViewController {
         } else {
             // if lights are currently on, activate dark layers and send kitty to sleep
             stopped = true
+            lightsOff = true
             
             if AnimationManager.movement == .staying {
                 cloudKitty.stopAnimating()
@@ -744,13 +760,16 @@ class ViewController: UIViewController {
                 insideNightOverlay.image = UIImage(named: "nightoverlay")
             }
             
+            // if music was playing, it will stop so turn off record player
+            recordPlayer.stopAnimating()
+            playingMusic = false
+            
             nightOverlay.fadeIn()
             insideNightOverlay.fadeIn()
             darkOutside.fadeIn()
             lightsOffButton.setBackgroundImage(UIImage(named: "lightson"), for: .normal)
             lightsOffButton.setTitle("  Lights On", for: .normal)
             lightsOffButton.setTitleColor(UIColor.black, for: .normal)
-            lightsOff = true
             
             // remove previous sound and turn on soothing night sounds
             Sound.stopPlaying()

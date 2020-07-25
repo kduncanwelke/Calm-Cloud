@@ -13,4 +13,5 @@ class InventoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var areaLabel: UILabel!
+    @IBOutlet weak var growthSpeed: UIButton!
 }

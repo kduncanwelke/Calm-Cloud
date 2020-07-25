@@ -234,7 +234,7 @@ struct Harvested {
                     Harvested.inStand[type] = newQuantity
                     
                     // random price paid
-                    let prices = [5, 5, 5, 7, 7, 10, 12]
+                    let prices = [5, 5, 5, 7, 7, 10, 12, 15]
                     
                     if let price = prices.randomElement() {
                         income += (price * number)

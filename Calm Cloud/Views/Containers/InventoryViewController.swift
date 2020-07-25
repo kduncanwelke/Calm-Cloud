@@ -152,6 +152,16 @@ extension InventoryViewController: UICollectionViewDataSource, UICollectionViewD
         cell.areaLabel.text = plant.allowedArea.rawValue
         cell.cellLabel.text = plant.name
         cell.cellImage.image = plant.image
+        cell.growthSpeed.setTitle(plant.growthSpeed.rawValue, for: .normal)
+        
+        switch plant.growthSpeed {
+        case .fast:
+            cell.growthSpeed.setBackgroundImage(UIImage(named: "fast"), for: .normal)
+        case .medium:
+            cell.growthSpeed.setBackgroundImage(UIImage(named: "medium"), for: .normal)
+        case .slow:
+            cell.growthSpeed.setBackgroundImage(UIImage(named: "slow"), for: .normal)
+        }
         
         return cell
     }
