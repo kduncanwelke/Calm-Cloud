@@ -11,6 +11,153 @@ import UIKit
 
 extension OutsideViewController {
     
+    // MARK: Animation control functions
+    
+    func randomRepeatCount() -> Int {
+        // random repeat for animations
+        var randomRepeatCount = Int.random(in: 4...8)
+        return randomRepeatCount
+    }
+    
+    func randomMove() {
+        // randomize movement animations
+        let range = [1,2,3,4]
+        let animation = range.randomElement()
+        
+        if animation == 1 {
+            switch AnimationManager.outsideLocation {
+            case .back:
+                moveRightToGate()
+            case .ceiling:
+                moveLeftToPlanter()
+            case .front:
+                moveRightToBack()
+            case .gate:
+                moveLeftToPlanter()
+            case .planter:
+                moveRightToBack()
+            case .pot:
+                moveRightToCenter()
+            case .pots:
+                moveLeftToBack()
+            }
+        } else if animation == 2 {
+            switch AnimationManager.outsideLocation {
+            case .back:
+                moveLeftToCenter()
+            case .ceiling:
+                moveRightToBack()
+            case .front:
+                moveLeftToPlanter()
+            case .gate:
+                moveLeftToCenter()
+            case .planter:
+                moveRightToGate()
+            case .pot:
+                moveRightToBack()
+            case .pots:
+                moveRightToCenter()
+            }
+        } else if animation == 3 {
+            switch AnimationManager.outsideLocation {
+            case .back:
+                moveLeftToWidePot()
+            case .ceiling:
+                moveRightToGate()
+            case .front:
+                moveLeftToWidePot()
+            case .gate:
+                moveLeftToWidePot()
+            case .planter:
+                moveRightToCenter()
+            case .pot:
+                moveRightToCenter()
+            case .pots:
+                moveLeftToBack()
+            }
+        } else if animation == 4 {
+            switch AnimationManager.outsideLocation {
+            case .back:
+                moveLeftToPlanter()
+            case .ceiling:
+                moveLeftToCenter()
+            case .front:
+                moveRightToGate()
+            case .gate:
+                moveLeftToBack()
+            case .planter:
+                moveLeftToWidePot()
+            case .pot:
+                moveLeftToPlanter()
+            case .pots:
+                moveLeftToBack()
+            }
+        }
+    }
+    
+    @objc func stopMovingOutside() {
+        // run after an animation is complete, randomize next
+        cloudKitty.stopAnimating()
+        let range = [1,2,3,4,5]
+        let animation = range.randomElement()
+        cloudKitty.stopAnimating()
+        
+        if stopped {
+            return
+        }
+        
+        if rotated {
+            AnimationTimer.stop()
+            rotated = false
+        }
+        
+        if animation == 1 {
+            AnimationManager.movement = .moving
+            randomMove()
+        } else if animation == 2 {
+            AnimationManager.movement = .staying
+            switch AnimationManager.outsideLocation {
+            case .back:
+                randomBackAnimation()
+            case .ceiling:
+                randomCeilingAnimation()
+            case .front:
+                randomFrontAnimation()
+            case .gate:
+                randomGateAnimation()
+            case .planter:
+                randomPlanterAnimation()
+            case .pot:
+                randomPotAnimation()
+            case .pots:
+                randomPotsAnimation()
+            }
+        } else if animation == 3 {
+            switch AnimationManager.outsideLocation {
+            case .ceiling:
+                floatSleep()
+            default:
+                sleep()
+            }
+        } else if animation == 4 {
+            AnimationManager.movement = .staying
+            print("pause")
+            switch AnimationManager.outsideLocation {
+            case .ceiling:
+                bounce()
+            default:
+                pause()
+            }
+        } else {
+            if AnimationManager.mood == .happy && AnimationManager.outsideLocation != .ceiling {
+                floatUp()
+            } else {
+                randomMove()
+            }
+        }
+    }
+    
+    
     // MARK: Animations
     
     func floatUp() {

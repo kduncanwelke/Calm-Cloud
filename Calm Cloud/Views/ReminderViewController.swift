@@ -113,7 +113,7 @@ class ReminderViewController: UIViewController {
             do {
                 try managedContext.save()
                 print("saved reminder")
-                savedImage.animateFadeIn()
+                savedImage.animateFadeInSlow()
                 resetUI()
             } catch {
                 // this should never be displayed but is here to cover the possibility

@@ -18,7 +18,7 @@ struct ActivityManager {
         Activity(title: "Sit outside and listen", category: .mindfulness, id: 5),
         Activity(title: "Trim your nails", category: .selfCare, id: 6),
         Activity(title: "Floss and brush teeth", category: .selfCare, id: 7),
-        Activity(title: "Do some laundry", category: .home, id: 8),
+        Activity(title: "Do laundry", category: .home, id: 8),
         Activity(title: "Journal", category: .mindfulness, id: 9),
         Activity(title: "Draw", category: .creative, id: 10),
         Activity(title: "Sing", category: .creative, id: 11),
@@ -26,7 +26,8 @@ struct ActivityManager {
         Activity(title: "Talk with friends or family", category: .interaction, id: 13),
         Activity(title: "Read a book", category: .creative, id: 14),
         Activity(title: "Take a shower", category: .selfCare, id: 15),
-        Activity(title: "Water plants", category: .nature, id: 16)
+        Activity(title: "Water plants", category: .nature, id: 16),
+        Activity(title: "Do a coloring page", category: .creative, id: 17)
     ]
 }
 

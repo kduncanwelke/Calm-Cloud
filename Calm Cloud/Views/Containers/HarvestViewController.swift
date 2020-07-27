@@ -36,7 +36,7 @@ class HarvestViewController: UIViewController {
         
         let daysLeft = PlantManager.checkDiff(date: plant.mature)
         print(daysLeft)
-        var days = 4 - daysLeft
+        var days = 5 - daysLeft
        
        
         print(PlantManager.selected)

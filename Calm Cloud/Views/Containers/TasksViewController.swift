@@ -56,9 +56,11 @@ class TasksViewController: UIViewController {
         if TasksManager.activities && TasksManager.journal && TasksManager.photo && TasksManager.rewardCollected == false {
             allComplete.isHidden = false
             getReward.isHidden = false
+            print("get reward")
         } else if TasksManager.activities && TasksManager.journal && TasksManager.photo && TasksManager.rewardCollected == true {
             allComplete.isHidden = false
             getReward.isHidden = true
+            print("reward already gotten")
         } else {
             allComplete.isHidden = true
             getReward.isHidden = true
@@ -85,7 +87,7 @@ class TasksViewController: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromOutside"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
         getReward.isHidden = true
-        rewardDetails.animateFadeIn()
+        rewardDetails.animateFadeInSlow()
         TasksManager.rewardCollected = true
         DataFunctions.saveTasks()
     }

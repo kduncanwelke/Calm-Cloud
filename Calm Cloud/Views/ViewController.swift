@@ -140,6 +140,10 @@ class ViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         print("view will transition")
         rotated = true
+        if AnimationManager.movement == .staying {
+            cloudKitty.stopAnimating()
+            AnimationTimer.stop()
+        }
         stopMoving()
     }
     

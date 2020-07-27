@@ -171,8 +171,10 @@ extension ViewController {
                     TasksManager.activities = false
                     TasksManager.rewardCollected = false
                     print("tasks all clear")
+                    DataFunctions.saveTasks()
                 }
             }
+            print(TasksManager.rewardCollected)
             
             print("tasks loaded")
         } catch let error as NSError {

@@ -86,6 +86,7 @@ class OutsideViewController: UIViewController {
     
     @IBOutlet weak var lanterns: UIImageView!
     @IBOutlet weak var unlockNotice: UIButton!
+    @IBOutlet weak var plantName: UIButton!
     
     
     // MARK: Variables
@@ -98,6 +99,7 @@ class OutsideViewController: UIViewController {
     var mode: Mode = .planting
     var lightsOn = false
     var rotated = false
+    var name = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,10 +145,6 @@ class OutsideViewController: UIViewController {
         waterText.alpha = 0.0
         removeText.alpha = 0.0
         
-        Sound.stopPlaying()
-        Sound.loadSound(resourceName: Sounds.outside.resourceName, type: Sounds.outside.type)
-        Sound.startPlaying()
-        
         AnimationManager.outsideLocation = .back
         AnimationManager.movement = .staying
         sleep()
@@ -172,6 +170,10 @@ class OutsideViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         print("view will transition")
         rotated = true
+        if AnimationManager.movement == .staying {
+            cloudKitty.stopAnimating()
+            AnimationTimer.stop()
+        }
         stopMovingOutside()
     }
     
@@ -191,9 +193,29 @@ class OutsideViewController: UIViewController {
         let hour = Calendar.current.component(.hour, from: Date())
         
         if hour > 6 && hour < 20 {
+            // daytime, set background and ambient sound
             outsideImage.image = UIImage(named: "outside")
+            Sound.stopPlaying()
+            Sound.loadSound(resourceName: Sounds.outside.resourceName, type: Sounds.outside.type)
+            Sound.startPlaying()
         } else {
+            // night, set background and ambient sound
             outsideImage.image = UIImage(named: "backgroundnight")
+            Sound.stopPlaying()
+            Sound.loadSound(resourceName: Sounds.night.resourceName, type: Sounds.night.type)
+            Sound.startPlaying()
+        }
+    }
+    
+    func getName() {
+        let planting = Plantings.plantings.filter { $0.id == PlantManager.chosen }.first
+        
+        guard let plant = planting else { return }
+        
+        for seedling in Plantings.seedlings {
+            if seedling.plant == Plant(rawValue: Int(plant.plant))! {
+                name = seedling.name
+            }
         }
     }
     
@@ -472,15 +494,21 @@ class OutsideViewController: UIViewController {
             if image.isMatch(with: PlantManager.emptyPlots) {
                 view.bringSubviewToFront(messageContainer)
             } else if image.isMatch(with: PlantManager.maturePlants) {
+                // harvest prompt for mature plants
                 print("mature plant")
                 tappedImage = image
                 PlantManager.chosen = selectedPlot
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
                 view.bringSubviewToFront(harvestContainer)
+            } else {
+                // otherwise simply show identification
+                PlantManager.chosen = selectedPlot
+                getName()
+                plantName.setTitle("\(name)", for: .normal)
+                plantName.animateFadeInSlow()
             }
         case .watering:
             if image.isMatch(with: PlantManager.wiltedPlants) {
-                // show message?
                 // cannot water wilted plant
                 return
             }
@@ -494,7 +522,7 @@ class OutsideViewController: UIViewController {
             if image.isMatch(with: PlantManager.wiltedPlants) {
                 print("wilted plant")
                 view.bringSubviewToFront(removeContainer)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadRemove"), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadWilted"), object: nil)
             } else if !image.isMatch(with: PlantManager.emptyPlots) {
                 // make sure plot is not empty
                 view.bringSubviewToFront(removeContainer)
@@ -503,149 +531,6 @@ class OutsideViewController: UIViewController {
         }
     }
     
-    func randomRepeatCount() -> Int {
-        // random repeat for animations
-        var randomRepeatCount = Int.random(in: 4...8)
-        return randomRepeatCount
-    }
-    
-    func randomMove() {
-        // randomize movement animations
-        let range = [1,2,3,4]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            switch AnimationManager.outsideLocation {
-            case .back:
-                moveRightToGate()
-            case .ceiling:
-                moveLeftToPlanter()
-            case .front:
-                moveRightToBack()
-            case .gate:
-                moveLeftToPlanter()
-            case .planter:
-                moveRightToBack()
-            case .pot:
-                moveRightToCenter()
-            case .pots:
-                moveLeftToBack()
-            }
-        } else if animation == 2 {
-            switch AnimationManager.outsideLocation {
-            case .back:
-                moveLeftToCenter()
-            case .ceiling:
-                moveRightToBack()
-            case .front:
-                moveLeftToPlanter()
-            case .gate:
-                moveLeftToCenter()
-            case .planter:
-                moveRightToGate()
-            case .pot:
-                moveRightToBack()
-            case .pots:
-                moveRightToCenter()
-            }
-        } else if animation == 3 {
-            switch AnimationManager.outsideLocation {
-            case .back:
-                moveLeftToWidePot()
-            case .ceiling:
-                moveRightToGate()
-            case .front:
-                moveLeftToWidePot()
-            case .gate:
-                moveLeftToWidePot()
-            case .planter:
-                moveRightToCenter()
-            case .pot:
-                moveRightToCenter()
-            case .pots:
-                moveLeftToBack()
-            }
-        } else if animation == 4 {
-            switch AnimationManager.outsideLocation {
-            case .back:
-                moveLeftToPlanter()
-            case .ceiling:
-                moveLeftToCenter()
-            case .front:
-                moveRightToGate()
-            case .gate:
-                moveLeftToBack()
-            case .planter:
-                moveLeftToWidePot()
-            case .pot:
-                moveLeftToPlanter()
-            case .pots:
-                moveLeftToBack()
-            }
-        }
-    }
-    
-    @objc func stopMovingOutside() {
-        // run after an animation is complete, randomize next
-        cloudKitty.stopAnimating()
-        let range = [1,2,3,4,5]
-        let animation = range.randomElement()
-        cloudKitty.stopAnimating()
-        
-        if stopped {
-            return
-        }
-        
-        if rotated {
-            AnimationTimer.stop()
-            rotated = false
-        }
-        
-        if animation == 1 {
-            AnimationManager.movement = .moving
-            randomMove()
-        } else if animation == 2 {
-            AnimationManager.movement = .staying
-            switch AnimationManager.outsideLocation {
-            case .back:
-                randomBackAnimation()
-            case .ceiling:
-                randomCeilingAnimation()
-            case .front:
-                randomFrontAnimation()
-            case .gate:
-                randomGateAnimation()
-            case .planter:
-                randomPlanterAnimation()
-            case .pot:
-                randomPotAnimation()
-            case .pots:
-                randomPotsAnimation()
-            }
-        } else if animation == 3 {
-            switch AnimationManager.outsideLocation {
-            case .ceiling:
-                floatSleep()
-            default:
-                sleep()
-            }
-        } else if animation == 4 {
-            AnimationManager.movement = .staying
-            print("pause")
-            switch AnimationManager.outsideLocation {
-            case .ceiling:
-                bounce()
-            default:
-                pause()
-            }
-        } else {
-            if AnimationManager.mood == .happy && AnimationManager.outsideLocation != .ceiling {
-                floatUp()
-            } else {
-                randomMove()
-            }
-        }
-    }
 
     /*
     // MARK: - Navigation

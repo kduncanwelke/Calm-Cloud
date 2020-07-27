@@ -199,7 +199,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
                 print("saved entry")
                 collectionView.reloadData()
                 saveButton.isEnabled = false
-                savedImage.animateFadeIn()
+                savedImage.animateFadeInSlow()
             } catch {
                 // this should never be displayed but is here to cover the possibility
                 showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
