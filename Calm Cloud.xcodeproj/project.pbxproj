@@ -87,6 +87,8 @@
 		2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C1A242D47B200073B49 /* AnimationExtensions.swift */; };
 		2DD50C1D242D535F00073B49 /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C1C242D535F00073B49 /* JournalViewController.swift */; };
 		2DD50C21242D58F600073B49 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */; };
+		2DD7C97224D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD7C97124D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 */; };
+		2DD7C97424D09E2E0008C79F /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7C97324D09E2E0008C79F /* InfoViewController.swift */; };
 		2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */; };
 		2DDEA32B242A98E800717E8C /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEA32A242A98E800717E8C /* AnimationManager.swift */; };
 		2DF4763D24A52BFF00EE7C2C /* you_will_know.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DF4763C24A52BFF00EE7C2C /* you_will_know.mp3 */; };
@@ -180,6 +182,8 @@
 		2DD50C1A242D47B200073B49 /* AnimationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtensions.swift; sourceTree = "<group>"; };
 		2DD50C1C242D535F00073B49 /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		2DD7C97124D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Blastwave_FX_NightCornField_S011AM.8.mp3; sourceTree = "<group>"; };
+		2DD7C97324D09E2E0008C79F /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTimer.swift; sourceTree = "<group>"; };
 		2DDEA32A242A98E800717E8C /* AnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		2DF4763C24A52BFF00EE7C2C /* you_will_know.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = you_will_know.mp3; path = ../../../../../../Downloads/you_will_know.mp3; sourceTree = "<group>"; };
@@ -342,6 +346,7 @@
 				2DD2C31A246353310070934D /* Sounds.swift */,
 				2D00EEB82494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 */,
 				2DF4763C24A52BFF00EE7C2C /* you_will_know.mp3 */,
+				2DD7C97124D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 */,
 				2DB617FF24C8BC4A00EA9322 /* tspt_city_spring_indoor_ambience_loop_019.mp3 */,
 				2DF4763E24A5317B00EE7C2C /* loire.mp3 */,
 				2DD2C318246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 */,
@@ -371,6 +376,7 @@
 				2D11FD6824367EA900EC89D9 /* Journal+TextViewDelegate.swift */,
 				2D7FCAB724324F2F00E2DEC4 /* PhotoViewController.swift */,
 				2D7FCAB92432506100E2DEC4 /* Photo+ScrollViewDelegate.swift */,
+				2DD7C97324D09E2E0008C79F /* InfoViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -473,6 +479,7 @@
 				2D48CC41242548B200D0FBBB /* Main.storyboard in Resources */,
 				2DD2C319246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 in Resources */,
 				2D00EEB92494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 in Resources */,
+				2DD7C97224D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +537,7 @@
 				2D14EBDC243E752B004CB7E2 /* ReminderManager.swift in Sources */,
 				2DB6E542248ADAE6007DA241 /* Basket+TableView.swift in Sources */,
 				2D00EEBF24942EE2000DA1C8 /* TasksViewController.swift in Sources */,
+				2DD7C97424D09E2E0008C79F /* InfoViewController.swift in Sources */,
 				2D60023024A6607C002188B1 /* Store+CollectionView.swift in Sources */,
 				2DC5EBCB2474886300741E5E /* Colors.swift in Sources */,
 				2D8F9049243FC51800211802 /* Activities+TableView.swift in Sources */,

@@ -82,14 +82,17 @@ class TasksViewController: UIViewController {
     @IBAction func rewardPressed(_ sender: UIButton) {
         // add coin and exp reward
         MoneyManager.total += 10
-        LevelManager.currentEXP += 15
         allComplete.isHidden = true
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromOutside"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateExperience"), object: nil)
         getReward.isHidden = true
         rewardDetails.animateFadeInSlow()
         TasksManager.rewardCollected = true
         DataFunctions.saveTasks()
+    }
+    
+    @IBAction func infoPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "viewInfo", sender: Any?.self)
     }
 
     @IBAction func closePressed(_ sender: UIButton) {

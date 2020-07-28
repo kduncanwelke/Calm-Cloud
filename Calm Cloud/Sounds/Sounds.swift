@@ -46,10 +46,11 @@ struct Sounds {
     static let night = Sound(resourceName: "audio_hero_NightAmbienceCalm+PE011801", type: "mp3")
     static let outside = Sound(resourceName: "audio_hero_ForestDay_DIGIX05_11_362", type: "mp3")
     static let inside = Sound(resourceName: "tspt_city_spring_indoor_ambience_loop_019", type: "mp3")
+    static let insideNight = Sound(resourceName: "Blastwave_FX_NightCornField_S011AM.8", type: "mp3")
     static let music = Sound(resourceName: "loire", type: "mp3")
 }
 
 // Night Ambience and Forest Ambience by Audio Hero on Zapsplat
-// Indoor Ambience by The Sound Pack Tree
-
+// Indoor Ambience by The Sound Pack Tree on Zapsplat
+// Cornfield Ambience by BlastWave FX on Zapsplat
 // Loire and You Will Know by Taylor Howard on Zapsplat

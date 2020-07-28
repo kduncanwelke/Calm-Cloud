@@ -153,7 +153,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filterSearch(searchText)
         
-        if isFilteringBySearch() == false {
+        if isFilteringBySearch() == false && searchBarIsEmpty() {
             let indexPath = IndexPath(row: 0, section: 0)
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }

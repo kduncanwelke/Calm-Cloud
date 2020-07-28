@@ -100,16 +100,14 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateMoney), name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updateExperience), name: NSNotification.Name(rawValue: "updateExperience"), object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(closeTasks), name: NSNotification.Name(rawValue: "closeTasks"), object: nil)
 
         openDoor.isHidden = true
         plusEXPLabel.alpha = 0.0
         plusEXPLabelAlt.alpha = 0.0
        
-        // load sound
-        Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
-        Sound.startPlaying()
-        
         loadPhotos()
         loadEntries()
         loadCare()
@@ -183,8 +181,14 @@ class ViewController: UIViewController {
         let hour = Calendar.current.component(.hour, from: Date())
         
         if hour > 6 && hour < 20 {
+            // daytime
+            Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
+            Sound.startPlaying()
             outsideBackground.image = UIImage(named: "outsidebackground")
         } else {
+            // nighttime
+            Sound.loadSound(resourceName: Sounds.insideNight.resourceName, type: Sounds.insideNight.type)
+            Sound.startPlaying()
             outsideBackground.image = UIImage(named: "outsidebackgroundnight")
         }
     }
@@ -251,6 +255,11 @@ class ViewController: UIViewController {
         
         // resave money
         DataFunctions.saveMoney()
+    }
+    
+    @objc func updateExperience() {
+        // update exp from tasks reward
+        updateEXP(with: 15)
     }
     
     @objc func updateLevelFromOutside() {

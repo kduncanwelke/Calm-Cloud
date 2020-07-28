@@ -28,9 +28,12 @@ class HarvestViewController: UIViewController {
         
         guard let plant = planting else { return }
         
+        var name = ""
+        
         for seedling in Plantings.seedlings {
             if seedling.plant == Plant(rawValue: Int(plant.plant))! {
                 PlantManager.selected = seedling.plant
+                name = seedling.name
             }
         }
         
@@ -38,9 +41,7 @@ class HarvestViewController: UIViewController {
         print(daysLeft)
         var days = 5 - daysLeft
        
-       
-        print(PlantManager.selected)
-        message.text = "This plant is mature and will wilt in \(days) day(s). Harvest it now?"
+        message.text = "This plant, a \(name), is mature and will wilt in \(days) day(s). Harvest it now?"
     }
 
     /*
