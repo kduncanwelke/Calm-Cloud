@@ -79,6 +79,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
                         print("Failed to save")
                     }
                 } else {
+                    print("same day")
                     // same day, no changes
                     for item in loaded {
                         completion[Int(item.id)] = true

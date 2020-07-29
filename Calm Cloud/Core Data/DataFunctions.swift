@@ -112,7 +112,7 @@ struct DataFunctions {
         currentLevel.expToNextLevel = Int16(LevelManager.maxEXP)
         currentLevel.level = Int16(LevelManager.currentLevel)
         
-        LevelManager.loaded = currentLevel
+        //LevelManager.loaded = currentLevel
         
         do {
             try managedContext.save()
@@ -365,7 +365,9 @@ struct DataFunctions {
             taskSave.fave = TasksManager.photo
             taskSave.journal = TasksManager.journal
             taskSave.rewardCollected = TasksManager.rewardCollected
-            taskSave.lastOpened = Date()
+            
+            // last opened should be nil on first save (this state will be saved before tasks are changed)
+            taskSave.lastOpened = nil
             
             TasksManager.loaded = taskSave
             
@@ -385,7 +387,21 @@ struct DataFunctions {
         prevSave.fave = TasksManager.photo
         prevSave.journal = TasksManager.journal
         prevSave.rewardCollected = TasksManager.rewardCollected
-        prevSave.lastOpened = Date()
+        
+        if let savedDate = prevSave.lastOpened {
+            // if saved date is today, update (for activity checkoff tracking)
+            if Calendar.current.isDateInToday(savedDate) {
+                prevSave.lastOpened = Date()
+            } else if TasksManager.activities == false && TasksManager.photo == false && TasksManager.journal == false {
+                // if dates are different and no activities have been completed yet, do not change date
+            }
+        } else {
+            if TasksManager.activities == false && TasksManager.photo == false && TasksManager.journal == false {
+                // if no activities have been completed yet, do not change date
+            } else {
+                prevSave.lastOpened = Date()
+            }
+        }
         
         TasksManager.loaded = prevSave
         
