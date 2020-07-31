@@ -112,7 +112,7 @@ struct DataFunctions {
         currentLevel.expToNextLevel = Int16(LevelManager.maxEXP)
         currentLevel.level = Int16(LevelManager.currentLevel)
         
-        //LevelManager.loaded = currentLevel
+        LevelManager.loaded = currentLevel
         
         do {
             try managedContext.save()

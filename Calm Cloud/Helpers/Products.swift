@@ -22,16 +22,16 @@ struct Products {
     public static let fiveHundredCoins = "j"
     
     public static let productQuantities = [
-        "tenCoins" : 10,
-        "twentyCoins": 20,
-        "thirtyCoins": 30,
-        "fortyCoins": 40,
-        "fiftyCoins": 50,
-        "seventyCoins": 70,
-        "oneHundredCoins": 100,
-        "twoHundredCoins": 200,
-        "twoHundredFiftyCoins": 250,
-        "fiveHundredCoins": 500,
+        "a": 10,
+        "b": 20,
+        "c": 30,
+        "d": 40,
+        "e": 50,
+        "f": 70,
+        "g": 100,
+        "h": 200,
+        "i": 250,
+        "j": 500,
     ]
     
     public static let productImages: [String: UIImage] = [

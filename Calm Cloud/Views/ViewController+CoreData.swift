@@ -174,7 +174,6 @@ extension ViewController {
                     DataFunctions.saveTasks()
                 }
             }
-            print(TasksManager.rewardCollected)
             
             print("tasks loaded")
         } catch let error as NSError {

@@ -188,7 +188,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lights" translatesAutoresizingMaskIntoConstraints="NO" id="kg9-p4-xQg">
-                                                <rect key="frame" x="0.0" y="0.0" width="596.00000000000023" height="423"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="596" height="423"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="kg9-p4-xQg" secondAttribute="height" multiplier="1:0.71" id="qXB-es-WI8"/>
                                                 </constraints>
@@ -1427,7 +1427,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWS-Hh-Rfp">
-                                <rect key="frame" x="-2.5" y="143.5" width="419" height="599"/>
+                                <rect key="frame" x="32.5" y="143.5" width="349" height="599"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <segue destination="CtT-PG-k3a" kind="embed" id="UZw-Mp-mOn"/>
@@ -1535,7 +1535,7 @@
                                                     <outletCollection property="gestureRecognizers" destination="z3O-Ve-Y5S" appends="YES" id="2KC-qc-O6a"/>
                                                 </connections>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" tag="4" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="kl5-UE-pc3">
+                                            <imageView clipsSubviews="YES" tag="4" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="carrot6" translatesAutoresizingMaskIntoConstraints="NO" id="kl5-UE-pc3">
                                                 <rect key="frame" x="616.5" y="314.5" width="73.5" height="79"/>
                                                 <gestureRecognizers/>
                                                 <connections>
@@ -1578,42 +1578,42 @@
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="25" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplotbig" translatesAutoresizingMaskIntoConstraints="NO" id="nCi-nz-lbx">
-                                                <rect key="frame" x="334.5" y="420" width="182" height="86.500000000000057"/>
+                                                <rect key="frame" x="334.5" y="420" width="182" height="86.5"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="DKg-7e-ncD" appends="YES" id="ztN-7e-5vC"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="26" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplotbig" translatesAutoresizingMaskIntoConstraints="NO" id="lIf-Zr-boi">
-                                                <rect key="frame" x="516.5" y="420" width="182.5" height="86.500000000000057"/>
+                                                <rect key="frame" x="516.5" y="420" width="182.5" height="86.5"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="9hs-lc-Duv" appends="YES" id="ZDp-je-DPX"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="27" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplotbig" translatesAutoresizingMaskIntoConstraints="NO" id="A3i-V1-qgD">
-                                                <rect key="frame" x="699" y="420" width="182.5" height="86.500000000000057"/>
+                                                <rect key="frame" x="699" y="420" width="182.5" height="86.5"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="n7b-5G-2XM" appends="YES" id="Zl1-NZ-IJi"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="22" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplotbig" translatesAutoresizingMaskIntoConstraints="NO" id="9fr-Sb-sVE">
-                                                <rect key="frame" x="291" y="481.5" width="202.5" height="96.000000000000057"/>
+                                                <rect key="frame" x="291" y="481.5" width="202.5" height="96"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="MzD-EG-saR" appends="YES" id="v5s-1y-obb"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="23" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplotbig" translatesAutoresizingMaskIntoConstraints="NO" id="Bda-th-Vu7">
-                                                <rect key="frame" x="493.5" y="481.5" width="202.5" height="96.000000000000057"/>
+                                                <rect key="frame" x="493.5" y="481.5" width="202.5" height="96"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="mu2-P5-xaU" appends="YES" id="ETx-xR-bnP"/>
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" tag="24" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplotbig" translatesAutoresizingMaskIntoConstraints="NO" id="Uq5-0c-fm1">
-                                                <rect key="frame" x="696" y="481.5" width="202.5" height="96.000000000000057"/>
+                                                <rect key="frame" x="696" y="481.5" width="202.5" height="96"/>
                                                 <gestureRecognizers/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="LKg-bi-JGp" appends="YES" id="SQX-JM-Je3"/>
@@ -1641,9 +1641,9 @@
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tallpot" translatesAutoresizingMaskIntoConstraints="NO" id="gCe-of-jIg">
-                                                <rect key="frame" x="953.5" y="488" width="205.50000000000011" height="203.5"/>
+                                                <rect key="frame" x="953.5" y="488" width="205.5" height="203.5"/>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" tag="21" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplot" translatesAutoresizingMaskIntoConstraints="NO" id="2CD-gR-laf">
+                                            <imageView clipsSubviews="YES" tag="21" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyplottree" translatesAutoresizingMaskIntoConstraints="NO" id="2CD-gR-laf">
                                                 <rect key="frame" x="953.5" y="279" width="209.5" height="260"/>
                                                 <gestureRecognizers/>
                                                 <connections>
@@ -2226,7 +2226,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.88235294117647056" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="aWS-Hh-Rfp" firstAttribute="width" secondItem="BJB-y1-oCG" secondAttribute="height" multiplier="0.6" id="0cU-IT-Mm8"/>
+                            <constraint firstItem="aWS-Hh-Rfp" firstAttribute="width" secondItem="BJB-y1-oCG" secondAttribute="height" multiplier="0.5" id="0cU-IT-Mm8"/>
                             <constraint firstItem="NpA-Uy-khX" firstAttribute="height" secondItem="RES-rk-JXg" secondAttribute="height" id="18z-dA-fIW"/>
                             <constraint firstItem="K4w-br-9dW" firstAttribute="trailing" secondItem="hVm-O9-XQc" secondAttribute="trailing" constant="3" id="1uc-m0-MBM"/>
                             <constraint firstItem="SzU-m7-Iwb" firstAttribute="centerY" secondItem="OVt-B1-YHB" secondAttribute="centerY" id="2dp-5I-F4A"/>
@@ -2290,6 +2290,11 @@
                             <constraint firstItem="ooQ-d5-e0H" firstAttribute="leading" secondItem="K4w-br-9dW" secondAttribute="leading" constant="8" id="zB4-eB-a1b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K4w-br-9dW"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="egq-05-vQk"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="ozS-Le-Qg1"/>
                     <connections>
@@ -3049,20 +3054,20 @@
             <objects>
                 <viewController id="CtT-PG-k3a" customClass="InventoryViewController" customModule="Calm_Cloud" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eiA-s2-gsx">
-                        <rect key="frame" x="0.0" y="0.0" width="419" height="599"/>
+                        <rect key="frame" x="0.0" y="0.0" width="349" height="599"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cIz-rj-VXH">
-                                <rect key="frame" x="15" y="18" width="389" height="56"/>
+                                <rect key="frame" x="15" y="18" width="319" height="56"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seedling Inventory" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xf-a7-X1j">
-                                        <rect key="frame" x="0.0" y="0.0" width="389" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="319" height="26.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="These plants are available in your inventory" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7I-wy-BGv">
-                                        <rect key="frame" x="0.0" y="36.5" width="389" height="19.5"/>
+                                        <rect key="frame" x="0.0" y="36.5" width="319" height="19.5"/>
                                         <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -3070,7 +3075,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P8Y-ML-YTh">
-                                <rect key="frame" x="159.5" y="490" width="100" height="50"/>
+                                <rect key="frame" x="124.5" y="524" width="100" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="P8Y-ML-YTh" secondAttribute="height" multiplier="2:1" id="Vwq-qp-mNK"/>
                                     <constraint firstAttribute="height" constant="50" id="iZJ-ml-h94"/>
@@ -3084,7 +3089,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LJS-A4-44d">
-                                <rect key="frame" x="0.0" y="91" width="419" height="319"/>
+                                <rect key="frame" x="0.0" y="91" width="349" height="353"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="aa9-Bw-owi">
                                     <size key="itemSize" width="130" height="150"/>
@@ -3164,7 +3169,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eqk-bw-cpX">
-                                <rect key="frame" x="159.5" y="425" width="100" height="50"/>
+                                <rect key="frame" x="124.5" y="459" width="100" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Eqk-bw-cpX" secondAttribute="height" multiplier="2:1" id="F6c-e3-Ws0"/>
                                     <constraint firstAttribute="height" constant="50" id="YM2-p2-fiZ"/>
@@ -4493,6 +4498,7 @@
         <image name="bigbutton" width="1200" height="288"/>
         <image name="buttonbackground" width="700" height="350"/>
         <image name="calendar" catalog="system" width="64" height="52"/>
+        <image name="carrot6" width="119" height="227"/>
         <image name="closedbox" width="609" height="446"/>
         <image name="cloudkitty" width="1518" height="1039"/>
         <image name="cloudkittyright" width="1518" height="1039"/>
@@ -4508,6 +4514,7 @@
         <image name="emptyplot" width="119" height="227"/>
         <image name="emptyplotbig" width="510" height="253"/>
         <image name="emptyplotsmallpot" width="416" height="370"/>
+        <image name="emptyplottree" width="564" height="669"/>
         <image name="fast" width="700" height="350"/>
         <image name="food" width="200" height="64"/>
         <image name="foodbowl" width="252" height="131"/>

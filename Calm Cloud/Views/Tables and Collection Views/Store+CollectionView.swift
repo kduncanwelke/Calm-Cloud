@@ -72,7 +72,12 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
         } else {
             let item: SKProduct
             item = products[indexPath.row]
-            
+            print("title")
+            print(item.localizedTitle)
+            print("price")
+            print(item.price)
+            print("descrip")
+            print(item.localizedDescription)
             cell.nameLabel.text = item.localizedTitle
             cell.itemImage.image = Products.productImages[item.productIdentifier]
             cell.priceLabel.text = "\(item.price)"
@@ -118,6 +123,7 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
                 if NetworkMonitor.connection {
                     StoreObserver.iapObserver.buy(products[indexPath.row])
                     print("tapped cell")
+                    print(products[indexPath.row].productIdentifier)
                     guard let coins = Products.productQuantities[products[indexPath.row].productIdentifier] else { return }
                     StoreObserver.coins = coins
                 } else {
