@@ -151,10 +151,12 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
             saveButton.isEnabled = true
             dateLabel.text = dateFormatter.string(from: Date())
             textView.text = "Start typing . . ."
+            textView.isEditable = true
             
             return
         }
         
+        textView.isEditable = false
         textView.text = currentEntry.text
         dateLabel.text = dateFormatter.string(from: chosenDate)
         saveButton.isEnabled = false
@@ -181,6 +183,8 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     
     func saveEntry() {
         if textView.text != nil && textView.text != "Start typing . . ." {
+            // dismiss keyboard
+            textView.resignFirstResponder()
             
             var managedContext = CoreDataManager.shared.managedObjectContext
             
@@ -239,6 +243,14 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     
     @IBAction func saveTapped(_ sender: UIBarButtonItem) {
         saveEntry()
+    }
+    
+    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
+        
+        // if text view is active and user taps off of it, dismiss
+        if textView.isFirstResponder {
+            textView.resignFirstResponder()
+        }
     }
     
     @IBAction func darkLayerTapped(_ sender: UITapGestureRecognizer) {
