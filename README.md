@@ -56,5 +56,15 @@ Ambient background sounds and some music are used within the app to provide a so
 ## Art
 All of the art used within the app was created by the developer for exclusive use within this app, and belongs to no one else.
 
+## Dependencies
+[OpenSSL-Universal](https://cocoapods.org/pods/OpenSSL-Universal) handles cryptography to help secure receipt validation. [Cocoapods](https://github.com/CocoaPods/CocoaPods) has been used as the dependency manager for this project - please refer to Cocoapods documentation for details.
+
+The integration of these items in the Podfile for this project is as follows:
+```
+pod 'OpenSSL-Universal'
+```
+
+Details on use of each dependency and the Cocoapods manager itself can be found in the links already included.
+
 ## Support
 If you experience trouble using the app, have any questions, or simply want to contact me, you can contact me via email at kduncanwelke@gmail.com. I will be happy to discuss this project.
