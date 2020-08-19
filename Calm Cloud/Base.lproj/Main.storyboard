@@ -2290,11 +2290,6 @@
                             <constraint firstItem="ooQ-d5-e0H" firstAttribute="leading" secondItem="K4w-br-9dW" secondAttribute="leading" constant="8" id="zB4-eB-a1b"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K4w-br-9dW"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="egq-05-vQk"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="ozS-Le-Qg1"/>
                     <connections>
@@ -3414,7 +3409,7 @@
                                             <segment title="Seeding Shop"/>
                                             <segment title="Coin Shop"/>
                                         </segments>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="1" green="0.50980392159999999" blue="0.074509803920000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="segmentChanged:" destination="wIQ-jt-9VG" eventType="valueChanged" id="lek-tb-8bc"/>
                                         </connections>

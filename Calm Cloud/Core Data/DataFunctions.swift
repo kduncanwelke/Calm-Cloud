@@ -354,7 +354,7 @@ struct DataFunctions {
     
     // MARK: Tasks
     
-    static func saveTasks() {
+    static func saveTasks(updatingActivity: Bool) {
         var managedContext = CoreDataManager.shared.managedObjectContext
         
         // save anew if it doesn't exist (like on app initial launch)
@@ -366,14 +366,21 @@ struct DataFunctions {
             taskSave.journal = TasksManager.journal
             taskSave.rewardCollected = TasksManager.rewardCollected
             
-            // last opened should be nil on first save (this state will be saved before tasks are changed)
-            taskSave.lastOpened = nil
+            if updatingActivity {
+                // if activity is being updated change date
+                taskSave.lastOpened = Date()
+                print("updating activity")
+            } else {
+                // if activity is not being updated last opened should be nil on first save (this state will be saved before tasks are changed)
+                taskSave.lastOpened = nil
+            }
             
             TasksManager.loaded = taskSave
             
             do {
                 try managedContext.save()
                 print("saved tasks")
+                TasksManager.lastOpened = taskSave.lastOpened
             } catch {
                 // this should never be displayed but is here to cover the possibility
                 print("tasks not saved")
@@ -388,26 +395,27 @@ struct DataFunctions {
         prevSave.journal = TasksManager.journal
         prevSave.rewardCollected = TasksManager.rewardCollected
         
-        if let savedDate = prevSave.lastOpened {
-            // if saved date is today, update (for activity checkoff tracking)
-            if Calendar.current.isDateInToday(savedDate) {
+        if updatingActivity {
+            prevSave.lastOpened = Date()
+        } else if let savedDate = prevSave.lastOpened {
+            // if new day update last opened date
+            if Calendar.current.isDateInToday(savedDate) == false {
                 prevSave.lastOpened = Date()
-            } else if TasksManager.activities == false && TasksManager.photo == false && TasksManager.journal == false {
-                // if dates are different and no activities have been completed yet, do not change date
+                print("dates don't match")
             }
-        } else {
-            if TasksManager.activities == false && TasksManager.photo == false && TasksManager.journal == false {
-                // if no activities have been completed yet, do not change date
-            } else {
-                prevSave.lastOpened = Date()
-            }
+        } else if prevSave.lastOpened == nil {
+            // if no saved date, update since this is a resave from the initial state
+            prevSave.lastOpened = Date()
+            
         }
         
+        // update tasks manager info
         TasksManager.loaded = prevSave
         
         do {
             try managedContext.save()
             print("resave successful")
+            TasksManager.lastOpened = prevSave.lastOpened
         } catch {
             // this should never be displayed but is here to cover the possibility
             print("tasks not resaved")

@@ -151,7 +151,7 @@ extension ViewController {
     func loadTasks() {
         var managedContext = CoreDataManager.shared.managedObjectContext
         var fetchRequest = NSFetchRequest<DailyTasks>(entityName: "DailyTasks")
-        
+    
         do {
             var result = try managedContext.fetch(fetchRequest)
             if let tasks = result.first {
@@ -165,13 +165,16 @@ extension ViewController {
             
             if let lastOpened = TasksManager.lastOpened {
                 if Calendar.current.isDateInToday(lastOpened) == false {
+                    print("not today")
                     // last opened not today, so reset tasks
                     TasksManager.journal = false
                     TasksManager.photo = false
                     TasksManager.activities = false
                     TasksManager.rewardCollected = false
                     print("tasks all clear")
-                    DataFunctions.saveTasks()
+                    DataFunctions.saveTasks(updatingActivity: false)
+                } else {
+                    print("today")
                 }
             }
             

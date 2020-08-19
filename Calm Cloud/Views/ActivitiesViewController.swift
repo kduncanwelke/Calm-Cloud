@@ -74,7 +74,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
                     
                     do {
                         try managedContext.save()
-                        print("deleted all")
+                        print("deleted all new day")
                     } catch {
                         print("Failed to save")
                     }
@@ -88,12 +88,13 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
                     if loaded.count >= 3 {
                         if TasksManager.activities == false {
                             TasksManager.activities = true
-                            DataFunctions.saveTasks()
+                            DataFunctions.saveTasks(updatingActivity: false)
                         }
                     }
                 }
             } else {
-                for item in loaded {
+                // last opened is nil therefore activities are being updated for the first time
+                /*for item in loaded {
                     managedContext.delete(item)
                 }
                 
@@ -102,7 +103,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
                     print("deleted all")
                 } catch {
                     print("Failed to save")
-                }
+                }*/
             }
         } catch let error as NSError {
             showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
@@ -125,8 +126,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
             showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
         }
         
-        TasksManager.lastOpened = Date()
-        DataFunctions.saveTasks()
+        DataFunctions.saveTasks(updatingActivity: true)
         loadCompleted()
     }
     

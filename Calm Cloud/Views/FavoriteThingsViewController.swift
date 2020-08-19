@@ -98,7 +98,7 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
         
         if TasksManager.photo == false {
             TasksManager.photo = true
-            DataFunctions.saveTasks()
+            DataFunctions.saveTasks(updatingActivity: false)
         }
     }
     
@@ -109,10 +109,8 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
         let orderedList = indexList.sorted()
       
         for i in orderedList {
-            print(i.row)
             var count = 0
-            print("row")
-            print(i.row-count)
+           
             let imageID = DocumentsManager.filePaths[i.row]
             let imagePath = DocumentsManager.documentsURL.appendingPathComponent(imageID)
             
@@ -129,7 +127,6 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
             PhotoManager.photos.remove(at: i.row)
                                 
             var managedContext = CoreDataManager.shared.managedObjectContext
-            print(i.row-count)
             managedContext.delete(PhotoManager.loadedPhotos[i.row])
             
             do {

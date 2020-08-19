@@ -501,6 +501,8 @@ extension PlantManager {
         }
     }
     
+    // MARK: Carrot
+    
     static var carrot: UIImage {
         get {
             switch PlantManager.currentStage {
@@ -550,6 +552,61 @@ extension PlantManager {
                 }
             case .eight:
                 return #imageLiteral(resourceName: "carrot8.png")
+            }
+        }
+    }
+    
+    // MARK: Daisy
+    
+    static var daisy: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplot.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "daisy1.png")
+                } else {
+                    return #imageLiteral(resourceName: "daisy1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "daisy2.png")
+                } else {
+                    return #imageLiteral(resourceName: "daisy2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "daisy3.png")
+                } else {
+                    return #imageLiteral(resourceName: "daisy3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "daisy4.png")
+                } else {
+                    return #imageLiteral(resourceName: "daisy4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "daisy5.png")
+                } else {
+                    return #imageLiteral(resourceName: "daisy5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "daisy6.png")
+                } else {
+                    return #imageLiteral(resourceName: "daisy6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "daisy7.png")
+                } else {
+                    return #imageLiteral(resourceName: "daisy7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "daisy8.png")
             }
         }
     }
@@ -1210,6 +1267,116 @@ extension PlantManager {
                 }
             case .eight:
                 return #imageLiteral(resourceName: "pumpkin8.png")
+            }
+        }
+    }
+    
+    // MARK: Cauliflower
+    
+    static var cauliflower: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplotbig.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "cauliflower1.png")
+                } else {
+                    return #imageLiteral(resourceName: "cauliflower1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "cauliflower2.png")
+                } else {
+                    return #imageLiteral(resourceName: "cauliflower2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "cauliflower3.png")
+                } else {
+                    return #imageLiteral(resourceName: "cauliflower3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "cauliflower4.png")
+                } else {
+                    return #imageLiteral(resourceName: "cauliflower4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "cauliflower5.png")
+                } else {
+                    return #imageLiteral(resourceName: "cauliflower5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "cauliflower6.png")
+                } else {
+                    return #imageLiteral(resourceName: "cauliflower6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "cauliflower7.png")
+                } else {
+                    return #imageLiteral(resourceName: "cauliflower7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "cauliflower8.png")
+            }
+        }
+    }
+    
+    // MARK: Eggplant
+    
+    static var eggplant: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplotbig.png")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "eggplant1.png")
+                } else {
+                    return #imageLiteral(resourceName: "eggplant1water.png")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "eggplant2.png")
+                } else {
+                    return #imageLiteral(resourceName: "eggplant2water.png")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "eggplant3.png")
+                } else {
+                    return #imageLiteral(resourceName: "eggplant3water.png")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "eggplant4.png")
+                } else {
+                    return #imageLiteral(resourceName: "eggplant4water.png")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "eggplant5.png")
+                } else {
+                    return #imageLiteral(resourceName: "eggplant5water.png")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "eggplant6.png")
+                } else {
+                    return #imageLiteral(resourceName: "eggplant6water.png")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "eggplant7.png")
+                } else {
+                    return #imageLiteral(resourceName: "eggplant7water.png")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "eggplant8.png")
             }
         }
     }

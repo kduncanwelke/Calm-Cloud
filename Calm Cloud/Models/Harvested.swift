@@ -47,6 +47,9 @@ struct Harvested {
         Plant.stripedPetunia: 0,
         Plant.blackPetunia: 0,
         Plant.bluePetunia: 0,
+        Plant.daisy: 0,
+        Plant.cauliflower: 0,
+        Plant.eggplant: 0,
     ]
     
     // list of all possible basket items
@@ -55,8 +58,11 @@ struct Harvested {
         BasketItem(name: "Black petunia cuttings", plant: .blackPetunia),
         BasketItem(name: "Blue petunia cuttings", plant: .bluePetunia),
         BasketItem(name: "Carrots", plant: .carrot),
+        BasketItem(name: "Cauliflower", plant: .cauliflower),
         BasketItem(name: "Daffodil", plant: .daffodil),
-        BasketItem(name: "Fushsia Zinnia Cuttings", plant: .zinnia),
+        BasketItem(name: "Daisy cutting", plant: .daisy),
+        BasketItem(name: "Eggplant", plant: .eggplant),
+        BasketItem(name: "Fushsia zinnia cuttings", plant: .zinnia),
         BasketItem(name: "Grape tomatoes", plant: .tomato),
         BasketItem(name: "Jade cuttings", plant: .jade),
         BasketItem(name: "Kale", plant: .kale),
@@ -78,7 +84,7 @@ struct Harvested {
         BasketItem(name: "Strawberries", plant: .strawberry),
         BasketItem(name: "Striped petunia cuttings", plant: .stripedPetunia),
         BasketItem(name: "Summer Squash", plant: .squash),
-        BasketItem(name: "Tiger Aloe", plant: .aloe),
+        BasketItem(name: "Tiger aloe", plant: .aloe),
         BasketItem(name: "Watermelons", plant: .watermelon),
         BasketItem(name: "White petunia cuttings", plant: .whitePetunia),
         BasketItem(name: "White tulip cuttings", plant: .whiteTulip),
@@ -121,6 +127,9 @@ struct Harvested {
         Plant.stripedPetunia: 0,
         Plant.blackPetunia: 0,
         Plant.bluePetunia: 0,
+        Plant.daisy: 0,
+        Plant.cauliflower: 0,
+        Plant.eggplant: 0,
     ]
     
     static func getStandImage(plant: Plant) -> UIImage {
@@ -191,6 +200,12 @@ struct Harvested {
             return #imageLiteral(resourceName: "blackpetuniasale.png")
         case .bluePetunia:
             return #imageLiteral(resourceName: "bluepetuniasale.png")
+        case .daisy:
+            return #imageLiteral(resourceName: "daisysale.png")
+        case .cauliflower:
+            return #imageLiteral(resourceName: "cauliflowersale.png")
+        case .eggplant:
+            return #imageLiteral(resourceName: "eggplantsale.png")
         }
     }
     

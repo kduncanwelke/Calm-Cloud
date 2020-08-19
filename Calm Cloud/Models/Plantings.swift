@@ -50,6 +50,9 @@ struct Plantings {
         Plant.stripedPetunia: 0,
         Plant.blackPetunia: 0,
         Plant.bluePetunia: 0,
+        Plant.daisy: 0,
+        Plant.cauliflower: 0,
+        Plant.eggplant: 0,
     ]
     
     // list of all available seedlings
@@ -58,8 +61,11 @@ struct Plantings {
         Seedling(name: "Black Petunia", image: UIImage(named: "blackpetunia")!, plant: .blackPetunia, allowedArea: .smallPot, price: 120, growthSpeed: .fast),
         Seedling(name: "Blue Petunia", image: UIImage(named: "bluepetunia")!, plant: .bluePetunia, allowedArea: .smallPot, price: 100, growthSpeed: .fast),
         Seedling(name: "Carrot", image: UIImage(named: "carrot")!, plant: .carrot, allowedArea: .rows, price: 10, growthSpeed: .medium),
+        Seedling(name: "Cauliflower", image: UIImage(named: "cauliflower")!, plant: .cauliflower, allowedArea: .vegetablePlot, price: 100, growthSpeed: .medium),
         Seedling(name: "Cherry Tomato", image: UIImage(named: "tomato")!, plant: .tomato, allowedArea: .planter, price: 45, growthSpeed: .medium),
         Seedling(name: "Daffodil", image: UIImage(named: "daffodil")!, plant: .daffodil, allowedArea: .rows, price: 80, growthSpeed: .fast),
+        Seedling(name: "Daisy", image: UIImage(named: "daisy")!, plant: .daisy, allowedArea: .rows, price: 80, growthSpeed: .medium),
+        Seedling(name: "Eggplant", image: UIImage(named: "eggplant")!, plant: .eggplant, allowedArea: .vegetablePlot, price: 110, growthSpeed: .slow),
         Seedling(name: "Fuchsia Zinnia", image: UIImage(named: "zinnia")!, plant: .zinnia, allowedArea: .rows, price: 60, growthSpeed: .medium),
         Seedling(name: "Jade", image: UIImage(named: "jade")!, plant: .jade, allowedArea: .lowPot, price: 50, growthSpeed: .medium),
         Seedling(name: "Kale", image: UIImage(named: "kale")!, plant: .kale, allowedArea: .multi, price: 65, growthSpeed: .slow),
