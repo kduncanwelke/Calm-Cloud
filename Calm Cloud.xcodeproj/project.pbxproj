@@ -751,7 +751,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/ios/lib",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/Stuffs/Treehouse/Calm Cloud/Calm Cloud/header.h";
@@ -782,7 +782,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/ios/lib",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/Stuffs/Treehouse/Calm Cloud/Calm Cloud/header.h";

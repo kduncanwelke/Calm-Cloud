@@ -211,7 +211,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
             
             if TasksManager.journal == false {
                 TasksManager.journal = true
-                DataFunctions.saveTasks(updatingActivity: false)
+                DataFunctions.saveTasks(updatingActivity: false, removeAll: false)
             }
         } else {
             print("text view was empty or nil")

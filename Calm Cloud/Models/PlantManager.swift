@@ -138,7 +138,7 @@ struct PlantManager {
                     stage = 5
                 } else if halfDaysCaredFor > 20 && halfDaysCaredFor <= 24 {
                     stage = 6
-                } else if halfDaysCaredFor >= 28 {
+                } else if halfDaysCaredFor >= 24 {
                     stage = 7
                 } else {
                     stage = 0

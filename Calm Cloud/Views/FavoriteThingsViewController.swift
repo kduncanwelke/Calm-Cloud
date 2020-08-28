@@ -98,7 +98,7 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
         
         if TasksManager.photo == false {
             TasksManager.photo = true
-            DataFunctions.saveTasks(updatingActivity: false)
+            DataFunctions.saveTasks(updatingActivity: false, removeAll: false)
         }
     }
     

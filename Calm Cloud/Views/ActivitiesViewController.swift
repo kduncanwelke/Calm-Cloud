@@ -66,19 +66,8 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
             loaded = try managedContext.fetch(fetchRequest)
             
             if let lastOpened = TasksManager.lastOpened {
-                // if it's a new day, removed all saved completions
-                if Calendar.current.isDateInToday(lastOpened) == false {
-                    for item in loaded {
-                        managedContext.delete(item)
-                    }
-                    
-                    do {
-                        try managedContext.save()
-                        print("deleted all new day")
-                    } catch {
-                        print("Failed to save")
-                    }
-                } else {
+                // if it's same day load activities
+                if Calendar.current.isDateInToday(lastOpened) {
                     print("same day")
                     // same day, no changes
                     for item in loaded {
@@ -88,22 +77,13 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
                     if loaded.count >= 3 {
                         if TasksManager.activities == false {
                             TasksManager.activities = true
-                            DataFunctions.saveTasks(updatingActivity: false)
+                            DataFunctions.saveTasks(updatingActivity: false, removeAll: false)
                         }
                     }
                 }
             } else {
-                // last opened is nil therefore activities are being updated for the first time
-                /*for item in loaded {
-                    managedContext.delete(item)
-                }
-                
-                do {
-                    try managedContext.save()
-                    print("deleted all")
-                } catch {
-                    print("Failed to save")
-                }*/
+                // new day, do nothing as activities are wiped
+                print("new day")
             }
         } catch let error as NSError {
             showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
@@ -126,7 +106,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
             showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
         }
         
-        DataFunctions.saveTasks(updatingActivity: true)
+        DataFunctions.saveTasks(updatingActivity: true, removeAll: false)
         loadCompleted()
     }
     

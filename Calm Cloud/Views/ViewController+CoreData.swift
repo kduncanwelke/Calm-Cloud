@@ -172,7 +172,7 @@ extension ViewController {
                     TasksManager.activities = false
                     TasksManager.rewardCollected = false
                     print("tasks all clear")
-                    DataFunctions.saveTasks(updatingActivity: false)
+                    DataFunctions.saveTasks(updatingActivity: false, removeAll: true)
                 } else {
                     print("today")
                 }

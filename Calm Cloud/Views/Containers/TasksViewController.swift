@@ -88,7 +88,7 @@ class TasksViewController: UIViewController {
         getReward.isHidden = true
         rewardDetails.animateFadeInSlow()
         TasksManager.rewardCollected = true
-        DataFunctions.saveTasks(updatingActivity: false)
+        DataFunctions.saveTasks(updatingActivity: false, removeAll: false)
     }
     
     @IBAction func infoPressed(_ sender: UIButton) {

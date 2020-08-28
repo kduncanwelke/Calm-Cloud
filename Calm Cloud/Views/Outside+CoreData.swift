@@ -132,7 +132,7 @@ extension OutsideViewController {
                     } else if let prevWatered = plot.prevWatered {
                         let differenceFromNowToPrevWatering = PlantManager.checkDiff(date: prevWatered)
                         
-                        // if plot was last watered 12 hours or more ago and that last watering was within the current day, add to waterings
+                        // if plot was last watered less than 12 hours ago and that last watering was within the current day, add to waterings
                         if differenceFromNowToPrevWatering <= 12 && Calendar.current.isDateInToday(prevWatered) {
                             plot.consecutiveWaterings += 1
                         }

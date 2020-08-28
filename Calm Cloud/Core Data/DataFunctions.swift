@@ -354,7 +354,7 @@ struct DataFunctions {
     
     // MARK: Tasks
     
-    static func saveTasks(updatingActivity: Bool) {
+    static func saveTasks(updatingActivity: Bool, removeAll: Bool) {
         var managedContext = CoreDataManager.shared.managedObjectContext
         
         // save anew if it doesn't exist (like on app initial launch)
@@ -371,7 +371,7 @@ struct DataFunctions {
                 taskSave.lastOpened = Date()
                 print("updating activity")
             } else {
-                // if activity is not being updated last opened should be nil on first save (this state will be saved before tasks are changed)
+                // if activity is not being updated last opened should be nil on first save
                 taskSave.lastOpened = nil
             }
             
@@ -395,7 +395,10 @@ struct DataFunctions {
         prevSave.journal = TasksManager.journal
         prevSave.rewardCollected = TasksManager.rewardCollected
         
-        if updatingActivity {
+        // wipe all tasks, as it is new day
+        if removeAll {
+            deleteActivities()
+        } else if updatingActivity {
             prevSave.lastOpened = Date()
         } else if let savedDate = prevSave.lastOpened {
             // if new day update last opened date
@@ -419,6 +422,29 @@ struct DataFunctions {
         } catch {
             // this should never be displayed but is here to cover the possibility
             print("tasks not resaved")
+        }
+    }
+    
+    static func deleteActivities() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        var fetchRequest = NSFetchRequest<ActivityId>(entityName: "ActivityId")
+        
+        do {
+            var loaded = try managedContext.fetch(fetchRequest)
+            
+            for item in loaded {
+                managedContext.delete(item)
+            }
+            
+            do {
+                try managedContext.save()
+                print("deleted all new day")
+            } catch {
+                print("Failed to save")
+            }
+            
+        } catch let error as NSError {
+            print("activities couldn't be deleted")
         }
     }
 }

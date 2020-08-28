@@ -60,7 +60,7 @@ struct Harvested {
         BasketItem(name: "Carrots", plant: .carrot),
         BasketItem(name: "Cauliflower", plant: .cauliflower),
         BasketItem(name: "Daffodil", plant: .daffodil),
-        BasketItem(name: "Daisy cutting", plant: .daisy),
+        BasketItem(name: "Daisy cuttings", plant: .daisy),
         BasketItem(name: "Eggplant", plant: .eggplant),
         BasketItem(name: "Fushsia zinnia cuttings", plant: .zinnia),
         BasketItem(name: "Grape tomatoes", plant: .tomato),
