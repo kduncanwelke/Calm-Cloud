@@ -1619,6 +1619,12 @@
                                                     <outletCollection property="gestureRecognizers" destination="LKg-bi-JGp" appends="YES" id="SQX-JM-Je3"/>
                                                 </connections>
                                             </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="money" translatesAutoresizingMaskIntoConstraints="NO" id="Cuc-Wk-qzE">
+                                                <rect key="frame" x="767" y="188" width="28.5" height="28"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Cuc-Wk-qzE" secondAttribute="height" multiplier="1:1" id="lsw-TU-eRQ"/>
+                                                </constraints>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACo-sM-PKy">
                                                 <rect key="frame" x="87" y="298.5" width="60" height="30"/>
                                                 <constraints>
@@ -1749,12 +1755,6 @@
                                                 <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <size key="shadowOffset" width="-1" height="1"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="money" translatesAutoresizingMaskIntoConstraints="NO" id="Cuc-Wk-qzE">
-                                                <rect key="frame" x="767" y="188" width="28.5" height="28"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Cuc-Wk-qzE" secondAttribute="height" multiplier="1:1" id="lsw-TU-eRQ"/>
-                                                </constraints>
-                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+5 EXP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEo-BP-jZu">
                                                 <rect key="frame" x="155" y="492" width="103" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

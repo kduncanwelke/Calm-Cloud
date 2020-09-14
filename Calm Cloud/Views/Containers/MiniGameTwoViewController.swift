@@ -69,6 +69,7 @@ class MiniGameTwoViewController: UIViewController {
             coin.isHidden = false
             coin.animateBounce()
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateCoins"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
         }
     }
     
