@@ -180,7 +180,7 @@ class OutsideViewController: UIViewController {
     // MARK: Custom functions
     
     func loadUI() {
-        setTimeOfDay()
+        setTimeAndWeather()
         
         // update level
         levelLabel.text = "\(LevelManager.currentLevel)"
@@ -189,21 +189,40 @@ class OutsideViewController: UIViewController {
         levelProgress.setProgress(prog, animated: true)
     }
     
-    func setTimeOfDay() {
+    func setTimeAndWeather() {
         let hour = Calendar.current.component(.hour, from: Date())
+        let month = Calendar.current.component(.month, from: Date())
         
         if hour > 6 && hour < 20 {
             // daytime, set background and ambient sound
-            outsideImage.image = UIImage(named: "outside")
-            Sound.stopPlaying()
-            Sound.loadSound(resourceName: Sounds.outside.resourceName, type: Sounds.outside.type)
-            Sound.startPlaying()
+            if month > 3 && month < 10 {
+                // spring/summer
+                outsideImage.image = UIImage(named: "outside")
+                Sound.stopPlaying()
+                Sound.loadSound(resourceName: Sounds.outside.resourceName, type: Sounds.outside.type)
+                Sound.startPlaying()
+            } else {
+                // fall/winter
+                outsideImage.image = UIImage(named: "outsidesnow")
+                Sound.stopPlaying()
+                Sound.loadSound(resourceName: Sounds.outsideFallWinter.resourceName, type: Sounds.outsideFallWinter.type)
+                Sound.startPlaying()
+            }
         } else {
             // night, set background and ambient sound
-            outsideImage.image = UIImage(named: "backgroundnight")
-            Sound.stopPlaying()
-            Sound.loadSound(resourceName: Sounds.night.resourceName, type: Sounds.night.type)
-            Sound.startPlaying()
+            if month > 3 && month < 10 {
+                // spring/summer
+                outsideImage.image = UIImage(named: "backgroundnight")
+                Sound.stopPlaying()
+                Sound.loadSound(resourceName: Sounds.night.resourceName, type: Sounds.night.type)
+                Sound.startPlaying()
+            } else {
+                // fall/winter
+                outsideImage.image = UIImage(named: "outsidesnownight")
+                Sound.stopPlaying()
+                Sound.loadSound(resourceName: Sounds.outsideFallWinterNight.resourceName, type: Sounds.outsideFallWinterNight.type)
+                Sound.startPlaying()
+            }
         }
     }
     

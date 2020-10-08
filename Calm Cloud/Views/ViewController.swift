@@ -148,7 +148,7 @@ class ViewController: UIViewController {
     // MARK: Custom functions
     
     func loadUI() {
-        setTimeOfDay()
+        setTimeAndWeather()
         
         // set images and exp
         if hasFood {
@@ -176,20 +176,36 @@ class ViewController: UIViewController {
         coinCount.text = "\(MoneyManager.total)"
     }
     
-    func setTimeOfDay() {
+    func setTimeAndWeather() {
         // change background if night
         let hour = Calendar.current.component(.hour, from: Date())
+        let month = Calendar.current.component(.month, from: Date())
         
+        // add randomness to snow
         if hour > 6 && hour < 20 {
-            // daytime
-            Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
-            Sound.startPlaying()
-            outsideBackground.image = UIImage(named: "outsidebackground")
+            if month > 3 && month < 10 {
+                // daytime, spring/summer
+                Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
+                Sound.startPlaying()
+                outsideBackground.image = UIImage(named: "outsidebackground")
+            } else {
+                // daytime, fall/winter
+                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
+                Sound.startPlaying()
+                outsideBackground.image = UIImage(named: "outsidebackgroundsnow")
+            }
         } else {
-            // nighttime
-            Sound.loadSound(resourceName: Sounds.insideNight.resourceName, type: Sounds.insideNight.type)
-            Sound.startPlaying()
-            outsideBackground.image = UIImage(named: "outsidebackgroundnight")
+            if month > 3 && month < 10 {
+                // nighttime, spring/summer
+                Sound.loadSound(resourceName: Sounds.insideNight.resourceName, type: Sounds.insideNight.type)
+                Sound.startPlaying()
+                outsideBackground.image = UIImage(named: "outsidebackgroundnight")
+            } else {
+                // nighttime, fall/winter
+                Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
+                Sound.startPlaying()
+                outsideBackground.image = UIImage(named: "outsidebackgroundsnownight")
+            }
         }
     }
     
@@ -281,7 +297,7 @@ class ViewController: UIViewController {
         Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
         Sound.startPlaying()
         
-        setTimeOfDay()
+        setTimeAndWeather()
         door.isHidden = false
         openDoor.isHidden = true
         stopped = false

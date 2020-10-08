@@ -50,6 +50,7 @@ struct Harvested {
         Plant.daisy: 0,
         Plant.cauliflower: 0,
         Plant.eggplant: 0,
+        Plant.daffodil: 0,
     ]
     
     // list of all possible basket items
