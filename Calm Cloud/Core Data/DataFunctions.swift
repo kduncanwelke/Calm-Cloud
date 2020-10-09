@@ -366,14 +366,8 @@ struct DataFunctions {
             taskSave.journal = TasksManager.journal
             taskSave.rewardCollected = TasksManager.rewardCollected
             
-            if updatingActivity {
-                // if activity is being updated change date
-                taskSave.lastOpened = Date()
-                print("updating activity")
-            } else {
-                // if activity is not being updated last opened should be nil on first save
-                taskSave.lastOpened = nil
-            }
+            // save last opened as initial open date
+            taskSave.lastOpened = Date()
             
             TasksManager.loaded = taskSave
             
@@ -398,18 +392,10 @@ struct DataFunctions {
         // wipe all tasks, as it is new day
         if removeAll {
             deleteActivities()
+            // set last opened date for the day when clearing activities
+            prevSave.lastOpened = Date()
         } else if updatingActivity {
             prevSave.lastOpened = Date()
-        } else if let savedDate = prevSave.lastOpened {
-            // if new day update last opened date
-            if Calendar.current.isDateInToday(savedDate) == false {
-                prevSave.lastOpened = Date()
-                print("dates don't match")
-            }
-        } else if prevSave.lastOpened == nil {
-            // if no saved date, update since this is a resave from the initial state
-            prevSave.lastOpened = Date()
-            
         }
         
         // update tasks manager info

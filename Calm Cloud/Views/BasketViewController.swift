@@ -140,7 +140,6 @@ class BasketViewController: UIViewController {
             if numberSentToStand != 0 {
                 DataFunctions.saveHonorStandItems()
                 addedImage.animateFadeInSlow()
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadHonorStand"), object: nil)
             }
         } else if segmentedControl.selectedSegmentIndex == 1 {
             if numberDonated != 0 {
@@ -150,6 +149,10 @@ class BasketViewController: UIViewController {
                 numberDonated = 0
             }
         }
+        
+        // send notification here so if user both donates and puts in the honor stand
+        // the honor stand will still update
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadHonorStand"), object: nil)
         
         reset()
     }

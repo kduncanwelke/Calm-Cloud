@@ -179,6 +179,9 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outsidebackground" translatesAutoresizingMaskIntoConstraints="NO" id="CF1-PQ-wsI">
                                                 <rect key="frame" x="0.0" y="0.0" width="1175.5" height="705.5"/>
                                             </imageView>
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rain1" translatesAutoresizingMaskIntoConstraints="NO" id="WbX-vW-iyn">
+                                                <rect key="frame" x="0.0" y="0.0" width="1175.5" height="705.5"/>
+                                            </imageView>
                                             <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L98-mo-QPt">
                                                 <rect key="frame" x="0.0" y="10" width="1175.5" height="685.5"/>
                                                 <color key="backgroundColor" red="0.028106393753525163" green="0.016245728989132131" blue="0.035532994923857864" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
@@ -342,6 +345,7 @@
                                             <constraint firstItem="9hS-Dd-pej" firstAttribute="width" secondItem="718-af-Qot" secondAttribute="width" multiplier="0.15" id="8UE-Ms-QRl"/>
                                             <constraint firstItem="2cz-L7-5Y0" firstAttribute="top" secondItem="718-af-Qot" secondAttribute="baseline" multiplier="1:1.2" id="8h8-LD-f4X"/>
                                             <constraint firstItem="AJU-aT-XbG" firstAttribute="height" secondItem="718-af-Qot" secondAttribute="height" multiplier="0.219985" id="8zm-ie-r5J"/>
+                                            <constraint firstItem="WbX-vW-iyn" firstAttribute="width" secondItem="718-af-Qot" secondAttribute="width" id="9Zc-OR-34X"/>
                                             <constraint firstItem="UST-gs-57C" firstAttribute="top" secondItem="718-af-Qot" secondAttribute="bottom" multiplier="1:1.87" id="Agq-Wi-nsy"/>
                                             <constraint firstAttribute="bottom" secondItem="718-af-Qot" secondAttribute="bottom" id="As3-F1-er6"/>
                                             <constraint firstItem="UST-gs-57C" firstAttribute="width" secondItem="CF1-PQ-wsI" secondAttribute="width" multiplier="0.16" id="Azn-uJ-gag"/>
@@ -357,6 +361,7 @@
                                             <constraint firstItem="O4B-fY-aWc" firstAttribute="height" secondItem="718-af-Qot" secondAttribute="height" multiplier="0.109992" id="H3D-dL-w1d"/>
                                             <constraint firstItem="Jfo-NR-8Sx" firstAttribute="height" secondItem="CF1-PQ-wsI" secondAttribute="height" multiplier="0.223479" id="Jtn-kY-jV6"/>
                                             <constraint firstItem="0xW-kf-q15" firstAttribute="top" secondItem="718-af-Qot" secondAttribute="baseline" multiplier="1:1.33" id="KBE-ed-Awm"/>
+                                            <constraint firstItem="WbX-vW-iyn" firstAttribute="centerX" secondItem="718-af-Qot" secondAttribute="centerX" id="LCf-yj-geY"/>
                                             <constraint firstItem="RKV-4h-ml0" firstAttribute="leading" secondItem="718-af-Qot" secondAttribute="trailing" multiplier="1:1.96" id="MUO-xm-1zY"/>
                                             <constraint firstItem="O4B-fY-aWc" firstAttribute="leading" secondItem="718-af-Qot" secondAttribute="trailing" multiplier="1:1.96" id="NDY-nU-KsZ"/>
                                             <constraint firstItem="YEn-SQ-dz0" firstAttribute="top" secondItem="O4B-fY-aWc" secondAttribute="top" multiplier="1:0.98" id="NPs-J6-gjJ"/>
@@ -373,6 +378,7 @@
                                             <constraint firstItem="CF1-PQ-wsI" firstAttribute="top" secondItem="R5A-fZ-Dls" secondAttribute="top" id="XiD-OJ-ueH"/>
                                             <constraint firstItem="YEn-SQ-dz0" firstAttribute="width" secondItem="O4B-fY-aWc" secondAttribute="width" multiplier="0.786408" id="XzR-Rl-umy"/>
                                             <constraint firstItem="rEx-ZY-Gww" firstAttribute="height" secondItem="Jfo-NR-8Sx" secondAttribute="height" id="YNi-wU-xgy"/>
+                                            <constraint firstItem="WbX-vW-iyn" firstAttribute="centerY" secondItem="718-af-Qot" secondAttribute="centerY" id="YoI-hD-CX9"/>
                                             <constraint firstItem="0xW-kf-q15" firstAttribute="leading" secondItem="718-af-Qot" secondAttribute="trailing" multiplier="1:1.3" id="ZUv-MO-jsD"/>
                                             <constraint firstItem="2cz-L7-5Y0" firstAttribute="height" secondItem="718-af-Qot" secondAttribute="height" multiplier="0.0945004" id="ZpJ-9H-WYI"/>
                                             <constraint firstItem="YEn-SQ-dz0" firstAttribute="height" secondItem="O4B-fY-aWc" secondAttribute="height" multiplier="0.450704" id="dHM-MM-wcq"/>
@@ -398,6 +404,7 @@
                                             <constraint firstItem="2cz-L7-5Y0" firstAttribute="width" secondItem="718-af-Qot" secondAttribute="width" multiplier="0.0923938" id="uGL-aO-GbF"/>
                                             <constraint firstAttribute="width" secondItem="R5A-fZ-Dls" secondAttribute="height" multiplier="1.66667:1" id="uPs-oA-KPf"/>
                                             <constraint firstItem="kg9-p4-xQg" firstAttribute="height" secondItem="718-af-Qot" secondAttribute="height" multiplier="0.6" id="uUN-Zc-iQM"/>
+                                            <constraint firstItem="WbX-vW-iyn" firstAttribute="height" secondItem="718-af-Qot" secondAttribute="height" id="uZ1-IK-oR5"/>
                                             <constraint firstItem="Jfo-NR-8Sx" firstAttribute="width" secondItem="CF1-PQ-wsI" secondAttribute="width" multiplier="0.204429" id="vRJ-er-Mh0"/>
                                             <constraint firstItem="O4B-fY-aWc" firstAttribute="top" secondItem="718-af-Qot" secondAttribute="baseline" multiplier="1:1.21" id="xKn-hb-dBb"/>
                                             <constraint firstItem="dW0-n7-p0C" firstAttribute="top" secondItem="718-af-Qot" secondAttribute="baseline" multiplier="1:1.85" id="xUI-Z9-BLK"/>
@@ -560,6 +567,7 @@
                         <outlet property="toyImage" destination="0xW-kf-q15" id="pNn-L7-Jit"/>
                         <outlet property="unlockNotice" destination="Lsd-NR-qdm" id="nMQ-HQ-smJ"/>
                         <outlet property="waterImage" destination="CZq-FQ-u9r" id="b2z-Fd-yrq"/>
+                        <outlet property="weather" destination="WbX-vW-iyn" id="NCc-BW-Bec"/>
                         <segue destination="lT5-Xi-Vyv" kind="show" identifier="visitJournal" id="3GW-Wc-jgm"/>
                         <segue destination="pyB-xZ-7oB" kind="show" identifier="visitFavorites" id="hYX-La-BSD"/>
                         <segue destination="ggj-zc-xge" kind="show" identifier="visitReminders" id="Ev2-J4-hde"/>
@@ -1746,6 +1754,9 @@
                                                     <outletCollection property="gestureRecognizers" destination="kZl-eZ-6Z2" appends="YES" id="Yu1-1Q-zkV"/>
                                                 </connections>
                                             </imageView>
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rain1" translatesAutoresizingMaskIntoConstraints="NO" id="Avw-Uh-DhU">
+                                                <rect key="frame" x="0.0" y="0.0" width="1163.5" height="698"/>
+                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+5 EXP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyQ-3h-HcO">
                                                 <rect key="frame" x="63" y="507" width="103" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1800,6 +1811,7 @@
                                             <constraint firstItem="yZS-ou-s7f" firstAttribute="top" secondItem="W7s-f1-s4L" secondAttribute="top" id="AuL-Rb-gF8"/>
                                             <constraint firstItem="Zsa-W7-UH9" firstAttribute="width" secondItem="gtY-D3-WJv" secondAttribute="width" multiplier="0.373" id="B0b-c7-W2L"/>
                                             <constraint firstItem="XYI-uO-ovu" firstAttribute="height" secondItem="55D-2o-WYZ" secondAttribute="height" id="BZU-Zu-P8Q"/>
+                                            <constraint firstItem="Avw-Uh-DhU" firstAttribute="height" secondItem="gtY-D3-WJv" secondAttribute="height" id="Bqs-Ig-Uzd"/>
                                             <constraint firstItem="Bda-th-Vu7" firstAttribute="leading" secondItem="9fr-Sb-sVE" secondAttribute="trailing" id="Brn-Ds-g1O"/>
                                             <constraint firstItem="kl5-UE-pc3" firstAttribute="height" secondItem="wyJ-9t-Nrc" secondAttribute="height" id="Cmt-Wd-5Cj"/>
                                             <constraint firstItem="RVq-gn-h7f" firstAttribute="height" secondItem="xLe-GY-Epv" secondAttribute="height" id="DBu-sg-H8a"/>
@@ -1866,9 +1878,11 @@
                                             <constraint firstItem="Es5-lZ-EHS" firstAttribute="width" secondItem="gtY-D3-WJv" secondAttribute="width" multiplier="0.195054" id="U9L-yu-lqb"/>
                                             <constraint firstItem="Zsa-W7-UH9" firstAttribute="leading" secondItem="gtY-D3-WJv" secondAttribute="centerX" multiplier="1:6.85" id="VYA-C5-COu"/>
                                             <constraint firstItem="LC2-Ez-byZ" firstAttribute="height" secondItem="7nK-5s-zon" secondAttribute="height" id="VdJ-OX-12Z"/>
+                                            <constraint firstItem="Avw-Uh-DhU" firstAttribute="centerX" secondItem="gtY-D3-WJv" secondAttribute="centerX" id="Veu-hw-qe4"/>
                                             <constraint firstItem="0yc-pF-Qaz" firstAttribute="leading" secondItem="FA7-0H-cq1" secondAttribute="centerX" id="VkA-AS-PR4"/>
                                             <constraint firstItem="lIf-Zr-boi" firstAttribute="leading" secondItem="nCi-nz-lbx" secondAttribute="trailing" id="WKX-lj-zCp"/>
                                             <constraint firstItem="giO-gd-bt9" firstAttribute="width" secondItem="gtY-D3-WJv" secondAttribute="width" multiplier="0.0632582" id="WYD-oN-WfJ"/>
+                                            <constraint firstItem="Avw-Uh-DhU" firstAttribute="centerY" secondItem="gtY-D3-WJv" secondAttribute="centerY" id="X8b-2y-40x"/>
                                             <constraint firstItem="R8q-MV-ifJ" firstAttribute="centerY" secondItem="FA7-0H-cq1" secondAttribute="centerY" id="XIg-wc-Ni4"/>
                                             <constraint firstItem="8gG-Z0-P99" firstAttribute="height" secondItem="uQw-Us-U97" secondAttribute="height" id="Xkt-1w-PQA"/>
                                             <constraint firstItem="eqd-wc-SL9" firstAttribute="width" secondItem="gtY-D3-WJv" secondAttribute="width" multiplier="0.183854" id="YEo-G3-ghR"/>
@@ -1923,6 +1937,7 @@
                                             <constraint firstItem="Uq5-0c-fm1" firstAttribute="top" secondItem="Bda-th-Vu7" secondAttribute="top" id="rrD-ND-zdH"/>
                                             <constraint firstItem="Es5-lZ-EHS" firstAttribute="leading" secondItem="gtY-D3-WJv" secondAttribute="trailing" multiplier="1:2" id="sFm-kM-eZf"/>
                                             <constraint firstItem="nCi-nz-lbx" firstAttribute="width" secondItem="9fr-Sb-sVE" secondAttribute="width" multiplier="0.9" id="saK-Vk-pN2"/>
+                                            <constraint firstItem="Avw-Uh-DhU" firstAttribute="width" secondItem="gtY-D3-WJv" secondAttribute="width" id="t6F-1x-Tph"/>
                                             <constraint firstItem="9fr-Sb-sVE" firstAttribute="top" secondItem="gtY-D3-WJv" secondAttribute="bottom" multiplier="1:1.45" id="t6j-lx-PXr"/>
                                             <constraint firstItem="wyJ-9t-Nrc" firstAttribute="leading" secondItem="XYI-uO-ovu" secondAttribute="leading" multiplier="1:0.87" id="tXI-j0-u3V"/>
                                             <constraint firstItem="UYL-Pz-Msa" firstAttribute="top" secondItem="bm9-ct-Qk7" secondAttribute="top" id="th2-D3-Zub"/>
@@ -2352,6 +2367,7 @@
                         <outlet property="vegetablePlot6" destination="A3i-V1-qgD" id="hzu-Jm-tdm"/>
                         <outlet property="waterButton" destination="mb6-0Z-KdM" id="KpP-NN-TRr"/>
                         <outlet property="waterText" destination="7GB-Q8-0DW" id="pKm-Lf-dCv"/>
+                        <outlet property="weather" destination="Avw-Uh-DhU" id="hHS-Es-tnf"/>
                         <outletCollection property="honorStandImages" destination="FA7-0H-cq1" collectionClass="NSMutableArray" id="aZ7-EA-g1B"/>
                         <outletCollection property="honorStandImages" destination="R8q-MV-ifJ" collectionClass="NSMutableArray" id="wc9-9D-cgN"/>
                         <outletCollection property="honorStandImages" destination="u1q-yC-f1k" collectionClass="NSMutableArray" id="DRu-Nn-iUL"/>
@@ -4545,6 +4561,7 @@
         <image name="outside" width="3000" height="1800"/>
         <image name="outsidebackground" width="3000" height="1800"/>
         <image name="paid" width="714" height="381"/>
+        <image name="rain1" width="3000" height="1800"/>
         <image name="record" width="537" height="318"/>
         <image name="redtulip" width="198" height="198"/>
         <image name="removebg" width="1200" height="288"/>

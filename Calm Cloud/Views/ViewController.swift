@@ -55,6 +55,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var game: UIImageView!
     @IBOutlet weak var unlockNotice: UIButton!
     
+    @IBOutlet weak var weather: UIImageView!
+    
     
     // MARK: Variables
     
@@ -122,6 +124,11 @@ class ViewController: UIViewController {
         AnimationManager.movement = .staying
         sleep()
         
+        let day = Calendar.current.component(.day, from: Date())
+        let month = Calendar.current.component(.month, from: Date())
+        
+        WeatherManager.getWeather(month: month, day: day)
+        
         loadUI()
         setMood()
     }
@@ -179,32 +186,92 @@ class ViewController: UIViewController {
     func setTimeAndWeather() {
         // change background if night
         let hour = Calendar.current.component(.hour, from: Date())
-        let month = Calendar.current.component(.month, from: Date())
-        
-        // add randomness to snow
-        if hour > 6 && hour < 20 {
-            if month > 3 && month < 10 {
-                // daytime, spring/summer
+    
+        switch WeatherManager.currentWeather {
+        case .clearWarm:
+            weather.isHidden = true
+            
+            if hour > 6 && hour < 20 {
+                outsideBackground.image = UIImage(named: "outsidebackground")
                 Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
                 Sound.startPlaying()
-                outsideBackground.image = UIImage(named: "outsidebackground")
             } else {
-                // daytime, fall/winter
-                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
-                Sound.startPlaying()
-                outsideBackground.image = UIImage(named: "outsidebackgroundsnow")
-            }
-        } else {
-            if month > 3 && month < 10 {
-                // nighttime, spring/summer
+                outsideBackground.image = UIImage(named: "outsidebackgroundnight")
                 Sound.loadSound(resourceName: Sounds.insideNight.resourceName, type: Sounds.insideNight.type)
                 Sound.startPlaying()
-                outsideBackground.image = UIImage(named: "outsidebackgroundnight")
+            }
+        case .clearCool:
+            weather.isHidden = true
+            
+            if hour > 6 && hour < 20 {
+                outsideBackground.image = UIImage(named: "outsidebackgroundfall")
+                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
+                Sound.startPlaying()
             } else {
-                // nighttime, fall/winter
+                outsideBackground.image = UIImage(named: "outsidebackgroundfallnight")
                 Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
                 Sound.startPlaying()
+            }
+        case .rainingWarm:
+            weather.isHidden = false
+            
+            if hour > 6 && hour < 20 {
+                outsideBackground.image = UIImage(named: "outsidebackground")
+            } else {
+                outsideBackground.image = UIImage(named: "outsidebackgroundnight")
+            }
+            
+            // raining animation
+            weather.animationImages = WeatherManager.rainImages
+            weather.animationDuration = 0.3
+            weather.startAnimating()
+            
+            Sound.loadSound(resourceName: Sounds.rainIndoors.resourceName, type: Sounds.rainIndoors.type)
+            Sound.startPlaying()
+        case .rainingCool:
+            weather.isHidden = false
+            
+            if hour > 6 && hour < 20 {
+                outsideBackground.image = UIImage(named: "outsidebackgroundfall")
+            } else {
+                outsideBackground.image = UIImage(named: "outsidebackgroundfallnight")
+            }
+            
+            // raining animation
+            weather.animationImages = WeatherManager.rainImages
+            weather.animationDuration = 0.3
+            weather.startAnimating()
+            
+            Sound.loadSound(resourceName: Sounds.rainIndoors.resourceName, type: Sounds.rainIndoors.type)
+            Sound.startPlaying()
+        case .snowing:
+            weather.isHidden = false
+            
+            if hour > 6 && hour < 20 {
+                outsideBackground.image = UIImage(named: "outsidebackgroundsnow")
+                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
+                Sound.startPlaying()
+            } else {
                 outsideBackground.image = UIImage(named: "outsidebackgroundsnownight")
+                Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
+                Sound.startPlaying()
+            }
+            
+            // add snowing animation
+            weather.animationImages = WeatherManager.snowImages
+            weather.animationDuration = 2.8
+            weather.startAnimating()
+        case .snowOnGround:
+            weather.isHidden = true
+            
+            if hour > 6 && hour < 20 {
+                outsideBackground.image = UIImage(named: "outsidebackgroundsnow")
+                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
+                Sound.startPlaying()
+            } else {
+                outsideBackground.image = UIImage(named: "outsidebackgroundsnownight")
+                Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
+                Sound.startPlaying()
             }
         }
     }
@@ -297,7 +364,6 @@ class ViewController: UIViewController {
         Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
         Sound.startPlaying()
         
-        setTimeAndWeather()
         door.isHidden = false
         openDoor.isHidden = true
         stopped = false

@@ -54,8 +54,8 @@ struct Sounds {
     
     // RAIN
     
-    static let rainOutdoors = Sound(resourceName: "west_wolf_Rear_Street_City_Rain_With_Thunders", type: "mp3")
-    static let rainIndoors = Sound(resourceName: "zapsplat_nature_rain_internal_home_rec_open_window_occ_cars_pass_low_thunder_rumbles_001_25102", type: "mp3")
+    static let rainOutdoors = Sound(resourceName: "zapsplat_nature_rain_internal_home_rec_open_window_occ_cars_pass_low_thunder_rumbles_001_25102", type: "mp3")
+    static let rainIndoors = Sound(resourceName: "west_wolf_Rear_Street_City_Rain_With_Thunders", type: "mp3")
     
     // FALL/WINTER
     
@@ -71,9 +71,9 @@ struct Sounds {
     static let music = Sound(resourceName: "loire", type: "mp3")
 }
 
-// Forest Autumn Ambience, Outdoor Owl Night Ambience, Rain from Indoors Ambience, and Wind Ambience by Zapsplat
+// Forest Autumn Ambience, Outdoor Owl Night Ambience, Rain Ambience, and Wind Ambience by Zapsplat
 // Snowstorm Ambience by Silverplatter Audio on Zapsplat
-// Rain Outdoors by West Wolf on Zapsplat
+// City Rain by West Wolf on Zapsplat
 // Night Ambience and Forest Ambience by Audio Hero on Zapsplat
 // Room Tone by KEDR FX on Zapsplat
 // Indoor Ambience by The Sound Pack Tree on Zapsplat

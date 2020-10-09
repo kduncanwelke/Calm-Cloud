@@ -176,6 +176,14 @@ extension ViewController {
                 } else {
                     print("today")
                 }
+            } else {
+                print("first saved")
+                // last opened is nil, save initial state
+                TasksManager.journal = false
+                TasksManager.photo = false
+                TasksManager.activities = false
+                TasksManager.rewardCollected = false
+                DataFunctions.saveTasks(updatingActivity: false, removeAll: false)
             }
             
             print("tasks loaded")

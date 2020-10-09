@@ -88,6 +88,8 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var unlockNotice: UIButton!
     @IBOutlet weak var plantName: UIButton!
     
+    @IBOutlet weak var weather: UIImageView!
+    
     
     // MARK: Variables
     
@@ -191,38 +193,100 @@ class OutsideViewController: UIViewController {
     
     func setTimeAndWeather() {
         let hour = Calendar.current.component(.hour, from: Date())
-        let month = Calendar.current.component(.month, from: Date())
         
-        if hour > 6 && hour < 20 {
-            // daytime, set background and ambient sound
-            if month > 3 && month < 10 {
-                // spring/summer
+        print(WeatherManager.currentWeather)
+        switch WeatherManager.currentWeather {
+        case .clearWarm:
+            weather.isHidden = true
+             
+            if hour > 6 && hour < 20 {
                 outsideImage.image = UIImage(named: "outside")
                 Sound.stopPlaying()
                 Sound.loadSound(resourceName: Sounds.outside.resourceName, type: Sounds.outside.type)
                 Sound.startPlaying()
             } else {
-                // fall/winter
-                outsideImage.image = UIImage(named: "outsidesnow")
-                Sound.stopPlaying()
-                Sound.loadSound(resourceName: Sounds.outsideFallWinter.resourceName, type: Sounds.outsideFallWinter.type)
-                Sound.startPlaying()
-            }
-        } else {
-            // night, set background and ambient sound
-            if month > 3 && month < 10 {
-                // spring/summer
-                outsideImage.image = UIImage(named: "backgroundnight")
+                 outsideImage.image = UIImage(named: "backgroundnight")
                 Sound.stopPlaying()
                 Sound.loadSound(resourceName: Sounds.night.resourceName, type: Sounds.night.type)
                 Sound.startPlaying()
+            }
+        case .clearCool:
+            weather.isHidden = true
+             
+            if hour > 6 && hour < 20 {
+                 outsideImage.image = UIImage(named: "outsidefall")
+                Sound.stopPlaying()
+                Sound.loadSound(resourceName: Sounds.outsideFallWinter.resourceName, type: Sounds.outsideFallWinter.type)
+                Sound.startPlaying()
             } else {
-                // fall/winter
-                outsideImage.image = UIImage(named: "outsidesnownight")
+                outsideImage.image = UIImage(named: "outsidefallnight")
                 Sound.stopPlaying()
                 Sound.loadSound(resourceName: Sounds.outsideFallWinterNight.resourceName, type: Sounds.outsideFallWinterNight.type)
                 Sound.startPlaying()
             }
+        case .rainingWarm:
+            weather.isHidden = false
+            
+            if hour > 6 && hour < 20 {
+                outsideImage.image = UIImage(named: "outside")
+            } else {
+                outsideImage.image = UIImage(named: "backgroundnight")
+            }
+            
+            // raining animation
+            weather.animationImages = WeatherManager.rainImages
+            weather.animationDuration = 0.3
+            weather.startAnimating()
+            
+            Sound.stopPlaying()
+            Sound.loadSound(resourceName: Sounds.rainOutdoors.resourceName, type: Sounds.rainOutdoors.type)
+            Sound.startPlaying()
+        case .rainingCool:
+            weather.isHidden = false
+            
+            if hour > 6 && hour < 20 {
+                outsideImage.image = UIImage(named: "outsidefall")
+            } else {
+                outsideImage.image = UIImage(named: "outsidefallnight")
+            }
+            
+            // add raining animation
+            weather.animationImages = WeatherManager.rainImages
+            weather.animationDuration = 0.3
+            weather.startAnimating()
+            
+            Sound.stopPlaying()
+            Sound.loadSound(resourceName: Sounds.rainOutdoors.resourceName, type: Sounds.rainOutdoors.type)
+            Sound.startPlaying()
+        case .snowing:
+            weather.isHidden = false
+            
+            if hour > 6 && hour < 20 {
+                outsideImage.image = UIImage(named: "outsidesnow")
+            } else {
+                outsideImage.image = UIImage(named: "outsidesnownight")
+            }
+            
+            // add snowing animation
+            weather.animationImages = WeatherManager.snowImages
+            weather.animationDuration = 2.8
+            weather.startAnimating()
+            
+            Sound.stopPlaying()
+            Sound.loadSound(resourceName: Sounds.snow.resourceName, type: Sounds.snow.type)
+            Sound.startPlaying()
+        case .snowOnGround:
+            weather.isHidden = true
+            
+            if hour > 6 && hour < 20 {
+                outsideImage.image = UIImage(named: "outsidesnow")
+            } else {
+                outsideImage.image = UIImage(named: "outsidesnownight")
+            }
+            
+            Sound.stopPlaying()
+            Sound.loadSound(resourceName: Sounds.snow.resourceName, type: Sounds.snow.type)
+            Sound.startPlaying()
         }
     }
     
