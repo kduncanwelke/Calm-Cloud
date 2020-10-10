@@ -109,6 +109,7 @@ class ViewController: UIViewController {
         openDoor.isHidden = true
         plusEXPLabel.alpha = 0.0
         plusEXPLabelAlt.alpha = 0.0
+        weather.isHidden = true
        
         loadPhotos()
         loadEntries()
@@ -183,9 +184,56 @@ class ViewController: UIViewController {
         coinCount.text = "\(MoneyManager.total)"
     }
     
+    func setAmbientSound() {
+        let hour = Calendar.current.component(.hour, from: Date())
+        
+        switch WeatherManager.currentWeather {
+        case .clearWarm:
+            if hour > 6 && hour < 20 {
+                Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
+                Sound.startPlaying()
+            } else {
+                Sound.loadSound(resourceName: Sounds.insideNight.resourceName, type: Sounds.insideNight.type)
+                Sound.startPlaying()
+            }
+        case .clearCool:
+            if hour > 6 && hour < 20 {
+                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
+                Sound.startPlaying()
+            } else {
+                Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
+                Sound.startPlaying()
+            }
+        case .rainingWarm:
+            Sound.loadSound(resourceName: Sounds.rainIndoors.resourceName, type: Sounds.rainIndoors.type)
+            Sound.startPlaying()
+        case .rainingCool:
+            Sound.loadSound(resourceName: Sounds.rainIndoors.resourceName, type: Sounds.rainIndoors.type)
+            Sound.startPlaying()
+        case .snowing:
+            if hour > 6 && hour < 20 {
+                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
+                Sound.startPlaying()
+            } else {
+                Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
+                Sound.startPlaying()
+            }
+        case .snowOnGround:
+            if hour > 6 && hour < 20 {
+                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
+                Sound.startPlaying()
+            } else {
+                Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
+                Sound.startPlaying()
+            }
+        }
+    }
+    
     func setTimeAndWeather() {
         // change background if night
         let hour = Calendar.current.component(.hour, from: Date())
+        
+        setAmbientSound()
     
         switch WeatherManager.currentWeather {
         case .clearWarm:
@@ -193,24 +241,16 @@ class ViewController: UIViewController {
             
             if hour > 6 && hour < 20 {
                 outsideBackground.image = UIImage(named: "outsidebackground")
-                Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
-                Sound.startPlaying()
             } else {
                 outsideBackground.image = UIImage(named: "outsidebackgroundnight")
-                Sound.loadSound(resourceName: Sounds.insideNight.resourceName, type: Sounds.insideNight.type)
-                Sound.startPlaying()
             }
         case .clearCool:
             weather.isHidden = true
             
             if hour > 6 && hour < 20 {
                 outsideBackground.image = UIImage(named: "outsidebackgroundfall")
-                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
-                Sound.startPlaying()
             } else {
                 outsideBackground.image = UIImage(named: "outsidebackgroundfallnight")
-                Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
-                Sound.startPlaying()
             }
         case .rainingWarm:
             weather.isHidden = false
@@ -225,9 +265,6 @@ class ViewController: UIViewController {
             weather.animationImages = WeatherManager.rainImages
             weather.animationDuration = 0.3
             weather.startAnimating()
-            
-            Sound.loadSound(resourceName: Sounds.rainIndoors.resourceName, type: Sounds.rainIndoors.type)
-            Sound.startPlaying()
         case .rainingCool:
             weather.isHidden = false
             
@@ -241,20 +278,13 @@ class ViewController: UIViewController {
             weather.animationImages = WeatherManager.rainImages
             weather.animationDuration = 0.3
             weather.startAnimating()
-            
-            Sound.loadSound(resourceName: Sounds.rainIndoors.resourceName, type: Sounds.rainIndoors.type)
-            Sound.startPlaying()
         case .snowing:
             weather.isHidden = false
             
             if hour > 6 && hour < 20 {
                 outsideBackground.image = UIImage(named: "outsidebackgroundsnow")
-                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
-                Sound.startPlaying()
             } else {
                 outsideBackground.image = UIImage(named: "outsidebackgroundsnownight")
-                Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
-                Sound.startPlaying()
             }
             
             // add snowing animation
@@ -266,12 +296,8 @@ class ViewController: UIViewController {
             
             if hour > 6 && hour < 20 {
                 outsideBackground.image = UIImage(named: "outsidebackgroundsnow")
-                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
-                Sound.startPlaying()
             } else {
                 outsideBackground.image = UIImage(named: "outsidebackgroundsnownight")
-                Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
-                Sound.startPlaying()
             }
         }
     }
@@ -713,8 +739,7 @@ class ViewController: UIViewController {
                     playingMusic = false
                     // remove music and turn on ambient sound
                     Sound.stopPlaying()
-                    Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
-                    Sound.startPlaying()
+                    setAmbientSound()
                 } else {
                     playingMusic = true
                     recordPlayer.animationImages = [UIImage(named: "recordplay1")!, UIImage(named: "recordplay2")!]
@@ -828,8 +853,7 @@ class ViewController: UIViewController {
             
             // turn off soothing night sounds and return to previous sound
             Sound.stopPlaying()
-            Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
-            Sound.startPlaying()
+            setAmbientSound()
             
             stopMoving()
         } else {
@@ -868,8 +892,15 @@ class ViewController: UIViewController {
             
             // remove previous sound and turn on soothing night sounds
             Sound.stopPlaying()
-            Sound.loadSound(resourceName: Sounds.night.resourceName, type: Sounds.night.type)
-            Sound.startPlaying()
+            
+            switch WeatherManager.currentWeather {
+            case .clearWarm, .rainingWarm:
+                Sound.loadSound(resourceName: Sounds.night.resourceName, type: Sounds.night.type)
+                Sound.startPlaying()
+            case .clearCool, .rainingCool, .snowing, .snowOnGround:
+                Sound.loadSound(resourceName: Sounds.outsideFallWinterNight.resourceName, type: Sounds.outsideFallWinterNight.type)
+                Sound.startPlaying()
+            }
         }
     }
     
