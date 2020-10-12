@@ -28,6 +28,7 @@ Features include:
 * Two fun mini-games
 * Different day and night visuals and atmospheres
 * Daily task sheet with achievable, fulfilling goals
+* Fun seasonal and weather changes!
 
 ## Features
 Calm Cloud has a number of features that all work together to provide a calming and fulfilling stress reduction experience. The main element is a gamified view with an imaginary creature - a cloud kitty - that the user takes care of and can interact with daily. Besides the main interior room, the user/cloud kitty can also visit the outdoor garden, where they can plant and care for seedlings (which arrive via delivery on level up, or can be purchased in the shop for coins), watch them grow, then harvest them! The user can then choose to sell harvested plants for coins in an honor stand, or donate them for experience points. Other helpful features, like reminders, favorite photos, soothing activities, a thankfulness journal, and an achievable daily task sheet are included to help create structure and provide support.
@@ -51,7 +52,7 @@ The favorites element of the app allows users to create a collection of photos o
 In App Purchases (IAP) have been incorporated into the app in order to allow users to purchase additional currency (coins). These coins can be used to purchase more seedlings to plant in the garden, and can also be earned separately within the app from sales of grown plants at honor stand, and through awards or random events. IAP allow a user the option to acquire these coins more easily and more quickly, so they can begin buying and planting their favorites seedlings in the garden sooner.
 
 ### Sounds
-Ambient background sounds and some music are used within the app to provide a soothing, restful atmosphere and vary depending upon conditions. These sounds were created by contributers Audio Hero, The Sound Pack Tree, BlastWave FX, and Taylor Howard on [Zapsplat.com](https://www.zapsplat.com).
+Ambient background sounds and some music are used within the app to provide a soothing, restful atmosphere and vary depending upon conditions. These sounds were created by contributers Zapsplat, Audio Hero, The Sound Pack Tree, BlastWave FX, Taylor Howard, Silverplatter Audio, West Wolf, and KEDR FX on [Zapsplat.com](https://www.zapsplat.com).
 
 ## Art
 All of the art used within the app was created by the developer for exclusive use within this app, and belongs to no one else.
