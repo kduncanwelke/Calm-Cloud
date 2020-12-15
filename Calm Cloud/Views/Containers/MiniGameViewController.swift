@@ -111,9 +111,7 @@ class MiniGameViewController: UIViewController {
     @IBAction func againPressed(_ sender: UIButton) {
         newNumber()
         higherButton.isHidden = false
-        higherButton.animateBounce()
         lowerButton.isHidden = false
-        lowerButton.animateBounce()
         againButton.isHidden = true
         feedback.isHidden = true
         coin.isHidden = true

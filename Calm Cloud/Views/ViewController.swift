@@ -432,6 +432,7 @@ class ViewController: UIViewController {
     func randomRepeatCount() -> Int {
         // randomly generate a repeat count for animations
         var randomRepeatCount = Int.random(in: 4...8)
+        print("repeat \(randomRepeatCount) times")
         return randomRepeatCount
     }
     
@@ -473,11 +474,13 @@ class ViewController: UIViewController {
             case .toy:
                 moveLeftToBed()
             case .potty:
-                moveLeftToBed()
+                moveRightToPillow()
             case .ceiling:
                 moveLeftToBed()
             case .game:
                 moveRightToPotty()
+            case .pillow:
+                moveLeftToGame()
             }
         } else if animation == 2 {
             switch AnimationManager.location {
@@ -486,24 +489,26 @@ class ViewController: UIViewController {
             case .food:
                 moveLeftToBed()
             case .water:
-               moveLeftToBed()
+                moveLeftToBed()
             case .middle:
-               moveRightToFood()
+                moveRightToFood()
             case .toy:
-                moveLeftToWater()
+                moveRightToPillow()
             case .potty:
                 moveLeftToFood()
             case .ceiling:
-               moveRightToToy()
+                moveRightToToy()
             case .game:
                 moveRightToCenter()
+            case .pillow:
+                moveLeftToToy()
             }
         } else if animation == 3 {
             switch AnimationManager.location {
             case .bed:
                 moveRightToToy()
             case .food:
-                 moveRightToToy()
+                moveRightToPillow()
             case .water:
                 moveRightToToy()
             case .middle:
@@ -515,7 +520,9 @@ class ViewController: UIViewController {
             case .ceiling:
                 moveLeftToWater()
             case .game:
-               moveRightToFood()
+                moveRightToFood()
+            case .pillow:
+                moveLeftToCenter()
             }
         } else if animation == 4 {
             switch AnimationManager.location {
@@ -524,7 +531,7 @@ class ViewController: UIViewController {
             case .food:
                 moveLeftToCenter()
             case .water:
-                moveRightToCenter()
+                moveRightToPillow()
             case .middle:
                 moveRightToToy()
             case .toy:
@@ -535,6 +542,8 @@ class ViewController: UIViewController {
                 moveRightToFood()
             case .game:
                 moveRightToWater()
+            case .pillow:
+                moveLeftToBed()
             }
         } else {
             if AnimationManager.mood == .happy && AnimationManager.location != .ceiling {
@@ -569,6 +578,8 @@ class ViewController: UIViewController {
                 moveLeftToWater()
             case .game:
                 moveRightToWater()
+            case .pillow:
+                moveLeftToWater()
             }
         } else if summonedToFood && hasEaten == false {
             switch AnimationManager.location {
@@ -588,9 +599,16 @@ class ViewController: UIViewController {
                 moveRightToFood()
             case .game:
                 moveRightToFood()
+            case .pillow:
+                moveLeftToFood()
             }
         } else if summonedToPotty && hasCleanPotty {
-            moveRightToPotty()
+            switch AnimationManager.location {
+            case .pillow:
+                moveLeftToPotty()
+            default:
+                moveRightToPotty()
+            }
         } else {
             randomMove()
         }
@@ -659,6 +677,8 @@ class ViewController: UIViewController {
                 randomCeilingAnimation()
             case .game:
                 randomGameAnimation()
+            case .pillow:
+                randomPillowAnimation()
             }
         } else if animation == 3 {
             AnimationManager.movement = .staying

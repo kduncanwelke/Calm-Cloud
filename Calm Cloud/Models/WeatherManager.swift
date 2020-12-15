@@ -21,11 +21,11 @@ struct WeatherManager {
     
     static var currentWeather: Weather = .clearWarm
     static let range = [1,2,3]
-    static let snowDays = [2, 3, 5, 7, 10, 11, 13, 15, 17, 19, 20, 23, 25, 29, 30, 31]
+    static let snowDays = [1, 3, 5, 7, 10, 11, 13, 15, 17, 19, 20, 23, 25, 29, 30, 31]
     
     static func hasSnow(month: Int, day: Int) -> Bool {
         // snow possible november through march
-        if month < 4 && month >= 11 {
+        if month < 4 || month >= 11 {
             if snowDays.contains(day) {
                 return true
             } else {
@@ -39,9 +39,9 @@ struct WeatherManager {
     
     static func getWeather(month: Int, day: Int) -> Weather {
         let isRaining = range.randomElement()
-        
+        print("month: \(month)")
         // snow possible november through march
-        if month < 4 && month >= 11 {
+        if month < 4 || month >= 11 {
             if hasSnow(month: month, day: day) {
                 let isSnowing = Bool.random()
                 if isSnowing {
@@ -65,7 +65,7 @@ struct WeatherManager {
                 return .clearWarm
             }
         } else {
-            // possible rainy months in fall
+            // possible rainy months in fall, sept-oct
             if isRaining == 3 {
                 currentWeather = .rainingCool
                 return .rainingCool

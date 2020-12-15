@@ -35,7 +35,7 @@ extension ViewController {
         print("float")
         cloudKitty.animationImages = AnimationManager.bouncingAnimation
         cloudKitty.startAnimating()
-        let ceilingDestination = CGPoint(x: container.frame.width/2, y: container.frame.height/6)
+        let ceilingDestination = CGPoint(x: container.frame.width/2.66, y: container.frame.height/6)
         cloudKitty.move(to: ceilingDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .ceiling
     }
@@ -46,7 +46,7 @@ extension ViewController {
         print("float left")
         cloudKitty.animationImages = AnimationManager.upsideDownLeft
         cloudKitty.startAnimating()
-        let ceilingDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/6)
+        let ceilingDestination = CGPoint(x: container.frame.width/10.66, y: container.frame.height/6)
         cloudKitty.move(to: ceilingDestination, duration: 4.0, options: UIView.AnimationOptions.curveEaseOut)
     }
     
@@ -54,7 +54,7 @@ extension ViewController {
         print("left to bed")
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.startAnimating()
-        let bedDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/2)
+        let bedDestination = CGPoint(x: container.frame.width/10.66, y: container.frame.height/2)
         cloudKitty.move(to: bedDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .bed
     }
@@ -63,7 +63,7 @@ extension ViewController {
         print("left to food")
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.startAnimating()
-        let foodBowlDestination = CGPoint(x: container.frame.width/1.66, y: (container.frame.height/3)*2.33)
+        let foodBowlDestination = CGPoint(x: container.frame.width/2.21, y: (container.frame.height/3)*2.33)
         cloudKitty.move(to: foodBowlDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .food
     }
@@ -72,7 +72,7 @@ extension ViewController {
         print("left to water")
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.startAnimating()
-        let waterBowlDestination = CGPoint(x: container.frame.width/2.45, y: (container.frame.height/3)*2.33)
+        let waterBowlDestination = CGPoint(x: container.frame.width/3.26, y: (container.frame.height/3)*2.33)
         cloudKitty.move(to: waterBowlDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .water
     }
@@ -81,7 +81,7 @@ extension ViewController {
         print("left to center")
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.startAnimating()
-        let centerDestination = CGPoint(x: container.frame.width/2, y: (container.frame.height/3)*2)
+        let centerDestination = CGPoint(x: container.frame.width/2.66, y: (container.frame.height/3)*2)
         cloudKitty.move(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .middle
     }
@@ -90,7 +90,7 @@ extension ViewController {
         print("right to toy")
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.startAnimating()
-        let toyDestination = CGPoint(x: container.frame.width/1.4, y: (container.frame.height/3)*2.4)
+        let toyDestination = CGPoint(x: container.frame.width/1.86, y: (container.frame.height/3)*2.4)
         cloudKitty.move(to: toyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .toy
     }
@@ -99,9 +99,18 @@ extension ViewController {
         print("left to game")
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.startAnimating()
-        let toyDestination = CGPoint(x: container.frame.width/3.3, y: (container.frame.height/3)*2.35)
+        let toyDestination = CGPoint(x: container.frame.width/4.4, y: (container.frame.height/3)*2.35)
         cloudKitty.move(to: toyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .game
+    }
+    
+    func moveLeftToPotty() {
+        print("left to potty")
+        cloudKitty.animationImages = AnimationManager.movingLeftAnimation
+        cloudKitty.startAnimating()
+        let pottyDestination = CGPoint(x: container.frame.width/1.57, y: (container.frame.height/3)*2)
+        cloudKitty.move(to: pottyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
+        AnimationManager.location = .potty
     }
     
     // right movement
@@ -110,7 +119,7 @@ extension ViewController {
         print("float right")
         cloudKitty.animationImages = AnimationManager.upsideDownRight
         cloudKitty.startAnimating()
-        let ceilingDestination = CGPoint(x: container.frame.width/1.12, y: container.frame.height/6)
+        let ceilingDestination = CGPoint(x: container.frame.width/1.49, y: container.frame.height/6)
         cloudKitty.move(to: ceilingDestination, duration: 4.0, options: UIView.AnimationOptions.curveEaseOut)
     }
     
@@ -118,7 +127,7 @@ extension ViewController {
         print("right to food")
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
-        let foodBowlDestination = CGPoint(x: container.frame.width/1.66, y: (container.frame.height/3)*2.33)
+        let foodBowlDestination = CGPoint(x: container.frame.width/2.21, y: (container.frame.height/3)*2.33)
         cloudKitty.move(to: foodBowlDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .food
     }
@@ -127,7 +136,7 @@ extension ViewController {
         print("right to water")
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
-        let waterBowlDestination = CGPoint(x: container.frame.width/2.45, y: (container.frame.height/3)*2.33)
+        let waterBowlDestination = CGPoint(x: container.frame.width/3.26, y: (container.frame.height/3)*2.33)
         cloudKitty.move(to: waterBowlDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .water
     }
@@ -136,7 +145,7 @@ extension ViewController {
         print("right to potty")
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
-        let pottyDestination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*2)
+        let pottyDestination = CGPoint(x: container.frame.width/1.57, y: (container.frame.height/3)*2)
         cloudKitty.move(to: pottyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .potty
     }
@@ -145,7 +154,7 @@ extension ViewController {
         print("potty")
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
-        let pottyDestination = CGPoint(x: container.frame.width/1.12, y: (container.frame.height/3)*1.55)
+        let pottyDestination = CGPoint(x: container.frame.width/1.49, y: (container.frame.height/3)*1.55)
         cloudKitty.moveToPotty(to: pottyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .potty
     }
@@ -154,7 +163,7 @@ extension ViewController {
         print("right to toy")
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
-        let toyDestination = CGPoint(x: container.frame.width/1.4, y: (container.frame.height/3)*2.4)
+        let toyDestination = CGPoint(x: container.frame.width/1.86, y: (container.frame.height/3)*2.4)
         cloudKitty.move(to: toyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .toy
     }
@@ -163,7 +172,7 @@ extension ViewController {
         print("right to center")
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
-        let centerDestination = CGPoint(x: container.frame.width/2, y: (container.frame.height/3)*2)
+        let centerDestination = CGPoint(x: container.frame.width/2.66, y: (container.frame.height/3)*2)
         cloudKitty.move(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .middle
     }
@@ -172,9 +181,18 @@ extension ViewController {
         print("right to game")
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
-        let toyDestination = CGPoint(x: container.frame.width/3.3, y: (container.frame.height/3)*2.35)
+        let toyDestination = CGPoint(x: container.frame.width/4.4, y: (container.frame.height/3)*2.35)
         cloudKitty.move(to: toyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .game
+    }
+    
+    func moveRightToPillow() {
+        print("right to pillow")
+        cloudKitty.animationImages = AnimationManager.movingRightAnimation
+        cloudKitty.startAnimating()
+        let pillowDestination = CGPoint(x: container.frame.width/1.12, y: (container.frame.height/3)*2.4)
+        cloudKitty.move(to: pillowDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
+        AnimationManager.location = .pillow
     }
     
     // bed animations
@@ -199,21 +217,23 @@ extension ViewController {
         // determine location for bounce animation
         switch AnimationManager.location {
         case .bed:
-            destination = CGPoint(x: container.frame.width/8, y: container.frame.height/2)
+            destination = CGPoint(x: container.frame.width/10, y: container.frame.height/2)
         case .food:
-            destination = CGPoint(x: container.frame.width/1.66, y: (container.frame.height/3)*2.33)
+            destination = CGPoint(x: container.frame.width/2.21, y: (container.frame.height/3)*2.33)
         case .water:
-            destination = CGPoint(x: container.frame.width/2.45, y: (container.frame.height/3)*2.33)
+            destination = CGPoint(x: container.frame.width/3.26, y: (container.frame.height/3)*2.33)
         case .middle:
-            destination = CGPoint(x: container.frame.width/2, y: (container.frame.height/3)*2)
+            destination = CGPoint(x: container.frame.width/2.66, y: (container.frame.height/3)*2)
         case .toy:
-            destination = CGPoint(x: container.frame.width/1.4, y: (container.frame.height/3)*2.4)
+            destination = CGPoint(x: container.frame.width/1.86, y: (container.frame.height/3)*2.4)
         case .potty:
-            destination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*2)
+            destination = CGPoint(x: container.frame.width/1.57, y: (container.frame.height/3)*2)
         case .ceiling:
             destination = CGPoint(x: cloudKitty.frame.midX, y: cloudKitty.frame.midY)
         case .game:
-            destination = CGPoint(x: container.frame.width/3.3, y: (container.frame.height/3)*2.35)
+            destination = CGPoint(x: container.frame.width/4.4, y: (container.frame.height/3)*2.35)
+        case .pillow:
+            destination = CGPoint(x: container.frame.width/1.12, y: (container.frame.height/3)*2.4)
         }
         
         let floatDestination = CGPoint(x: destination.x, y: destination.y-20)
@@ -224,7 +244,7 @@ extension ViewController {
         print("left to bed")
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.startAnimating()
-        let bedDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/2)
+        let bedDestination = CGPoint(x: container.frame.width/10, y: container.frame.height/2)
         cloudKitty.goToSleep(to: bedDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .bed
     }
@@ -425,6 +445,17 @@ extension ViewController {
             moveIntoPotty()
         } else {
             linger()
+        }
+    }
+    
+    func randomPillowAnimation() {
+        let range = [1,2]
+        let animation = range.randomElement()
+        
+        if animation == 1 {
+            sleep()
+        } else {
+            bounce()
         }
     }
     

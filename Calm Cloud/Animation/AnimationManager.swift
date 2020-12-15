@@ -200,6 +200,7 @@ enum Location {
     case potty
     case ceiling
     case game
+    case pillow
 }
 
 enum OutsideLocation {
