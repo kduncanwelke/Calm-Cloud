@@ -190,7 +190,7 @@ extension ViewController {
         print("right to pillow")
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
-        let pillowDestination = CGPoint(x: container.frame.width/1.12, y: (container.frame.height/3)*2.4)
+        let pillowDestination = CGPoint(x: container.frame.width/1.12, y: (container.frame.height/3)*2.3)
         cloudKitty.move(to: pillowDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
         AnimationManager.location = .pillow
     }
@@ -233,7 +233,7 @@ extension ViewController {
         case .game:
             destination = CGPoint(x: container.frame.width/4.4, y: (container.frame.height/3)*2.35)
         case .pillow:
-            destination = CGPoint(x: container.frame.width/1.12, y: (container.frame.height/3)*2.4)
+            destination = CGPoint(x: container.frame.width/1.12, y: (container.frame.height/3)*2.5)
         }
         
         let floatDestination = CGPoint(x: destination.x, y: destination.y-20)

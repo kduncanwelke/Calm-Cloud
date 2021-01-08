@@ -56,6 +56,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var unlockNotice: UIButton!
     
     @IBOutlet weak var weather: UIImageView!
+    @IBOutlet weak var fireplace: UIImageView!
     
     
     // MARK: Variables
@@ -79,7 +80,9 @@ class ViewController: UIViewController {
     var stringLightsOn = false
     var rotated = false
     var summonedToGame = false
+    var summonedToFire = false
     var playingGame = false
+    var fireOn = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -609,9 +612,21 @@ class ViewController: UIViewController {
             default:
                 moveRightToPotty()
             }
+        } else if summonedToFire {
+            if AnimationManager.location != .pillow {
+                moveRightToPillow()
+            }
         } else {
             randomMove()
         }
+        
+        // reset summons
+        summonedToFire = false
+        summonedToToy = false
+        summonedToFood = false
+        summonedToWater = false
+        summonedToGame = false
+        summonedToPotty = false
     }
     
     @objc func stopMoving() {
@@ -945,6 +960,23 @@ class ViewController: UIViewController {
             self.view.bringSubviewToFront(self.receivedPackageContainer)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadDelivery"), object: nil)
             self.receivedPackageContainer.animateBounce()
+        }
+    }
+    
+    @IBAction func fireplaceTapped(_ sender: UITapGestureRecognizer) {
+        summonedToFire = true
+        
+        if fireOn {
+            FireSound.stopPlaying()
+            fireOn = false
+            fireplace.stopAnimating()
+        } else {
+            FireSound.loadSound(resourceName: Sounds.fire.resourceName, type: Sounds.fire.type)
+            FireSound.startPlaying()
+            fireOn = true
+            fireplace.animationImages = AnimationManager.fireAnimation
+            fireplace.animationDuration = 0.8
+            fireplace.startAnimating()
         }
     }
     

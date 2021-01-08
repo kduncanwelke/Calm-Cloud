@@ -175,6 +175,7 @@ struct AnimationManager {
     static let toyAnimation: [UIImage] = [#imageLiteral(resourceName: "toy.png"),#imageLiteral(resourceName: "toy2.png")]
     static let revealAnimation: [UIImage] = [#imageLiteral(resourceName: "cloudkittyright.png"),#imageLiteral(resourceName: "reveal.png")]
     static let gameAnimation: [UIImage] = [#imageLiteral(resourceName: "game1.png"),#imageLiteral(resourceName: "game5.png"),#imageLiteral(resourceName: "game4.png"),#imageLiteral(resourceName: "game3.png"),#imageLiteral(resourceName: "game2.png")]
+    static let fireAnimation : [UIImage] = [#imageLiteral(resourceName: "fire1.png"),#imageLiteral(resourceName: "fire3.png"),#imageLiteral(resourceName: "fire2.png")]
 }
 
 enum Movement {

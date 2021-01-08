@@ -42,6 +42,39 @@ class Sound {
     
 }
 
+class FireSound {
+    var resourceName: String
+    var type: String
+    
+    init(resourceName: String, type: String) {
+        self.resourceName = resourceName
+        self.type = type
+    }
+    
+    static var firePlayer: AVAudioPlayer?
+    
+    static func loadSound(resourceName: String, type: String) {
+        let path = Bundle.main.path(forResource: resourceName, ofType: type)
+        let soundURL = URL(fileURLWithPath: path!)
+        
+        do {
+            firePlayer = try AVAudioPlayer(contentsOf: soundURL)
+            firePlayer?.numberOfLoops = -1
+        } catch {
+            print("could not load file")
+        }
+    }
+    
+    static func startPlaying() {
+        firePlayer?.play()
+    }
+    
+    static func stopPlaying() {
+        firePlayer?.stop()
+    }
+    
+}
+
 struct Sounds {
     // SPRING/SUMMER
     
@@ -67,6 +100,8 @@ struct Sounds {
     
     static let snow = Sound(resourceName: "spa_snowstorm_ambience_snow_falling_on_ground_with_wind", type: "mp3")
     
+    static let fire = FireSound(resourceName: "audio_hero_FireMediumRoarHiss_PE052201_358", type: "mp3")
+    
     // music
     static let music = Sound(resourceName: "loire", type: "mp3")
 }
@@ -74,7 +109,7 @@ struct Sounds {
 // Forest Autumn Ambience, Outdoor Owl Night Ambience, Rain Ambience, and Wind Ambience by Zapsplat
 // Snowstorm Ambience by Silverplatter Audio on Zapsplat
 // City Rain by West Wolf on Zapsplat
-// Night Ambience and Forest Ambience by Audio Hero on Zapsplat
+// Night Ambience, Forest Ambience, and Fire Ambience by Audio Hero on Zapsplat
 // Room Tone by KEDR FX on Zapsplat
 // Indoor Ambience by The Sound Pack Tree on Zapsplat
 // Cornfield Ambience by BlastWave FX on Zapsplat
