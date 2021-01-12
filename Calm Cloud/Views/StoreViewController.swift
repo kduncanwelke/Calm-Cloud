@@ -152,6 +152,10 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
         if products.isEmpty == false {
             collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
+        
+        // reset buying items
+        PlantManager.buying = nil
+        ItemManager.buying = nil
     }
     
     @IBAction func backPressed(_ sender: UIButton) {

@@ -233,7 +233,7 @@ extension ViewController {
         case .game:
             destination = CGPoint(x: container.frame.width/4.4, y: (container.frame.height/3)*2.35)
         case .pillow:
-            destination = CGPoint(x: container.frame.width/1.12, y: (container.frame.height/3)*2.5)
+            destination = CGPoint(x: container.frame.width/1.12, y: (container.frame.height/3)*2.3)
         }
         
         let floatDestination = CGPoint(x: destination.x, y: destination.y-20)

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G7016" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ActivityId" representedClassName="ActivityId" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Care" representedClassName="Care" syncable="YES" codeGenerationType="class">
+        <attribute name="lastCleaned" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastFed" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastWatered" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="DailyTasks" representedClassName="DailyTasks" syncable="YES" codeGenerationType="class">
+        <attribute name="activities" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="fave" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="journal" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastOpened" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="rewardCollected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Fuel" representedClassName="Fuel" syncable="YES" codeGenerationType="class">
+        <attribute name="lastsUntil" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="HarvestedItem" representedClassName="HarvestedItem" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="quantity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="HonorStandItem" representedClassName="HonorStandItem" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="quantity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="InventoryItem" representedClassName="InventoryItem" syncable="YES" codeGenerationType="class">
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="quantity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="JournalEntry" representedClassName="JournalEntry" syncable="YES" codeGenerationType="class">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="text" attributeType="String"/>
+    </entity>
+    <entity name="Level" representedClassName="Level" syncable="YES" codeGenerationType="class">
+        <attribute name="currentEXP" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="expToNextLevel" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="level" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Money" representedClassName="Money" syncable="YES" codeGenerationType="class">
+        <attribute name="earnings" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="total" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Photo" representedClassName="Photo" syncable="YES" codeGenerationType="class">
+        <attribute name="path" attributeType="String" customClassName="[String]"/>
+    </entity>
+    <entity name="Plot" representedClassName="Plot" syncable="YES" codeGenerationType="class">
+        <attribute name="consecutiveWaterings" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="lastWatered" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="mature" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="plant" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="prevWatered" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="Reminder" representedClassName="Reminder" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="hour" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="minute" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="ActivityId" positionX="-63" positionY="27" width="128" height="58"/>
+        <element name="Care" positionX="-63" positionY="27" width="128" height="88"/>
+        <element name="DailyTasks" positionX="-63" positionY="54" width="128" height="118"/>
+        <element name="HarvestedItem" positionX="-63" positionY="54" width="128" height="73"/>
+        <element name="HonorStandItem" positionX="-63" positionY="54" width="128" height="73"/>
+        <element name="InventoryItem" positionX="-63" positionY="45" width="128" height="73"/>
+        <element name="JournalEntry" positionX="-63" positionY="-9" width="128" height="73"/>
+        <element name="Level" positionX="-63" positionY="27" width="128" height="88"/>
+        <element name="Money" positionX="-63" positionY="54" width="128" height="73"/>
+        <element name="Photo" positionX="-63" positionY="-18" width="128" height="58"/>
+        <element name="Plot" positionX="-63" positionY="27" width="128" height="148"/>
+        <element name="Reminder" positionX="-63" positionY="0" width="128" height="118"/>
+        <element name="Fuel" positionX="-63" positionY="54" width="128" height="58"/>
+    </elements>
+</model>

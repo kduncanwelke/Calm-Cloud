@@ -14,6 +14,8 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if segmentedControl.selectedSegmentIndex == 0 {
             return Plantings.seedlings.count
+        } else if segmentedControl.selectedSegmentIndex == 1 {
+            return ItemManager.items.count
         } else {
             return products.count
         }
@@ -69,6 +71,37 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
             cell.growthSpeed.isHidden = false
             
             cell.purchaseDescription.text = ""
+        } else if segmentedControl.selectedSegmentIndex == 1 {
+            let object: Item
+            object = ItemManager.items[indexPath.row]
+            
+            cell.nameLabel.text = object.name
+            cell.itemImage.image = object.image
+            
+            let availableWidth = collectionView.frame.width
+            if (availableWidth / 3) < 160.0 {
+                // don't add cell alternating colors if only two cells across
+                if Colors.colorfulCells.contains(indexPath.row) {
+                    cell.backgroundColor = Colors.mint
+                } else {
+                    cell.backgroundColor = .white
+                }
+            } else {
+                if indexPath.row % 2 == 0 {
+                    cell.backgroundColor = Colors.mint
+                } else {
+                    cell.backgroundColor = .white
+                }
+            }
+            
+            cell.priceLabel.text = "\(object.price)"
+            cell.coinImage.isHidden = false
+            cell.area.text = ""
+            
+            cell.numberOwned.text = ""
+            cell.growthSpeed.isHidden = true
+            
+            cell.purchaseDescription.text = "Add \(object.hours) hour(s) of fireplace time"
         } else {
             let item: SKProduct
             item = products[indexPath.row]
@@ -113,6 +146,12 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
             let plant: Seedling
             plant = Plantings.seedlings[indexPath.row]
             PlantManager.buying = plant
+            purchaseContainer.isHidden = false
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadUI"), object: nil)
+        } else if segmentedControl.selectedSegmentIndex == 1 {
+            let object: Item
+            object = ItemManager.items[indexPath.row]
+            ItemManager.buying = object
             purchaseContainer.isHidden = false
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadUI"), object: nil)
         } else {

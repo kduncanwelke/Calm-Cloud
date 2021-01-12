@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2D00EEB92494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D00EEB82494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 */; };
 		2D00EEBF24942EE2000DA1C8 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00EEBE24942EE2000DA1C8 /* TasksViewController.swift */; };
+		2D03D3EA25ACDDC50096A3FE /* ItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D03D3E925ACDDC50096A3FE /* ItemManager.swift */; };
+		2D03D3EC25AD01B20096A3FE /* Fireplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D03D3EB25AD01B20096A3FE /* Fireplace.swift */; };
 		2D07E98924A150E900FD6E66 /* RemoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D07E98824A150E900FD6E66 /* RemoveViewController.swift */; };
 		2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D11FD6824367EA900EC89D9 /* Journal+TextViewDelegate.swift */; };
 		2D14EBDC243E752B004CB7E2 /* ReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EBDB243E752B004CB7E2 /* ReminderManager.swift */; };
@@ -110,6 +112,9 @@
 		211AF311F66267DAA0A89D1C /* Pods_Calm_Cloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calm_Cloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D00EEB82494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio_hero_ForestDay_DIGIX05_11_362.mp3; sourceTree = "<group>"; };
 		2D00EEBE24942EE2000DA1C8 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
+		2D03D3E825ACD5DA0096A3FE /* Data v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Data v2.xcdatamodel"; sourceTree = "<group>"; };
+		2D03D3E925ACDDC50096A3FE /* ItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemManager.swift; sourceTree = "<group>"; };
+		2D03D3EB25AD01B20096A3FE /* Fireplace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fireplace.swift; sourceTree = "<group>"; };
 		2D07E98824A150E900FD6E66 /* RemoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveViewController.swift; sourceTree = "<group>"; };
 		2D11FD6824367EA900EC89D9 /* Journal+TextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+TextViewDelegate.swift"; sourceTree = "<group>"; };
 		2D14EBDB243E752B004CB7E2 /* ReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManager.swift; sourceTree = "<group>"; };
@@ -264,6 +269,8 @@
 				2DB4106424916E8C00EFD088 /* MoneyManager.swift */,
 				2DC5EBCA2474886300741E5E /* Colors.swift */,
 				2DA08A252530D7EF00A5129F /* WeatherManager.swift */,
+				2D03D3E925ACDDC50096A3FE /* ItemManager.swift */,
+				2D03D3EB25AD01B20096A3FE /* Fireplace.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -562,6 +569,7 @@
 				2DCC9C7B24672031006834B0 /* PlantManager.swift in Sources */,
 				2DC95DDD2485A9830085DD14 /* CompareImages.swift in Sources */,
 				2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */,
+				2D03D3EA25ACDDC50096A3FE /* ItemManager.swift in Sources */,
 				2DB4106524916E8C00EFD088 /* MoneyManager.swift in Sources */,
 				2D2EF6A22465F2EE00E497DC /* PopUpViewController.swift in Sources */,
 				2DA08A262530D7EF00A5129F /* WeatherManager.swift in Sources */,
@@ -597,6 +605,7 @@
 				2D26545E2440F6EE00FBFF74 /* OutsideViewController.swift in Sources */,
 				2D9B7D0C24AD3CC200CDFA8E /* BuyPlantViewController.swift in Sources */,
 				2DB13216247835C100FA6D71 /* DataFunctions.swift in Sources */,
+				2D03D3EC25AD01B20096A3FE /* Fireplace.swift in Sources */,
 				2D9B7D0124AD18CF00CDFA8E /* ReceiptItem.swift in Sources */,
 				2D867DAE243E80B7005BE38F /* Alerts.swift in Sources */,
 				2D2654612441165800FBFF74 /* CellCheckDelegate.swift in Sources */,
@@ -855,9 +864,10 @@
 		2D8C838B2433CBB2006711F2 /* Data.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				2D03D3E825ACD5DA0096A3FE /* Data v2.xcdatamodel */,
 				2D8C838C2433CBB2006711F2 /* Data.xcdatamodel */,
 			);
-			currentVersion = 2D8C838C2433CBB2006711F2 /* Data.xcdatamodel */;
+			currentVersion = 2D03D3E825ACD5DA0096A3FE /* Data v2.xcdatamodel */;
 			path = Data.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -120,6 +120,7 @@ class ViewController: UIViewController {
         loadTasks()
         DataFunctions.loadLevel()
         DataFunctions.loadMoney()
+        DataFunctions.loadFuel()
         
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
@@ -180,11 +181,28 @@ class ViewController: UIViewController {
             pottyBox.image = UIImage(named: "litterbox")
         }
         
+        fireHasFuel()
+        
         levelLabel.text = "\(LevelManager.currentLevel)"
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
         var prog: Float = Float(LevelManager.currentEXP) / Float(LevelManager.maxEXP)
         levelProgress.setProgress(prog, animated: true)
         coinCount.text = "\(MoneyManager.total)"
+    }
+    
+    func fireHasFuel() -> Bool {
+        if let validTime = Fireplace.lastsUntil {
+            if validTime > Date() {
+                fireplace.image = UIImage(named: "fireplacewood")
+                return true
+            } else {
+                fireplace.image = UIImage(named: "fireplace")
+                return false
+            }
+        } else {
+            fireplace.image = UIImage(named: "fireplace")
+            return false
+        }
     }
     
     func setAmbientSound() {
@@ -389,9 +407,15 @@ class ViewController: UIViewController {
     
     @objc func returnIndoors() {
         // hide open door and restart animation when returning indoors
-        Sound.stopPlaying()
-        Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
-        Sound.startPlaying()
+        fireHasFuel()
+        
+        // restart fire sound if on
+        if fireOn {
+            FireSound.startPlaying()
+        }
+        
+        // set indoor sound
+        setAmbientSound()
         
         door.isHidden = false
         openDoor.isHidden = true
@@ -561,8 +585,12 @@ class ViewController: UIViewController {
         // if summoned to location by user tap and conditions are met, execute action
         if summonedToToy && AnimationManager.location != .toy && hasPlayed == false {
             moveRightToToy()
+           
+            summonedToToy = false
         } else if summonedToGame && AnimationManager.location != .game && hasPlayed == false {
             moveLeftToGame()
+            
+            summonedToGame = false
         } else if summonedToWater && hasDrunk == false {
             switch AnimationManager.location {
             case .water:
@@ -584,6 +612,8 @@ class ViewController: UIViewController {
             case .pillow:
                 moveLeftToWater()
             }
+            
+            summonedToWater = false
         } else if summonedToFood && hasEaten == false {
             switch AnimationManager.location {
             case .food:
@@ -605,6 +635,8 @@ class ViewController: UIViewController {
             case .pillow:
                 moveLeftToFood()
             }
+            
+            summonedToFood = false
         } else if summonedToPotty && hasCleanPotty {
             switch AnimationManager.location {
             case .pillow:
@@ -612,21 +644,25 @@ class ViewController: UIViewController {
             default:
                 moveRightToPotty()
             }
+            
+            summonedToPotty = false
         } else if summonedToFire {
             if AnimationManager.location != .pillow {
                 moveRightToPillow()
             }
+            
+            summonedToFire = false
         } else {
             randomMove()
+            
+            // reset summons
+            summonedToFire = false
+            summonedToToy = false
+            summonedToFood = false
+            summonedToWater = false
+            summonedToGame = false
+            summonedToPotty = false
         }
-        
-        // reset summons
-        summonedToFire = false
-        summonedToToy = false
-        summonedToFood = false
-        summonedToWater = false
-        summonedToGame = false
-        summonedToPotty = false
     }
     
     @objc func stopMoving() {
@@ -852,6 +888,7 @@ class ViewController: UIViewController {
         // go outside
         door.isHidden = true
         openDoor.isHidden = false
+        FireSound.stopPlaying()
         AnimationTimer.stop()
         stopped = true
         performSegue(withIdentifier: "goOutside", sender: Any?.self)
@@ -908,8 +945,12 @@ class ViewController: UIViewController {
                 }
             }
             
-            if stringLightsOn {
+            if stringLightsOn && fireOn {
+                insideNightOverlay.image = UIImage(named: "glowstarsfire")
+            } else if stringLightsOn {
                 insideNightOverlay.image = UIImage(named: "glowstars")
+            } else if fireOn {
+                insideNightOverlay.image = UIImage(named: "nostarsfire")
             } else {
                 insideNightOverlay.image = UIImage(named: "nightoverlay")
             }
@@ -966,17 +1007,34 @@ class ViewController: UIViewController {
     @IBAction func fireplaceTapped(_ sender: UITapGestureRecognizer) {
         summonedToFire = true
         
-        if fireOn {
-            FireSound.stopPlaying()
-            fireOn = false
-            fireplace.stopAnimating()
+        if fireHasFuel() {
+            if fireOn {
+                FireSound.stopPlaying()
+                fireOn = false
+                fireplace.stopAnimating()
+                
+                if stringLightsOn {
+                    insideNightOverlay.image = UIImage(named: "glowstars")
+                } else {
+                    insideNightOverlay.image = UIImage(named: "nightoverlay")
+                }
+            } else {
+                FireSound.loadSound(resourceName: Sounds.fire.resourceName, type: Sounds.fire.type)
+                FireSound.startPlaying()
+                fireOn = true
+                fireplace.animationImages = AnimationManager.fireAnimation
+                fireplace.animationDuration = 0.8
+                fireplace.startAnimating()
+                
+                if stringLightsOn {
+                    insideNightOverlay.image = UIImage(named: "glowstarsfire")
+                } else {
+                    insideNightOverlay.image = UIImage(named: "nostarsfire")
+                }
+            }
         } else {
-            FireSound.loadSound(resourceName: Sounds.fire.resourceName, type: Sounds.fire.type)
-            FireSound.startPlaying()
-            fireOn = true
-            fireplace.animationImages = AnimationManager.fireAnimation
-            fireplace.animationDuration = 0.8
-            fireplace.startAnimating()
+            unlockNotice.setTitle("Requires wood!", for: .normal)
+            unlockNotice.animateFadeInSlow()
         }
     }
     

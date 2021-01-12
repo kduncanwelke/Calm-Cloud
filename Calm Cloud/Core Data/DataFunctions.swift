@@ -433,4 +433,153 @@ struct DataFunctions {
             print("activities couldn't be deleted")
         }
     }
+    
+    // fireplace
+    
+    static func loadFuel() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        var fetchRequest = NSFetchRequest<Fuel>(entityName: "Fuel")
+        
+        do {
+            var result = try managedContext.fetch(fetchRequest)
+            if let fuel = result.first {
+                Fireplace.loaded = fuel
+                Fireplace.lastsUntil = fuel.lastsUntil
+                
+                if let day = Fireplace.lastsUntil {
+                    if day < Date() {
+                        // date is past, no hours left, fireplace cannot be activated
+                        DataFunctions.noFuel()
+                    } else {
+                        let calendar = Calendar.current
+                        let components = calendar.dateComponents([.hour], from: day, to: Date())
+                        
+                        if let hoursLeft = components.hour {
+                            Fireplace.hours = hoursLeft
+                            print("day \(day)")
+                            print("hours left \(hoursLeft)")
+                        } else {
+                            // no hours left, fireplace cannot be activated
+                            DataFunctions.noFuel()
+                        }
+                    }
+                }
+            }
+            print("fuel loaded")
+        } catch let error as NSError {
+            print("fuel not loaded")
+        }
+    }
+    
+    static func addFuel(hours: Int) {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        
+        // save anew if it doesn't exist (like on app initial launch)
+        guard let fuelLoaded = Fireplace.loaded else {
+            let fuelSave = Fuel(context: managedContext)
+            
+            let now = Date()
+            let calendar = Calendar.current
+            let newDate = calendar.date(byAdding: .hour, value: hours, to: now)
+            
+            Fireplace.loaded = fuelSave
+            Fireplace.hours = hours
+            Fireplace.lastsUntil = newDate
+            
+            fuelSave.lastsUntil = Fireplace.lastsUntil
+            
+            do {
+                try managedContext.save()
+                print("saved fuel")
+            } catch {
+                // this should never be displayed but is here to cover the possibility
+                print("fuel not saved")
+            }
+            
+            return
+        }
+        
+        // otherwise rewrite data
+        
+        if let oldDate = Fireplace.lastsUntil {
+            let calendar = Calendar.current
+            
+            // calculate hours left
+            let components = calendar.dateComponents([.hour], from: oldDate, to: Date())
+            if let hoursLeft = components.hour {
+                // add hours purchased to hours remaining
+                let hourTotal = hoursLeft + hours
+                
+                Fireplace.hours = hourTotal
+                
+                let newDate = calendar.date(byAdding: .hour, value: hourTotal, to: Date())
+                
+                Fireplace.lastsUntil = newDate
+                
+                fuelLoaded.lastsUntil = Fireplace.lastsUntil
+            }
+        } else {
+            // there is no fuel currently, add anew
+            let now = Date()
+            let calendar = Calendar.current
+            let newDate = calendar.date(byAdding: .hour, value: hours, to: now)
+            
+            Fireplace.lastsUntil = newDate
+            Fireplace.hours = hours
+            
+            fuelLoaded.lastsUntil = Fireplace.lastsUntil
+        }
+        
+        Fireplace.loaded = fuelLoaded
+        
+        do {
+            try managedContext.save()
+            print("resave fuel successful")
+        } catch {
+            // this should never be displayed but is here to cover the possibility
+            print("fuel not resaved")
+        }
+    }
+    
+    static func noFuel() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+        
+        // save anew if it doesn't exist (like on app initial launch), should not happen with resave
+        guard let fuelLoaded = Fireplace.loaded else {
+            let fuelSave = Fuel(context: managedContext)
+            
+            Fireplace.hours = 0
+            Fireplace.lastsUntil = nil
+            
+            fuelSave.lastsUntil = Fireplace.lastsUntil
+            
+            Fireplace.loaded = fuelSave
+            
+            do {
+                try managedContext.save()
+                print("resaved no fuel")
+            } catch {
+                // this should never be displayed but is here to cover the possibility
+                print("fuel not resaved")
+            }
+            
+            return
+        }
+        
+        // otherwise rewrite data
+        Fireplace.lastsUntil = nil
+        Fireplace.hours = 0
+
+        fuelLoaded.lastsUntil = Fireplace.lastsUntil
+        
+        Fireplace.loaded = fuelLoaded
+        
+        do {
+            try managedContext.save()
+            print("resave no fuel successful")
+        } catch {
+            // this should never be displayed but is here to cover the possibility
+            print("no fuel not resaved")
+        }
+    }
 }
