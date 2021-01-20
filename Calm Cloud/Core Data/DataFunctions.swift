@@ -436,6 +436,31 @@ struct DataFunctions {
     
     // fireplace
     
+    static func checkIfExpired(dateToCheck: Date?) -> Int? {
+        if let day = dateToCheck {
+            if day < Date() {
+                // date is past, no hours left, fireplace cannot be activated
+                //DataFunctions.noFuel()
+                return nil
+            } else {
+                let calendar = Calendar.current
+                let components = calendar.dateComponents([.hour], from: day, to: Date())
+                
+                if let hoursLeft = components.hour {
+                    return hoursLeft
+                    print("day \(day)")
+                    print("hours left \(hoursLeft)")
+                } else {
+                    // no hours left, fireplace cannot be activated
+                    //DataFunctions.noFuel()
+                    return nil
+                }
+            }
+        } else {
+            return nil
+        }
+    }
+    
     static func loadFuel() {
         var managedContext = CoreDataManager.shared.managedObjectContext
         var fetchRequest = NSFetchRequest<Fuel>(entityName: "Fuel")
@@ -445,33 +470,47 @@ struct DataFunctions {
             if let fuel = result.first {
                 Fireplace.loaded = fuel
                 Fireplace.lastsUntil = fuel.lastsUntil
+                Fireplace.color = fuel.colors
                 
-                if let day = Fireplace.lastsUntil {
-                    if day < Date() {
-                        // date is past, no hours left, fireplace cannot be activated
-                        DataFunctions.noFuel()
-                    } else {
-                        let calendar = Calendar.current
-                        let components = calendar.dateComponents([.hour], from: day, to: Date())
-                        
-                        if let hoursLeft = components.hour {
-                            Fireplace.hours = hoursLeft
-                            print("day \(day)")
-                            print("hours left \(hoursLeft)")
-                        } else {
-                            // no hours left, fireplace cannot be activated
-                            DataFunctions.noFuel()
-                        }
-                    }
+                if let result = checkIfExpired(dateToCheck: Fireplace.lastsUntil) {
+                    Fireplace.hours = result
+                } else {
+                    DataFunctions.noFuel(type: .wood)
+                }
+                
+                if let answer = checkIfExpired(dateToCheck: Fireplace.color) {
+                    Fireplace.colorHours = answer
+                } else {
+                    DataFunctions.noFuel(type: .color)
                 }
             }
-            print("fuel loaded")
+            print("fireplace loaded")
         } catch let error as NSError {
-            print("fuel not loaded")
+            print("fireplace not loaded")
         }
     }
     
-    static func addFuel(hours: Int) {
+    static func getHoursLeft(hours: Int, savedDate: Date?) -> Int? {
+        if let oldDate = savedDate {
+            let calendar = Calendar.current
+            
+            // calculate hours left
+            let components = calendar.dateComponents([.hour], from: oldDate, to: Date())
+            if let hoursLeft = components.hour {
+                // add hours purchased to hours remaining
+                let hourTotal = hoursLeft + hours
+                
+                return hourTotal
+            } else {
+                return nil
+            }
+        } else {
+            // no time left
+            return nil
+        }
+    }
+    
+    static func addFuel(hours: Int, type: ItemType) {
         var managedContext = CoreDataManager.shared.managedObjectContext
         
         // save anew if it doesn't exist (like on app initial launch)
@@ -483,10 +522,21 @@ struct DataFunctions {
             let newDate = calendar.date(byAdding: .hour, value: hours, to: now)
             
             Fireplace.loaded = fuelSave
-            Fireplace.hours = hours
-            Fireplace.lastsUntil = newDate
             
-            fuelSave.lastsUntil = Fireplace.lastsUntil
+            switch type {
+            case .wood:
+                // add wood
+                Fireplace.hours = hours
+                Fireplace.lastsUntil = newDate
+                
+                fuelSave.lastsUntil = Fireplace.lastsUntil
+            case .color:
+                // add color
+                Fireplace.colorHours = hours
+                Fireplace.color = newDate
+                
+                fuelSave.colors = Fireplace.color
+            }
             
             do {
                 try managedContext.save()
@@ -500,34 +550,47 @@ struct DataFunctions {
         }
         
         // otherwise rewrite data
+        let calendar = Calendar.current
         
-        if let oldDate = Fireplace.lastsUntil {
-            let calendar = Calendar.current
-            
-            // calculate hours left
-            let components = calendar.dateComponents([.hour], from: oldDate, to: Date())
-            if let hoursLeft = components.hour {
-                // add hours purchased to hours remaining
-                let hourTotal = hoursLeft + hours
+        switch type {
+        case .wood:
+            if let hoursRemaining = getHoursLeft(hours: hours, savedDate: Fireplace.lastsUntil) {
+                Fireplace.hours = hoursRemaining
                 
-                Fireplace.hours = hourTotal
-                
-                let newDate = calendar.date(byAdding: .hour, value: hourTotal, to: Date())
+                let newDate = calendar.date(byAdding: .hour, value: hoursRemaining, to: Date())
                 
                 Fireplace.lastsUntil = newDate
                 
                 fuelLoaded.lastsUntil = Fireplace.lastsUntil
+            } else {
+                // there is no fuel currently, add anew
+                let now = Date()
+                let newDate = calendar.date(byAdding: .hour, value: hours, to: now)
+                
+                Fireplace.lastsUntil = newDate
+                Fireplace.hours = hours
+                
+                fuelLoaded.lastsUntil = Fireplace.lastsUntil
             }
-        } else {
-            // there is no fuel currently, add anew
-            let now = Date()
-            let calendar = Calendar.current
-            let newDate = calendar.date(byAdding: .hour, value: hours, to: now)
-            
-            Fireplace.lastsUntil = newDate
-            Fireplace.hours = hours
-            
-            fuelLoaded.lastsUntil = Fireplace.lastsUntil
+        case .color:
+            if let hoursRemaining = getHoursLeft(hours: hours, savedDate: Fireplace.color) {
+                Fireplace.colorHours = hoursRemaining
+                
+                let newDate = calendar.date(byAdding: .hour, value: hoursRemaining, to: Date())
+                
+                Fireplace.color = newDate
+                
+                fuelLoaded.colors = Fireplace.color
+            } else {
+                // there is no fuel currently, add anew
+                let now = Date()
+                let newDate = calendar.date(byAdding: .hour, value: hours, to: now)
+                
+                Fireplace.color = newDate
+                Fireplace.colorHours = hours
+                
+                fuelLoaded.colors = Fireplace.color
+            }
         }
         
         Fireplace.loaded = fuelLoaded
@@ -541,18 +604,26 @@ struct DataFunctions {
         }
     }
     
-    static func noFuel() {
+    static func noFuel(type: ItemType) {
         var managedContext = CoreDataManager.shared.managedObjectContext
         
         // save anew if it doesn't exist (like on app initial launch), should not happen with resave
         guard let fuelLoaded = Fireplace.loaded else {
             let fuelSave = Fuel(context: managedContext)
             
-            Fireplace.hours = 0
-            Fireplace.lastsUntil = nil
-            
-            fuelSave.lastsUntil = Fireplace.lastsUntil
-            
+            switch type {
+            case .wood:
+                Fireplace.hours = 0
+                Fireplace.lastsUntil = nil
+                
+                fuelSave.lastsUntil = Fireplace.lastsUntil
+            case .color:
+                Fireplace.colorHours = 0
+                Fireplace.color = nil
+                
+                fuelSave.colors = Fireplace.color
+            }
+           
             Fireplace.loaded = fuelSave
             
             do {
@@ -567,10 +638,18 @@ struct DataFunctions {
         }
         
         // otherwise rewrite data
-        Fireplace.lastsUntil = nil
-        Fireplace.hours = 0
-
-        fuelLoaded.lastsUntil = Fireplace.lastsUntil
+        switch type {
+        case .wood:
+            Fireplace.lastsUntil = nil
+            Fireplace.hours = 0
+            
+            fuelLoaded.lastsUntil = Fireplace.lastsUntil
+        case .color:
+            Fireplace.color = nil
+            Fireplace.colorHours = 0
+            
+            fuelLoaded.colors = Fireplace.color
+        }
         
         Fireplace.loaded = fuelLoaded
         

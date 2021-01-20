@@ -12,6 +12,8 @@ struct Fireplace {
     static var loaded: Fuel?
     
     static var hours: Int = 0
+    static var colorHours: Int = 0
     
     static var lastsUntil: Date?
+    static var color: Date?
 }

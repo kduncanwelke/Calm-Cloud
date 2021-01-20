@@ -11,7 +11,13 @@ import UIKit
 
 struct ItemManager {
     static let items: [Item] = [
-        Item(name: "Wood", image: UIImage(named: "wood")!, price: 6, hours: 1)
+        Item(name: "Pieces of Wood", image: UIImage(named: "wood")!, price: 1, hours: 1, type: .wood),
+        Item(name: "Pile of Wood", image: UIImage(named: "wood2")!, price: 36, hours: 6, type: .wood),
+        Item(name: "Stack of Wood", image: UIImage(named: "wood3")!, price: 72, hours: 12, type: .wood),
+        Item(name: "Supply of Wood", image: UIImage(named: "wood4")!, price: 144, hours: 24, type: .wood),
+        Item(name: "Sparkle!", image: UIImage(named: "sparkle")!, price: 1, hours: 6, type: .color),
+        Item(name: "Sparkle! 2 Pack", image: UIImage(named: "sparkle2")!, price: 20, hours: 12, type: .color),
+        Item(name: "Sparkle! 3 Pack", image: UIImage(named: "sparkle3")!, price: 60, hours: 24, type: .color)
     ]
     
     static var buying: Item?
@@ -22,4 +28,10 @@ struct Item {
     let image: UIImage
     let price: Int
     let hours: Int
+    let type: ItemType
+}
+
+enum ItemType {
+    case wood
+    case color
 }

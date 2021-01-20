@@ -55,7 +55,13 @@ class BuyPlantViewController: UIViewController {
             plantImage.image = current.image
             numberLabel.text = "0"
             totalCost.text = " 0"
-            howManyLabel.text = "+ \(current.hours) hour(s) of fireplace time \n (\(Fireplace.hours) hours owned)"
+            
+            switch current.type {
+            case .wood:
+                 howManyLabel.text = "+ \(current.hours) hour(s) of fireplace time \n (\(Fireplace.hours) hours left)"
+            case .color:
+                howManyLabel.text = "+ \(current.hours) hour(s) of colorful fire \n (\(Fireplace.colorHours) hours left)"
+            }
         }
     }
 
@@ -78,7 +84,13 @@ class BuyPlantViewController: UIViewController {
         
         if let current = ItemManager.buying {
             var hours = current.hours * number
-            howManyLabel.text = "+ \(hours) hour(s) of fireplace time \n (\(Fireplace.hours) hours owned)"
+            
+            switch current.type {
+            case .wood:
+                howManyLabel.text = "+ \(hours) hour(s) of fireplace time \n (\(Fireplace.hours) hours left)"
+            case .color:
+                howManyLabel.text = "+ \(hours) hour(s) of colorful fire \n (\(Fireplace.colorHours) hours left)"
+            }
         }
     }
     
@@ -117,8 +129,14 @@ class BuyPlantViewController: UIViewController {
             } else if let current = ItemManager.buying {
                 // update total time available
                 let hours = current.hours * number
-                DataFunctions.addFuel(hours: hours)
                 
+                switch current.type {
+                case .wood:
+                    DataFunctions.addFuel(hours: hours, type: .wood)
+                case .color:
+                    DataFunctions.addFuel(hours: hours, type: .color)
+                }
+               
                 // deduct funds
                 MoneyManager.total -= costPer * number
                 DataFunctions.saveMoney()

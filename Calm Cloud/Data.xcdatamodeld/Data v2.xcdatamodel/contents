@@ -16,6 +16,7 @@
         <attribute name="rewardCollected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <entity name="Fuel" representedClassName="Fuel" syncable="YES" codeGenerationType="class">
+        <attribute name="colors" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="lastsUntil" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="HarvestedItem" representedClassName="HarvestedItem" syncable="YES" codeGenerationType="class">
@@ -66,6 +67,7 @@
         <element name="ActivityId" positionX="-63" positionY="27" width="128" height="58"/>
         <element name="Care" positionX="-63" positionY="27" width="128" height="88"/>
         <element name="DailyTasks" positionX="-63" positionY="54" width="128" height="118"/>
+        <element name="Fuel" positionX="-63" positionY="54" width="128" height="73"/>
         <element name="HarvestedItem" positionX="-63" positionY="54" width="128" height="73"/>
         <element name="HonorStandItem" positionX="-63" positionY="54" width="128" height="73"/>
         <element name="InventoryItem" positionX="-63" positionY="45" width="128" height="73"/>
@@ -75,6 +77,5 @@
         <element name="Photo" positionX="-63" positionY="-18" width="128" height="58"/>
         <element name="Plot" positionX="-63" positionY="27" width="128" height="148"/>
         <element name="Reminder" positionX="-63" positionY="0" width="128" height="118"/>
-        <element name="Fuel" positionX="-63" positionY="54" width="128" height="58"/>
     </elements>
 </model>

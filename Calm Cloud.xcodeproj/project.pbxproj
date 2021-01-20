@@ -56,6 +56,7 @@
 		2D8F9045243FC2EF00211802 /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F9044243FC2EF00211802 /* ActivitiesViewController.swift */; };
 		2D8F9049243FC51800211802 /* Activities+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F9048243FC51800211802 /* Activities+TableView.swift */; };
 		2D8F904B243FC5B900211802 /* ActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8F904A243FC5B900211802 /* ActivityManager.swift */; };
+		2D9463A025B8D7D300B3D878 /* tspt_city_spring_indoor_ambience_loop_019.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D94639F25B8D7D200B3D878 /* tspt_city_spring_indoor_ambience_loop_019.mp3 */; };
 		2D9B7CFB24AD15FF00CDFA8E /* StoreObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7CFA24AD15FF00CDFA8E /* StoreObserver.swift */; };
 		2D9B7CFD24AD17EB00CDFA8E /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7CFC24AD17EB00CDFA8E /* Receipt.swift */; };
 		2D9B7CFF24AD187B00CDFA8E /* StoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7CFE24AD187B00CDFA8E /* StoreHelper.swift */; };
@@ -75,7 +76,6 @@
 		2DB1D48924573DDD00512E4F /* CareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48824573DDD00512E4F /* CareManager.swift */; };
 		2DB1D48B2457415000512E4F /* ViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */; };
 		2DB4106524916E8C00EFD088 /* MoneyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4106424916E8C00EFD088 /* MoneyManager.swift */; };
-		2DB6180024C8BC4A00EA9322 /* tspt_city_spring_indoor_ambience_loop_019.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DB617FF24C8BC4A00EA9322 /* tspt_city_spring_indoor_ambience_loop_019.mp3 */; };
 		2DB6394C252F83C700D8ECE0 /* zapsplat_nature_forest_ambience_wind_trees_birds_leaves_fall_to_ground_autumn_20090.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DB6394B252F83C700D8ECE0 /* zapsplat_nature_forest_ambience_wind_trees_birds_leaves_fall_to_ground_autumn_20090.mp3 */; };
 		2DB6394E252F871900D8ECE0 /* zapsplat_horror_graveyard_ambience_night_wind_owls_43583.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DB6394D252F871900D8ECE0 /* zapsplat_horror_graveyard_ambience_night_wind_owls_43583.mp3 */; };
 		2DB63950252F899B00D8ECE0 /* kedr_sfx_stockholm_roomtone_flat_day_closed_window_ac_hum_calm_street_sounds_behind_wall.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DB6394F252F899B00D8ECE0 /* kedr_sfx_stockholm_roomtone_flat_day_closed_window_ac_hum_calm_street_sounds_behind_wall.mp3 */; };
@@ -163,6 +163,7 @@
 		2D8F9044243FC2EF00211802 /* ActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
 		2D8F9048243FC51800211802 /* Activities+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activities+TableView.swift"; sourceTree = "<group>"; };
 		2D8F904A243FC5B900211802 /* ActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		2D94639F25B8D7D200B3D878 /* tspt_city_spring_indoor_ambience_loop_019.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tspt_city_spring_indoor_ambience_loop_019.mp3; sourceTree = "<group>"; };
 		2D9B7CFA24AD15FF00CDFA8E /* StoreObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreObserver.swift; sourceTree = "<group>"; };
 		2D9B7CFC24AD17EB00CDFA8E /* Receipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
 		2D9B7CFE24AD187B00CDFA8E /* StoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreHelper.swift; sourceTree = "<group>"; };
@@ -183,7 +184,6 @@
 		2DB1D48824573DDD00512E4F /* CareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareManager.swift; sourceTree = "<group>"; };
 		2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CoreData.swift"; sourceTree = "<group>"; };
 		2DB4106424916E8C00EFD088 /* MoneyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyManager.swift; sourceTree = "<group>"; };
-		2DB617FF24C8BC4A00EA9322 /* tspt_city_spring_indoor_ambience_loop_019.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tspt_city_spring_indoor_ambience_loop_019.mp3; path = ../../../../../../Downloads/tspt_city_spring_indoor_ambience_loop_019.mp3; sourceTree = "<group>"; };
 		2DB6394B252F83C700D8ECE0 /* zapsplat_nature_forest_ambience_wind_trees_birds_leaves_fall_to_ground_autumn_20090.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zapsplat_nature_forest_ambience_wind_trees_birds_leaves_fall_to_ground_autumn_20090.mp3; sourceTree = "<group>"; };
 		2DB6394D252F871900D8ECE0 /* zapsplat_horror_graveyard_ambience_night_wind_owls_43583.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zapsplat_horror_graveyard_ambience_night_wind_owls_43583.mp3; sourceTree = "<group>"; };
 		2DB6394F252F899B00D8ECE0 /* kedr_sfx_stockholm_roomtone_flat_day_closed_window_ac_hum_calm_street_sounds_behind_wall.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = kedr_sfx_stockholm_roomtone_flat_day_closed_window_ac_hum_calm_street_sounds_behind_wall.mp3; sourceTree = "<group>"; };
@@ -377,11 +377,11 @@
 				2DB63955252F982900D8ECE0 /* west_wolf_Rear_Street_City_Rain_With_Thunders.mp3 */,
 				2DB6394F252F899B00D8ECE0 /* kedr_sfx_stockholm_roomtone_flat_day_closed_window_ac_hum_calm_street_sounds_behind_wall.mp3 */,
 				2DAEFB3C25A913EB00FB4D38 /* audio_hero_FireMediumRoarHiss_PE052201_358.mp3 */,
+				2D94639F25B8D7D200B3D878 /* tspt_city_spring_indoor_ambience_loop_019.mp3 */,
 				2DB63957252FA51800D8ECE0 /* zapsplat_nature_rain_internal_home_rec_open_window_occ_cars_pass_low_thunder_rumbles_001_25102.mp3 */,
 				2DB63953252F929100D8ECE0 /* spa_snowstorm_ambience_snow_falling_on_ground_with_wind.mp3 */,
 				2DB63951252F91E600D8ECE0 /* weather-wind-trees-bushes-countryside.mp3 */,
 				2DD7C97124D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 */,
-				2DB617FF24C8BC4A00EA9322 /* tspt_city_spring_indoor_ambience_loop_019.mp3 */,
 				2DB6394D252F871900D8ECE0 /* zapsplat_horror_graveyard_ambience_night_wind_owls_43583.mp3 */,
 				2DB6394B252F83C700D8ECE0 /* zapsplat_nature_forest_ambience_wind_trees_birds_leaves_fall_to_ground_autumn_20090.mp3 */,
 				2DF4763E24A5317B00EE7C2C /* loire.mp3 */,
@@ -507,7 +507,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DB63956252F982900D8ECE0 /* west_wolf_Rear_Street_City_Rain_With_Thunders.mp3 in Resources */,
-				2DB6180024C8BC4A00EA9322 /* tspt_city_spring_indoor_ambience_loop_019.mp3 in Resources */,
+				2D9463A025B8D7D300B3D878 /* tspt_city_spring_indoor_ambience_loop_019.mp3 in Resources */,
 				2DB63954252F929100D8ECE0 /* spa_snowstorm_ambience_snow_falling_on_ground_with_wind.mp3 in Resources */,
 				2DB63950252F899B00D8ECE0 /* kedr_sfx_stockholm_roomtone_flat_day_closed_window_ac_hum_calm_street_sounds_behind_wall.mp3 in Resources */,
 				2D8BA7D924B672E90020E6EF /* AppleIncRootCertificate.cer in Resources */,

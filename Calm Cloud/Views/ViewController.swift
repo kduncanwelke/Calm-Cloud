@@ -181,7 +181,7 @@ class ViewController: UIViewController {
             pottyBox.image = UIImage(named: "litterbox")
         }
         
-        fireHasFuel()
+        setFireAppearance()
         
         levelLabel.text = "\(LevelManager.currentLevel)"
         expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
@@ -193,15 +193,36 @@ class ViewController: UIViewController {
     func fireHasFuel() -> Bool {
         if let validTime = Fireplace.lastsUntil {
             if validTime > Date() {
-                fireplace.image = UIImage(named: "fireplacewood")
                 return true
             } else {
-                fireplace.image = UIImage(named: "fireplace")
                 return false
             }
         } else {
-            fireplace.image = UIImage(named: "fireplace")
             return false
+        }
+    }
+    
+    func fireHasSparkles() -> Bool {
+        if let validTime = Fireplace.color {
+            if validTime > Date() {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+    
+    func setFireAppearance() {
+        if fireHasFuel() && fireHasSparkles() {
+            fireplace.image = UIImage(named: "fireplacewoodcolor")
+        } else if fireHasFuel() {
+            fireplace.image = UIImage(named: "fireplacewood")
+        } else if fireHasSparkles() {
+            fireplace.image = UIImage(named: "fireplacecolor")
+        } else {
+            fireplace.image = UIImage(named: "fireplace")
         }
     }
     
@@ -407,7 +428,7 @@ class ViewController: UIViewController {
     
     @objc func returnIndoors() {
         // hide open door and restart animation when returning indoors
-        fireHasFuel()
+        setFireAppearance()
         
         // restart fire sound if on
         if fireOn {
@@ -783,14 +804,30 @@ class ViewController: UIViewController {
                 stringLightsOn = false
                 
                 if lightsOff {
-                    insideNightOverlay.image = UIImage(named: "nightoverlay")
+                    if stringLightsOn && fireOn {
+                        insideNightOverlay.image = UIImage(named: "glowstarsfire")
+                    } else if stringLightsOn {
+                        insideNightOverlay.image = UIImage(named: "glowstars")
+                    } else if fireOn {
+                        insideNightOverlay.image = UIImage(named: "nostarsfire")
+                    } else {
+                        insideNightOverlay.image = UIImage(named: "nightoverlay")
+                    }
                 }
             } else {
                 stringLights.image = UIImage(named: "lightsglow")
                 stringLightsOn = true
                 
                 if lightsOff {
-                    insideNightOverlay.image = UIImage(named: "glowstars")
+                    if stringLightsOn && fireOn {
+                        insideNightOverlay.image = UIImage(named: "glowstarsfire")
+                    } else if stringLightsOn {
+                        insideNightOverlay.image = UIImage(named: "glowstars")
+                    } else if fireOn {
+                        insideNightOverlay.image = UIImage(named: "nostarsfire")
+                    } else {
+                        insideNightOverlay.image = UIImage(named: "nightoverlay")
+                    }
                 }
             }
         } else {
@@ -1022,7 +1059,13 @@ class ViewController: UIViewController {
                 FireSound.loadSound(resourceName: Sounds.fire.resourceName, type: Sounds.fire.type)
                 FireSound.startPlaying()
                 fireOn = true
-                fireplace.animationImages = AnimationManager.fireAnimation
+               
+                if fireHasSparkles() {
+                    fireplace.animationImages = AnimationManager.fireAnimationColor
+                } else {
+                    fireplace.animationImages = AnimationManager.fireAnimation
+                }
+                
                 fireplace.animationDuration = 0.8
                 fireplace.startAnimating()
                 

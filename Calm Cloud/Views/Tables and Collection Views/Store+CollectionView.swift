@@ -101,7 +101,12 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
             cell.numberOwned.text = ""
             cell.growthSpeed.isHidden = true
             
-            cell.purchaseDescription.text = "Add \(object.hours) hour(s) of fireplace time"
+            switch object.type {
+            case .wood:
+                cell.purchaseDescription.text = "Add \(object.hours) hour(s) of fireplace time"
+            case .color:
+                cell.purchaseDescription.text = "Add \(object.hours) hour(s) of colorful fire"
+            }
         } else {
             let item: SKProduct
             item = products[indexPath.row]

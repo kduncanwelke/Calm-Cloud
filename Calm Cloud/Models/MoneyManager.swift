@@ -12,5 +12,5 @@ struct MoneyManager {
     static var loaded: Money?
     
     static var earnings = 0
-    static var total = 1000
+    static var total = 0
 }

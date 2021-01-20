@@ -71,7 +71,7 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
         view.bringSubviewToFront(paidImage)
         paidImage.animateBounce()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [unowned self] in
             self.view.sendSubviewToBack(self.paidImage)
         }
     }
