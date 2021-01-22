@@ -3415,13 +3415,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paid" translatesAutoresizingMaskIntoConstraints="NO" id="UII-rq-EY9">
-                                <rect key="frame" x="41.5" y="342.5" width="331" height="221"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="UII-rq-EY9" secondAttribute="height" multiplier="3:2" id="9jP-GO-riJ"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="asx-ho-VWO"/>
-                                </constraints>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9uP-V5-ZFd">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3587,6 +3580,13 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paid" translatesAutoresizingMaskIntoConstraints="NO" id="UII-rq-EY9">
+                                <rect key="frame" x="41.5" y="342.5" width="331" height="221"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UII-rq-EY9" secondAttribute="height" multiplier="3:2" id="9jP-GO-riJ"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="asx-ho-VWO"/>
+                                </constraints>
+                            </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1op-SQ-6tF">
                                 <rect key="frame" x="41.5" y="177" width="331" height="552"/>
                                 <constraints>

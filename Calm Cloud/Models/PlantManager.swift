@@ -247,6 +247,28 @@ struct PlantManager {
         }
     }
     
+    static func randomQuantity() -> Int {
+        switch selected {
+        // one plant
+        case .aloe, .jade, .paddle, .redTulip, .redGeranium, .yellowTulip, .pinkTulip, .whiteTulip, .daffodil, .marigold, .daisy:
+            return 1
+        // one to three
+        case .geranium, .purplePetunia, .whitePetunia, .stripedPetunia, .blackPetunia, .bluePetunia, .zinnia, .lavendarZinnia, .salmonZinnia, .lobelia:
+            return Int.random(in: 1...3)
+        // two to four
+        case .chard, .cauliflower, .kale, .eggplant:
+            return Int.random(in: 2...4)
+        // three to six
+        case .strawberry, .pepper, .tomato, .carrot:
+            return Int.random(in: 3...6)
+        // four to seven
+        case .lemon, .pumpkin, .lime, .squash, .watermelon, .orange:
+            return Int.random(in: 4...7)
+        case .none:
+            return 0
+        }
+    }
+    
     static var chosen = 0
     static var currentStage: Stage = .one
     static var needsWater = false

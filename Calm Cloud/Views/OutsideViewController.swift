@@ -436,6 +436,7 @@ class OutsideViewController: UIViewController {
         
         // update count and save
         print(PlantManager.selected)
+        
         Harvested.basketCounts[PlantManager.selected]! += 1
         DataFunctions.saveHarvest()
     }

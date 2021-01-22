@@ -40,6 +40,7 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        paidImage.alpha = 0.0
         purchaseContainer.isHidden = true
         totalCoins.text = "\(MoneyManager.total)"
         getProducts()
@@ -69,11 +70,7 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
         totalCoins.text = "\(MoneyManager.total)"
         
         view.bringSubviewToFront(paidImage)
-        paidImage.animateBounce()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [unowned self] in
-            self.view.sendSubviewToBack(self.paidImage)
-        }
+        paidImage.animateFadeInSlow()
     }
     
     @objc func refresh() {
