@@ -103,9 +103,9 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
             
             switch object.type {
             case .wood:
-                cell.purchaseDescription.text = "Add \(object.hours) hour(s) of fireplace time"
+                cell.purchaseDescription.text = "Adds \(object.hours) hours of fireplace time"
             case .color:
-                cell.purchaseDescription.text = "Add \(object.hours) hour(s) of colorful fire"
+                cell.purchaseDescription.text = "Adds \(object.hours) hours of colorful fire time"
             }
         } else {
             let item: SKProduct
