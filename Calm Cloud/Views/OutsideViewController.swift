@@ -100,8 +100,8 @@ class OutsideViewController: UIViewController {
     var stopped = false
     var mode: Mode = .planting
     var lightsOn = false
-    var rotated = false
     var name = ""
+    var rotated = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -170,13 +170,15 @@ class OutsideViewController: UIViewController {
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        print("view will transition")
-        rotated = true
-        if AnimationManager.movement == .staying {
+        print("view will transition outside")
+        
+        if self.isViewLoaded && (self.view.window != nil) {
             cloudKitty.stopAnimating()
             AnimationTimer.stop()
+            AnimationManager.outsideLocation = .back
+            AnimationManager.movement = .moving
+            randomMoveOutside()
         }
-        stopMovingOutside()
     }
     
     // MARK: Custom functions

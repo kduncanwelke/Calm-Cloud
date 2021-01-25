@@ -78,7 +78,6 @@ class ViewController: UIViewController {
     var lightsOff = false
     var playingMusic = false
     var stringLightsOn = false
-    var rotated = false
     var summonedToGame = false
     var summonedToFire = false
     var playingGame = false
@@ -148,16 +147,31 @@ class ViewController: UIViewController {
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        print("view will transition")
-        rotated = true
-        if AnimationManager.movement == .staying {
-            cloudKitty.stopAnimating()
-            AnimationTimer.stop()
-        }
-        stopMoving()
+        print("view will transition inside")
+        
+        stopAnimations()
+        
+        AnimationManager.location = .middle
+        AnimationManager.movement = .moving
+        randomMove()
     }
     
     // MARK: Custom functions
+    
+    func stopAnimations() {
+        cloudKitty.stopAnimating()
+        AnimationTimer.stop()
+        
+        if isPlaying {
+            toyImage.stopAnimating()
+            isPlaying = false
+        }
+        
+        if playingGame {
+            game.stopAnimating()
+            playingGame = false
+        }
+    }
     
     func loadUI() {
         setTimeAndWeather()
@@ -687,88 +701,86 @@ class ViewController: UIViewController {
     }
     
     @objc func stopMoving() {
-        // current animation stopped, randomize next
-        print("stop moving called")
-        let range = [1,2,3,4]
-        let animation = range.randomElement()
-        cloudKitty.stopAnimating()
-        
-        if stopped {
-            if lightsOff {
-                goNightNight()
+        if self.isViewLoaded && (self.view.window != nil) {
+            print("indoor view on screen")
+            // current animation stopped, randomize next
+            print("stop moving called")
+            let range = [1,2,3,4]
+            let animation = range.randomElement()
+            cloudKitty.stopAnimating()
+            
+            if stopped {
+                if lightsOff {
+                    goNightNight()
+                }
+                return
             }
-            return
-        }
-        
-        if rotated {
-            AnimationTimer.stop()
-            rotated = false
-        }
-        
-        if toyImage.isAnimating {
-            toyImage.stopAnimating()
-        }
-        
-        if playingGame {
-            playingGame = false
-        }
-         
-        if game.isAnimating {
-            game.stopAnimating()
-        }
-        
-        if isPlaying {
-            isPlaying = false
-        }
-        
-        if inPotty {
-            inPotty = false
-        }
-        
-        if animation == 1 {
-            print("move")
-            AnimationManager.movement = .moving
-            summoned()
-        } else if animation == 2 {
-            print("place animation")
-            AnimationManager.movement = .staying
-            switch AnimationManager.location {
-            case .bed:
-                randomBedAnimation()
-            case .food:
-                randomFoodAnimation()
-            case .water:
-                randomWaterAnimation()
-            case .middle:
-                randomCenterAnimation()
-            case .toy:
-                randomToyAnimation()
-            case .potty:
-                randomPottyAnimation()
-            case .ceiling:
-                randomCeilingAnimation()
-            case .game:
-                randomGameAnimation()
-            case .pillow:
-                randomPillowAnimation()
+            
+            if toyImage.isAnimating {
+                toyImage.stopAnimating()
             }
-        } else if animation == 3 {
-            AnimationManager.movement = .staying
-            print("sleep from stopmoving")
-            switch AnimationManager.location {
-            case .ceiling:
-                floatSleep()
-            default:
-                sleep()
+            
+            if playingGame {
+                playingGame = false
             }
-        } else {
-            AnimationManager.movement = .staying
-            print("pause")
-            switch AnimationManager.location {
-            case .ceiling:
-                bounce()
-            default:
-                pause()
+             
+            if game.isAnimating {
+                game.stopAnimating()
+            }
+            
+            if isPlaying {
+                isPlaying = false
+            }
+            
+            if inPotty {
+                inPotty = false
+            }
+            
+            if animation == 1 {
+                print("move")
+                AnimationManager.movement = .moving
+                summoned()
+            } else if animation == 2 {
+                print("place animation")
+                AnimationManager.movement = .staying
+                switch AnimationManager.location {
+                case .bed:
+                    randomBedAnimation()
+                case .food:
+                    randomFoodAnimation()
+                case .water:
+                    randomWaterAnimation()
+                case .middle:
+                    randomCenterAnimation()
+                case .toy:
+                    randomToyAnimation()
+                case .potty:
+                    randomPottyAnimation()
+                case .ceiling:
+                    randomCeilingAnimation()
+                case .game:
+                    randomGameAnimation()
+                case .pillow:
+                    randomPillowAnimation()
+                }
+            } else if animation == 3 {
+                AnimationManager.movement = .staying
+                print("sleep from stopmoving")
+                switch AnimationManager.location {
+                case .ceiling:
+                    floatSleep()
+                default:
+                    sleep()
+                }
+            } else {
+                AnimationManager.movement = .staying
+                print("pause")
+                switch AnimationManager.location {
+                case .ceiling:
+                    bounce()
+                default:
+                    pause()
+                }
             }
         }
     }
@@ -926,8 +938,9 @@ class ViewController: UIViewController {
         door.isHidden = true
         openDoor.isHidden = false
         FireSound.stopPlaying()
-        AnimationTimer.stop()
+        stopAnimations()
         stopped = true
+        AnimationManager.movement = .staying
         performSegue(withIdentifier: "goOutside", sender: Any?.self)
     }
     

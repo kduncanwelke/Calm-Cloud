@@ -20,7 +20,7 @@ class AnimationTimer {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             seconds += 1
             
-            if seconds == repeatCount {
+            if seconds >= repeatCount {
                 stopTimer()
             }
         }
