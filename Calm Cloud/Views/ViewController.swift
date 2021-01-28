@@ -82,6 +82,7 @@ class ViewController: UIViewController {
     var summonedToFire = false
     var playingGame = false
     var fireOn = false
+    var returnedFromSegue = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,13 +148,12 @@ class ViewController: UIViewController {
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        print("view will transition inside")
-        
-        stopAnimations()
-        
-        AnimationManager.location = .middle
-        AnimationManager.movement = .moving
-        randomMove()
+        if self.isViewLoaded && (self.view.window != nil) {
+            print("view will transition inside")
+            cloudKitty.stopAnimating()
+            AnimationTimer.stop()
+            randomMove()
+        }
     }
     
     // MARK: Custom functions
@@ -161,6 +161,7 @@ class ViewController: UIViewController {
     func stopAnimations() {
         cloudKitty.stopAnimating()
         AnimationTimer.stop()
+        stopped = true
         
         if isPlaying {
             toyImage.stopAnimating()
@@ -455,7 +456,9 @@ class ViewController: UIViewController {
         door.isHidden = false
         openDoor.isHidden = true
         stopped = false
-        randomMove()
+        returnedFromSegue = true
+        
+        stopMoving()
     }
     
     @objc func goToSleep() {
@@ -701,7 +704,7 @@ class ViewController: UIViewController {
     }
     
     @objc func stopMoving() {
-        if self.isViewLoaded && (self.view.window != nil) {
+        if (self.isViewLoaded && (self.view.window != nil)) || returnedFromSegue {
             print("indoor view on screen")
             // current animation stopped, randomize next
             print("stop moving called")
@@ -714,6 +717,10 @@ class ViewController: UIViewController {
                     goNightNight()
                 }
                 return
+            }
+            
+            if returnedFromSegue {
+                returnedFromSegue = false
             }
             
             if toyImage.isAnimating {
@@ -939,8 +946,6 @@ class ViewController: UIViewController {
         openDoor.isHidden = false
         FireSound.stopPlaying()
         stopAnimations()
-        stopped = true
-        AnimationManager.movement = .staying
         performSegue(withIdentifier: "goOutside", sender: Any?.self)
     }
     
@@ -950,11 +955,7 @@ class ViewController: UIViewController {
             return
         } else {
             // show mini game
-            stopped = true
-            if AnimationManager.movement == .staying {
-                cloudKitty.stopAnimating()
-                AnimationTimer.stop()
-            }
+            stopAnimations()
         
             view.bringSubviewToFront(containerView)
             containerView.animateBounce()
@@ -1115,6 +1116,5 @@ class ViewController: UIViewController {
     @IBAction func journalTapped(_ sender: UIButton) {
         performSegue(withIdentifier: "visitJournal", sender: Any?.self)
     }
-    
 }
 

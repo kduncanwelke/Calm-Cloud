@@ -170,18 +170,21 @@ class OutsideViewController: UIViewController {
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        print("view will transition outside")
-        
         if self.isViewLoaded && (self.view.window != nil) {
+            print("view will transition outside")
             cloudKitty.stopAnimating()
             AnimationTimer.stop()
-            AnimationManager.outsideLocation = .back
-            AnimationManager.movement = .moving
             randomMoveOutside()
         }
     }
     
     // MARK: Custom functions
+    
+    func stop() {
+        cloudKitty.stopAnimating()
+        AnimationTimer.stop()
+        stopped = true
+    }
     
     func loadUI() {
         setTimeAndWeather()
@@ -414,8 +417,8 @@ class OutsideViewController: UIViewController {
     }
     
     @objc func hideMiniGame() {
-        view.sendSubviewToBack(cupsMiniGameContainer)
         stopped = false
+        view.sendSubviewToBack(cupsMiniGameContainer)
         stopMovingOutside()
     }
     
@@ -632,11 +635,7 @@ class OutsideViewController: UIViewController {
     
     @IBAction func miniGameTapped(_ sender: UIButton) {
         // show mini game
-        stopped = true
-        if AnimationManager.movement == .staying {
-            cloudKitty.stopAnimating()
-            AnimationTimer.stop()
-        }
+        stop()
         
         view.bringSubviewToFront(cupsMiniGameContainer)
         cupsMiniGameContainer.animateBounce()
@@ -914,8 +913,7 @@ class OutsideViewController: UIViewController {
     
     @IBAction func returnPressed(_ sender: UIButton) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
-        cloudKitty.stopAnimating()
-        AnimationTimer.stop()
+        stop()
         self.dismiss(animated: true, completion: nil)
     }
     
