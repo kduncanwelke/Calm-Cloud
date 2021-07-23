@@ -9,8 +9,9 @@
 /* Begin PBXAggregateTarget section */
 		B9ED5194E665042005069EF06C82A050 /* OpenSSL-Universal */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 741581A7361AF4537A921DAD19E3B1ED /* Build configuration list for PBXAggregateTarget "OpenSSL-Universal" */;
+			buildConfigurationList = C1D72BC345233EADF30A97D462F723B7 /* Build configuration list for PBXAggregateTarget "OpenSSL-Universal" */;
 			buildPhases = (
+				DAEA2BAAFED7B7865CB41712646E4160 /* [CP] Copy XCFrameworks */,
 			);
 			dependencies = (
 			);
@@ -19,13 +20,13 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		231B2C8EE30BF65792A5A3567F87450E /* Pods-Calm Cloud-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 46C0DB01148588AE3C57CB0A5366205A /* Pods-Calm Cloud-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		62AE89E6882A6C74844A844E1E233FCD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		D899B5B5102292AF9C69E22503A930CC /* Pods-Calm Cloud-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F9493C6ED908128B28E5BEAB09241531 /* Pods-Calm Cloud-dummy.m */; };
+		6AEA48F623AE3E560A172FE23FB7C453 /* Pods-Calm Cloud-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BF9F64FE947774B60B6C5E80AB2083B /* Pods-Calm Cloud-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C1607B1631F2A2AFE2C480A98B7001EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		FBC9D86F7D3B7CA1B6816C8D469796B2 /* Pods-Calm Cloud-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADABA5E1F53F04D17024761CCD60F27 /* Pods-Calm Cloud-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5156E88EF43474A1B160D8EC7EEE9300 /* PBXContainerItemProxy */ = {
+		01D657C102E670ACAECF84B4ED8777D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -35,115 +36,55 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01B9F3B3770517DF5ADA5E7D71D8D392 /* ecdsa.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ecdsa.h; path = ios/include/openssl/ecdsa.h; sourceTree = "<group>"; };
-		02F33873E58777030863FBFB62045C1C /* md4.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = md4.h; path = ios/include/openssl/md4.h; sourceTree = "<group>"; };
-		05501740F64394C0A36353C60F3D9B78 /* dsa.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = dsa.h; path = ios/include/openssl/dsa.h; sourceTree = "<group>"; };
-		0647932233954F4E324DCCF5096C4541 /* Pods-Calm Cloud-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Calm Cloud-Info.plist"; sourceTree = "<group>"; };
-		07651C9D9199B823F9510B870AC3F6D5 /* safestack.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = safestack.h; path = ios/include/openssl/safestack.h; sourceTree = "<group>"; };
-		07E5E1FF164C1845F6F1B302210143B5 /* libcrypto.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libcrypto.a; path = ios/lib/libcrypto.a; sourceTree = "<group>"; };
-		07FF388820EF8F1C507C300817FFCD31 /* Pods-Calm Cloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Calm Cloud.debug.xcconfig"; sourceTree = "<group>"; };
-		0AE3B1ADD83658EA766D466AE46623E2 /* ebcdic.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ebcdic.h; path = ios/include/openssl/ebcdic.h; sourceTree = "<group>"; };
-		0C8FDBC6F4F7B9DCAD51877EBC8373F6 /* comp.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = comp.h; path = ios/include/openssl/comp.h; sourceTree = "<group>"; };
-		17F28561971BABD1A38B3250D9AC168B /* pkcs12.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = pkcs12.h; path = ios/include/openssl/pkcs12.h; sourceTree = "<group>"; };
-		180AB5CDE06DAAB1119CA3BAC8A9F7F6 /* opensslconf-x86_64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "opensslconf-x86_64.h"; path = "ios/include/openssl/opensslconf-x86_64.h"; sourceTree = "<group>"; };
-		1842D30AED591514D7066F2BEC6198CE /* hmac.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = hmac.h; path = ios/include/openssl/hmac.h; sourceTree = "<group>"; };
-		1EC94502AF5D400EE372FEFF5137E06A /* ts.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ts.h; path = ios/include/openssl/ts.h; sourceTree = "<group>"; };
-		2097228D70B1B2C08FF316E56FE89AFB /* asn1t.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = asn1t.h; path = ios/include/openssl/asn1t.h; sourceTree = "<group>"; };
-		21141DE7AB0D1BF9A18A40A40324B056 /* tls1.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = tls1.h; path = ios/include/openssl/tls1.h; sourceTree = "<group>"; };
-		246B183453A29DD93B94328B872789D6 /* pkcs7.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = pkcs7.h; path = ios/include/openssl/pkcs7.h; sourceTree = "<group>"; };
-		25AB2B12CBB2CAE4AAA52CE41485A6D5 /* opensslconf.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = opensslconf.h; path = ios/include/openssl/opensslconf.h; sourceTree = "<group>"; };
-		27118E58E4DD951B61A99E882E6D5A75 /* opensslv.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = opensslv.h; path = ios/include/openssl/opensslv.h; sourceTree = "<group>"; };
-		2DE4C129F30AF917E375741E1D7D190D /* ossl_typ.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ossl_typ.h; path = ios/include/openssl/ossl_typ.h; sourceTree = "<group>"; };
-		2F61320C9DC61CE524D303E82BD1F76C /* bn.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = bn.h; path = ios/include/openssl/bn.h; sourceTree = "<group>"; };
-		2FF48D8DEB8BEB1A2D7B5B8617ECF2F3 /* blowfish.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = blowfish.h; path = ios/include/openssl/blowfish.h; sourceTree = "<group>"; };
-		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		3595F4E05B6696D08546C0FFEE925A10 /* cast.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = cast.h; path = ios/include/openssl/cast.h; sourceTree = "<group>"; };
-		362366B05261427AC34464C5D0EB2CA4 /* ui.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ui.h; path = ios/include/openssl/ui.h; sourceTree = "<group>"; };
-		36DD82D9B755A5658BCD619E2D08257B /* err.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = err.h; path = ios/include/openssl/err.h; sourceTree = "<group>"; };
-		36E221A8D787BC735E8B17EF9CF8F179 /* cms.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = cms.h; path = ios/include/openssl/cms.h; sourceTree = "<group>"; };
-		382C8C4FCD157EAEDED5DA68639580FB /* asn1_mac.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = asn1_mac.h; path = ios/include/openssl/asn1_mac.h; sourceTree = "<group>"; };
-		3D4FD77BFCBE3E636ABE6F1C26FDB5B9 /* bio.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = bio.h; path = ios/include/openssl/bio.h; sourceTree = "<group>"; };
-		46C0DB01148588AE3C57CB0A5366205A /* Pods-Calm Cloud-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Calm Cloud-umbrella.h"; sourceTree = "<group>"; };
-		4787D4A1C9A375368DC94B6A85B203D9 /* cmac.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = cmac.h; path = ios/include/openssl/cmac.h; sourceTree = "<group>"; };
-		4C140F8906B3F582ED6BE56E38C056C3 /* pem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = pem.h; path = ios/include/openssl/pem.h; sourceTree = "<group>"; };
-		4D257DA6C97FBB7C5863831E03F502BD /* seed.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = seed.h; path = ios/include/openssl/seed.h; sourceTree = "<group>"; };
-		4EFCCDCE257CD4AE7635C7D0E12884A7 /* pem2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = pem2.h; path = ios/include/openssl/pem2.h; sourceTree = "<group>"; };
-		4FA7D306B59ED71A8D517E94377C97B9 /* shim.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = shim.h; path = ios/include/openssl/shim.h; sourceTree = "<group>"; };
-		51525C0A37A5AA661CA1009A1B27121D /* obj_mac.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = obj_mac.h; path = ios/include/openssl/obj_mac.h; sourceTree = "<group>"; };
-		548A3BBB93D54D495EF5CDC6F0CE85E3 /* buffer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = buffer.h; path = ios/include/openssl/buffer.h; sourceTree = "<group>"; };
-		5843C267F39443F87DC53FAD54ACDDFE /* Pods-Calm Cloud-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Calm Cloud-acknowledgements.plist"; sourceTree = "<group>"; };
-		5AD0E515AE04D705B878ADC00A909470 /* krb5_asn.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = krb5_asn.h; path = ios/include/openssl/krb5_asn.h; sourceTree = "<group>"; };
-		5B9C2DE3DF47A6AE29F04AA2FF3A3BBD /* ssl3.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ssl3.h; path = ios/include/openssl/ssl3.h; sourceTree = "<group>"; };
-		5D3393D61B11B9DF3DB434E8F5BF2783 /* x509.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = x509.h; path = ios/include/openssl/x509.h; sourceTree = "<group>"; };
-		5D5481B62D056032EE1547096676D965 /* crypto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = crypto.h; path = ios/include/openssl/crypto.h; sourceTree = "<group>"; };
-		5DAE5E5BA6962BCDD3E07BB3070B6034 /* ssl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ssl.h; path = ios/include/openssl/ssl.h; sourceTree = "<group>"; };
-		6060F1748F8947E696ECBEE21AF565CF /* libssl.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libssl.a; path = ios/lib/libssl.a; sourceTree = "<group>"; };
-		63BF43AC902450317F2A4960E3E63826 /* rand.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = rand.h; path = ios/include/openssl/rand.h; sourceTree = "<group>"; };
-		656D3344E589C61BAD3564A2676E1F31 /* des_old.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = des_old.h; path = ios/include/openssl/des_old.h; sourceTree = "<group>"; };
-		6580DE6DB4C86A6B3B37D62DEE9698EF /* md5.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = md5.h; path = ios/include/openssl/md5.h; sourceTree = "<group>"; };
-		65F3759B9BD6B1111852B1A357EA851F /* evp.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = evp.h; path = ios/include/openssl/evp.h; sourceTree = "<group>"; };
+		1BF9F64FE947774B60B6C5E80AB2083B /* Pods-Calm Cloud-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Calm Cloud-umbrella.h"; sourceTree = "<group>"; };
+		1F5A7A3F58CB5F0F5C21CF92675D3C89 /* OpenSSL-Universal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "OpenSSL-Universal.release.xcconfig"; sourceTree = "<group>"; };
+		254EA46B2A17D1B78A16F8086E31517A /* Pods-Calm Cloud.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Calm Cloud.modulemap"; sourceTree = "<group>"; };
+		2CCA7252863D9F2D3DED3AD01DECAE96 /* Pods-Calm Cloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Calm Cloud.release.xcconfig"; sourceTree = "<group>"; };
+		3E81523424CCDCAC9B2EC4E1525F2F0E /* Pods-Calm Cloud-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Calm Cloud-acknowledgements.markdown"; sourceTree = "<group>"; };
 		689A69B97C4F2D7A01FAC87430BD2030 /* Pods_Calm_Cloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Calm_Cloud.framework; path = "Pods-Calm Cloud.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A4B4F67D97036062EB80B26670DA89F /* conf_api.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = conf_api.h; path = ios/include/openssl/conf_api.h; sourceTree = "<group>"; };
-		6D0749A14344D7356C823271C0937211 /* lhash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = lhash.h; path = ios/include/openssl/lhash.h; sourceTree = "<group>"; };
-		72D8C22C2A2178F4F6F06D7CE98F2FE0 /* camellia.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = camellia.h; path = ios/include/openssl/camellia.h; sourceTree = "<group>"; };
-		72DEFF280B550695AD3354251FCDCC98 /* ecdh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ecdh.h; path = ios/include/openssl/ecdh.h; sourceTree = "<group>"; };
-		784C5B1D0896A6B56A708E0538828080 /* srtp.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = srtp.h; path = ios/include/openssl/srtp.h; sourceTree = "<group>"; };
-		7B32EBB40927FB525C4D05FD5A0D21C8 /* ssl2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ssl2.h; path = ios/include/openssl/ssl2.h; sourceTree = "<group>"; };
-		7B530BE8F11A1C6BE0C632AEA85F5DC2 /* txt_db.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = txt_db.h; path = ios/include/openssl/txt_db.h; sourceTree = "<group>"; };
-		7D9881D96C92806D01934448CF685975 /* engine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = engine.h; path = ios/include/openssl/engine.h; sourceTree = "<group>"; };
-		83C6E03C9C26962E9FA2009FEDE0C834 /* rc2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = rc2.h; path = ios/include/openssl/rc2.h; sourceTree = "<group>"; };
-		877BB4F5E234278999EEA713544B89C3 /* ssl23.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ssl23.h; path = ios/include/openssl/ssl23.h; sourceTree = "<group>"; };
-		8FFF88C29C3DAEC3B1937CD5E05FB92D /* Pods-Calm Cloud-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Calm Cloud-acknowledgements.markdown"; sourceTree = "<group>"; };
-		94284A2DDE5C3CB363B9D5A7364C2083 /* Pods-Calm Cloud.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Calm Cloud.modulemap"; sourceTree = "<group>"; };
-		9682BCFA3F203F2BAFC86F0AC6C59197 /* rsa.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = rsa.h; path = ios/include/openssl/rsa.h; sourceTree = "<group>"; };
-		96C8721C7471A57D56910D672851648A /* objects.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = objects.h; path = ios/include/openssl/objects.h; sourceTree = "<group>"; };
-		98CCCC9FA583CDF1342DA9F28D088862 /* opensslconf-i386.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "opensslconf-i386.h"; path = "ios/include/openssl/opensslconf-i386.h"; sourceTree = "<group>"; };
+		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		8BD7E1004DA8014ABFCB4FBB3D682795 /* Pods-Calm Cloud-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Calm Cloud-acknowledgements.plist"; sourceTree = "<group>"; };
+		9ADABA5E1F53F04D17024761CCD60F27 /* Pods-Calm Cloud-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Calm Cloud-dummy.m"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9EDD906E9110E97A1FF67D37CA3176AB /* idea.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = idea.h; path = ios/include/openssl/idea.h; sourceTree = "<group>"; };
-		A07598B2C29EA479512D6A17D69A1D15 /* dso.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = dso.h; path = ios/include/openssl/dso.h; sourceTree = "<group>"; };
-		A3A618917CE51B4141CB9589E123A550 /* opensslconf-arm64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "opensslconf-arm64.h"; path = "ios/include/openssl/opensslconf-arm64.h"; sourceTree = "<group>"; };
-		A4F96BCA30AF7B9B15D4E145BC778C27 /* symhacks.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = symhacks.h; path = ios/include/openssl/symhacks.h; sourceTree = "<group>"; };
-		B3B0F57D3127CBD9C630B282C2998A0C /* dh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = dh.h; path = ios/include/openssl/dh.h; sourceTree = "<group>"; };
-		B4DBAC2A55305DC3AF12A24FEB52AA74 /* kssl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = kssl.h; path = ios/include/openssl/kssl.h; sourceTree = "<group>"; };
-		B6903320315B57A0EA5C3FDF1FFB34D8 /* ocsp.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ocsp.h; path = ios/include/openssl/ocsp.h; sourceTree = "<group>"; };
-		B80F192A4139B92124FA3A6FAC12A4DF /* des.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = des.h; path = ios/include/openssl/des.h; sourceTree = "<group>"; };
-		BA5E2DF803C7E6BF46B9C5E6CE6885D2 /* e_os2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = e_os2.h; path = ios/include/openssl/e_os2.h; sourceTree = "<group>"; };
-		BAD22569D84664D216F5C5309BB37F22 /* pqueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = pqueue.h; path = ios/include/openssl/pqueue.h; sourceTree = "<group>"; };
-		BC17DECCBA3EDC37921E8009DCFB3882 /* srp.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = srp.h; path = ios/include/openssl/srp.h; sourceTree = "<group>"; };
-		BC6EB15DD5CD9966330054E861FCAB1B /* dtls1.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = dtls1.h; path = ios/include/openssl/dtls1.h; sourceTree = "<group>"; };
-		BEC78577B86B51A2B05CB3CD2DC98C5C /* stack.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = stack.h; path = ios/include/openssl/stack.h; sourceTree = "<group>"; };
-		C2585780F8D9E823AF1FDBEE11D992DB /* sha.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = sha.h; path = ios/include/openssl/sha.h; sourceTree = "<group>"; };
-		C6787A53559D0A231568009E4F423103 /* ui_compat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ui_compat.h; path = ios/include/openssl/ui_compat.h; sourceTree = "<group>"; };
-		C9691DBF356E904B88816AD9B1797D03 /* Pods-Calm Cloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Calm Cloud.release.xcconfig"; sourceTree = "<group>"; };
-		CE79779D30D65FA051EB28AF0CE4F9A3 /* opensslconf-armv7s.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "opensslconf-armv7s.h"; path = "ios/include/openssl/opensslconf-armv7s.h"; sourceTree = "<group>"; };
-		D26AEC55F38EE05489D884CE09D8D5DD /* opensslconf-armv7.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "opensslconf-armv7.h"; path = "ios/include/openssl/opensslconf-armv7.h"; sourceTree = "<group>"; };
-		D4AB82FBEA8E797E4D3EEC96E97CD42E /* modes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = modes.h; path = ios/include/openssl/modes.h; sourceTree = "<group>"; };
-		DBAE77CBCBB1585F72AEA26ACF92D67E /* x509_vfy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = x509_vfy.h; path = ios/include/openssl/x509_vfy.h; sourceTree = "<group>"; };
-		DC945AF9C09C3C7E55EA6A36D8812B8E /* mdc2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = mdc2.h; path = ios/include/openssl/mdc2.h; sourceTree = "<group>"; };
-		DD4F2BC67D98C5C4C2EC6E7FAD55AF75 /* asn1.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = asn1.h; path = ios/include/openssl/asn1.h; sourceTree = "<group>"; };
-		EC49448F717509E9733051643B9BCFDB /* rc4.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = rc4.h; path = ios/include/openssl/rc4.h; sourceTree = "<group>"; };
-		EF3CA4E154056487588929D0B2ED1003 /* ripemd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ripemd.h; path = ios/include/openssl/ripemd.h; sourceTree = "<group>"; };
-		F41B0E7B0EE11DFC07B557C2F91965B6 /* ec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ec.h; path = ios/include/openssl/ec.h; sourceTree = "<group>"; };
-		F55BCE370A3A04C874256FD99F33EF9F /* aes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = aes.h; path = ios/include/openssl/aes.h; sourceTree = "<group>"; };
-		F62CBC95E7E1229DE18CEF4232592161 /* x509v3.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = x509v3.h; path = ios/include/openssl/x509v3.h; sourceTree = "<group>"; };
-		F89243F713AEED270D1F0A8070AB12B8 /* whrlpool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = whrlpool.h; path = ios/include/openssl/whrlpool.h; sourceTree = "<group>"; };
-		F8A30D18F5F3D9F1F79A435D2F235D92 /* conf.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = conf.h; path = ios/include/openssl/conf.h; sourceTree = "<group>"; };
-		F9493C6ED908128B28E5BEAB09241531 /* Pods-Calm Cloud-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Calm Cloud-dummy.m"; sourceTree = "<group>"; };
-		FFFC905481A180FF894130A4425D8460 /* OpenSSL-Universal.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "OpenSSL-Universal.xcconfig"; sourceTree = "<group>"; };
+		A00901BCB93A4430578C33A30A47A8DB /* OpenSSL-Universal-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "OpenSSL-Universal-xcframeworks.sh"; sourceTree = "<group>"; };
+		AADCA1D8F987E5153FA1ECE55D2B2351 /* OpenSSL.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; name = OpenSSL.xcframework; path = Frameworks/OpenSSL.xcframework; sourceTree = "<group>"; };
+		CBA942D70B67070CCEF49DF777ACD982 /* OpenSSL-Universal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "OpenSSL-Universal.debug.xcconfig"; sourceTree = "<group>"; };
+		D20CAFB1FED248B7ED7EDBE09BD2751E /* Pods-Calm Cloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Calm Cloud.debug.xcconfig"; sourceTree = "<group>"; };
+		D3C8F8BC65C18C0BF8ABD069DCE0C171 /* Pods-Calm Cloud-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Calm Cloud-frameworks.sh"; sourceTree = "<group>"; };
+		E0111299D06713C7CB8D704EA29F2A80 /* Pods-Calm Cloud-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Calm Cloud-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		25451F739730A53E83626D348867C647 /* Frameworks */ = {
+		A07FD601E479DE8AF7FDB7958F49CD4E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62AE89E6882A6C74844A844E1E233FCD /* Foundation.framework in Frameworks */,
+				C1607B1631F2A2AFE2C480A98B7001EB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D8C8302E198D06CDF276F3269E7D929 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AADCA1D8F987E5153FA1ECE55D2B2351 /* OpenSSL.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		316A4EE1495B6DA8B1957F93D95A92A7 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A00901BCB93A4430578C33A30A47A8DB /* OpenSSL-Universal-xcframeworks.sh */,
+				CBA942D70B67070CCEF49DF777ACD982 /* OpenSSL-Universal.debug.xcconfig */,
+				1F5A7A3F58CB5F0F5C21CF92675D3C89 /* OpenSSL-Universal.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/OpenSSL-Universal";
+			sourceTree = "<group>";
+		};
 		444E5AF2FFBAB72DF26526614129B4DF /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,152 +93,38 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		67313B437B31B52B16B47C3267625E28 /* Targets Support Files */ = {
+		4E62780B97D6C66BACF776DF12651B8A /* OpenSSL-Universal */ = {
 			isa = PBXGroup;
 			children = (
-				80173591C91DDB09248B2C21745E4B3F /* Pods-Calm Cloud */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		80173591C91DDB09248B2C21745E4B3F /* Pods-Calm Cloud */ = {
-			isa = PBXGroup;
-			children = (
-				94284A2DDE5C3CB363B9D5A7364C2083 /* Pods-Calm Cloud.modulemap */,
-				8FFF88C29C3DAEC3B1937CD5E05FB92D /* Pods-Calm Cloud-acknowledgements.markdown */,
-				5843C267F39443F87DC53FAD54ACDDFE /* Pods-Calm Cloud-acknowledgements.plist */,
-				F9493C6ED908128B28E5BEAB09241531 /* Pods-Calm Cloud-dummy.m */,
-				0647932233954F4E324DCCF5096C4541 /* Pods-Calm Cloud-Info.plist */,
-				46C0DB01148588AE3C57CB0A5366205A /* Pods-Calm Cloud-umbrella.h */,
-				07FF388820EF8F1C507C300817FFCD31 /* Pods-Calm Cloud.debug.xcconfig */,
-				C9691DBF356E904B88816AD9B1797D03 /* Pods-Calm Cloud.release.xcconfig */,
-			);
-			name = "Pods-Calm Cloud";
-			path = "Target Support Files/Pods-Calm Cloud";
-			sourceTree = "<group>";
-		};
-		8479BAA8FF147F675C3CCF6774776249 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				91F11B1EFCBD087F71C3563C6A5567F2 /* OpenSSL-Universal */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		91F11B1EFCBD087F71C3563C6A5567F2 /* OpenSSL-Universal */ = {
-			isa = PBXGroup;
-			children = (
-				B419A2B1185DA302BA83780F923AFDA9 /* Static */,
-				C7E3C8FD23AB497BF3994827BE732D10 /* Support Files */,
+				2D8C8302E198D06CDF276F3269E7D929 /* Frameworks */,
+				316A4EE1495B6DA8B1957F93D95A92A7 /* Support Files */,
 			);
 			name = "OpenSSL-Universal";
 			path = "OpenSSL-Universal";
 			sourceTree = "<group>";
 		};
-		B419A2B1185DA302BA83780F923AFDA9 /* Static */ = {
+		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				F55BCE370A3A04C874256FD99F33EF9F /* aes.h */,
-				DD4F2BC67D98C5C4C2EC6E7FAD55AF75 /* asn1.h */,
-				382C8C4FCD157EAEDED5DA68639580FB /* asn1_mac.h */,
-				2097228D70B1B2C08FF316E56FE89AFB /* asn1t.h */,
-				3D4FD77BFCBE3E636ABE6F1C26FDB5B9 /* bio.h */,
-				2FF48D8DEB8BEB1A2D7B5B8617ECF2F3 /* blowfish.h */,
-				2F61320C9DC61CE524D303E82BD1F76C /* bn.h */,
-				548A3BBB93D54D495EF5CDC6F0CE85E3 /* buffer.h */,
-				72D8C22C2A2178F4F6F06D7CE98F2FE0 /* camellia.h */,
-				3595F4E05B6696D08546C0FFEE925A10 /* cast.h */,
-				4787D4A1C9A375368DC94B6A85B203D9 /* cmac.h */,
-				36E221A8D787BC735E8B17EF9CF8F179 /* cms.h */,
-				0C8FDBC6F4F7B9DCAD51877EBC8373F6 /* comp.h */,
-				F8A30D18F5F3D9F1F79A435D2F235D92 /* conf.h */,
-				6A4B4F67D97036062EB80B26670DA89F /* conf_api.h */,
-				5D5481B62D056032EE1547096676D965 /* crypto.h */,
-				B80F192A4139B92124FA3A6FAC12A4DF /* des.h */,
-				656D3344E589C61BAD3564A2676E1F31 /* des_old.h */,
-				B3B0F57D3127CBD9C630B282C2998A0C /* dh.h */,
-				05501740F64394C0A36353C60F3D9B78 /* dsa.h */,
-				A07598B2C29EA479512D6A17D69A1D15 /* dso.h */,
-				BC6EB15DD5CD9966330054E861FCAB1B /* dtls1.h */,
-				BA5E2DF803C7E6BF46B9C5E6CE6885D2 /* e_os2.h */,
-				0AE3B1ADD83658EA766D466AE46623E2 /* ebcdic.h */,
-				F41B0E7B0EE11DFC07B557C2F91965B6 /* ec.h */,
-				72DEFF280B550695AD3354251FCDCC98 /* ecdh.h */,
-				01B9F3B3770517DF5ADA5E7D71D8D392 /* ecdsa.h */,
-				7D9881D96C92806D01934448CF685975 /* engine.h */,
-				36DD82D9B755A5658BCD619E2D08257B /* err.h */,
-				65F3759B9BD6B1111852B1A357EA851F /* evp.h */,
-				1842D30AED591514D7066F2BEC6198CE /* hmac.h */,
-				9EDD906E9110E97A1FF67D37CA3176AB /* idea.h */,
-				5AD0E515AE04D705B878ADC00A909470 /* krb5_asn.h */,
-				B4DBAC2A55305DC3AF12A24FEB52AA74 /* kssl.h */,
-				6D0749A14344D7356C823271C0937211 /* lhash.h */,
-				02F33873E58777030863FBFB62045C1C /* md4.h */,
-				6580DE6DB4C86A6B3B37D62DEE9698EF /* md5.h */,
-				DC945AF9C09C3C7E55EA6A36D8812B8E /* mdc2.h */,
-				D4AB82FBEA8E797E4D3EEC96E97CD42E /* modes.h */,
-				51525C0A37A5AA661CA1009A1B27121D /* obj_mac.h */,
-				96C8721C7471A57D56910D672851648A /* objects.h */,
-				B6903320315B57A0EA5C3FDF1FFB34D8 /* ocsp.h */,
-				25AB2B12CBB2CAE4AAA52CE41485A6D5 /* opensslconf.h */,
-				A3A618917CE51B4141CB9589E123A550 /* opensslconf-arm64.h */,
-				D26AEC55F38EE05489D884CE09D8D5DD /* opensslconf-armv7.h */,
-				CE79779D30D65FA051EB28AF0CE4F9A3 /* opensslconf-armv7s.h */,
-				98CCCC9FA583CDF1342DA9F28D088862 /* opensslconf-i386.h */,
-				180AB5CDE06DAAB1119CA3BAC8A9F7F6 /* opensslconf-x86_64.h */,
-				27118E58E4DD951B61A99E882E6D5A75 /* opensslv.h */,
-				2DE4C129F30AF917E375741E1D7D190D /* ossl_typ.h */,
-				4C140F8906B3F582ED6BE56E38C056C3 /* pem.h */,
-				4EFCCDCE257CD4AE7635C7D0E12884A7 /* pem2.h */,
-				17F28561971BABD1A38B3250D9AC168B /* pkcs12.h */,
-				246B183453A29DD93B94328B872789D6 /* pkcs7.h */,
-				BAD22569D84664D216F5C5309BB37F22 /* pqueue.h */,
-				63BF43AC902450317F2A4960E3E63826 /* rand.h */,
-				83C6E03C9C26962E9FA2009FEDE0C834 /* rc2.h */,
-				EC49448F717509E9733051643B9BCFDB /* rc4.h */,
-				EF3CA4E154056487588929D0B2ED1003 /* ripemd.h */,
-				9682BCFA3F203F2BAFC86F0AC6C59197 /* rsa.h */,
-				07651C9D9199B823F9510B870AC3F6D5 /* safestack.h */,
-				4D257DA6C97FBB7C5863831E03F502BD /* seed.h */,
-				C2585780F8D9E823AF1FDBEE11D992DB /* sha.h */,
-				4FA7D306B59ED71A8D517E94377C97B9 /* shim.h */,
-				BC17DECCBA3EDC37921E8009DCFB3882 /* srp.h */,
-				784C5B1D0896A6B56A708E0538828080 /* srtp.h */,
-				5DAE5E5BA6962BCDD3E07BB3070B6034 /* ssl.h */,
-				7B32EBB40927FB525C4D05FD5A0D21C8 /* ssl2.h */,
-				877BB4F5E234278999EEA713544B89C3 /* ssl23.h */,
-				5B9C2DE3DF47A6AE29F04AA2FF3A3BBD /* ssl3.h */,
-				BEC78577B86B51A2B05CB3CD2DC98C5C /* stack.h */,
-				A4F96BCA30AF7B9B15D4E145BC778C27 /* symhacks.h */,
-				21141DE7AB0D1BF9A18A40A40324B056 /* tls1.h */,
-				1EC94502AF5D400EE372FEFF5137E06A /* ts.h */,
-				7B530BE8F11A1C6BE0C632AEA85F5DC2 /* txt_db.h */,
-				362366B05261427AC34464C5D0EB2CA4 /* ui.h */,
-				C6787A53559D0A231568009E4F423103 /* ui_compat.h */,
-				F89243F713AEED270D1F0A8070AB12B8 /* whrlpool.h */,
-				5D3393D61B11B9DF3DB434E8F5BF2783 /* x509.h */,
-				DBAE77CBCBB1585F72AEA26ACF92D67E /* x509_vfy.h */,
-				F62CBC95E7E1229DE18CEF4232592161 /* x509v3.h */,
-				D4A73131275BB50BBC038D63423D040D /* Frameworks */,
-			);
-			name = Static;
-			sourceTree = "<group>";
-		};
-		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
+				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		C7E3C8FD23AB497BF3994827BE732D10 /* Support Files */ = {
+		5BFACD9F0A8B6720B39747505DB31570 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				FFFC905481A180FF894130A4425D8460 /* OpenSSL-Universal.xcconfig */,
+				D92BD14EB0A530ACA14449DC05889B7D /* Pods-Calm Cloud */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/OpenSSL-Universal";
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		8479BAA8FF147F675C3CCF6774776249 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4E62780B97D6C66BACF776DF12651B8A /* OpenSSL-Universal */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -307,35 +134,43 @@
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				8479BAA8FF147F675C3CCF6774776249 /* Pods */,
 				444E5AF2FFBAB72DF26526614129B4DF /* Products */,
-				67313B437B31B52B16B47C3267625E28 /* Targets Support Files */,
+				5BFACD9F0A8B6720B39747505DB31570 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
 		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C0834CEBB1379A84116EF29F93051C60 /* iOS */,
+				578452D2E740E91742655AC8F1636D1F /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D4A73131275BB50BBC038D63423D040D /* Frameworks */ = {
+		D92BD14EB0A530ACA14449DC05889B7D /* Pods-Calm Cloud */ = {
 			isa = PBXGroup;
 			children = (
-				07E5E1FF164C1845F6F1B302210143B5 /* libcrypto.a */,
-				6060F1748F8947E696ECBEE21AF565CF /* libssl.a */,
+				254EA46B2A17D1B78A16F8086E31517A /* Pods-Calm Cloud.modulemap */,
+				3E81523424CCDCAC9B2EC4E1525F2F0E /* Pods-Calm Cloud-acknowledgements.markdown */,
+				8BD7E1004DA8014ABFCB4FBB3D682795 /* Pods-Calm Cloud-acknowledgements.plist */,
+				9ADABA5E1F53F04D17024761CCD60F27 /* Pods-Calm Cloud-dummy.m */,
+				D3C8F8BC65C18C0BF8ABD069DCE0C171 /* Pods-Calm Cloud-frameworks.sh */,
+				E0111299D06713C7CB8D704EA29F2A80 /* Pods-Calm Cloud-Info.plist */,
+				1BF9F64FE947774B60B6C5E80AB2083B /* Pods-Calm Cloud-umbrella.h */,
+				D20CAFB1FED248B7ED7EDBE09BD2751E /* Pods-Calm Cloud.debug.xcconfig */,
+				2CCA7252863D9F2D3DED3AD01DECAE96 /* Pods-Calm Cloud.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = "Pods-Calm Cloud";
+			path = "Target Support Files/Pods-Calm Cloud";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		91513A27FFA6C8481F99DF05E731901F /* Headers */ = {
+		03C2C73C148E25B3771231989FE1F432 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				231B2C8EE30BF65792A5A3567F87450E /* Pods-Calm Cloud-umbrella.h in Headers */,
+				6AEA48F623AE3E560A172FE23FB7C453 /* Pods-Calm Cloud-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,17 +179,17 @@
 /* Begin PBXNativeTarget section */
 		6AC86F7EB7B7C2B7C485DC2AEA9D11CE /* Pods-Calm Cloud */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 774A2C3FADD6B2EB77F255442A8706E4 /* Build configuration list for PBXNativeTarget "Pods-Calm Cloud" */;
+			buildConfigurationList = EF5CA082D062669E8072BFF40B784BFF /* Build configuration list for PBXNativeTarget "Pods-Calm Cloud" */;
 			buildPhases = (
-				91513A27FFA6C8481F99DF05E731901F /* Headers */,
-				BBF5158D0AC5768CED95235BF9184267 /* Sources */,
-				25451F739730A53E83626D348867C647 /* Frameworks */,
-				198E565EA2C86451FEDFB4C64B7ADA12 /* Resources */,
+				03C2C73C148E25B3771231989FE1F432 /* Headers */,
+				3D19FD75320DA63D760E25A71908E151 /* Sources */,
+				A07FD601E479DE8AF7FDB7958F49CD4E /* Frameworks */,
+				51B0C9B54247C66B4052EFC79B573DBF /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				959F0135015201D7D5661F665B9F0BCA /* PBXTargetDependency */,
+				7669A743B4E2110B7568F03F4FE9C4D9 /* PBXTargetDependency */,
 			);
 			name = "Pods-Calm Cloud";
 			productName = "Pods-Calm Cloud";
@@ -390,7 +225,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		198E565EA2C86451FEDFB4C64B7ADA12 /* Resources */ = {
+		51B0C9B54247C66B4052EFC79B573DBF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -399,31 +234,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		DAEA2BAAFED7B7865CB41712646E4160 /* [CP] Copy XCFrameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/OpenSSL-Universal/OpenSSL-Universal-xcframeworks-input-files.xcfilelist",
+			);
+			name = "[CP] Copy XCFrameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/OpenSSL-Universal/OpenSSL-Universal-xcframeworks-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/OpenSSL-Universal/OpenSSL-Universal-xcframeworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		BBF5158D0AC5768CED95235BF9184267 /* Sources */ = {
+		3D19FD75320DA63D760E25A71908E151 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D899B5B5102292AF9C69E22503A930CC /* Pods-Calm Cloud-dummy.m in Sources */,
+				FBC9D86F7D3B7CA1B6816C8D469796B2 /* Pods-Calm Cloud-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		959F0135015201D7D5661F665B9F0BCA /* PBXTargetDependency */ = {
+		7669A743B4E2110B7568F03F4FE9C4D9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "OpenSSL-Universal";
 			target = B9ED5194E665042005069EF06C82A050 /* OpenSSL-Universal */;
-			targetProxy = 5156E88EF43474A1B160D8EC7EEE9300 /* PBXContainerItemProxy */;
+			targetProxy = 01D657C102E670ACAECF84B4ED8777D7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		131356BE54884448CA49C07BEDF4BB2A /* Debug */ = {
+		2B9E26EAE2CD392AD762421F663075A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -446,6 +302,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -484,106 +341,13 @@
 			};
 			name = Debug;
 		};
-		14CD1ABE7D5A90BFFA9FFD1DC8126B6F /* Debug */ = {
+		45843BD8C9A61FAA80B9C1553E421D86 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07FF388820EF8F1C507C300817FFCD31 /* Pods-Calm Cloud.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		532EB6D1B9E0D0C61CB73971EC9BCF13 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C9691DBF356E904B88816AD9B1797D03 /* Pods-Calm Cloud.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		8F202A3E600955955D491DA1740A97A6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FFFC905481A180FF894130A4425D8460 /* OpenSSL-Universal.xcconfig */;
+			baseConfigurationReference = 1F5A7A3F58CB5F0F5C21CF92675D3C89 /* OpenSSL-Universal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		9F9D5DF52F981F21F9F33E148F6D6724 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FFFC905481A180FF894130A4425D8460 /* OpenSSL-Universal.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -594,10 +358,11 @@
 			};
 			name = Release;
 		};
-		F090CD07A80273D5A73C8EA19224ADDB /* Release */ = {
+		63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -620,6 +385,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -654,32 +420,123 @@
 			};
 			name = Release;
 		};
+		BB5613AEAE8E129112409CF80755388B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CCA7252863D9F2D3DED3AD01DECAE96 /* Pods-Calm Cloud.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D3B8B3F464CB1CB6C0812A0EE69E5023 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D20CAFB1FED248B7ED7EDBE09BD2751E /* Pods-Calm Cloud.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F70FB2C772CB3A9B68A75AA06B76A888 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBA942D70B67070CCEF49DF777ACD982 /* OpenSSL-Universal.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				131356BE54884448CA49C07BEDF4BB2A /* Debug */,
-				F090CD07A80273D5A73C8EA19224ADDB /* Release */,
+				2B9E26EAE2CD392AD762421F663075A1 /* Debug */,
+				63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		741581A7361AF4537A921DAD19E3B1ED /* Build configuration list for PBXAggregateTarget "OpenSSL-Universal" */ = {
+		C1D72BC345233EADF30A97D462F723B7 /* Build configuration list for PBXAggregateTarget "OpenSSL-Universal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8F202A3E600955955D491DA1740A97A6 /* Debug */,
-				9F9D5DF52F981F21F9F33E148F6D6724 /* Release */,
+				F70FB2C772CB3A9B68A75AA06B76A888 /* Debug */,
+				45843BD8C9A61FAA80B9C1553E421D86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		774A2C3FADD6B2EB77F255442A8706E4 /* Build configuration list for PBXNativeTarget "Pods-Calm Cloud" */ = {
+		EF5CA082D062669E8072BFF40B784BFF /* Build configuration list for PBXNativeTarget "Pods-Calm Cloud" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				14CD1ABE7D5A90BFFA9FFD1DC8126B6F /* Debug */,
-				532EB6D1B9E0D0C61CB73971EC9BCF13 /* Release */,
+				D3B8B3F464CB1CB6C0812A0EE69E5023 /* Debug */,
+				BB5613AEAE8E129112409CF80755388B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

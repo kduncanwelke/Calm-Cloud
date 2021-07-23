@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,9 @@
 		2D2EF6A62466017E00E497DC /* InventoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EF6A52466017E00E497DC /* InventoryCollectionViewCell.swift */; };
 		2D384C21243BCA3B00D0FFEB /* PageControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C20243BCA3B00D0FFEB /* PageControllerManager.swift */; };
 		2D384C23243BCB5E00D0FFEB /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C22243BCB5E00D0FFEB /* EntryManager.swift */; };
+		2D3EB98C26AB6BE4004C6A78 /* Pods_Calm_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3EB98B26AB6BE4004C6A78 /* Pods_Calm_Cloud.framework */; };
+		2D3EB99226AB7220004C6A78 /* loire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D3EB99126AB7220004C6A78 /* loire.mp3 */; };
+		2D3EB99426AB7226004C6A78 /* you_will_know.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D3EB99326AB7226004C6A78 /* you_will_know.mp3 */; };
 		2D41EF28242D5CE20058C443 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D41EF27242D5CE20058C443 /* PhotoManager.swift */; };
 		2D41EF2A242D5DCF0058C443 /* Favorites+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D41EF29242D5DCF0058C443 /* Favorites+CollectionView.swift */; };
 		2D41EF2F242D5EBB0058C443 /* DocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D41EF2E242D5EBB0058C443 /* DocumentsManager.swift */; };
@@ -61,8 +64,6 @@
 		2D9B7CFD24AD17EB00CDFA8E /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7CFC24AD17EB00CDFA8E /* Receipt.swift */; };
 		2D9B7CFF24AD187B00CDFA8E /* StoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7CFE24AD187B00CDFA8E /* StoreHelper.swift */; };
 		2D9B7D0124AD18CF00CDFA8E /* ReceiptItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7D0024AD18CF00CDFA8E /* ReceiptItem.swift */; };
-		2D9B7D0324AD24EA00CDFA8E /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9B7D0224AD24A400CDFA8E /* libcrypto.a */; };
-		2D9B7D0524AD251E00CDFA8E /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9B7D0424AD250A00CDFA8E /* libssl.a */; };
 		2D9B7D0724AD253400CDFA8E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9B7D0624AD253400CDFA8E /* StoreKit.framework */; };
 		2D9B7D0A24AD342900CDFA8E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7D0924AD342900CDFA8E /* NetworkMonitor.swift */; };
 		2D9B7D0C24AD3CC200CDFA8E /* BuyPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7D0B24AD3CC200CDFA8E /* BuyPlantViewController.swift */; };
@@ -102,11 +103,21 @@
 		2DD7C97424D09E2E0008C79F /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7C97324D09E2E0008C79F /* InfoViewController.swift */; };
 		2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */; };
 		2DDEA32B242A98E800717E8C /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEA32A242A98E800717E8C /* AnimationManager.swift */; };
-		2DF4763D24A52BFF00EE7C2C /* you_will_know.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DF4763C24A52BFF00EE7C2C /* you_will_know.mp3 */; };
-		2DF4763F24A5317B00EE7C2C /* loire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DF4763E24A5317B00EE7C2C /* loire.mp3 */; };
 		2DFD54B124660B100096FD5C /* Plantings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFD54B024660B100096FD5C /* Plantings.swift */; };
-		B75AB16C8526E25F416A18D1 /* Pods_Calm_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 211AF311F66267DAA0A89D1C /* Pods_Calm_Cloud.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2DC9765A26AB678000203E76 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 11;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		211AF311F66267DAA0A89D1C /* Pods_Calm_Cloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calm_Cloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +139,9 @@
 		2D384C20243BCA3B00D0FFEB /* PageControllerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControllerManager.swift; sourceTree = "<group>"; };
 		2D384C22243BCB5E00D0FFEB /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
 		2D38D60224D22D3F009F82B5 /* Calm Cloud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Calm Cloud.entitlements"; sourceTree = "<group>"; };
+		2D3EB98B26AB6BE4004C6A78 /* Pods_Calm_Cloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Calm_Cloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D3EB99126AB7220004C6A78 /* loire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = loire.mp3; sourceTree = "<group>"; };
+		2D3EB99326AB7226004C6A78 /* you_will_know.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = you_will_know.mp3; sourceTree = "<group>"; };
 		2D41EF27242D5CE20058C443 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		2D41EF29242D5DCF0058C443 /* Favorites+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Favorites+CollectionView.swift"; sourceTree = "<group>"; };
 		2D41EF2E242D5EBB0058C443 /* DocumentsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsManager.swift; sourceTree = "<group>"; };
@@ -200,6 +214,8 @@
 		2DC5EBCA2474886300741E5E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		2DC95DDC2485A9830085DD14 /* CompareImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareImages.swift; sourceTree = "<group>"; };
 		2DC95DDE2485AC160085DD14 /* HarvestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarvestViewController.swift; sourceTree = "<group>"; };
+		2DC9765726AB678000203E76 /* Pods_Calm_Cloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Calm_Cloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DC9765B26AB679200203E76 /* Pods_Calm_Cloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Calm_Cloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DCC9C7A24672031006834B0 /* PlantManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantManager.swift; sourceTree = "<group>"; };
 		2DD2C318246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "audio_hero_NightAmbienceCalm+PE011801.mp3"; sourceTree = "<group>"; };
 		2DD2C31A246353310070934D /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
@@ -210,8 +226,6 @@
 		2DD7C97324D09E2E0008C79F /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTimer.swift; sourceTree = "<group>"; };
 		2DDEA32A242A98E800717E8C /* AnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
-		2DF4763C24A52BFF00EE7C2C /* you_will_know.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = you_will_know.mp3; path = ../../../../../../Downloads/you_will_know.mp3; sourceTree = "<group>"; };
-		2DF4763E24A5317B00EE7C2C /* loire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = loire.mp3; path = ../../../../../../Downloads/loire.mp3; sourceTree = "<group>"; };
 		2DFD54B024660B100096FD5C /* Plantings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plantings.swift; sourceTree = "<group>"; };
 		7342098CA9156F3920FAC3AF /* Pods-Calm Cloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calm Cloud.debug.xcconfig"; path = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.debug.xcconfig"; sourceTree = "<group>"; };
 		E37AE3B8A5B8DED3AE9FFF65 /* Pods-Calm Cloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calm Cloud.release.xcconfig"; path = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.release.xcconfig"; sourceTree = "<group>"; };
@@ -222,9 +236,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D9B7D0324AD24EA00CDFA8E /* libcrypto.a in Frameworks */,
-				B75AB16C8526E25F416A18D1 /* Pods_Calm_Cloud.framework in Frameworks */,
-				2D9B7D0524AD251E00CDFA8E /* libssl.a in Frameworks */,
+				2D3EB98C26AB6BE4004C6A78 /* Pods_Calm_Cloud.framework in Frameworks */,
 				2D9B7D0724AD253400CDFA8E /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,7 +385,6 @@
 			children = (
 				2DD2C31A246353310070934D /* Sounds.swift */,
 				2D00EEB82494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 */,
-				2DF4763C24A52BFF00EE7C2C /* you_will_know.mp3 */,
 				2DB63955252F982900D8ECE0 /* west_wolf_Rear_Street_City_Rain_With_Thunders.mp3 */,
 				2DB6394F252F899B00D8ECE0 /* kedr_sfx_stockholm_roomtone_flat_day_closed_window_ac_hum_calm_street_sounds_behind_wall.mp3 */,
 				2DAEFB3C25A913EB00FB4D38 /* audio_hero_FireMediumRoarHiss_PE052201_358.mp3 */,
@@ -381,10 +392,11 @@
 				2DB63957252FA51800D8ECE0 /* zapsplat_nature_rain_internal_home_rec_open_window_occ_cars_pass_low_thunder_rumbles_001_25102.mp3 */,
 				2DB63953252F929100D8ECE0 /* spa_snowstorm_ambience_snow_falling_on_ground_with_wind.mp3 */,
 				2DB63951252F91E600D8ECE0 /* weather-wind-trees-bushes-countryside.mp3 */,
+				2D3EB99326AB7226004C6A78 /* you_will_know.mp3 */,
+				2D3EB99126AB7220004C6A78 /* loire.mp3 */,
 				2DD7C97124D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 */,
 				2DB6394D252F871900D8ECE0 /* zapsplat_horror_graveyard_ambience_night_wind_owls_43583.mp3 */,
 				2DB6394B252F83C700D8ECE0 /* zapsplat_nature_forest_ambience_wind_trees_birds_leaves_fall_to_ground_autumn_20090.mp3 */,
-				2DF4763E24A5317B00EE7C2C /* loire.mp3 */,
 				2DD2C318246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 */,
 			);
 			path = Sounds;
@@ -439,6 +451,9 @@
 		DFFCED311ABFD1645B72F9C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2D3EB98B26AB6BE4004C6A78 /* Pods_Calm_Cloud.framework */,
+				2DC9765B26AB679200203E76 /* Pods_Calm_Cloud.framework */,
+				2DC9765726AB678000203E76 /* Pods_Calm_Cloud.framework */,
 				2D9B7D0624AD253400CDFA8E /* StoreKit.framework */,
 				2D9B7D0424AD250A00CDFA8E /* libssl.a */,
 				2D9B7D0224AD24A400CDFA8E /* libcrypto.a */,
@@ -458,6 +473,8 @@
 				2D48CC32242548B200D0FBBB /* Sources */,
 				2D48CC33242548B200D0FBBB /* Frameworks */,
 				2D48CC34242548B200D0FBBB /* Resources */,
+				2DC9765A26AB678000203E76 /* Embed Frameworks */,
+				E56F7B9BAF4CFF4101B767D6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -514,14 +531,14 @@
 				2DAEFB3D25A913EB00FB4D38 /* audio_hero_FireMediumRoarHiss_PE052201_358.mp3 in Resources */,
 				2D48CC46242548B400D0FBBB /* LaunchScreen.storyboard in Resources */,
 				2DB6394E252F871900D8ECE0 /* zapsplat_horror_graveyard_ambience_night_wind_owls_43583.mp3 in Resources */,
-				2DF4763F24A5317B00EE7C2C /* loire.mp3 in Resources */,
-				2DF4763D24A52BFF00EE7C2C /* you_will_know.mp3 in Resources */,
 				2DB6394C252F83C700D8ECE0 /* zapsplat_nature_forest_ambience_wind_trees_birds_leaves_fall_to_ground_autumn_20090.mp3 in Resources */,
 				2DB63958252FA51800D8ECE0 /* zapsplat_nature_rain_internal_home_rec_open_window_occ_cars_pass_low_thunder_rumbles_001_25102.mp3 in Resources */,
 				2D7E2AF324477CFA006C76BD /* Assets.xcassets in Resources */,
+				2D3EB99426AB7226004C6A78 /* you_will_know.mp3 in Resources */,
 				2DB63952252F91E600D8ECE0 /* weather-wind-trees-bushes-countryside.mp3 in Resources */,
 				2D48CC41242548B200D0FBBB /* Main.storyboard in Resources */,
 				2DD2C319246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 in Resources */,
+				2D3EB99226AB7220004C6A78 /* loire.mp3 in Resources */,
 				2D00EEB92494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 in Resources */,
 				2DD7C97224D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 in Resources */,
 			);
@@ -530,6 +547,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		E56F7B9BAF4CFF4101B767D6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FC5EB765442F3CA6AE15A222 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -768,6 +802,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -779,7 +814,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7342098CA9156F3920FAC3AF /* Pods-Calm Cloud.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Calm Cloud/Calm Cloud.entitlements";
@@ -799,7 +833,7 @@
 				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/Stuffs/Treehouse/Calm Cloud/Calm Cloud/header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/GitHub/Calm-Cloud/Calm Cloud/header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/OpenSSL-Universal/ios/include";
@@ -810,7 +844,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E37AE3B8A5B8DED3AE9FFF65 /* Pods-Calm Cloud.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Calm Cloud/Calm Cloud.entitlements";
@@ -830,7 +863,7 @@
 				MARKETING_VERSION = 2.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/Stuffs/Treehouse/Calm Cloud/Calm Cloud/header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/GitHub/Calm-Cloud/Calm Cloud/header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/OpenSSL-Universal/ios/include";

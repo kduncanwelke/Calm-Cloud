@@ -229,7 +229,7 @@ extension ViewController {
         case .potty:
             destination = CGPoint(x: container.frame.width/1.57, y: (container.frame.height/3)*2)
         case .ceiling:
-            destination = CGPoint(x: cloudKitty.frame.midX, y: cloudKitty.frame.midY)
+            destination = CGPoint(x: container.frame.midX, y: container.frame.midY)
         case .game:
             destination = CGPoint(x: container.frame.width/4.4, y: (container.frame.height/3)*2.35)
         case .pillow:

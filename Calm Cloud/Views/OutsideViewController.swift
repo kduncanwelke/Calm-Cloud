@@ -406,8 +406,10 @@ class OutsideViewController: UIViewController {
         view.bringSubviewToFront(levelUpImage)
         levelUpImage.animateBounce()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
-            self.view.sendSubviewToBack(self.levelUpImage)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            if let image = self?.levelUpImage {
+                self?.view.sendSubviewToBack(image)
+            }
         }
     }
     

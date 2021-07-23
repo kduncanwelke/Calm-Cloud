@@ -21,7 +21,7 @@ func readInteger(ptr: inout UnsafePointer<UInt8>?, maxLength: Int) -> Int? {
     
     guard type == V_ASN1_INTEGER else { return nil }
     
-    let integerObject = c2i_ASN1_INTEGER(nil, &ptr, length)
+    let integerObject = d2i_ASN1_INTEGER(nil, &ptr, length)
     let intValue = ASN1_INTEGER_get(integerObject)
     ASN1_INTEGER_free(integerObject)
     
