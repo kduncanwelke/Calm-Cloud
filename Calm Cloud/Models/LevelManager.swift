@@ -29,3 +29,11 @@ struct LevelManager {
     static let playerUnlock = 17
     static let lanternsUnlock = 25
 }
+
+
+enum EXPSource {
+    case food // 5
+    case water // 5
+    case potty // 10
+    case reward // 15
+}

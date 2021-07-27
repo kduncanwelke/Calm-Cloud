@@ -10,14 +10,6 @@ import Foundation
 import UIKit
 
 struct WeatherManager {
-    enum Weather {
-        case clearWarm
-        case clearCool
-        case rainingWarm
-        case rainingCool
-        case snowing
-        case snowOnGround
-    }
     
     static var currentWeather: Weather = .clearWarm
     static let range = [1,2,3]
@@ -78,4 +70,13 @@ struct WeatherManager {
     
     static let rainImages = [#imageLiteral(resourceName: "rain1.png"),#imageLiteral(resourceName: "rain2.png")]
     static let snowImages = [#imageLiteral(resourceName: "snow1.png"),#imageLiteral(resourceName: "snow2.png"),#imageLiteral(resourceName: "snow3.png"),#imageLiteral(resourceName: "snow4.png"),#imageLiteral(resourceName: "snow5.png"),#imageLiteral(resourceName: "snow6.png")]
+}
+
+enum Weather {
+    case clearWarm
+    case clearCool
+    case rainingWarm
+    case rainingCool
+    case snowing
+    case snowOnGround
 }

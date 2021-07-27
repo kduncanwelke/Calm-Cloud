@@ -60,29 +60,8 @@ class ViewController: UIViewController {
     
     
     // MARK: Variables
-    
-    var hasFood = false
-    var hasWater = false
-    var hasCleanPotty = false
-    var hasEaten = false
-    var hasDrunk = false
-    var hasBeenPet = false
-    var isPlaying = false
-    var hasPlayed = false
-    var summonedToFood = false
-    var summonedToWater = false
-    var summonedToToy = false
-    var summonedToPotty = false
-    var inPotty = false
-    var stopped = false
-    var lightsOff = false
-    var playingMusic = false
-    var stringLightsOn = false
-    var summonedToGame = false
-    var summonedToFire = false
-    var playingGame = false
-    var fireOn = false
-    var returnedFromSegue = false
+
+    private let viewModel = ViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,13 +93,10 @@ class ViewController: UIViewController {
         plusEXPLabelAlt.alpha = 0.0
         weather.isHidden = true
        
-        loadPhotos()
-        loadEntries()
-        loadCare()
-        loadTasks()
-        DataFunctions.loadLevel()
-        DataFunctions.loadMoney()
-        DataFunctions.loadFuel()
+        viewModel.loadPhotos()
+        viewModel.loadEntries()
+        viewModel.loadCare()
+        viewModel.loadTasks()
         
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
@@ -128,12 +104,9 @@ class ViewController: UIViewController {
         AnimationManager.location = .middle
         AnimationManager.movement = .staying
         sleep()
-        
-        let day = Calendar.current.component(.day, from: Date())
-        let month = Calendar.current.component(.month, from: Date())
-        
-        WeatherManager.getWeather(month: month, day: day)
-        
+
+        viewModel.weather()
+
         loadUI()
         setMood()
     }
@@ -151,7 +124,7 @@ class ViewController: UIViewController {
         if self.isViewLoaded && (self.view.window != nil) {
             print("view will transition inside")
             cloudKitty.stopAnimating()
-            AnimationTimer.stop()
+            viewModel.stopTimer()
             randomMove()
         }
     }
@@ -160,139 +133,68 @@ class ViewController: UIViewController {
     
     func stopAnimations() {
         cloudKitty.stopAnimating()
-        AnimationTimer.stop()
-        stopped = true
+        viewModel.stopTimer()
         
-        if isPlaying {
+        viewModel.stop()
+        
+        if viewModel.isPlaying() {
             toyImage.stopAnimating()
-            isPlaying = false
+            viewModel.stopPlaying()
         }
         
-        if playingGame {
+        if viewModel.isPlayingGame() {
             game.stopAnimating()
-            playingGame = false
+            viewModel.stopPlayingGame()
         }
     }
     
     func loadUI() {
+        viewModel.setAmbientSound()
         setTimeAndWeather()
         
         // set images and exp
-        if hasFood {
+        if viewModel.hasFood() {
             foodImage.isHidden = false
-            hasEaten = true
         } else {
             foodImage.isHidden = true
         }
         
-        if hasWater {
+        if viewModel.hasWater() {
             waterImage.isHidden = false
-            hasDrunk = true
         } else {
             waterImage.isHidden = true
         }
         
-        if hasCleanPotty {
+        if viewModel.hasCleanPotty() {
             pottyBox.image = UIImage(named: "litterbox")
         }
-        
+
         setFireAppearance()
         
-        levelLabel.text = "\(LevelManager.currentLevel)"
-        expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
-        var prog: Float = Float(LevelManager.currentEXP) / Float(LevelManager.maxEXP)
+        levelLabel.text = viewModel.getLevel()
+        expLabel.text = viewModel.getLevelDetails()
+        var prog = viewModel.getProgress()
         levelProgress.setProgress(prog, animated: true)
-        coinCount.text = "\(MoneyManager.total)"
-    }
-    
-    func fireHasFuel() -> Bool {
-        if let validTime = Fireplace.lastsUntil {
-            if validTime > Date() {
-                return true
-            } else {
-                return false
-            }
-        } else {
-            return false
-        }
-    }
-    
-    func fireHasSparkles() -> Bool {
-        if let validTime = Fireplace.color {
-            if validTime > Date() {
-                return true
-            } else {
-                return false
-            }
-        } else {
-            return false
-        }
+        coinCount.text = viewModel.getCoins()
     }
     
     func setFireAppearance() {
-        if fireHasFuel() && fireHasSparkles() {
+        if viewModel.fireHasFuel() && viewModel.fireHasSparkles() {
             fireplace.image = UIImage(named: "fireplacewoodcolor")
-        } else if fireHasFuel() {
+        } else if viewModel.fireHasFuel() {
             fireplace.image = UIImage(named: "fireplacewood")
-        } else if fireHasSparkles() {
+        } else if viewModel.fireHasSparkles() {
             fireplace.image = UIImage(named: "fireplacecolor")
         } else {
             fireplace.image = UIImage(named: "fireplace")
         }
     }
-    
-    func setAmbientSound() {
-        let hour = Calendar.current.component(.hour, from: Date())
-        
-        switch WeatherManager.currentWeather {
-        case .clearWarm:
-            if hour > 6 && hour < 20 {
-                Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
-                Sound.startPlaying()
-            } else {
-                Sound.loadSound(resourceName: Sounds.insideNight.resourceName, type: Sounds.insideNight.type)
-                Sound.startPlaying()
-            }
-        case .clearCool:
-            if hour > 6 && hour < 20 {
-                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
-                Sound.startPlaying()
-            } else {
-                Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
-                Sound.startPlaying()
-            }
-        case .rainingWarm:
-            Sound.loadSound(resourceName: Sounds.rainIndoors.resourceName, type: Sounds.rainIndoors.type)
-            Sound.startPlaying()
-        case .rainingCool:
-            Sound.loadSound(resourceName: Sounds.rainIndoors.resourceName, type: Sounds.rainIndoors.type)
-            Sound.startPlaying()
-        case .snowing:
-            if hour > 6 && hour < 20 {
-                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
-                Sound.startPlaying()
-            } else {
-                Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
-                Sound.startPlaying()
-            }
-        case .snowOnGround:
-            if hour > 6 && hour < 20 {
-                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
-                Sound.startPlaying()
-            } else {
-                Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
-                Sound.startPlaying()
-            }
-        }
-    }
-    
+
     func setTimeAndWeather() {
         // change background if night
         let hour = Calendar.current.component(.hour, from: Date())
-        
-        setAmbientSound()
     
-        switch WeatherManager.currentWeather {
+        switch viewModel.getWeather() {
         case .clearWarm:
             weather.isHidden = true
             
@@ -394,14 +296,11 @@ class ViewController: UIViewController {
         }
     }
     
-    func updateEXP(with amount: Int) {
+    func updateEXP(source: EXPSource) {
         // update ui with level info and save
-        LevelManager.currentEXP += amount
-        
-        if LevelManager.currentEXP >= LevelManager.maxEXP {
-            LevelManager.currentLevel += 1
-            levelLabel.text = "\(LevelManager.currentLevel)"
-            LevelManager.calculateLevel()
+
+        if viewModel.updateEXP(source: source) {
+            levelLabel.text = viewModel.getLevel()
             showLevelUp()
             levelLabel.animateBounce()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
@@ -409,10 +308,9 @@ class ViewController: UIViewController {
             }
         }
         
-        expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
-        var prog: Float = Float(LevelManager.currentEXP) / Float(LevelManager.maxEXP)
+        expLabel.text = viewModel.getLevelDetails()
+        var prog = viewModel.getProgress()
         levelProgress.setProgress(prog, animated: true)
-        DataFunctions.saveLevel()
     }
     
     @objc func updateMoney() {
@@ -425,7 +323,7 @@ class ViewController: UIViewController {
     
     @objc func updateExperience() {
         // update exp from tasks reward
-        updateEXP(with: 15)
+        updateEXP(source: .reward)
     }
     
     @objc func updateLevelFromOutside() {
@@ -446,17 +344,17 @@ class ViewController: UIViewController {
         setFireAppearance()
         
         // restart fire sound if on
-        if fireOn {
-            FireSound.startPlaying()
+        if viewModel.isBurning() {
+            viewModel.startCrackle()
         }
         
         // set indoor sound
-        setAmbientSound()
+        viewModel.setAmbientSound()
         
         door.isHidden = false
         openDoor.isHidden = true
-        stopped = false
-        returnedFromSegue = true
+        viewModel.stop()
+        viewModel.setReturnFromSegue()
         
         stopMoving()
     }
@@ -470,7 +368,7 @@ class ViewController: UIViewController {
     }
     
     @objc func moveToPotty() {
-        inPotty = true
+        viewModel.inPotty()
         // dig while in potty
         dig()
     }
@@ -478,7 +376,7 @@ class ViewController: UIViewController {
     @objc func closeMiniGame() {
         // close mini game container when user dismisses
         view.sendSubviewToBack(containerView)
-        stopped = false
+        viewModel.stop()
         stopMoving()
     }
     
@@ -492,32 +390,6 @@ class ViewController: UIViewController {
         view.sendSubviewToBack(receivedPackageContainer)
         boxInside.isHidden = true
         boxInside.image = UIImage(named: "closedbox")
-    }
-    
-    func randomRepeatCount() -> Int {
-        // randomly generate a repeat count for animations
-        var randomRepeatCount = Int.random(in: 4...8)
-        print("repeat \(randomRepeatCount) times")
-        return randomRepeatCount
-    }
-    
-    func setMood() {
-        // set cloud kitty's mood deepending on activities
-        if hasFood == false && hasWater == false && hasCleanPotty == false {
-            AnimationManager.mood = .sad
-        } else if hasEaten == true && hasDrunk == false {
-            AnimationManager.mood = .thirsty
-        } else if hasDrunk == true && hasEaten == false {
-            AnimationManager.mood = .hungry
-        } else if hasCleanPotty == false {
-            AnimationManager.mood = .embarrassed
-        } else if hasCleanPotty && hasFood == false && hasWater == false {
-            AnimationManager.mood = .unhappy
-        } else if (hasPlayed || hasBeenPet) && hasFood == false && hasWater == false {
-            AnimationManager.mood = .unhappy
-        } else if hasEaten && hasDrunk {
-            AnimationManager.mood = .happy
-        }
     }
     
     // location change animations, randomized
@@ -621,15 +493,15 @@ class ViewController: UIViewController {
     
     func summoned() {
         // if summoned to location by user tap and conditions are met, execute action
-        if summonedToToy && AnimationManager.location != .toy && hasPlayed == false {
+        if viewModel.summonedToToy() && viewModel.getAnimationLocation() != .toy && viewModel.hasPlayed() == false {
             moveRightToToy()
            
-            summonedToToy = false
-        } else if summonedToGame && AnimationManager.location != .game && hasPlayed == false {
+            viewModel.removeToySummon()
+        } else if viewModel.summonedToGame() && viewModel.getAnimationLocation() != .game && viewModel.hasPlayed() == false {
             moveLeftToGame()
             
-            summonedToGame = false
-        } else if summonedToWater && hasDrunk == false {
+            viewModel.removeGameSummon()
+        } else if viewModel.summonedToWater() && viewModel.hasDrunk() == false {
             switch AnimationManager.location {
             case .water:
                 drink()
@@ -886,36 +758,37 @@ class ViewController: UIViewController {
     }
     
     @IBAction func giveWater(_ sender: UITapGestureRecognizer) {
-        summonedToWater = true
+        viewModel.waterSummon()
         
-        if hasWater {
+        if viewModel.hasWater() {
             // do nothing
         } else {
             waterImage.isHidden = false
-            hasWater = true
-            saveCare(food: nil, water: Date(), potty: nil)
-            updateEXP(with: 5)
+            viewModel.giveWater()
+            viewModel.saveCare(food: nil, water: Date(), potty: nil)
+            updateEXP(source: .water)
             showEXP(near: waterImage, exp: 5)
         }
     }
     
     @IBAction func giveFood(_ sender: UITapGestureRecognizer) {
-        summonedToFood = true
+        viewModel.foodSummon()
         
-        if hasFood {
+        if viewModel.hasFood() {
             // do nothing
         } else {
             foodImage.isHidden = false
-            hasFood = true
-            saveCare(food: Date(), water: nil, potty: nil)
-            updateEXP(with: 5)
+            viewModel.giveFood()
+            viewModel.saveCare(food: Date(), water: nil, potty: nil)
+            updateEXP(source: .food)
             showEXP(near: foodImage, exp: 5)
         }
     }
     
     @IBAction func tapOnToy(_ sender: UITapGestureRecognizer) {
-        summonedToToy = true
-        if isPlaying {
+        viewModel.toySummon()
+        
+        if viewModel.isPlaying() {
             // do nothing, cat is playing with toy already
         } else {
             toyImage.animationImages = AnimationManager.toyAnimation
@@ -926,16 +799,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func cleanPotty(_ sender: UITapGestureRecognizer) {
-        summonedToPotty = true
+        viewModel.pottySummon()
 
-        if hasCleanPotty {
+        if viewModel.hasCleanPotty() {
             // do nothing
         } else {
-            hasCleanPotty = true
+            viewModel.cleanPotty()
             pottyBox.image = UIImage(named: "litterbox")
-            saveCare(food: nil, water: nil, potty: Date())
+            viewModel.saveCare(food: nil, water: nil, potty: Date())
             setMood()
-            updateEXP(with: 10)
+            updateEXP(source: .potty)
             showEXP(near: pottyBox, exp: 10)
         }
     }
@@ -1058,7 +931,7 @@ class ViewController: UIViewController {
     @IBAction func fireplaceTapped(_ sender: UITapGestureRecognizer) {
         summonedToFire = true
         
-        if fireHasFuel() {
+        if viewModel.fireHasFuel() {
             if fireOn {
                 FireSound.stopPlaying()
                 fireOn = false
@@ -1074,7 +947,7 @@ class ViewController: UIViewController {
                 FireSound.startPlaying()
                 fireOn = true
                
-                if fireHasSparkles() {
+                if viewModel.fireHasSparkles() {
                     fireplace.animationImages = AnimationManager.fireAnimationColor
                 } else {
                     fireplace.animationImages = AnimationManager.fireAnimation

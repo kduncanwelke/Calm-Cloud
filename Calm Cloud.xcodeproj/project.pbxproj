@@ -18,6 +18,9 @@
 		2D25AFF82489A126003BDBE6 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D25AFF72489A126003BDBE6 /* BasketViewController.swift */; };
 		2D26545E2440F6EE00FBFF74 /* OutsideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */; };
 		2D2654612441165800FBFF74 /* CellCheckDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2654602441165800FBFF74 /* CellCheckDelegate.swift */; };
+		2D2D9FB926B0B1680042B6F2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D9FB826B0B1680042B6F2 /* ViewModel.swift */; };
+		2D2D9FBB26B0B21F0042B6F2 /* StatusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D9FBA26B0B21F0042B6F2 /* StatusManager.swift */; };
+		2D2D9FBD26B0BF5C0042B6F2 /* ViewModel+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D9FBC26B0BF5C0042B6F2 /* ViewModel+CoreData.swift */; };
 		2D2EF6A22465F2EE00E497DC /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */; };
 		2D2EF6A4246600FF00E497DC /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EF6A3246600FF00E497DC /* InventoryViewController.swift */; };
 		2D2EF6A62466017E00E497DC /* InventoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EF6A52466017E00E497DC /* InventoryCollectionViewCell.swift */; };
@@ -133,6 +136,9 @@
 		2D25AFF72489A126003BDBE6 /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutsideViewController.swift; sourceTree = "<group>"; };
 		2D2654602441165800FBFF74 /* CellCheckDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellCheckDelegate.swift; sourceTree = "<group>"; };
+		2D2D9FB826B0B1680042B6F2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		2D2D9FBA26B0B21F0042B6F2 /* StatusManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusManager.swift; sourceTree = "<group>"; };
+		2D2D9FBC26B0BF5C0042B6F2 /* ViewModel+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModel+CoreData.swift"; sourceTree = "<group>"; };
 		2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		2D2EF6A3246600FF00E497DC /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		2D2EF6A52466017E00E497DC /* InventoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -261,10 +267,20 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		2D2D9FB726B0B14D0042B6F2 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				2D2D9FB826B0B1680042B6F2 /* ViewModel.swift */,
+				2D2D9FBC26B0BF5C0042B6F2 /* ViewModel+CoreData.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 		2D41EF2D242D5EAF0058C443 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				2D41EF2E242D5EBB0058C443 /* DocumentsManager.swift */,
+				2D2D9FBA26B0B21F0042B6F2 /* StatusManager.swift */,
 				2D9B7D0924AD342900CDFA8E /* NetworkMonitor.swift */,
 				2D41EF27242D5CE20058C443 /* PhotoManager.swift */,
 				2D384C20243BCA3B00D0FFEB /* PageControllerManager.swift */,
@@ -312,6 +328,7 @@
 				2D48CC39242548B200D0FBBB /* AppDelegate.swift */,
 				2D8BA7D824B671E00020E6EF /* AppleIncRootCertificate.cer */,
 				2D48CC3B242548B200D0FBBB /* SceneDelegate.swift */,
+				2D2D9FB726B0B14D0042B6F2 /* View Models */,
 				2D41EF2D242D5EAF0058C443 /* Models */,
 				2DD50C1E242D58CC00073B49 /* Views */,
 				2D48CC3F242548B200D0FBBB /* Main.storyboard */,
@@ -606,6 +623,7 @@
 				2D03D3EA25ACDDC50096A3FE /* ItemManager.swift in Sources */,
 				2DB4106524916E8C00EFD088 /* MoneyManager.swift in Sources */,
 				2D2EF6A22465F2EE00E497DC /* PopUpViewController.swift in Sources */,
+				2D2D9FBD26B0BF5C0042B6F2 /* ViewModel+CoreData.swift in Sources */,
 				2DA08A262530D7EF00A5129F /* WeatherManager.swift in Sources */,
 				2DD2C31B246353310070934D /* Sounds.swift in Sources */,
 				2D14EBDE243E7740004CB7E2 /* NotificationManager.swift in Sources */,
@@ -651,6 +669,7 @@
 				2D8F9042243F9E8F00211802 /* ActivityTableViewCell.swift in Sources */,
 				2DB6E540248AD8CA007DA241 /* BasketTableViewCell.swift in Sources */,
 				2D2EF6A62466017E00E497DC /* InventoryCollectionViewCell.swift in Sources */,
+				2D2D9FB926B0B1680042B6F2 /* ViewModel.swift in Sources */,
 				2DB6E544248AF375007DA241 /* Harvested.swift in Sources */,
 				2D41EF31242D607C0058C443 /* FavoriteThingsViewController.swift in Sources */,
 				2D8F9045243FC2EF00211802 /* ActivitiesViewController.swift in Sources */,
@@ -667,6 +686,7 @@
 				2D7FCAC224329CDE00E2DEC4 /* ReminderList+TableView.swift in Sources */,
 				2D5D6F362464830C00993969 /* MiniGameViewController.swift in Sources */,
 				2D2EF6A4246600FF00E497DC /* InventoryViewController.swift in Sources */,
+				2D2D9FBB26B0B21F0042B6F2 /* StatusManager.swift in Sources */,
 				2D8C838F2433CDD9006711F2 /* CoreDataManager.swift in Sources */,
 				2D7FCAC02432968F00E2DEC4 /* ReminderTableViewCell.swift in Sources */,
 				2D25AFF82489A126003BDBE6 /* BasketViewController.swift in Sources */,
