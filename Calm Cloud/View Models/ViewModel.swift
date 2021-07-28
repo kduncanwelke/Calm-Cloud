@@ -20,19 +20,60 @@ public class ViewModel {
         WeatherManager.getWeather(month: month, day: day)
     }
 
+    func configureWeather() -> (condition: WeatherCondition, image: UIImage?) {
+        // change background if night
+        let hour = Calendar.current.component(.hour, from: Date())
+
+        switch WeatherManager.currentWeather {
+        case .clearWarm:
+            if hour > 6 && hour < 20 {
+                return (.nothing, UIImage(named: "outsidebackground"))
+            } else {
+                return (.nothing, UIImage(named: "outsidebackgroundnight"))
+            }
+        case .clearCool:
+            if hour > 6 && hour < 20 {
+                return (.nothing, UIImage(named: "outsidebackgroundfall"))
+            } else {
+                return (.nothing, UIImage(named: "outsidebackgroundfallnight"))
+            }
+        case .rainingWarm:
+            if hour > 6 && hour < 20 {
+                return (.rain, UIImage(named: "outsidebackground"))
+            } else {
+                return (.rain, UIImage(named: "outsidebackgroundnight"))
+            }
+        case .rainingCool:
+            if hour > 6 && hour < 20 {
+                return (.rain, UIImage(named: "outsidebackgroundfall"))
+            } else {
+                return (.rain, UIImage(named: "outsidebackgroundfallnight"))
+            }
+        case .snowing:
+            if hour > 6 && hour < 20 {
+                return (.snow, UIImage(named: "outsidebackgroundsnow"))
+            } else {
+                return (.snow, UIImage(named: "outsidebackgroundsnownight"))
+            }
+        case .snowOnGround:
+            if hour > 6 && hour < 20 {
+                return (.nothing, UIImage(named: "outsidebackgroundsnow"))
+            } else {
+                return (.nothing, UIImage(named: "outsidebackgroundsnownight"))
+            }
+        }
+    }
+
     func getWeather() -> Weather {
         return WeatherManager.currentWeather
     }
 
-    func setReturnFromSegue() {
-        StatusManager.returnedFromSegue = true
+    func isReturnedFromSegue() -> Bool {
+        return StatusManager.returnedFromSegue
     }
 
-    func randomRepeatCount() -> Int {
-        // randomly generate a repeat count for animations
-        var randomRepeatCount = Int.random(in: 4...8)
-        print("repeat \(randomRepeatCount) times")
-        return randomRepeatCount
+    func setReturnFromSegue() {
+        StatusManager.returnedFromSegue = true
     }
 
     func isRecentEnough(date: Date?, recentness: Int) -> Bool {
@@ -83,6 +124,18 @@ public class ViewModel {
         StatusManager.summonedToToy = true
     }
 
+    func gameSummon() {
+        StatusManager.summonedToGame = true
+    }
+
+    func fireSummon() {
+        StatusManager.summonedToFire = true
+    }
+
+    func summonedToFood() -> Bool {
+        return StatusManager.summonedToFood
+    }
+
     func summonedToWater() -> Bool {
         return StatusManager.summonedToWater
     }
@@ -95,8 +148,24 @@ public class ViewModel {
         return StatusManager.summonedToGame
     }
 
+    func summonedToPotty() -> Bool {
+        return StatusManager.summonedToPotty
+    }
+
+    func summonedToFire() -> Bool {
+        return StatusManager.summonedToFire
+    }
+
     func pottySummon() {
         StatusManager.summonedToPotty = true
+    }
+
+    func removeFoodSummon() {
+        StatusManager.summonedToFood = false
+    }
+
+    func removeWaterSummon() {
+        StatusManager.summonedToWater = false
     }
 
     func removeToySummon() {
@@ -105,6 +174,23 @@ public class ViewModel {
 
     func removeGameSummon() {
         StatusManager.summonedToGame = false
+    }
+
+    func removePottySummon() {
+        StatusManager.summonedToPotty = false
+    }
+
+    func removeFireSummon() {
+        StatusManager.summonedToFire = false
+    }
+
+    func resetSummons() {
+        removeFoodSummon()
+        removeWaterSummon()
+        removeToySummon()
+        removeGameSummon()
+        removePottySummon()
+        removeFireSummon()
     }
 
     // MARK: Care
@@ -119,6 +205,14 @@ public class ViewModel {
 
     func hasDrunk() -> Bool {
         return StatusManager.hasDrunk
+    }
+
+    func hasEaten() -> Bool {
+        return StatusManager.hasEaten
+    }
+
+    func petted() {
+        StatusManager.hasBeenPet = true
     }
 
     func giveFood() {
@@ -158,6 +252,10 @@ public class ViewModel {
         StatusManager.stopped = true
     }
 
+    func unStop() {
+        StatusManager.stopped = false
+    }
+
     func hasPlayed() -> Bool {
         return StatusManager.hasPlayed
     }
@@ -180,6 +278,18 @@ public class ViewModel {
     }
 
     // MARK: Fire
+
+    func setFireAppearance() -> UIImage? {
+        if fireHasFuel() && fireHasSparkles() {
+            return UIImage(named: "fireplacewoodcolor")
+        } else if fireHasFuel() {
+            return UIImage(named: "fireplacewood")
+        } else if fireHasSparkles() {
+            return UIImage(named: "fireplacecolor")
+        } else {
+            return UIImage(named: "fireplace")
+        }
+    }
 
     func fireHasFuel() -> Bool {
         if let validTime = Fireplace.lastsUntil {
@@ -213,6 +323,84 @@ public class ViewModel {
         FireSound.startPlaying()
     }
 
+    func turnOffFire() {
+        StatusManager.fireOn = false
+    }
+
+    func turnOnFire() {
+        StatusManager.fireOn = true
+    }
+
+    // MARK: Record player
+
+    func musicOn() -> Bool {
+        return StatusManager.playingMusic
+    }
+
+    func stopMusic() {
+        StatusManager.playingMusic = false
+    }
+
+    func startMusic() {
+        StatusManager.playingMusic = true
+    }
+
+    // MARK: Lights
+
+    func lightsOff() -> Bool {
+        return StatusManager.lightsOff
+    }
+
+    func turnLightsOff() {
+        StatusManager.lightsOff = true
+    }
+
+    func turnLightsOn() {
+        StatusManager.lightsOff = false
+    }
+
+    func stringLightsOn() -> Bool {
+        return StatusManager.stringLightsOn
+    }
+
+    func turnStringLightsOff() {
+        StatusManager.stringLightsOn = false
+    }
+
+    func turnStringLightsOn() {
+        StatusManager.stringLightsOn = true
+    }
+
+    func configureLights() -> (lights: UIImage?, overlay: UIImage?) {
+        if stringLightsOn() && lightsOff() {
+            turnStringLightsOff()
+
+            if stringLightsOn() && isBurning() {
+                return (UIImage(named: "lights"), UIImage(named: "glowstarsfire"))
+            } else if stringLightsOn() {
+                return (UIImage(named: "lights"), UIImage(named: "glowstars"))
+            } else if isBurning() {
+                return (UIImage(named: "lights"), UIImage(named: "nostarsfire"))
+            } else {
+                return (UIImage(named: "lights"), UIImage(named: "nightoverlay"))
+            }
+        } else if stringLightsOn() == false && lightsOff() {
+            turnStringLightsOn()
+
+            if stringLightsOn() && isBurning() {
+                return (UIImage(named: "lightsglow"), UIImage(named: "glowstarsfire"))
+            } else if stringLightsOn() {
+                return (UIImage(named: "lightsglow"), UIImage(named: "glowstars"))
+            } else if isBurning() {
+                return (UIImage(named: "lightsglow"), UIImage(named: "nostarsfire"))
+            } else {
+                return (UIImage(named: "lightsglow"), UIImage(named: "nightoverlay"))
+            }
+        } else {
+            return (nil, nil)
+        }
+    }
+
     // MARK: Level
 
     func getLevel() -> String {
@@ -227,6 +415,22 @@ public class ViewModel {
         return Float(LevelManager.currentEXP) / Float(LevelManager.maxEXP)
     }
 
+    func canAccessLights() -> Bool {
+        if LevelManager.currentLevel >= LevelManager.lightsUnlock {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    func canAccessRecordPlayer() -> Bool {
+        if LevelManager.currentLevel >= LevelManager.playerUnlock {
+            return true
+        } else {
+            return false
+        }
+    }
+
     func updateEXP(source: EXPSource) -> Bool {
         // update ui with level info and save
         var amount = 0
@@ -234,9 +438,9 @@ public class ViewModel {
         switch source {
         case .food, .water:
             amount = 5
-        case .potty:
+        case .potty, .planting:
             amount = 10
-        case .reward:
+        case .reward, .harvest:
             amount = 15
         }
 
@@ -260,44 +464,55 @@ public class ViewModel {
     func setAmbientSound() {
         let hour = Calendar.current.component(.hour, from: Date())
 
-        switch WeatherManager.currentWeather {
-        case .clearWarm:
-            if hour > 6 && hour < 20 {
-                Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
+        if lightsOff() {
+            switch WeatherManager.currentWeather {
+            case .clearWarm, .rainingWarm:
+                Sound.loadSound(resourceName: Sounds.night.resourceName, type: Sounds.night.type)
                 Sound.startPlaying()
-            } else {
-                Sound.loadSound(resourceName: Sounds.insideNight.resourceName, type: Sounds.insideNight.type)
-                Sound.startPlaying()
-            }
-        case .clearCool:
-            if hour > 6 && hour < 20 {
-                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
-                Sound.startPlaying()
-            } else {
-                Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
+            case .clearCool, .rainingCool, .snowing, .snowOnGround:
+                Sound.loadSound(resourceName: Sounds.outsideFallWinterNight.resourceName, type: Sounds.outsideFallWinterNight.type)
                 Sound.startPlaying()
             }
-        case .rainingWarm:
-            Sound.loadSound(resourceName: Sounds.rainIndoors.resourceName, type: Sounds.rainIndoors.type)
-            Sound.startPlaying()
-        case .rainingCool:
-            Sound.loadSound(resourceName: Sounds.rainIndoors.resourceName, type: Sounds.rainIndoors.type)
-            Sound.startPlaying()
-        case .snowing:
-            if hour > 6 && hour < 20 {
-                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
+        } else {
+            switch WeatherManager.currentWeather {
+            case .clearWarm:
+                if hour > 6 && hour < 20 {
+                    Sound.loadSound(resourceName: Sounds.inside.resourceName, type: Sounds.inside.type)
+                    Sound.startPlaying()
+                } else {
+                    Sound.loadSound(resourceName: Sounds.insideNight.resourceName, type: Sounds.insideNight.type)
+                    Sound.startPlaying()
+                }
+            case .clearCool:
+                if hour > 6 && hour < 20 {
+                    Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
+                    Sound.startPlaying()
+                } else {
+                    Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
+                    Sound.startPlaying()
+                }
+            case .rainingWarm:
+                Sound.loadSound(resourceName: Sounds.rainIndoors.resourceName, type: Sounds.rainIndoors.type)
                 Sound.startPlaying()
-            } else {
-                Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
+            case .rainingCool:
+                Sound.loadSound(resourceName: Sounds.rainIndoors.resourceName, type: Sounds.rainIndoors.type)
                 Sound.startPlaying()
-            }
-        case .snowOnGround:
-            if hour > 6 && hour < 20 {
-                Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
-                Sound.startPlaying()
-            } else {
-                Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
-                Sound.startPlaying()
+            case .snowing:
+                if hour > 6 && hour < 20 {
+                    Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
+                    Sound.startPlaying()
+                } else {
+                    Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
+                    Sound.startPlaying()
+                }
+            case .snowOnGround:
+                if hour > 6 && hour < 20 {
+                    Sound.loadSound(resourceName: Sounds.insideFallWinter.resourceName, type: Sounds.insideFallWinter.type)
+                    Sound.startPlaying()
+                } else {
+                    Sound.loadSound(resourceName: Sounds.insideFallWinterNight.resourceName, type: Sounds.insideFallWinterNight.type)
+                    Sound.startPlaying()
+                }
             }
         }
     }
@@ -309,6 +524,36 @@ public class ViewModel {
     }
 
     // MARK: Animation
+
+    func performAnimationResets(toy: UIImageView, game: UIImageView) {
+        if StatusManager.returnedFromSegue {
+            StatusManager.returnedFromSegue = false
+        }
+
+        if toy.isAnimating {
+            toy.stopAnimating()
+        }
+
+        if StatusManager.playingGame {
+            StatusManager.playingGame = false
+        }
+
+        if game.isAnimating {
+            game.stopAnimating()
+        }
+
+        if StatusManager.isPlaying {
+            StatusManager.isPlaying = false
+        }
+
+        if StatusManager.inPotty {
+            StatusManager.inPotty = false
+        }
+    }
+
+    func getMovementType() -> Movement {
+        return AnimationManager.movement
+    }
 
     func getAnimationLocation() -> Location {
         return AnimationManager.location

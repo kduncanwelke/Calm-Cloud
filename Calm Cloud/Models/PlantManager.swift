@@ -269,7 +269,6 @@ struct PlantManager {
         }
     }
     
-    static var chosen = 0
     static var currentStage: Stage = .one
     static var needsWater = false
     static var selected: Plant = .redTulip

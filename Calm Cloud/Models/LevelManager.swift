@@ -36,4 +36,6 @@ enum EXPSource {
     case water // 5
     case potty // 10
     case reward // 15
+    case harvest // 15
+    case planting // 10
 }

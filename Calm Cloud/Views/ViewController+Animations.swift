@@ -10,6 +10,13 @@ import Foundation
 import UIKit
 
 extension ViewController {
+
+    func randomRepeatCount() -> Int {
+        // randomly generate a repeat count for animations
+        var randomRepeatCount = Int.random(in: 4...8)
+        print("repeat \(randomRepeatCount) times")
+        return randomRepeatCount
+    }
     
     // MARK: Animations
     

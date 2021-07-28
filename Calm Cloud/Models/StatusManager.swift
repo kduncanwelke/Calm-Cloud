@@ -33,4 +33,7 @@ struct StatusManager {
     static var playingGame = false
     static var fireOn = false
     static var returnedFromSegue = false
+
+    // state for outisde view
+    static var lanternsOn = false
 }

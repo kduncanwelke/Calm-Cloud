@@ -89,18 +89,17 @@ class OutsideViewController: UIViewController {
     @IBOutlet weak var plantName: UIButton!
     
     @IBOutlet weak var weather: UIImageView!
-    
-    
+
     // MARK: Variables
-    
-    var selectedPlot = 0
+
+    private let viewModel = ViewModel()
+    private let outsideViewModel = OutsideViewModel()
+
     var wateringModeOn = false
     var trowelModeOn = false
     var tappedImage: UIImageView?
     var stopped = false
     var mode: Mode = .planting
-    var lightsOn = false
-    var name = ""
     var rotated = false
     
     override func viewDidLoad() {
@@ -132,6 +131,10 @@ class OutsideViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateCoins), name: NSNotification.Name(rawValue: "updateCoins"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(hideMiniGame), name: NSNotification.Name(rawValue: "hideMiniGame"), object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(loadPlants), name: NSNotification.Name(rawValue: "loadPlants"), object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(waterPlant), name: NSNotification.Name(rawValue: "waterPlant"), object: nil)
         
         
         let offset = container.frame.width / 5
@@ -140,7 +143,7 @@ class OutsideViewController: UIViewController {
         plusEXPLabel.alpha = 0.0
         plusEXPLabelAlt.alpha = 0.0
         honorStandMoney.isHidden = true
-        coinCount.text = "\(MoneyManager.total)"
+        coinCount.text = viewModel.getCoins()
         earningsView.isHidden = true
         
         normalText.alpha = 1.0
@@ -152,11 +155,9 @@ class OutsideViewController: UIViewController {
         sleep()
         
         loadUI()
-        loadInventory()
-        loadPlots()
-        DataFunctions.loadHarvest()
-        DataFunctions.loadHonorStand()
-        DataFunctions.saveInventory()
+        outsideViewModel.loadInventory()
+        outsideViewModel.loadPlots()
+       
         checkForPurchases()
     }
     
@@ -173,7 +174,7 @@ class OutsideViewController: UIViewController {
         if self.isViewLoaded && (self.view.window != nil) {
             print("view will transition outside")
             cloudKitty.stopAnimating()
-            AnimationTimer.stop()
+            viewModel.stopTimer()
             randomMoveOutside()
         }
     }
@@ -187,170 +188,73 @@ class OutsideViewController: UIViewController {
     }
     
     func loadUI() {
-        setTimeAndWeather()
+        outsideViewModel.setAmbientSound()
+
+        var result = viewModel.configureWeather()
+
+        outsideImage.image = result.image
+
+        switch result.condition {
+        case .rain:
+            weather.isHidden = false
+            startRain()
+        case .snow:
+            weather.isHidden = false
+            startSnow()
+        case .nothing:
+            weather.isHidden = true
+        }
         
         // update level
-        levelLabel.text = "\(LevelManager.currentLevel)"
-        expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
-        var prog: Float = Float(LevelManager.currentEXP) / Float(LevelManager.maxEXP)
+        updateLevel()
+    }
+
+    func updateLevel() {
+        levelLabel.text = viewModel.getLevel()
+        expLabel.text = viewModel.getLevel()
+        var prog = viewModel.getProgress()
         levelProgress.setProgress(prog, animated: true)
     }
-    
-    func setTimeAndWeather() {
-        let hour = Calendar.current.component(.hour, from: Date())
-        
-        print(WeatherManager.currentWeather)
-        switch WeatherManager.currentWeather {
-        case .clearWarm:
-            weather.isHidden = true
-             
-            if hour > 6 && hour < 20 {
-                outsideImage.image = UIImage(named: "outside")
-                Sound.stopPlaying()
-                Sound.loadSound(resourceName: Sounds.outside.resourceName, type: Sounds.outside.type)
-                Sound.startPlaying()
-            } else {
-                 outsideImage.image = UIImage(named: "backgroundnight")
-                Sound.stopPlaying()
-                Sound.loadSound(resourceName: Sounds.night.resourceName, type: Sounds.night.type)
-                Sound.startPlaying()
-            }
-        case .clearCool:
-            weather.isHidden = true
-             
-            if hour > 6 && hour < 20 {
-                 outsideImage.image = UIImage(named: "outsidefall")
-                Sound.stopPlaying()
-                Sound.loadSound(resourceName: Sounds.outsideFallWinter.resourceName, type: Sounds.outsideFallWinter.type)
-                Sound.startPlaying()
-            } else {
-                outsideImage.image = UIImage(named: "outsidefallnight")
-                Sound.stopPlaying()
-                Sound.loadSound(resourceName: Sounds.outsideFallWinterNight.resourceName, type: Sounds.outsideFallWinterNight.type)
-                Sound.startPlaying()
-            }
-        case .rainingWarm:
-            weather.isHidden = false
-            
-            if hour > 6 && hour < 20 {
-                outsideImage.image = UIImage(named: "outside")
-            } else {
-                outsideImage.image = UIImage(named: "backgroundnight")
-            }
-            
-            // raining animation
-            weather.animationImages = WeatherManager.rainImages
-            weather.animationDuration = 0.3
-            weather.startAnimating()
-            
-            Sound.stopPlaying()
-            Sound.loadSound(resourceName: Sounds.rainOutdoors.resourceName, type: Sounds.rainOutdoors.type)
-            Sound.startPlaying()
-        case .rainingCool:
-            weather.isHidden = false
-            
-            if hour > 6 && hour < 20 {
-                outsideImage.image = UIImage(named: "outsidefall")
-            } else {
-                outsideImage.image = UIImage(named: "outsidefallnight")
-            }
-            
-            // add raining animation
-            weather.animationImages = WeatherManager.rainImages
-            weather.animationDuration = 0.3
-            weather.startAnimating()
-            
-            Sound.stopPlaying()
-            Sound.loadSound(resourceName: Sounds.rainOutdoors.resourceName, type: Sounds.rainOutdoors.type)
-            Sound.startPlaying()
-        case .snowing:
-            weather.isHidden = false
-            
-            if hour > 6 && hour < 20 {
-                outsideImage.image = UIImage(named: "outsidesnow")
-            } else {
-                outsideImage.image = UIImage(named: "outsidesnownight")
-            }
-            
-            // add snowing animation
-            weather.animationImages = WeatherManager.snowImages
-            weather.animationDuration = 2.8
-            weather.startAnimating()
-            
-            Sound.stopPlaying()
-            Sound.loadSound(resourceName: Sounds.snow.resourceName, type: Sounds.snow.type)
-            Sound.startPlaying()
-        case .snowOnGround:
-            weather.isHidden = true
-            
-            if hour > 6 && hour < 20 {
-                outsideImage.image = UIImage(named: "outsidesnow")
-            } else {
-                outsideImage.image = UIImage(named: "outsidesnownight")
-            }
-            
-            Sound.stopPlaying()
-            Sound.loadSound(resourceName: Sounds.snow.resourceName, type: Sounds.snow.type)
-            Sound.startPlaying()
-        }
+
+    func startRain() {
+        // raining animation
+        weather.animationImages = WeatherManager.rainImages
+        weather.animationDuration = 0.3
+        weather.startAnimating()
     }
-    
-    func getName() {
-        let planting = Plantings.plantings.filter { $0.id == PlantManager.chosen }.first
-        
-        guard let plant = planting else { return }
-        
-        for seedling in Plantings.seedlings {
-            if seedling.plant == Plant(rawValue: Int(plant.plant))! {
-                name = seedling.name
-            }
-        }
+
+    func startSnow() {
+        // add snowing animation
+        weather.animationImages = WeatherManager.snowImages
+        weather.animationDuration = 2.8
+        weather.startAnimating()
     }
     
     func checkForPurchases() {
-        if let income = Harvested.randomPurchases() {
-            // show collectable money
-            MoneyManager.earnings += income
-            if income != 0 {
-                honorStandMoney.isHidden = false
-                DataFunctions.saveMoney()
-                DataFunctions.saveHonorStandItems()
-            }
-        }
-        
+        honorStandMoney.isHidden = outsideViewModel.hideMoneyInHonorStand()
+
         loadHonorStand()
     }
     
     @objc func loadHonorStand() {
-        var index = 0
-        
-        if MoneyManager.earnings != 0 {
-            honorStandMoney.isHidden = false
-        }
-        
-        // show more crowded image if more quantity
-        for (type, quantity) in Harvested.inStand {
-            if honorStandImages[index].image == nil {
-                if quantity > 0 {
-                    honorStandImages[index].image = Harvested.getStandImage(plant: type)
-                    index += 1
-                }
-            }
-        }
+        var result = outsideViewModel.configureHonorStand(honorStandImages: honorStandImages)
+
+        honorStandMoney.isHidden = result.hidden
+        honorStandImages = result.imagesForHonorStand
     }
     
     @objc func updateLevelFromBasket() {
         // refresh these level labels when exp is gained outside
-        levelLabel.text = "\(LevelManager.currentLevel)"
-        expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
+        levelLabel.text = viewModel.getLevel()
+        expLabel.text = viewModel.getLevelDetails()
     }
     
     @objc func updateCoins() {
-        coinCount.text = "\(MoneyManager.total)"
+        coinCount.text = viewModel.getCoins()
         coinImage.animateBounce()
         
         // resave money
-        DataFunctions.saveMoney()
+        outsideViewModel.saveMoney()
     }
     
     func showEXP(near: UIImageView, exp: Int) {
@@ -378,25 +282,16 @@ class OutsideViewController: UIViewController {
         }
     }
     
-    func updateEXP(with amount: Int) {
-        // update exp and save
-        LevelManager.currentEXP += amount
-        
-        if LevelManager.currentEXP >= LevelManager.maxEXP {
-            LevelManager.currentLevel += 1
-            levelLabel.text = "\(LevelManager.currentLevel)"
-            LevelManager.calculateLevel()
-            levelLabel.animateBounce()
+    func updateEXP(source: EXPSource) {
+        if viewModel.updateEXP(source: source) {
+            levelLabel.text = viewModel.getLevel()
             showLevelUp()
+            levelLabel.animateBounce()
+
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "levelUp"), object: nil)
         }
-        
-        expLabel.text = "\(LevelManager.currentEXP)/\(LevelManager.maxEXP)"
-        print(LevelManager.currentEXP)
-        print(LevelManager.maxEXP)
-        var prog: Float = Float(LevelManager.currentEXP) / Float(LevelManager.maxEXP)
-        levelProgress.setProgress(prog, animated: true)
-        DataFunctions.saveLevel()
+
+        updateLevel()
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromOutside"), object: nil)
     }
@@ -409,6 +304,28 @@ class OutsideViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
             if let image = self?.levelUpImage {
                 self?.view.sendSubviewToBack(image)
+            }
+        }
+    }
+
+    @objc func loadPlants() {
+        if let plot = outsideViewModel.getPlot() {
+            // update images
+            let view = container.subviews.filter { $0.tag == plot.id }.first
+
+            if let imageView = view as? UIImageView {
+                imageView.image = outsideViewModel.getStage(plot: plot)
+                showEXP(near: imageView, exp: 5)
+            }
+        }
+    }
+
+    @objc func waterPlant() {
+        if let plot = outsideViewModel.getPlot() {
+            let view = container.subviews.filter { $0.tag == plot.id }.first
+
+            if let imageView = view as? UIImageView {
+                showEXP(near: imageView, exp: 5)
             }
         }
     }
@@ -430,22 +347,20 @@ class OutsideViewController: UIViewController {
         
         // remove plant image and delete save
         
-        deletePlanting(id: selectedPlot)
+        outsideViewModel.deletePlanting()
         
         // show exp gain
         if let image = tappedImage {
             showEXP(near: image, exp: 15)
-            updateEXP(with: 15)
+            updateEXP(source: .harvest)
             
             // update image
-            image.image = PlantManager.getStage(halfDaysOfCare: nil, plant: .none, lastWatered: nil, mature: nil)
+            image.image = outsideViewModel.removePlant()
         }
-        
-        // update count and save
+      
         print(PlantManager.selected)
         
-        Harvested.basketCounts[PlantManager.selected]! += 1
-        DataFunctions.saveHarvest()
+        outsideViewModel.harvest()
     }
     
     @objc func removePlant() {
@@ -453,9 +368,10 @@ class OutsideViewController: UIViewController {
         view.sendSubviewToBack(removeContainer)
         
         // remove plant image and delete save
-        deletePlanting(id: selectedPlot)
+        outsideViewModel.deletePlanting()
+        
         if let image = tappedImage {
-            image.image = PlantManager.getStage(halfDaysOfCare: nil, plant: .none, lastWatered: nil, mature: nil)
+            image.image = outsideViewModel.removePlant()
         }
     }
     
@@ -484,100 +400,26 @@ class OutsideViewController: UIViewController {
     @objc func plant() {
         view.sendSubviewToBack(inventoryContainer)
         // change based on selected species
-        DataFunctions.saveInventory()
-        savePlanting(id: selectedPlot, plant: PlantManager.selected.rawValue)
+        outsideViewModel.saveInventory()
+        outsideViewModel.savePlanting()
         
         var imageToUpdate: UIImageView
-        updateEXP(with: 10)
-        
-        if selectedPlot == 1 {
-            imageToUpdate = fencePlot1
-        } else if selectedPlot == 2 {
-            imageToUpdate = fencePlot2
-        } else if selectedPlot == 3 {
-            imageToUpdate = fencePlot3
-        } else if selectedPlot == 4 {
-            imageToUpdate = fencePlot4
-        } else if selectedPlot == 5 {
-           imageToUpdate = fencePlot5
-        } else if selectedPlot == 6 {
-            imageToUpdate = fencePlot6
-        } else if selectedPlot == 7 {
-            imageToUpdate = frontPlot1
-        } else if selectedPlot == 8 {
-            imageToUpdate = frontPlot2
-        } else if selectedPlot == 9 {
-            imageToUpdate = frontPlot3
-        } else if selectedPlot == 10 {
-            imageToUpdate = frontPlot4
-        } else if selectedPlot == 11 {
-            imageToUpdate = frontPlot5
-        } else if selectedPlot == 12 {
-            imageToUpdate = frontPlot6
-        } else if selectedPlot == 13 {
-            imageToUpdate = frontPlot7
-        } else if selectedPlot == 14 {
-            imageToUpdate = frontPlot8
-        } else if selectedPlot == 15 {
-            imageToUpdate = succulentPot1
-        } else if selectedPlot == 16 {
-            imageToUpdate = succulentPot2
-        } else if selectedPlot == 17 {
-            imageToUpdate = succulentPot3
-        } else if selectedPlot == 18 {
-            imageToUpdate = planterPlot1
-        } else if selectedPlot == 19 {
-            imageToUpdate = planterPlot2
-        } else if selectedPlot == 20 {
-            imageToUpdate = planterPlot3
-        } else if selectedPlot == 21 {
-            imageToUpdate = tallPotPlot
-        } else if selectedPlot == 22 {
-            imageToUpdate = vegetablePlot1
-        } else if selectedPlot == 23 {
-            imageToUpdate = vegetablePlot2
-        } else if selectedPlot == 24 {
-            imageToUpdate = vegetablePlot3
-        } else if selectedPlot == 25 {
-            imageToUpdate = vegetablePlot4
-        } else if selectedPlot == 26 {
-            imageToUpdate = vegetablePlot5
-        } else if selectedPlot == 27 {
-            imageToUpdate = vegetablePlot6
-        } else {
-            imageToUpdate = smallPotPlot
-        }
-                
-        // show exp feedback
-        showEXP(near: imageToUpdate, exp: 10)
-        // update image
-        imageToUpdate.image = PlantManager.getStage(halfDaysOfCare: 0, plant: PlantManager.selected, lastWatered: nil, mature: nil)
-    }
-    
-    func setPlotArea() {
-        if selectedPlot < 15 {
-            PlantManager.area = .rows
-            print("flower strip")
-        } else if selectedPlot > 14 && selectedPlot < 18 {
-            PlantManager.area = .lowPot
-            print("bowl")
-        } else if selectedPlot > 17 && selectedPlot < 21 {
-            PlantManager.area = .planter
-            print("planter")
-        } else if selectedPlot == 21 {
-            PlantManager.area = .tallPot
-            print("tall pot")
-        } else if selectedPlot == 28 {
-            PlantManager.area = .smallPot
-            print("small pot")
-        } else {
-            PlantManager.area = .vegetablePlot
-            print("vegetable plot")
+        updateEXP(source: .planting)
+
+        let view = container.subviews.filter { $0.tag == outsideViewModel.getPlot() }.first
+
+        if let imageView = view as? UIImageView {
+            imageToUpdate = imageView
+
+            // show exp feedback
+            showEXP(near: imageToUpdate, exp: 10)
+            // update image
+            imageToUpdate.image = outsideViewModel.getPlant()
         }
     }
     
     func tappedPlant(image: UIImageView) {
-        setPlotArea()
+        outsideViewModel.setPlotArea()
         
         switch mode {
         case .planting:
@@ -588,14 +430,14 @@ class OutsideViewController: UIViewController {
                 // harvest prompt for mature plants
                 print("mature plant")
                 tappedImage = image
-                PlantManager.chosen = selectedPlot
+                outsideViewModel.setPlot(plot: image.tag)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
                 view.bringSubviewToFront(harvestContainer)
             } else {
                 // otherwise simply show identification
-                PlantManager.chosen = selectedPlot
-                getName()
-                plantName.setTitle("\(name)", for: .normal)
+                outsideViewModel.setPlot(plot: image.tag)
+                outsideViewModel.setName()
+                plantName.setTitle(outsideViewModel.getName(), for: .normal)
                 plantName.animateFadeInSlow()
             }
         case .watering:
@@ -604,10 +446,10 @@ class OutsideViewController: UIViewController {
                 return
             }
             
-            saveWatering(id: selectedPlot)
+            outsideViewModel.saveWatering(id: image.tag)
         case .removal:
             tappedImage = image
-            PlantManager.chosen = selectedPlot
+            outsideViewModel.setPlot(plot: image.tag)
             
             // determine if plot has wilted plant
             if image.isMatch(with: PlantManager.wiltedPlants) {
@@ -644,19 +486,19 @@ class OutsideViewController: UIViewController {
     }
     
     @IBAction func inventoryTapped(_ sender: UIButton) {
-        PlantManager.area = .none
+        outsideViewModel.resetArea()
         view.bringSubviewToFront(inventoryContainer)
         inventoryContainer.animateBounce()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
     }
     
     @IBAction func onOffPressed(_ sender: UIButton) {
-        if LevelManager.currentLevel >= LevelManager.lanternsUnlock {
-            if lightsOn {
-                lightsOn = false
+        if outsideViewModel.canAccessLanterns() {
+            if outsideViewModel.lanternsOn() {
+                outsideViewModel.turnLanternsOff()
                 lanterns.image = UIImage(named: "lanternsoff")
             } else {
-                lightsOn = true
+                outsideViewModel.turnLanternsOn()
                 lanterns.image = UIImage(named: "lanternson")
             }
         } else {
@@ -721,8 +563,8 @@ class OutsideViewController: UIViewController {
     
     @IBAction func catTouched(_ sender: UIPanGestureRecognizer) {
         if sender.state == .began {
-            if AnimationManager.movement == .staying {
-                AnimationTimer.stop()
+            if viewModel.getMovementType() == .staying {
+                viewModel.stopTimer()
                 cloudKitty.stopAnimating()
                 cloudKitty.animationImages = AnimationManager.petAnimation
                 cloudKitty.animationDuration = 1.0
@@ -736,28 +578,20 @@ class OutsideViewController: UIViewController {
     }
     
     @IBAction func honorStandTapped(_ sender: UITapGestureRecognizer) {
-        print("honor stand tapped")
-        print("\(MoneyManager.earnings)")
         // add earnings to total
-        if MoneyManager.earnings != 0 {
+        if outsideViewModel.hasEarnings() {
             earningsView.isHidden = false
-            earningsMessage.text = "You made \(MoneyManager.earnings) coins in honor stand earnings!"
+            earningsMessage.text = "You made \(outsideViewModel.earningsTotal()) coins in honor stand earnings!"
             earningsView.animateBounce()
-            
-            MoneyManager.total += MoneyManager.earnings
+
             coinCount.text = "\(MoneyManager.total)"
             coinImage.animateBounce()
-            
-            // clear out earnings
-            MoneyManager.earnings = 0
-            
-            // resave money
-            DataFunctions.saveMoney()
+
             honorStandMoney.isHidden = true
-            
+
             // update money inside
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
-            
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [unowned self] in
                 self.earningsView.isHidden = true
             }
@@ -769,143 +603,114 @@ class OutsideViewController: UIViewController {
     }
     
     @IBAction func fencePlot1Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 1
         tappedPlant(image: fencePlot1)
     }
     
     @IBAction func fencePlot2Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 2
         tappedPlant(image: fencePlot2)
     }
     
     @IBAction func fencePlot3Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 3
         tappedPlant(image: fencePlot3)
     }
     
     @IBAction func fencePlot4Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 4
         tappedPlant(image: fencePlot4)
     }
     
     @IBAction func fencePlot5Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 5
         tappedPlant(image: fencePlot5)
     }
     
     @IBAction func fencePlot6Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 6
         tappedPlant(image: fencePlot6)
     }
     
     @IBAction func frontPlot1Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 7
         tappedPlant(image: frontPlot1)
     }
     
     @IBAction func frontPlot2Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 8
         tappedPlant(image: frontPlot2)
     }
     
     @IBAction func frontPlot3Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 9
         tappedPlant(image: frontPlot3)
     }
     
     @IBAction func frontPlot4Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 10
         tappedPlant(image: frontPlot4)
     }
     
     @IBAction func frontPlot5Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 11
         tappedPlant(image: frontPlot5)
     }
     
     @IBAction func frontPlot6Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 12
         tappedPlant(image: frontPlot6)
     }
     
     @IBAction func frontPlot7Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 13
         tappedPlant(image: frontPlot7)
     }
     
     @IBAction func frontPlot8Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 14
         tappedPlant(image: frontPlot8)
     }
     
     @IBAction func succulentPot1Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 15
         tappedPlant(image: succulentPot1)
     }
     
     @IBAction func succulentPot2Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 16
         tappedPlant(image: succulentPot2)
     }
     
     @IBAction func succulentPot3Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 17
         tappedPlant(image: succulentPot3)
     }
     
     @IBAction func planterPlot1Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 18
         tappedPlant(image: planterPlot1)
     }
     
     @IBAction func planterPlot2Tapped(_ sender: UITapGestureRecognizer) {
-        print("tapped")
-        selectedPlot = 19
         tappedPlant(image: planterPlot2)
     }
     
     @IBAction func planterPlot3Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 20
         tappedPlant(image: planterPlot3)
     }
     
     @IBAction func tallPotPlotTapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 21
         tappedPlant(image: tallPotPlot)
     }
     
     @IBAction func vegetablePlot1Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 22
         tappedPlant(image: vegetablePlot1)
     }
     
     @IBAction func vegetablePlot2Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 23
         tappedPlant(image: vegetablePlot2)
     }
     
     @IBAction func vegetablePlot3Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 24
         tappedPlant(image: vegetablePlot3)
     }
     
     @IBAction func vegetablePlot4Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 25
         tappedPlant(image: vegetablePlot4)
     }
     
     @IBAction func vegetablePlot5Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 26
         tappedPlant(image: vegetablePlot5)
     }
     
     @IBAction func vegetablePlot6Tapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 27
         tappedPlant(image: vegetablePlot6)
     }
     
     @IBAction func smallPotPlotTapped(_ sender: UITapGestureRecognizer) {
-        selectedPlot = 28
         tappedPlant(image: smallPotPlot)
     }
     

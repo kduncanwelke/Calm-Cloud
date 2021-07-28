@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 
 struct Plantings {
+
+    static var currentPlantName = ""
+    static var currentPlot = 0
+
     // plants in plots
     static var plantings: [Plot] = []
     

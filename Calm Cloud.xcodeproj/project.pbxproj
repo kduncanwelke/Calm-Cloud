@@ -71,6 +71,8 @@
 		2D9B7D0A24AD342900CDFA8E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7D0924AD342900CDFA8E /* NetworkMonitor.swift */; };
 		2D9B7D0C24AD3CC200CDFA8E /* BuyPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9B7D0B24AD3CC200CDFA8E /* BuyPlantViewController.swift */; };
 		2DA08A262530D7EF00A5129F /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA08A252530D7EF00A5129F /* WeatherManager.swift */; };
+		2DA327EC26B1E6E6002DFB2A /* OutsideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA327EB26B1E6E6002DFB2A /* OutsideViewModel.swift */; };
+		2DA327EE26B1E944002DFB2A /* OutsideVM+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA327ED26B1E944002DFB2A /* OutsideVM+CoreData.swift */; };
 		2DA33FBD24AA6E5400B4BCED /* PlantManager+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA33FBC24AA6E5400B4BCED /* PlantManager+Images.swift */; };
 		2DAA52292472FDDA00171A7D /* LevelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA52282472FDDA00171A7D /* LevelManager.swift */; };
 		2DAEFB3D25A913EB00FB4D38 /* audio_hero_FireMediumRoarHiss_PE052201_358.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DAEFB3C25A913EB00FB4D38 /* audio_hero_FireMediumRoarHiss_PE052201_358.mp3 */; };
@@ -78,7 +80,6 @@
 		2DB1321924783F5500FA6D71 /* ViewController+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1321824783F5500FA6D71 /* ViewController+Animations.swift */; };
 		2DB1321B247843AD00FA6D71 /* Outside+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1321A247843AD00FA6D71 /* Outside+Animations.swift */; };
 		2DB1D48924573DDD00512E4F /* CareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48824573DDD00512E4F /* CareManager.swift */; };
-		2DB1D48B2457415000512E4F /* ViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */; };
 		2DB4106524916E8C00EFD088 /* MoneyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB4106424916E8C00EFD088 /* MoneyManager.swift */; };
 		2DB6394C252F83C700D8ECE0 /* zapsplat_nature_forest_ambience_wind_trees_birds_leaves_fall_to_ground_autumn_20090.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DB6394B252F83C700D8ECE0 /* zapsplat_nature_forest_ambience_wind_trees_birds_leaves_fall_to_ground_autumn_20090.mp3 */; };
 		2DB6394E252F871900D8ECE0 /* zapsplat_horror_graveyard_ambience_night_wind_owls_43583.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DB6394D252F871900D8ECE0 /* zapsplat_horror_graveyard_ambience_night_wind_owls_43583.mp3 */; };
@@ -195,6 +196,8 @@
 		2D9B7D0924AD342900CDFA8E /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		2D9B7D0B24AD3CC200CDFA8E /* BuyPlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyPlantViewController.swift; sourceTree = "<group>"; };
 		2DA08A252530D7EF00A5129F /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		2DA327EB26B1E6E6002DFB2A /* OutsideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutsideViewModel.swift; sourceTree = "<group>"; };
+		2DA327ED26B1E944002DFB2A /* OutsideVM+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutsideVM+CoreData.swift"; sourceTree = "<group>"; };
 		2DA33FBC24AA6E5400B4BCED /* PlantManager+Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlantManager+Images.swift"; sourceTree = "<group>"; };
 		2DAA52282472FDDA00171A7D /* LevelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelManager.swift; sourceTree = "<group>"; };
 		2DAEFB3C25A913EB00FB4D38 /* audio_hero_FireMediumRoarHiss_PE052201_358.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio_hero_FireMediumRoarHiss_PE052201_358.mp3; sourceTree = "<group>"; };
@@ -202,7 +205,6 @@
 		2DB1321824783F5500FA6D71 /* ViewController+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Animations.swift"; sourceTree = "<group>"; };
 		2DB1321A247843AD00FA6D71 /* Outside+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Outside+Animations.swift"; sourceTree = "<group>"; };
 		2DB1D48824573DDD00512E4F /* CareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareManager.swift; sourceTree = "<group>"; };
-		2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+CoreData.swift"; sourceTree = "<group>"; };
 		2DB4106424916E8C00EFD088 /* MoneyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyManager.swift; sourceTree = "<group>"; };
 		2DB6394B252F83C700D8ECE0 /* zapsplat_nature_forest_ambience_wind_trees_birds_leaves_fall_to_ground_autumn_20090.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zapsplat_nature_forest_ambience_wind_trees_birds_leaves_fall_to_ground_autumn_20090.mp3; sourceTree = "<group>"; };
 		2DB6394D252F871900D8ECE0 /* zapsplat_horror_graveyard_ambience_night_wind_owls_43583.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zapsplat_horror_graveyard_ambience_night_wind_owls_43583.mp3; sourceTree = "<group>"; };
@@ -272,6 +274,8 @@
 			children = (
 				2D2D9FB826B0B1680042B6F2 /* ViewModel.swift */,
 				2D2D9FBC26B0BF5C0042B6F2 /* ViewModel+CoreData.swift */,
+				2DA327EB26B1E6E6002DFB2A /* OutsideViewModel.swift */,
+				2DA327ED26B1E944002DFB2A /* OutsideVM+CoreData.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -426,7 +430,6 @@
 				2D8F9040243F9DE800211802 /* Cells */,
 				2D48CC3D242548B200D0FBBB /* ViewController.swift */,
 				2DB1321824783F5500FA6D71 /* ViewController+Animations.swift */,
-				2DB1D48A2457415000512E4F /* ViewController+CoreData.swift */,
 				2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */,
 				2DB1321A247843AD00FA6D71 /* Outside+Animations.swift */,
 				2D7DF67C2469FCEE009B9291 /* Outside+CoreData.swift */,
@@ -616,7 +619,6 @@
 				2DA33FBD24AA6E5400B4BCED /* PlantManager+Images.swift in Sources */,
 				2D41EF28242D5CE20058C443 /* PhotoManager.swift in Sources */,
 				2DC5606F24A271D200D5AA57 /* MiniGameTwoViewController.swift in Sources */,
-				2DB1D48B2457415000512E4F /* ViewController+CoreData.swift in Sources */,
 				2DCC9C7B24672031006834B0 /* PlantManager.swift in Sources */,
 				2DC95DDD2485A9830085DD14 /* CompareImages.swift in Sources */,
 				2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */,
@@ -657,6 +659,7 @@
 				2D26545E2440F6EE00FBFF74 /* OutsideViewController.swift in Sources */,
 				2D9B7D0C24AD3CC200CDFA8E /* BuyPlantViewController.swift in Sources */,
 				2DB13216247835C100FA6D71 /* DataFunctions.swift in Sources */,
+				2DA327EE26B1E944002DFB2A /* OutsideVM+CoreData.swift in Sources */,
 				2D03D3EC25AD01B20096A3FE /* Fireplace.swift in Sources */,
 				2D9B7D0124AD18CF00CDFA8E /* ReceiptItem.swift in Sources */,
 				2D867DAE243E80B7005BE38F /* Alerts.swift in Sources */,
@@ -669,6 +672,7 @@
 				2D8F9042243F9E8F00211802 /* ActivityTableViewCell.swift in Sources */,
 				2DB6E540248AD8CA007DA241 /* BasketTableViewCell.swift in Sources */,
 				2D2EF6A62466017E00E497DC /* InventoryCollectionViewCell.swift in Sources */,
+				2DA327EC26B1E6E6002DFB2A /* OutsideViewModel.swift in Sources */,
 				2D2D9FB926B0B1680042B6F2 /* ViewModel.swift in Sources */,
 				2DB6E544248AF375007DA241 /* Harvested.swift in Sources */,
 				2D41EF31242D607C0058C443 /* FavoriteThingsViewController.swift in Sources */,

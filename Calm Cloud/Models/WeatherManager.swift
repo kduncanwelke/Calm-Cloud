@@ -80,3 +80,9 @@ enum Weather {
     case snowing
     case snowOnGround
 }
+
+enum WeatherCondition {
+    case rain
+    case snow
+    case nothing
+}
