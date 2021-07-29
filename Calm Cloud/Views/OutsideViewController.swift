@@ -98,8 +98,6 @@ class OutsideViewController: UIViewController {
     var wateringModeOn = false
     var trowelModeOn = false
     var tappedImage: UIImageView?
-    var stopped = false
-    var mode: Mode = .planting
     var rotated = false
     
     override func viewDidLoad() {
@@ -150,8 +148,7 @@ class OutsideViewController: UIViewController {
         waterText.alpha = 0.0
         removeText.alpha = 0.0
         
-        AnimationManager.outsideLocation = .back
-        AnimationManager.movement = .staying
+        outsideViewModel.setOutsidePosition()
         sleep()
         
         loadUI()
@@ -183,14 +180,19 @@ class OutsideViewController: UIViewController {
     
     func stop() {
         cloudKitty.stopAnimating()
+        viewModel.stopTimer()
         AnimationTimer.stop()
-        stopped = true
+        outsideViewModel.stopOutside()
+    }
+
+    func isStopped() -> Bool {
+        return outsideViewModel.isStopped()
     }
     
     func loadUI() {
         outsideViewModel.setAmbientSound()
 
-        var result = viewModel.configureWeather()
+        var result = outsideViewModel.configureWeather()
 
         outsideImage.image = result.image
 
@@ -211,7 +213,7 @@ class OutsideViewController: UIViewController {
 
     func updateLevel() {
         levelLabel.text = viewModel.getLevel()
-        expLabel.text = viewModel.getLevel()
+        expLabel.text = viewModel.getLevelDetails()
         var prog = viewModel.getProgress()
         levelProgress.setProgress(prog, animated: true)
     }
@@ -309,14 +311,20 @@ class OutsideViewController: UIViewController {
     }
 
     @objc func loadPlants() {
-        if let plot = outsideViewModel.getPlot() {
+        var idList = outsideViewModel.getPlotIDs()
+
+        var i = 0
+
+        for id in idList {
             // update images
-            let view = container.subviews.filter { $0.tag == plot.id }.first
+            let view = container.subviews.filter { $0.tag == id }.first
 
             if let imageView = view as? UIImageView {
-                imageView.image = outsideViewModel.getStage(plot: plot)
+                imageView.image = outsideViewModel.getStage(plot: outsideViewModel.getPlots(index: i))
                 showEXP(near: imageView, exp: 5)
             }
+
+            i += 1
         }
     }
 
@@ -336,7 +344,7 @@ class OutsideViewController: UIViewController {
     }
     
     @objc func hideMiniGame() {
-        stopped = false
+        outsideViewModel.resumeOutside()
         view.sendSubviewToBack(cupsMiniGameContainer)
         stopMovingOutside()
     }
@@ -346,7 +354,6 @@ class OutsideViewController: UIViewController {
         view.sendSubviewToBack(harvestContainer)
         
         // remove plant image and delete save
-        
         outsideViewModel.deletePlanting()
         
         // show exp gain
@@ -419,51 +426,24 @@ class OutsideViewController: UIViewController {
     }
     
     func tappedPlant(image: UIImageView) {
+        tappedImage = image
+        outsideViewModel.setPlot(plot: image.tag)
         outsideViewModel.setPlotArea()
         
-        switch mode {
-        case .planting:
-            // determine if plot is empty
-            if image.isMatch(with: PlantManager.emptyPlots) {
+        if let response = outsideViewModel.handlePlantTap(image: image) {
+            switch response {
+            case .message:
                 view.bringSubviewToFront(messageContainer)
-            } else if image.isMatch(with: PlantManager.maturePlants) {
-                // harvest prompt for mature plants
-                print("mature plant")
-                tappedImage = image
-                outsideViewModel.setPlot(plot: image.tag)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+            case .harvest:
                 view.bringSubviewToFront(harvestContainer)
-            } else {
-                // otherwise simply show identification
-                outsideViewModel.setPlot(plot: image.tag)
-                outsideViewModel.setName()
+            case .identity:
                 plantName.setTitle(outsideViewModel.getName(), for: .normal)
                 plantName.animateFadeInSlow()
-            }
-        case .watering:
-            if image.isMatch(with: PlantManager.wiltedPlants) {
-                // cannot water wilted plant
-                return
-            }
-            
-            outsideViewModel.saveWatering(id: image.tag)
-        case .removal:
-            tappedImage = image
-            outsideViewModel.setPlot(plot: image.tag)
-            
-            // determine if plot has wilted plant
-            if image.isMatch(with: PlantManager.wiltedPlants) {
-                print("wilted plant")
+            case .remove:
                 view.bringSubviewToFront(removeContainer)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadWilted"), object: nil)
-            } else if !image.isMatch(with: PlantManager.emptyPlots) {
-                // make sure plot is not empty
-                view.bringSubviewToFront(removeContainer)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadRemove"), object: nil)
             }
         }
     }
-    
 
     /*
     // MARK: - Navigation
@@ -509,56 +489,48 @@ class OutsideViewController: UIViewController {
     
     
     @IBAction func normalModeTapped(_ sender: UIButton) {
-        if mode != .planting {
-            mode = .planting
-            normalText.alpha = 1.0
+        switch outsideViewModel.prevMode() {
+        case .watering, .removal:
             waterText.alpha = 0.0
-            removeText.alpha = 0.0
             backgroundView.backgroundColor = Colors.pink
-        } else {
-            if normalText.alpha == 1.0 {
-                normalText.alpha = 0.0
-            } else {
-                normalText.alpha = 1.0
-            }
+
+            removeText.alpha = 0.0
+            normalText.alpha = 1.0
+        case .planting:
+            normalText.alpha = 0.0
         }
+
+        outsideViewModel.setMode(button: .planting)
     }
     
     @IBAction func waterModeTapped(_ sender: UIButton) {
-        // toggle watering mode
-        if mode != .watering {
-            if mode == .removal {
-                removeText.alpha = 0.0
-            }
-            
-            mode = .watering
+        switch outsideViewModel.prevMode() {
+        case .planting, .removal:
+            removeText.alpha = 0.0
             backgroundView.backgroundColor = Colors.blue
-           
+
             waterText.alpha = 1.0
             normalText.alpha = 0.0
-        } else {
-            mode = .planting
-            backgroundView.backgroundColor = Colors.pink
+        case .watering:
             waterText.alpha = 0.0
         }
+
+        outsideViewModel.setMode(button: .watering)
     }
     
     @IBAction func trowelModeTapped(_ sender: UIButton) {
-        if mode != .removal {
-            if mode == .watering {
-                waterText.alpha = 0.0
-            }
-            
-            mode = .removal
+        switch outsideViewModel.prevMode() {
+        case .planting, .watering:
+            waterText.alpha = 0.0
             backgroundView.backgroundColor = Colors.tan
-            
+
             removeText.alpha = 1.0
             normalText.alpha = 0.0
-        } else {
-            mode = .planting
-            backgroundView.backgroundColor = Colors.pink
+        case .removal:
             removeText.alpha = 0.0
         }
+
+        outsideViewModel.setMode(button: .removal)
     }
     
     @IBAction func catTouched(_ sender: UIPanGestureRecognizer) {
@@ -584,7 +556,7 @@ class OutsideViewController: UIViewController {
             earningsMessage.text = "You made \(outsideViewModel.earningsTotal()) coins in honor stand earnings!"
             earningsView.animateBounce()
 
-            coinCount.text = "\(MoneyManager.total)"
+            coinCount.text = viewModel.getCoins()
             coinImage.animateBounce()
 
             honorStandMoney.isHidden = true

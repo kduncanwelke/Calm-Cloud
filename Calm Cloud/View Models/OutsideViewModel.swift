@@ -37,6 +37,24 @@ public class OutsideViewModel {
         return PlantManager.getStage(halfDaysOfCare: Int(plot.consecutiveWaterings), plant: Plant(rawValue: Int(plot.plant))!, lastWatered: plot.lastWatered, mature: plot.mature)
     }
 
+    func getDaysLeft() -> (name: String, days: Int) {
+        let planting = Plantings.plantings.filter { $0.id == Plantings.currentPlot }.first
+
+        guard let plant = planting else { return ("", 0) }
+
+        for seedling in Plantings.seedlings {
+            if seedling.plant == Plant(rawValue: Int(plant.plant))! {
+                Plantings.currentPlantName = seedling.name
+            }
+        }
+
+        let daysLeft = PlantManager.checkDiff(date: plant.mature)
+        print(daysLeft)
+        var days = 5 - daysLeft
+
+        return (Plantings.currentPlantName, days)
+    }
+
     func removePlant() -> UIImage? {
         return PlantManager.getStage(halfDaysOfCare: nil, plant: .none, lastWatered: nil, mature: nil)
     }
@@ -65,10 +83,10 @@ public class OutsideViewModel {
         if selectedPlot < 15 {
             PlantManager.area = .rows
             print("flower strip")
-        } else if selectedPlot > 14 && selectedPlot < 18 {
+        } else if selectedPlot >= 15 && selectedPlot < 18 {
             PlantManager.area = .lowPot
             print("bowl")
-        } else if selectedPlot > 17 && selectedPlot < 21 {
+        } else if selectedPlot >= 18 && selectedPlot < 21 {
             PlantManager.area = .planter
             print("planter")
         } else if selectedPlot == 21 {
@@ -89,6 +107,65 @@ public class OutsideViewModel {
 
     func resetArea() {
         PlantManager.area = .none
+    }
+
+    func getPlotIDs() -> [Int] {
+        var ids: [Int] = []
+
+        for planting in Plantings.plantings {
+            ids.append(Int(planting.id))
+        }
+
+        return ids
+    }
+
+    func getPlots(index: Int) -> Plot {
+        return Plantings.plantings[index]
+    }
+
+    func handlePlantTap(image: UIImageView) -> Message? {
+        switch StatusManager.mode {
+        case .planting:
+            // determine if plot is empty
+            if image.isMatch(with: PlantManager.emptyPlots) {
+                return .message
+            } else if image.isMatch(with: PlantManager.maturePlants) {
+                // harvest prompt for mature plants
+                print("mature plant")
+                setPlot(plot: image.tag)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+                return .harvest
+            } else {
+                // otherwise simply show identification
+                setPlot(plot: image.tag)
+                setName()
+                return .identity
+            }
+        case .watering:
+            if image.isMatch(with: PlantManager.wiltedPlants) {
+                // cannot water wilted plant
+                return nil
+            } else {
+                saveWatering(id: image.tag)
+                // no message
+                return nil
+            }
+        case .removal:
+            setPlot(plot: image.tag)
+
+            // determine if plot has wilted plant
+            if image.isMatch(with: PlantManager.wiltedPlants) {
+                print("wilted plant")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadWilted"), object: nil)
+                return .remove
+            } else if !image.isMatch(with: PlantManager.emptyPlots) {
+                // make sure plot is not empty
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadRemove"), object: nil)
+                return .remove
+            } else {
+                return nil
+            }
+        }
     }
 
     // MARK: Level
@@ -273,4 +350,39 @@ public class OutsideViewModel {
         DataFunctions.saveMoney()
     }
 
+    // MARK: Animation
+
+    func setOutsidePosition() {
+        AnimationManager.outsideLocation = .back
+        AnimationManager.movement = .staying
+    }
+
+    func isStopped() -> Bool {
+        return StatusManager.outsideStopped
+    }
+
+    func stopOutside() {
+        StatusManager.outsideStopped = true
+    }
+
+    func resumeOutside() {
+        StatusManager.outsideStopped = false
+    }
+
+    // MARK: Mode
+
+    func setMode(button: Mode) {
+        switch button {
+        case .planting:
+            StatusManager.mode = .planting
+        case .removal:
+            StatusManager.mode = .removal
+        case .watering:
+            StatusManager.mode = .watering
+        }
+    }
+
+    func prevMode() -> Mode {
+        return StatusManager.mode
+    }
 }

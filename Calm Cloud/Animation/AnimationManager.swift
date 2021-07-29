@@ -214,3 +214,34 @@ enum OutsideLocation {
     case pot
     case pots
 }
+
+enum Animation {
+    case moveLeftToBed
+    case moveLeftToCenter
+    case moveLeftToFood
+    case moveLeftToGame
+    case moveLeftToPotty
+    case moveLeftToToy
+    case moveLeftToWater
+
+    case moveRightToCenter
+    case moveRightToFood
+    case moveRightToPillow
+    case moveRightToPotty
+    case moveRightToToy
+    case moveRightToWater
+
+    case floatUp
+    case eat
+    case drink
+    case sleep
+    case bounce
+    case linger
+    case play
+    case playGame
+    case moveIntoPotty
+    case floatLeft
+    case floatRight
+    case floatSleep
+    case pause
+}

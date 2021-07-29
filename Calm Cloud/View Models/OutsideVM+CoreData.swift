@@ -38,12 +38,8 @@ extension OutsideViewModel {
         do {
             Plantings.plantings = try managedContext.fetch(fetchRequest)
             print("plots loaded")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadPlants"), object: nil)
 
-            for planting in Plantings.plantings {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadPlants"), object: nil)
-                print(planting.consecutiveWaterings)
-                print(planting.lastWatered)
-            }
         } catch let error as NSError {
             //showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
         }

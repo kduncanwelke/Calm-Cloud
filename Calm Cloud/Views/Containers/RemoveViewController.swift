@@ -15,7 +15,8 @@ class RemoveViewController: UIViewController {
     @IBOutlet weak var message: UILabel!
 
     // MARK: Variables
-    
+
+    private let viewModel = OutsideViewModel()
     var remove = ""
     
     override func viewDidLoad() {
@@ -28,28 +29,17 @@ class RemoveViewController: UIViewController {
     }
     
     @objc func loadRemove() {
-        getName()
+        viewModel.setName()
         
-        message.text = "This plant, a \(remove), will be gone forever once removed. Proceed?"
+        message.text = "This plant, a \(viewModel.getName()), will be gone forever once removed. Proceed?"
     }
     
     @objc func loadWilted() {
-        getName()
+        viewModel.setName()
         
-        message.text = "This plant, a wilted \(remove), will be gone forever once removed. Proceed?"
+        message.text = "This plant, a wilted \(viewModel.getName()), will be gone forever once removed. Proceed?"
     }
-    
-    func getName() {
-        let planting = Plantings.plantings.filter { $0.id == PlantManager.chosen }.first
-        
-        guard let plant = planting else { return }
-        
-        for seedling in Plantings.seedlings {
-            if seedling.plant == Plant(rawValue: Int(plant.plant))! {
-                remove = seedling.name
-            }
-        }
-    }
+
 
     /*
     // MARK: - Navigation

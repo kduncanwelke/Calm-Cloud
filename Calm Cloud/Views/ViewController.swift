@@ -96,6 +96,7 @@ class ViewController: UIViewController {
         viewModel.loadEntries()
         viewModel.loadCare()
         viewModel.loadTasks()
+        viewModel.performDataLoads()
         
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
@@ -186,9 +187,13 @@ class ViewController: UIViewController {
         coinCount.text = viewModel.getCoins()
     }
 
+    func updateCat(activity: Behavior) {
+        viewModel.respondToActivity(activity: activity)
+    }
+
     func updateLevel() {
         levelLabel.text = viewModel.getLevel()
-        expLabel.text = viewModel.getLevel()
+        expLabel.text = viewModel.getLevelDetails()
         var prog = viewModel.getProgress()
         levelProgress.setProgress(prog, animated: true)
     }
@@ -244,7 +249,6 @@ class ViewController: UIViewController {
     
     func updateEXP(source: EXPSource) {
         // update ui with level info and save
-
         if viewModel.updateEXP(source: source) {
             levelLabel.text = viewModel.getLevel()
             showLevelUp()
@@ -262,7 +266,7 @@ class ViewController: UIViewController {
         coinImage.animateBounce()
         
         // resave money
-        DataFunctions.saveMoney()
+        viewModel.saveMoney()
     }
     
     @objc func updateExperience() {
@@ -336,179 +340,7 @@ class ViewController: UIViewController {
     // location change animations, randomized
     
     func randomMove() {
-        let range = [1,2,3,4,5]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            switch AnimationManager.location {
-            case .bed:
-                moveRightToWater()
-            case .food:
-                moveLeftToWater()
-            case .water:
-                moveRightToFood()
-            case .middle:
-                moveLeftToBed()
-            case .toy:
-                moveLeftToBed()
-            case .potty:
-                moveRightToPillow()
-            case .ceiling:
-                moveLeftToBed()
-            case .game:
-                moveRightToPotty()
-            case .pillow:
-                moveLeftToGame()
-            }
-        } else if animation == 2 {
-            switch AnimationManager.location {
-            case .bed:
-                moveRightToFood()
-            case .food:
-                moveLeftToBed()
-            case .water:
-                moveLeftToBed()
-            case .middle:
-                moveRightToFood()
-            case .toy:
-                moveRightToPillow()
-            case .potty:
-                moveLeftToFood()
-            case .ceiling:
-                moveRightToToy()
-            case .game:
-                moveRightToCenter()
-            case .pillow:
-                moveLeftToToy()
-            }
-        } else if animation == 3 {
-            switch AnimationManager.location {
-            case .bed:
-                moveRightToToy()
-            case .food:
-                moveRightToPillow()
-            case .water:
-                moveRightToToy()
-            case .middle:
-                moveLeftToBed()
-            case .toy:
-                moveLeftToFood()
-            case .potty:
-                moveLeftToWater()
-            case .ceiling:
-                moveLeftToWater()
-            case .game:
-                moveRightToFood()
-            case .pillow:
-                moveLeftToCenter()
-            }
-        } else if animation == 4 {
-            switch AnimationManager.location {
-            case .bed:
-                moveRightToCenter()
-            case .food:
-                moveLeftToCenter()
-            case .water:
-                moveRightToPillow()
-            case .middle:
-                moveRightToToy()
-            case .toy:
-                moveLeftToCenter()
-            case .potty:
-                moveLeftToToy()
-            case .ceiling:
-                moveRightToFood()
-            case .game:
-                moveRightToWater()
-            case .pillow:
-                moveLeftToBed()
-            }
-        } else {
-            if AnimationManager.mood == .happy && AnimationManager.location != .ceiling {
-                floatUp()
-            } else {
-                randomMove()
-            }
-        }
-    }
-    
-    func summoned() {
-        // if summoned to location by user tap and conditions are met, execute action
-        if viewModel.summonedToToy() && viewModel.getAnimationLocation() != .toy && viewModel.hasPlayed() == false {
-            moveRightToToy()
-           
-            viewModel.removeToySummon()
-        } else if viewModel.summonedToGame() && viewModel.getAnimationLocation() != .game && viewModel.hasPlayed() == false {
-            moveLeftToGame()
-            
-            viewModel.removeGameSummon()
-        } else if viewModel.summonedToWater() && viewModel.hasDrunk() == false {
-            switch AnimationManager.location {
-            case .water:
-                drink()
-            case .bed:
-                moveRightToWater()
-            case .food:
-                moveLeftToWater()
-            case .middle:
-                moveLeftToWater()
-            case .toy:
-                moveLeftToWater()
-            case .potty:
-                moveLeftToWater()
-            case .ceiling:
-                moveLeftToWater()
-            case .game:
-                moveRightToWater()
-            case .pillow:
-                moveLeftToWater()
-            }
-            
-            viewModel.removeWaterSummon()
-        } else if viewModel.summonedToFood() && viewModel.hasEaten() == false {
-            switch AnimationManager.location {
-            case .food:
-                eat()
-            case .bed:
-                moveRightToFood()
-            case .water:
-                moveRightToFood()
-            case .middle:
-                moveRightToFood()
-            case .toy:
-                moveLeftToFood()
-            case .potty:
-                moveLeftToFood()
-            case .ceiling:
-                moveRightToFood()
-            case .game:
-                moveRightToFood()
-            case .pillow:
-                moveLeftToFood()
-            }
-            
-            viewModel.removeFoodSummon()
-        } else if viewModel.summonedToPotty() && viewModel.hasCleanPotty() {
-            switch AnimationManager.location {
-            case .pillow:
-                moveLeftToPotty()
-            default:
-                moveRightToPotty()
-            }
-            
-            viewModel.removePottySummon()
-        } else if viewModel.summonedToFire() {
-            if AnimationManager.location != .pillow {
-                moveRightToPillow()
-            }
-            
-            viewModel.removeFireSummon()
-        } else {
-            randomMove()
-            
-            // reset summons
-            viewModel.resetSummons()
-        }
+        var randomMove = viewModel.randomMovementAnimation()
     }
     
     @objc func stopMoving() {
@@ -529,51 +361,62 @@ class ViewController: UIViewController {
 
             viewModel.performAnimationResets(toy: toyImage, game: game)
             
-            if animation == 1 {
-                print("move")
-                AnimationManager.movement = .moving
-                summoned()
-            } else if animation == 2 {
-                print("place animation")
-                AnimationManager.movement = .staying
-                switch AnimationManager.location {
-                case .bed:
-                    randomBedAnimation()
-                case .food:
-                    randomFoodAnimation()
-                case .water:
-                    randomWaterAnimation()
-                case .middle:
-                    randomCenterAnimation()
-                case .toy:
-                    randomToyAnimation()
-                case .potty:
-                    randomPottyAnimation()
-                case .ceiling:
-                    randomCeilingAnimation()
-                case .game:
-                    randomGameAnimation()
-                case .pillow:
-                    randomPillowAnimation()
-                }
-            } else if animation == 3 {
-                AnimationManager.movement = .staying
-                print("sleep from stopmoving")
-                switch AnimationManager.location {
-                case .ceiling:
-                    floatSleep()
-                default:
-                    sleep()
-                }
-            } else {
-                AnimationManager.movement = .staying
-                print("pause")
-                switch AnimationManager.location {
-                case .ceiling:
-                    bounce()
-                default:
-                    pause()
-                }
+            var animate = viewModel.randomizeAnimationType()
+
+            // switch on animation type
+            switch animate {
+            case .bounce:
+                bounce()
+            case .drink:
+                drink()
+            case .eat:
+                eat()
+            case .floatLeft:
+                floatLeft()
+            case .floatRight:
+                floatRight()
+            case .floatSleep:
+                floatSleep()
+            case .floatUp:
+                floatUp()
+            case .linger:
+                linger()
+            case .moveIntoPotty:
+                moveIntoPotty()
+            case .moveLeftToBed:
+                moveLeftToBed()
+            case .moveLeftToCenter:
+                moveLeftToCenter()
+            case .moveLeftToFood:
+                moveLeftToFood()
+            case .moveLeftToGame:
+                moveLeftToGame()
+            case .moveLeftToPotty:
+                moveLeftToPotty()
+            case .moveLeftToToy:
+                moveLeftToToy()
+            case .moveLeftToWater:
+                moveLeftToWater()
+            case .moveRightToCenter:
+                moveRightToCenter()
+            case .moveRightToFood:
+                moveRightToFood()
+            case .moveRightToPillow:
+                moveRightToPillow()
+            case .moveRightToPotty:
+                moveRightToPotty()
+            case .moveRightToToy:
+                moveRightToToy()
+            case .moveRightToWater:
+                moveRightToWater()
+            case .pause:
+                pause()
+            case .play:
+                play()
+            case .playGame:
+                playGame()
+            case .sleep:
+                sleep()
             }
         }
     }

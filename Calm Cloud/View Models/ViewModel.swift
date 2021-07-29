@@ -523,62 +523,7 @@ public class ViewModel {
         return "\(MoneyManager.total)"
     }
 
-    // MARK: Animation
-
-    func performAnimationResets(toy: UIImageView, game: UIImageView) {
-        if StatusManager.returnedFromSegue {
-            StatusManager.returnedFromSegue = false
-        }
-
-        if toy.isAnimating {
-            toy.stopAnimating()
-        }
-
-        if StatusManager.playingGame {
-            StatusManager.playingGame = false
-        }
-
-        if game.isAnimating {
-            game.stopAnimating()
-        }
-
-        if StatusManager.isPlaying {
-            StatusManager.isPlaying = false
-        }
-
-        if StatusManager.inPotty {
-            StatusManager.inPotty = false
-        }
-    }
-
-    func getMovementType() -> Movement {
-        return AnimationManager.movement
-    }
-
-    func getAnimationLocation() -> Location {
-        return AnimationManager.location
-    }
-
-    func stopTimer() {
-        AnimationTimer.stop()
-    }
-
-    func setMood() {
-        // set cloud kitty's mood deepending on activities
-        if StatusManager.hasFood == false && StatusManager.hasWater == false && StatusManager.hasCleanPotty == false {
-            AnimationManager.mood = .sad
-        } else if StatusManager.hasEaten == true && StatusManager.hasDrunk == false {
-            AnimationManager.mood = .thirsty
-        } else if StatusManager.hasDrunk == true && StatusManager.hasEaten == false {
-            AnimationManager.mood = .hungry
-        } else if StatusManager.hasCleanPotty == false {
-            AnimationManager.mood = .embarrassed
-        } else if StatusManager.hasCleanPotty && StatusManager.hasFood == false && StatusManager.hasWater == false {
-            AnimationManager.mood = .unhappy
-        } else if (StatusManager.hasPlayed || StatusManager.hasBeenPet) && StatusManager.hasFood == false && StatusManager.hasWater == false {
-            AnimationManager.mood = .unhappy
-        } else if StatusManager.hasEaten && StatusManager.hasDrunk {
-            AnimationManager.mood = .happy
-        }
+    func saveMoney() {
+        DataFunctions.saveMoney()
     }
 }

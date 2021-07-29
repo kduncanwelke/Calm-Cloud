@@ -110,7 +110,7 @@ extension OutsideViewController {
             let animation = range.randomElement()
             cloudKitty.stopAnimating()
             
-            if stopped {
+            if isStopped() {
                 return
             }
             

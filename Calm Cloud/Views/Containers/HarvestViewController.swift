@@ -13,6 +13,10 @@ class HarvestViewController: UIViewController {
     // MARK: IBOutlets
     
     @IBOutlet weak var message: UILabel!
+
+    // MARK: Variables
+
+    private let viewModel = OutsideViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,24 +28,9 @@ class HarvestViewController: UIViewController {
     }
     
     @objc func load() {
-        let planting = Plantings.plantings.filter { $0.id == PlantManager.chosen }.first
-        
-        guard let plant = planting else { return }
-        
-        var name = ""
-        
-        for seedling in Plantings.seedlings {
-            if seedling.plant == Plant(rawValue: Int(plant.plant))! {
-                PlantManager.selected = seedling.plant
-                name = seedling.name
-            }
-        }
-        
-        let daysLeft = PlantManager.checkDiff(date: plant.mature)
-        print(daysLeft)
-        var days = 5 - daysLeft
+        var result = viewModel.getDaysLeft()
        
-        message.text = "This plant, a \(name), is mature and will wilt in \(days) day(s). Harvest it now?"
+        message.text = "This plant, a \(result.name), is mature and will wilt in \(result.days) day(s). Harvest it now?"
     }
 
     /*

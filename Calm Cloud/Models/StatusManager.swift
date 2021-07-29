@@ -34,6 +34,21 @@ struct StatusManager {
     static var fireOn = false
     static var returnedFromSegue = false
 
-    // state for outisde view
+    // state for outside view
     static var lanternsOn = false
+    static var outsideStopped = false
+    static var mode: Mode = .planting
+}
+
+enum Behavior {
+    case play
+    case drink
+    case eat
+}
+
+enum Message {
+    case remove
+    case message
+    case harvest
+    case identity
 }

@@ -44,7 +44,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let ceilingDestination = CGPoint(x: container.frame.width/2.66, y: container.frame.height/6)
         cloudKitty.move(to: ceilingDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .ceiling
     }
     
     // left movemenet
@@ -63,7 +62,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let bedDestination = CGPoint(x: container.frame.width/10.66, y: container.frame.height/2)
         cloudKitty.move(to: bedDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .bed
     }
     
     func moveLeftToFood() {
@@ -72,7 +70,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let foodBowlDestination = CGPoint(x: container.frame.width/2.21, y: (container.frame.height/3)*2.33)
         cloudKitty.move(to: foodBowlDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .food
     }
     
     func moveLeftToWater() {
@@ -81,7 +78,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let waterBowlDestination = CGPoint(x: container.frame.width/3.26, y: (container.frame.height/3)*2.33)
         cloudKitty.move(to: waterBowlDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .water
     }
     
     func moveLeftToCenter() {
@@ -90,7 +86,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let centerDestination = CGPoint(x: container.frame.width/2.66, y: (container.frame.height/3)*2)
         cloudKitty.move(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .middle
     }
     
     func moveLeftToToy() {
@@ -99,7 +94,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let toyDestination = CGPoint(x: container.frame.width/1.86, y: (container.frame.height/3)*2.4)
         cloudKitty.move(to: toyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .toy
     }
     
     func moveLeftToGame() {
@@ -108,7 +102,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let toyDestination = CGPoint(x: container.frame.width/4.4, y: (container.frame.height/3)*2.35)
         cloudKitty.move(to: toyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .game
     }
     
     func moveLeftToPotty() {
@@ -117,7 +110,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let pottyDestination = CGPoint(x: container.frame.width/1.57, y: (container.frame.height/3)*2)
         cloudKitty.move(to: pottyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .potty
     }
     
     // right movement
@@ -136,7 +128,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let foodBowlDestination = CGPoint(x: container.frame.width/2.21, y: (container.frame.height/3)*2.33)
         cloudKitty.move(to: foodBowlDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .food
     }
     
     func moveRightToWater() {
@@ -145,7 +136,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let waterBowlDestination = CGPoint(x: container.frame.width/3.26, y: (container.frame.height/3)*2.33)
         cloudKitty.move(to: waterBowlDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .water
     }
     
     func moveRightToPotty() {
@@ -154,7 +144,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let pottyDestination = CGPoint(x: container.frame.width/1.57, y: (container.frame.height/3)*2)
         cloudKitty.move(to: pottyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .potty
     }
     
     func moveIntoPotty() {
@@ -163,7 +152,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let pottyDestination = CGPoint(x: container.frame.width/1.49, y: (container.frame.height/3)*1.55)
         cloudKitty.moveToPotty(to: pottyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .potty
     }
     
     func moveRightToToy() {
@@ -172,7 +160,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let toyDestination = CGPoint(x: container.frame.width/1.86, y: (container.frame.height/3)*2.4)
         cloudKitty.move(to: toyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .toy
     }
     
     func moveRightToCenter() {
@@ -181,7 +168,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let centerDestination = CGPoint(x: container.frame.width/2.66, y: (container.frame.height/3)*2)
         cloudKitty.move(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .middle
     }
     
     func moveRightToGame() {
@@ -190,7 +176,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let toyDestination = CGPoint(x: container.frame.width/4.4, y: (container.frame.height/3)*2.35)
         cloudKitty.move(to: toyDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .game
     }
     
     func moveRightToPillow() {
@@ -199,7 +184,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let pillowDestination = CGPoint(x: container.frame.width/1.12, y: (container.frame.height/3)*2.3)
         cloudKitty.move(to: pillowDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .pillow
     }
     
     // bed animations
@@ -265,8 +249,7 @@ extension ViewController {
         cloudKitty.animationRepeatCount = 0
         cloudKitty.startAnimating()
         AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
-        hasEaten = true
-        setMood()
+        updateCat(activity: .eat)
     }
     
     // water bowl animations
@@ -278,8 +261,7 @@ extension ViewController {
         cloudKitty.animationRepeatCount = 0
         cloudKitty.startAnimating()
         AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
-        hasDrunk = true
-        setMood()
+        updateCat(activity: .drink)
     }
     
     // toy animations
@@ -295,9 +277,7 @@ extension ViewController {
         cloudKitty.startAnimating()
         toyImage.startAnimating()
         AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
-        hasPlayed = true
-        isPlaying = true
-        setMood()
+        updateCat(activity: .play)
     }
     
     // game animation
@@ -313,9 +293,7 @@ extension ViewController {
         cloudKitty.startAnimating()
         game.startAnimating()
         AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
-        hasPlayed = true
-        playingGame = true
-        setMood()
+        updateCat(activity: .play)
     }
     
     // litter box animations
@@ -358,126 +336,5 @@ extension ViewController {
         cloudKitty.animationRepeatCount = 0
         cloudKitty.startAnimating()
         AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
-    }
-    
-    // randomization for location-specific animations
-    
-    func randomBedAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            sleep()
-        } else {
-            bounce()
-        }
-    }
-    
-    func randomFoodAnimation() {
-        let range = [1,2,3]
-        let animation = range.randomElement()
-        
-        if summonedToFood {
-            summonedToFood = false
-        }
-        
-        if hasEaten == false && hasFood {
-            eat()
-        } else if hasEaten == false && hasFood == false {
-            linger()
-        } else if animation == 1 && hasFood {
-            eat()
-        } else if animation == 2 {
-            linger()
-        } else {
-            bounce()
-        }
-    }
-    
-    func randomWaterAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if summonedToWater {
-            summonedToWater = false
-        }
-        
-        if hasDrunk == false && hasWater {
-            drink()
-        } else if animation == 1 && hasWater {
-            drink()
-        } else {
-            bounce()
-        }
-    }
-    
-    func randomToyAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if summonedToToy {
-            play()
-            summonedToToy = false
-        } else if animation == 1 {
-            play()
-        } else {
-            bounce()
-        }
-    }
-    
-    func randomGameAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if summonedToGame {
-            playGame()
-            summonedToGame = false
-        } else if animation == 1 {
-            playGame()
-        } else {
-            bounce()
-        }
-    }
-    
-    func randomPottyAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if summonedToPotty && hasCleanPotty {
-            moveIntoPotty()
-            summonedToPotty = false
-        } else if hasCleanPotty == false {
-            linger()
-        } else if animation == 1 && hasCleanPotty {
-            moveIntoPotty()
-        } else {
-            linger()
-        }
-    }
-    
-    func randomPillowAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            sleep()
-        } else {
-            bounce()
-        }
-    }
-    
-    func randomCenterAnimation() {
-        bounce()
-    }
-    
-    func randomCeilingAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            floatLeft()
-        } else {
-            floatRight()
-        }
     }
 }
