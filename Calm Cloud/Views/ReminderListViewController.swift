@@ -16,8 +16,8 @@ class ReminderListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: Variables
-    
-    let dateFormatter = DateFormatter()
+
+    private let reminderViewModel = ReminderViewModel()
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,15 +25,12 @@ class ReminderListViewController: UIViewController {
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTable), name: NSNotification.Name(rawValue: "reloadTable"), object: nil)
         
-        loadReminders()
+        reminderViewModel.loadReminders()
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.backgroundColor = Colors.pink
-        
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -49,37 +46,6 @@ class ReminderListViewController: UIViewController {
     
     @objc func reloadTable() {
         tableView.reloadData()
-    }
-    
-    func loadReminders() {
-        // load saved reminders
-        var managedContext = CoreDataManager.shared.managedObjectContext
-        var fetchRequest = NSFetchRequest<Reminder>(entityName: "Reminder")
-        
-        do {
-            ReminderManager.remindersList = try managedContext.fetch(fetchRequest)
-            print("reminders loaded")
-        } catch let error as NSError {
-            showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
-        }
-    }
-    
-    func fullDelete(reminder: Reminder) {
-        // delete reminder, including notification
-        var managedContext = CoreDataManager.shared.managedObjectContext
-        
-        let notificationCenter = UNUserNotificationCenter.current()
-        let identifier = "\(reminder.id)"
-        notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
-        
-        managedContext.delete(reminder)
-        
-        do {
-            try managedContext.save()
-            print("delete successful")
-        } catch {
-            print("Failed to delete")
-        }
     }
 
     /*
@@ -101,6 +67,30 @@ class ReminderListViewController: UIViewController {
     @IBAction func dismissPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
+}
 
+extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return reminderViewModel.getReminderCount()
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reminderCell", for: indexPath) as! ReminderTableViewCell
+
+        cell.cellName.text = reminderViewModel.getReminderName(index: indexPath.row)
+        cell.cellTime.text = reminderViewModel.getHourMinute(index: indexPath.row)
+        cell.cellDateOrRepeat.text = reminderViewModel.getDayOrRepeat(index: indexPath.row)
+
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+        if editingStyle == .delete {
+            reminderViewModel.fullDelete(index: indexPath.row)
+
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 }

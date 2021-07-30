@@ -172,7 +172,7 @@ class OutsideViewController: UIViewController {
             print("view will transition outside")
             cloudKitty.stopAnimating()
             viewModel.stopTimer()
-            randomMoveOutside()
+            randomMove()
         }
     }
     
@@ -441,6 +441,59 @@ class OutsideViewController: UIViewController {
                 plantName.animateFadeInSlow()
             case .remove:
                 view.bringSubviewToFront(removeContainer)
+            }
+        }
+    }
+
+    // MARK: Animation
+
+    func randomMove() {
+        var randomMove = outsideViewModel.randomMovementAnimation()
+    }
+
+    @objc func stopMovingOutside() {
+        if self.isViewLoaded && (self.view.window != nil) {
+            print("outdoor view on screen")
+            // run after an animation is complete, randomize next
+            cloudKitty.stopAnimating()
+
+            if outsideViewModel.isStopped() {
+                return
+            }
+
+            var animate = outsideViewModel.randomizeAnimationType()
+
+            switch animate {
+            case .bounce:
+                bounce()
+            case .floatLeft:
+                floatLeft()
+            case .floatRight:
+                floatRight()
+            case .floatSleep:
+                floatSleep()
+            case .floatUp:
+                floatUp()
+            case .moveLeftToBack:
+                moveLeftToBack()
+            case .moveLeftToCenter:
+                moveLeftToCenter()
+            case .moveLeftToPlanter:
+                moveLeftToPlanter()
+            case .moveLeftToWidePot:
+                moveLeftToWidePot()
+            case .moveRightToBack:
+                moveRightToBack()
+            case .moveRightToCenter:
+                moveRightToCenter()
+            case .moveRightToGate:
+                moveRightToGate()
+            case .moveRightToPots:
+                moveRightToPots()
+            case .pause:
+                pause()
+            case .sleep:
+                sleep()
             }
         }
     }

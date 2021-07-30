@@ -20,148 +20,6 @@ extension OutsideViewController {
         return randomRepeatCount
     }
     
-    func randomMoveOutside() {
-        // randomize movement animations
-        let range = [1,2,3,4,5]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            switch AnimationManager.outsideLocation {
-            case .back:
-                moveRightToGate()
-            case .ceiling:
-                moveLeftToPlanter()
-            case .front:
-                moveRightToBack()
-            case .gate:
-                moveLeftToPlanter()
-            case .planter:
-                moveRightToBack()
-            case .pot:
-                moveRightToCenter()
-            case .pots:
-                moveLeftToBack()
-            }
-        } else if animation == 2 {
-            switch AnimationManager.outsideLocation {
-            case .back:
-                moveLeftToCenter()
-            case .ceiling:
-                moveRightToBack()
-            case .front:
-                moveLeftToPlanter()
-            case .gate:
-                moveLeftToCenter()
-            case .planter:
-                moveRightToGate()
-            case .pot:
-                moveRightToBack()
-            case .pots:
-                moveRightToCenter()
-            }
-        } else if animation == 3 {
-            switch AnimationManager.outsideLocation {
-            case .back:
-                moveLeftToWidePot()
-            case .ceiling:
-                moveRightToGate()
-            case .front:
-                moveLeftToWidePot()
-            case .gate:
-                moveLeftToWidePot()
-            case .planter:
-                moveRightToCenter()
-            case .pot:
-                moveRightToCenter()
-            case .pots:
-                moveLeftToBack()
-            }
-        } else if animation == 4 {
-            switch AnimationManager.outsideLocation {
-            case .back:
-                moveLeftToPlanter()
-            case .ceiling:
-                moveLeftToCenter()
-            case .front:
-                moveRightToGate()
-            case .gate:
-                moveLeftToBack()
-            case .planter:
-                moveLeftToWidePot()
-            case .pot:
-                moveLeftToPlanter()
-            case .pots:
-                moveLeftToBack()
-            }
-        } else {
-            if AnimationManager.mood == .happy && AnimationManager.location != .ceiling {
-                floatUp()
-            } else {
-                randomMoveOutside()
-            }
-        }
-    }
-    
-    @objc func stopMovingOutside() {
-        if self.isViewLoaded && (self.view.window != nil) {
-            print("outdoor view on screen")
-            // run after an animation is complete, randomize next
-            let range = [1,2,3,4,5]
-            let animation = range.randomElement()
-            cloudKitty.stopAnimating()
-            
-            if isStopped() {
-                return
-            }
-            
-            if animation == 1 {
-                AnimationManager.movement = .moving
-                randomMoveOutside()
-            } else if animation == 2 {
-                AnimationManager.movement = .staying
-                switch AnimationManager.outsideLocation {
-                case .back:
-                    randomBackAnimation()
-                case .ceiling:
-                    randomCeilingAnimation()
-                case .front:
-                    randomFrontAnimation()
-                case .gate:
-                    randomGateAnimation()
-                case .planter:
-                    randomPlanterAnimation()
-                case .pot:
-                    randomPotAnimation()
-                case .pots:
-                    randomPotsAnimation()
-                }
-            } else if animation == 3 {
-                switch AnimationManager.outsideLocation {
-                case .ceiling:
-                    floatSleep()
-                default:
-                    sleep()
-                }
-            } else if animation == 4 {
-                AnimationManager.movement = .staying
-                print("pause")
-                switch AnimationManager.outsideLocation {
-                case .ceiling:
-                    bounce()
-                default:
-                    pause()
-                }
-            } else {
-                if AnimationManager.mood == .happy && AnimationManager.outsideLocation != .ceiling {
-                    floatUp()
-                } else {
-                    randomMoveOutside()
-                }
-            }
-        }
-    }
-    
-    
     // MARK: Animations
     
     func floatUp() {
@@ -170,7 +28,6 @@ extension OutsideViewController {
         cloudKitty.startAnimating()
         let ceilingDestination = CGPoint(x: container.frame.width/2, y: container.frame.height/6)
         cloudKitty.outsideMove(to: ceilingDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .ceiling
     }
     
     // left movement
@@ -181,7 +38,6 @@ extension OutsideViewController {
         cloudKitty.startAnimating()
         let ceilingDestination = CGPoint(x: container.frame.width/8, y: container.frame.height/6)
         cloudKitty.outsideMove(to: ceilingDestination, duration: 4.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .ceiling
     }
     
     func moveLeftToBack() {
@@ -190,7 +46,6 @@ extension OutsideViewController {
         cloudKitty.startAnimating()
         let centerDestination = CGPoint(x: container.frame.width/2, y: (container.frame.height/3)*1.52)
         cloudKitty.outsideMove(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .back
     }
     
     func moveLeftToPlanter() {
@@ -199,7 +54,6 @@ extension OutsideViewController {
         cloudKitty.startAnimating()
         let planterDestination = CGPoint(x: container.frame.width/4, y: (container.frame.height/3)*2)
         cloudKitty.outsideMove(to: planterDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .planter
     }
     
     func moveLeftToWidePot() {
@@ -208,7 +62,6 @@ extension OutsideViewController {
         cloudKitty.startAnimating()
         let potDestination = CGPoint(x: container.frame.width/4, y: (container.frame.height/3)*2.4)
         cloudKitty.outsideMove(to: potDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .pot
     }
     
     func moveLeftToCenter() {
@@ -217,7 +70,6 @@ extension OutsideViewController {
         cloudKitty.startAnimating()
         let centerDestination = CGPoint(x: container.frame.width/3, y: (container.frame.height/3)*2.35)
         cloudKitty.outsideMove(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .front
     }
     
     // right movement
@@ -228,7 +80,6 @@ extension OutsideViewController {
         cloudKitty.startAnimating()
         let ceilingDestination = CGPoint(x: container.frame.width/1.12, y: container.frame.height/6)
         cloudKitty.outsideMove(to: ceilingDestination, duration: 4.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .ceiling
     }
     
     func moveRightToBack() {
@@ -237,7 +88,6 @@ extension OutsideViewController {
         cloudKitty.startAnimating()
         let centerDestination = CGPoint(x: container.frame.width/2, y: (container.frame.height/3)*1.52)
         cloudKitty.outsideMove(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .back
     }
     
     func moveRightToGate() {
@@ -246,7 +96,6 @@ extension OutsideViewController {
         cloudKitty.startAnimating()
         let gateDestination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*1.5)
         cloudKitty.outsideMove(to: gateDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .gate
     }
     
     func moveRightToCenter() {
@@ -255,7 +104,6 @@ extension OutsideViewController {
         cloudKitty.startAnimating()
         let centerDestination = CGPoint(x: container.frame.width/3, y: (container.frame.height/3)*2.35)
         cloudKitty.outsideMove(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .front
     }
     
     func moveRightToPots() {
@@ -264,7 +112,6 @@ extension OutsideViewController {
         cloudKitty.startAnimating()
         let potsDestination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*2.4)
         cloudKitty.outsideMove(to: potsDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.outsideLocation = .pots
     }
     
     // sleep animations
@@ -323,82 +170,5 @@ extension OutsideViewController {
     func pause() {
         cloudKitty.image = AnimationManager.startImage
         AnimationTimer.beginTimer(repeatCount: randomRepeatCount())
-    }
-    
-    func randomBackAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            bounce()
-        } else {
-            pause()
-        }
-    }
-    
-    func randomCeilingAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            floatLeft()
-        } else {
-            floatRight()
-        }
-    }
-    
-    func randomFrontAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            bounce()
-        } else {
-            pause()
-        }
-    }
-    
-    func randomGateAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            bounce()
-        } else {
-            pause()
-        }
-    }
-    
-    func randomPlanterAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            bounce()
-        } else {
-            pause()
-        }
-    }
-    
-    func randomPotAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            bounce()
-        } else {
-            pause()
-        }
-    }
-    
-    func randomPotsAnimation() {
-        let range = [1,2]
-        let animation = range.randomElement()
-        
-        if animation == 1 {
-            bounce()
-        } else {
-            pause()
-        }
     }
 }

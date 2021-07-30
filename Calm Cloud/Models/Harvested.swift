@@ -13,6 +13,9 @@ struct Harvested {
     
     // items that have been harvested and are in basket
     static var loaded: [HarvestedItem] = []
+
+    // items to display on basket view
+    static var itemsToShow: [BasketItem] = []
     
     // harvested item quantities (in basket)
     static var basketCounts: [Plant: Int] = [

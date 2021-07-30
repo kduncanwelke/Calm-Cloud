@@ -26,6 +26,10 @@
 		2D2EF6A62466017E00E497DC /* InventoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EF6A52466017E00E497DC /* InventoryCollectionViewCell.swift */; };
 		2D384C21243BCA3B00D0FFEB /* PageControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C20243BCA3B00D0FFEB /* PageControllerManager.swift */; };
 		2D384C23243BCB5E00D0FFEB /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C22243BCB5E00D0FFEB /* EntryManager.swift */; };
+		2D3CC0E226B46940000EA922 /* OutsideVM+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CC0E126B46940000EA922 /* OutsideVM+Animation.swift */; };
+		2D3CC0E426B47345000EA922 /* ReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CC0E326B47345000EA922 /* ReminderViewModel.swift */; };
+		2D3CC0E626B475F9000EA922 /* BasketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CC0E526B475F9000EA922 /* BasketViewModel.swift */; };
+		2D3CC0E826B4A25B000EA922 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CC0E726B4A25B000EA922 /* FavoritesViewModel.swift */; };
 		2D3EB98C26AB6BE4004C6A78 /* Pods_Calm_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3EB98B26AB6BE4004C6A78 /* Pods_Calm_Cloud.framework */; };
 		2D3EB99226AB7220004C6A78 /* loire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D3EB99126AB7220004C6A78 /* loire.mp3 */; };
 		2D3EB99426AB7226004C6A78 /* you_will_know.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D3EB99326AB7226004C6A78 /* you_will_know.mp3 */; };
@@ -50,7 +54,6 @@
 		2D7FCABC243263E800E2DEC4 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCABB243263E800E2DEC4 /* ReminderViewController.swift */; };
 		2D7FCABE2432918C00E2DEC4 /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCABD2432918C00E2DEC4 /* ReminderListViewController.swift */; };
 		2D7FCAC02432968F00E2DEC4 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCABF2432968F00E2DEC4 /* ReminderTableViewCell.swift */; };
-		2D7FCAC224329CDE00E2DEC4 /* ReminderList+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCAC124329CDE00E2DEC4 /* ReminderList+TableView.swift */; };
 		2D867DAE243E80B7005BE38F /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D867DAD243E80B7005BE38F /* Alerts.swift */; };
 		2D875E112486F9480054B737 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D875E102486F9480054B737 /* CalendarCollectionViewCell.swift */; };
 		2D875E132486FA3F0054B737 /* Journal+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D875E122486FA3F0054B737 /* Journal+CollectionView.swift */; };
@@ -90,7 +93,6 @@
 		2DB63956252F982900D8ECE0 /* west_wolf_Rear_Street_City_Rain_With_Thunders.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DB63955252F982900D8ECE0 /* west_wolf_Rear_Street_City_Rain_With_Thunders.mp3 */; };
 		2DB63958252FA51800D8ECE0 /* zapsplat_nature_rain_internal_home_rec_open_window_occ_cars_pass_low_thunder_rumbles_001_25102.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DB63957252FA51800D8ECE0 /* zapsplat_nature_rain_internal_home_rec_open_window_occ_cars_pass_low_thunder_rumbles_001_25102.mp3 */; };
 		2DB6E540248AD8CA007DA241 /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E53F248AD8CA007DA241 /* BasketTableViewCell.swift */; };
-		2DB6E542248ADAE6007DA241 /* Basket+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E541248ADAE6007DA241 /* Basket+TableView.swift */; };
 		2DB6E544248AF375007DA241 /* Harvested.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB6E543248AF375007DA241 /* Harvested.swift */; };
 		2DB781722477039800EDCAF9 /* DeliveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB781712477039800EDCAF9 /* DeliveryViewController.swift */; };
 		2DC3644B24ABE99C0059755A /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC3644A24ABE99C0059755A /* Products.swift */; };
@@ -147,6 +149,10 @@
 		2D384C20243BCA3B00D0FFEB /* PageControllerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControllerManager.swift; sourceTree = "<group>"; };
 		2D384C22243BCB5E00D0FFEB /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
 		2D38D60224D22D3F009F82B5 /* Calm Cloud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Calm Cloud.entitlements"; sourceTree = "<group>"; };
+		2D3CC0E126B46940000EA922 /* OutsideVM+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutsideVM+Animation.swift"; sourceTree = "<group>"; };
+		2D3CC0E326B47345000EA922 /* ReminderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewModel.swift; sourceTree = "<group>"; };
+		2D3CC0E526B475F9000EA922 /* BasketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewModel.swift; sourceTree = "<group>"; };
+		2D3CC0E726B4A25B000EA922 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		2D3EB98B26AB6BE4004C6A78 /* Pods_Calm_Cloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Calm_Cloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D3EB99126AB7220004C6A78 /* loire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = loire.mp3; sourceTree = "<group>"; };
 		2D3EB99326AB7226004C6A78 /* you_will_know.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = you_will_know.mp3; sourceTree = "<group>"; };
@@ -173,7 +179,6 @@
 		2D7FCABB243263E800E2DEC4 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
 		2D7FCABD2432918C00E2DEC4 /* ReminderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListViewController.swift; sourceTree = "<group>"; };
 		2D7FCABF2432968F00E2DEC4 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
-		2D7FCAC124329CDE00E2DEC4 /* ReminderList+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderList+TableView.swift"; sourceTree = "<group>"; };
 		2D867DAD243E80B7005BE38F /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		2D875E102486F9480054B737 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D875E122486FA3F0054B737 /* Journal+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+CollectionView.swift"; sourceTree = "<group>"; };
@@ -216,7 +221,6 @@
 		2DB63955252F982900D8ECE0 /* west_wolf_Rear_Street_City_Rain_With_Thunders.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = west_wolf_Rear_Street_City_Rain_With_Thunders.mp3; sourceTree = "<group>"; };
 		2DB63957252FA51800D8ECE0 /* zapsplat_nature_rain_internal_home_rec_open_window_occ_cars_pass_low_thunder_rumbles_001_25102.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zapsplat_nature_rain_internal_home_rec_open_window_occ_cars_pass_low_thunder_rumbles_001_25102.mp3; sourceTree = "<group>"; };
 		2DB6E53F248AD8CA007DA241 /* BasketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
-		2DB6E541248ADAE6007DA241 /* Basket+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Basket+TableView.swift"; sourceTree = "<group>"; };
 		2DB6E543248AF375007DA241 /* Harvested.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Harvested.swift; sourceTree = "<group>"; };
 		2DB781712477039800EDCAF9 /* DeliveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewController.swift; sourceTree = "<group>"; };
 		2DC3644A24ABE99C0059755A /* Products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
@@ -279,7 +283,11 @@
 				2D2D9FBC26B0BF5C0042B6F2 /* ViewModel+CoreData.swift */,
 				2DB2858626B34CA7005E0528 /* ViewModel+Animation.swift */,
 				2DA327EB26B1E6E6002DFB2A /* OutsideViewModel.swift */,
+				2D3CC0E126B46940000EA922 /* OutsideVM+Animation.swift */,
 				2DA327ED26B1E944002DFB2A /* OutsideVM+CoreData.swift */,
+				2D3CC0E326B47345000EA922 /* ReminderViewModel.swift */,
+				2D3CC0E526B475F9000EA922 /* BasketViewModel.swift */,
+				2D3CC0E726B4A25B000EA922 /* FavoritesViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -371,11 +379,9 @@
 		2D8F9047243FC32100211802 /* Tables and Collection Views */ = {
 			isa = PBXGroup;
 			children = (
-				2D7FCAC124329CDE00E2DEC4 /* ReminderList+TableView.swift */,
 				2D41EF29242D5DCF0058C443 /* Favorites+CollectionView.swift */,
 				2D875E122486FA3F0054B737 /* Journal+CollectionView.swift */,
 				2D8F9048243FC51800211802 /* Activities+TableView.swift */,
-				2DB6E541248ADAE6007DA241 /* Basket+TableView.swift */,
 				2D60022F24A6607C002188B1 /* Store+CollectionView.swift */,
 			);
 			path = "Tables and Collection Views";
@@ -631,6 +637,7 @@
 				2D2D9FBD26B0BF5C0042B6F2 /* ViewModel+CoreData.swift in Sources */,
 				2DA08A262530D7EF00A5129F /* WeatherManager.swift in Sources */,
 				2DD2C31B246353310070934D /* Sounds.swift in Sources */,
+				2D3CC0E226B46940000EA922 /* OutsideVM+Animation.swift in Sources */,
 				2D14EBDE243E7740004CB7E2 /* NotificationManager.swift in Sources */,
 				2D07E98924A150E900FD6E66 /* RemoveViewController.swift in Sources */,
 				2D9B7CFB24AD15FF00CDFA8E /* StoreObserver.swift in Sources */,
@@ -639,7 +646,6 @@
 				2DB781722477039800EDCAF9 /* DeliveryViewController.swift in Sources */,
 				2DB2858726B34CA7005E0528 /* ViewModel+Animation.swift in Sources */,
 				2D14EBDC243E752B004CB7E2 /* ReminderManager.swift in Sources */,
-				2DB6E542248ADAE6007DA241 /* Basket+TableView.swift in Sources */,
 				2D00EEBF24942EE2000DA1C8 /* TasksViewController.swift in Sources */,
 				2DD7C97424D09E2E0008C79F /* InfoViewController.swift in Sources */,
 				2D60023024A6607C002188B1 /* Store+CollectionView.swift in Sources */,
@@ -684,15 +690,17 @@
 				2D875E112486F9480054B737 /* CalendarCollectionViewCell.swift in Sources */,
 				2D70349C2490053200B952CA /* QuantityChangeDelegate.swift in Sources */,
 				2D48CC3C242548B200D0FBBB /* SceneDelegate.swift in Sources */,
+				2D3CC0E626B475F9000EA922 /* BasketViewModel.swift in Sources */,
 				2D7FCABE2432918C00E2DEC4 /* ReminderListViewController.swift in Sources */,
 				2D9B7CFD24AD17EB00CDFA8E /* Receipt.swift in Sources */,
 				2D70349E24903A7B00B952CA /* Recentness.swift in Sources */,
+				2D3CC0E426B47345000EA922 /* ReminderViewModel.swift in Sources */,
 				2D384C21243BCA3B00D0FFEB /* PageControllerManager.swift in Sources */,
 				2DB1321924783F5500FA6D71 /* ViewController+Animations.swift in Sources */,
 				2D7FCABA2432506100E2DEC4 /* Photo+ScrollViewDelegate.swift in Sources */,
 				2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */,
-				2D7FCAC224329CDE00E2DEC4 /* ReminderList+TableView.swift in Sources */,
 				2D5D6F362464830C00993969 /* MiniGameViewController.swift in Sources */,
+				2D3CC0E826B4A25B000EA922 /* FavoritesViewModel.swift in Sources */,
 				2D2EF6A4246600FF00E497DC /* InventoryViewController.swift in Sources */,
 				2D2D9FBB26B0B21F0042B6F2 /* StatusManager.swift in Sources */,
 				2D8C838F2433CDD9006711F2 /* CoreDataManager.swift in Sources */,

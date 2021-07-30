@@ -348,8 +348,7 @@ class ViewController: UIViewController {
             print("indoor view on screen")
             // current animation stopped, randomize next
             print("stop moving called")
-            let range = [1,2,3,4]
-            let animation = range.randomElement()
+           
             cloudKitty.stopAnimating()
             
             if viewModel.isStopped() {

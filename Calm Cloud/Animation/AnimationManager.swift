@@ -245,3 +245,23 @@ enum Animation {
     case floatSleep
     case pause
 }
+
+enum OutsideAnimation {
+    case moveLeftToBack
+    case moveLeftToCenter
+    case moveLeftToPlanter
+    case moveLeftToWidePot
+
+    case moveRightToBack
+    case moveRightToCenter
+    case moveRightToGate
+    case moveRightToPots
+
+    case floatUp
+    case floatLeft
+    case floatRight
+    case sleep
+    case floatSleep
+    case bounce
+    case pause
+}

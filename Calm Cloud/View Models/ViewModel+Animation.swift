@@ -122,7 +122,7 @@ extension ViewModel {
         } else if AnimationManager.mood == .happy && AnimationManager.location != .ceiling {
             return .floatUp
         } else {
-            return .sleep
+            return randomMovementAnimation()
         }
     }
 

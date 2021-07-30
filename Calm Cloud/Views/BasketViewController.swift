@@ -21,17 +21,15 @@ class BasketViewController: UIViewController {
     @IBOutlet weak var expLabel: UILabel!
     
     // MARK: Variables
-    
-    var itemsToShow: [BasketItem] = []
-    var numberDonated = 0
-    var numberSentToStand = 0
+
+    private let basketViewModel = BasketViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        DataFunctions.loadHarvest()
+        basketViewModel.performDataLoads()
         
         addedImage.alpha = 0.0
         donatedView.alpha = 0.0
@@ -40,9 +38,11 @@ class BasketViewController: UIViewController {
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.backgroundColor = Colors.pink
-        
-        loadItems()
+
         toggleButtons()
+
+        basketViewModel.loadItems()
+        tableView.reloadData()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -56,39 +56,15 @@ class BasketViewController: UIViewController {
     
     // MARK: Custom functions
     
-    func loadItems() {
-        for (plant, number) in Harvested.basketCounts {
-            if number != 0 {
-                for item in Harvested.basketItems {
-                    if item.plant == plant {
-                        itemsToShow.append(item)
-                        break
-                    }
-                }
-            }
-        }
-        tableView.reloadData()
-    }
-    
     func toggleButtons() {
         if segmentedControl.selectedSegmentIndex == -1 {
             doneButton.isEnabled = false
             cancelButton.isEnabled = false
         } else if segmentedControl.selectedSegmentIndex == 0 {
-            if numberSentToStand != 0 {
-                doneButton.isEnabled = true
-            } else {
-                doneButton.isEnabled = false
-            }
-            
+            doneButton.isEnabled = basketViewModel.enableDoneButtonStand()
             cancelButton.isEnabled = true
         } else if segmentedControl.selectedSegmentIndex == 1 {
-            if numberDonated != 0 {
-                doneButton.isEnabled = true
-            } else {
-                doneButton.isEnabled = false
-            }
-            
+            doneButton.isEnabled = basketViewModel.enableDoneButtonDonation()
             cancelButton.isEnabled = true
         }
     }
@@ -97,25 +73,6 @@ class BasketViewController: UIViewController {
         segmentedControl.selectedSegmentIndex = -1
         tableView.reloadData()
         toggleButtons()
-    }
-    
-    func randomEXP() -> Int {
-        var exp = 0
-        
-        for _ in 1...numberDonated {
-            let randomEXP = Int.random(in: 5...15)
-            exp += randomEXP
-        }
-        
-        LevelManager.currentEXP += exp
-        
-        // update exp amounts where displayed, in home view and outside view
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromOutside"), object: nil)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromBasket"), object: nil)
-        
-        DataFunctions.saveLevel()
-        
-        return exp
     }
 
     /*
@@ -136,18 +93,13 @@ class BasketViewController: UIViewController {
     }
     
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
-        if segmentedControl.selectedSegmentIndex == 0 {
-            if numberSentToStand != 0 {
-                DataFunctions.saveHonorStandItems()
-                addedImage.animateFadeInSlow()
-            }
-        } else if segmentedControl.selectedSegmentIndex == 1 {
-            if numberDonated != 0 {
-                DataFunctions.saveHarvest()
-                expLabel.text = "+\(randomEXP())EXP"
-                donatedView.animateFadeInSlow()
-                numberDonated = 0
-            }
+        var result = basketViewModel.saveChanges(segment: segmentedControl.selectedSegmentIndex)
+
+        if result.honorStand {
+            addedImage.animateFadeInSlow()
+        } else if result.donated {
+            expLabel.text = "+\(basketViewModel.randomEXP())EXP"
+            donatedView.animateFadeInSlow()
         }
         
         // send notification here so if user both donates and puts in the honor stand
@@ -164,5 +116,51 @@ class BasketViewController: UIViewController {
     @IBAction func backTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
+}
+
+extension BasketViewController: UITableViewDelegate, UITableViewDataSource, QuantityChangeDelegate {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return basketViewModel.getItemTotal()
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "basketCell", for: indexPath) as! BasketTableViewCell
+
+        if segmentedControl.selectedSegmentIndex == -1 {
+            cell.stepper.isHidden = true
+            cell.selectedNumber.isHidden = true
+            cell.quantityLabel.isHidden = false
+        } else {
+            cell.stepper.isHidden = false
+            cell.selectedNumber.isHidden = false
+            cell.quantityLabel.isHidden = true
+        }
+
+        cell.itemLabel.text = basketViewModel.getName(index: indexPath.row)
+        cell.selectedNumber.text = "0"
+        cell.stepper.value = 0
+
+        cell.quantityLabel.text = "\(basketViewModel.getQuantity(index: indexPath.row))"
+        cell.stepper.maximumValue = Double(basketViewModel.getQuantity(index: indexPath.row))
+        cell.stepper.minimumValue = 0
+
+        cell.cellDelegate = self
+
+        return cell
+    }
+
+    func didChangeQuantity(sender: BasketTableViewCell, number: Int, direction: Direction) {
+        let path = self.tableView.indexPath(for: sender)
+        if let selected = path {
+
+            basketViewModel.adjustCounts(index: selected.row, segment: segmentedControl.selectedSegmentIndex, direction: direction, number: number)
+            
+            // toggle buttons based on selection, not active if no items are selected
+            toggleButtons()
+            print("quantity delegate called")
+        }
+    }
 
 }
+

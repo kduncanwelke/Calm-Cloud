@@ -18,11 +18,7 @@ class ReminderViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var savedImage: UIImageView!
-    
-    // MARK: Variables
-    
-    let calendar = Calendar.current
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,6 +26,10 @@ class ReminderViewController: UIViewController {
         savedImage.alpha = 0.0
         datePicker.minimumDate = Date()
     }
+
+    // MARK: Variables
+
+    private let reminderViewModel = ReminderViewModel()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         if #available(iOS 13.0, *) {
@@ -78,51 +78,6 @@ class ReminderViewController: UIViewController {
         timePicker.date = Date()
         messageTextField.text = ""
     }
-    
-    func getTime(reminder: Reminder) {
-        // get time from picker
-        let date = timePicker.date
-        
-        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
-        
-        guard let hour = components.hour, let minute = components.minute else { return }
-        
-        reminder.hour = Int64(hour)
-        reminder.minute = Int64(minute)
-    }
-    
-    func saveReminder() {
-        // save reminder
-        if messageTextField.text != "" {
-            var managedContext = CoreDataManager.shared.managedObjectContext
-            let newReminder = Reminder(context: managedContext)
-            
-            newReminder.name = messageTextField.text
-            newReminder.id = Date()
-            getTime(reminder: newReminder)
-            
-            if dailySwitch.isOn {
-                newReminder.date = nil
-            } else {
-                newReminder.date = datePicker.date
-            }
-            
-            ReminderManager.remindersList.append(newReminder)
-            NotificationManager.addNotification(for: newReminder)
-            
-            do {
-                try managedContext.save()
-                print("saved reminder")
-                savedImage.animateFadeInSlow()
-                resetUI()
-            } catch {
-                // this should never be displayed but is here to cover the possibility
-                showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
-            }
-            
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTable"), object: nil)
-        }
-    }
 
     /*
     // MARK: - Navigation
@@ -139,7 +94,9 @@ class ReminderViewController: UIViewController {
     }
     
     @IBAction func saveTapped(_ sender: UIBarButtonItem) {
-        saveReminder()
+        reminderViewModel.saveReminder(message: messageTextField, datePicker: datePicker, switchOn: dailySwitch.isOn)
+        savedImage.animateFadeInSlow()
+        resetUI()
     }
     
     @IBAction func dismissPressed(_ sender: UIButton) {
