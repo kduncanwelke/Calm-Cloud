@@ -114,6 +114,7 @@ class BasketViewController: UIViewController {
     }
     
     @IBAction func backTapped(_ sender: UIButton) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "restart"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
 }

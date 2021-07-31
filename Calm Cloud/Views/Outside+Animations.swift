@@ -131,7 +131,7 @@ extension OutsideViewController {
         cloudKitty.animationDuration = 2.0
         cloudKitty.animationRepeatCount = 0
         cloudKitty.startAnimating()
-        let destination = CGPoint(x: cloudKitty.frame.midX, y: cloudKitty.frame.midY)
+        let destination = CGPoint(x: container.frame.width/2, y: container.frame.height/6)
         let floatDestination = CGPoint(x: destination.x, y: destination.y-20)
         cloudKitty.floatMoveOutside(to: floatDestination, returnTo: destination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
     }

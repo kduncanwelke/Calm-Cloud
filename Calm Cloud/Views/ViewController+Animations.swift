@@ -220,7 +220,7 @@ extension ViewController {
         case .potty:
             destination = CGPoint(x: container.frame.width/1.57, y: (container.frame.height/3)*2)
         case .ceiling:
-            destination = CGPoint(x: container.frame.midX, y: container.frame.midY)
+            destination = CGPoint(x: container.frame.width/2.66, y: container.frame.height/6)
         case .game:
             destination = CGPoint(x: container.frame.width/4.4, y: (container.frame.height/3)*2.35)
         case .pillow:
@@ -237,7 +237,6 @@ extension ViewController {
         cloudKitty.startAnimating()
         let bedDestination = CGPoint(x: container.frame.width/10, y: container.frame.height/2)
         cloudKitty.goToSleep(to: bedDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
-        AnimationManager.location = .bed
     }
     
     // food bowl animation
@@ -315,7 +314,7 @@ extension ViewController {
         cloudKitty.animationDuration = 2.0
         cloudKitty.animationRepeatCount = 0
         cloudKitty.startAnimating()
-        let destination = CGPoint(x: cloudKitty.frame.midX, y: cloudKitty.frame.midY)
+        let destination = CGPoint(x: container.frame.width/2.66, y: container.frame.height/6)
         let floatDestination = CGPoint(x: destination.x, y: destination.y-20)
         cloudKitty.floatMove(to: floatDestination, returnTo: destination, duration: 2.0, options: [UIView.AnimationOptions.curveLinear])
     }

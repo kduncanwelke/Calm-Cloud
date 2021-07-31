@@ -41,7 +41,7 @@ extension OutsideViewModel {
                 return animations.randomElement() ?? .moveLeftToBack
             }
         } else {
-            if AnimationManager.mood == .happy && AnimationManager.location != .ceiling {
+            if AnimationManager.mood == .happy && AnimationManager.outsideLocation != .ceiling {
                 return .floatUp
             } else {
                 return randomMovementAnimation()

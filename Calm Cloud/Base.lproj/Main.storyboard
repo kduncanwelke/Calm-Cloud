@@ -692,17 +692,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="G8k-y5-W0o">
-                                                    <rect key="frame" x="16" y="13.999999999999996" width="46" height="42.666666666666657"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="G8k-y5-W0o">
+                                                    <rect key="frame" x="16" y="14.000000000000004" width="46" height="42.333333333333343"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwI-9E-fVS">
-                                                            <rect key="frame" x="0.0" y="0.0" width="46" height="20.666666666666668"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwI-9E-fVS">
+                                                            <rect key="frame" x="0.0" y="0.0" width="46" height="19"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                             <color key="textColor" systemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JhA-h1-0YO">
-                                                            <rect key="frame" x="0.0" y="24.666666666666664" width="46" height="18"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JhA-h1-0YO">
+                                                            <rect key="frame" x="0.0" y="23" width="46" height="19.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -719,10 +719,10 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="FIL-Hr-nWj" firstAttribute="trailing" secondItem="FLx-mE-f4p" secondAttribute="trailingMargin" id="EdZ-SE-Ccc"/>
-                                                <constraint firstItem="G8k-y5-W0o" firstAttribute="top" secondItem="FLx-mE-f4p" secondAttribute="topMargin" constant="3" id="IXj-ku-3pq"/>
+                                                <constraint firstItem="G8k-y5-W0o" firstAttribute="centerY" secondItem="FLx-mE-f4p" secondAttribute="centerY" id="Fol-fS-fT7"/>
+                                                <constraint firstItem="G8k-y5-W0o" firstAttribute="height" secondItem="FLx-mE-f4p" secondAttribute="height" multiplier="0.604762" id="L2A-va-SMB"/>
                                                 <constraint firstItem="FIL-Hr-nWj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="G8k-y5-W0o" secondAttribute="trailing" constant="20" id="inQ-yv-ZYt"/>
                                                 <constraint firstItem="G8k-y5-W0o" firstAttribute="leading" secondItem="FLx-mE-f4p" secondAttribute="leadingMargin" id="m5o-sy-fWk"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="G8k-y5-W0o" secondAttribute="bottom" constant="2.5" id="rcR-RQ-UUl"/>
                                                 <constraint firstItem="FIL-Hr-nWj" firstAttribute="centerY" secondItem="FLx-mE-f4p" secondAttribute="centerY" id="xC2-rP-XTq"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -851,7 +851,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="RvM-tl-mgU">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="RvM-tl-mgU">
                                 <rect key="frame" x="0.0" y="243.66666666666663" width="375" height="162.33333333333337"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColor">
@@ -859,7 +859,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </datePicker>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="8ck-yK-YlA">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="8ck-yK-YlA">
                                 <rect key="frame" x="0.0" y="466.99999999999994" width="375" height="162.33333333333331"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColor">

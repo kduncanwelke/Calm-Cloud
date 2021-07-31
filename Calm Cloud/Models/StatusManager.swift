@@ -38,6 +38,7 @@ struct StatusManager {
     static var lanternsOn = false
     static var outsideStopped = false
     static var mode: Mode = .planting
+    static var returnedFromSegueOutside = false
 }
 
 enum Behavior {

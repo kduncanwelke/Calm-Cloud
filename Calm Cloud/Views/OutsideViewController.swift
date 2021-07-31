@@ -133,7 +133,8 @@ class OutsideViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(loadPlants), name: NSNotification.Name(rawValue: "loadPlants"), object: nil)
 
         NotificationCenter.default.addObserver(self, selector: #selector(waterPlant), name: NSNotification.Name(rawValue: "waterPlant"), object: nil)
-        
+
+        NotificationCenter.default.addObserver(self, selector: #selector(restart), name: NSNotification.Name(rawValue: "restart"), object: nil)
         
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
@@ -181,14 +182,19 @@ class OutsideViewController: UIViewController {
     func stop() {
         cloudKitty.stopAnimating()
         viewModel.stopTimer()
-        AnimationTimer.stop()
         outsideViewModel.stopOutside()
     }
 
     func isStopped() -> Bool {
         return outsideViewModel.isStopped()
     }
-    
+
+    @objc func restart() {
+        outsideViewModel.resumeOutside()
+        outsideViewModel.setReturnFromSegue()
+        stopMovingOutside()
+    }
+
     func loadUI() {
         outsideViewModel.setAmbientSound()
 
@@ -344,8 +350,8 @@ class OutsideViewController: UIViewController {
     }
     
     @objc func hideMiniGame() {
-        outsideViewModel.resumeOutside()
         view.sendSubviewToBack(cupsMiniGameContainer)
+        outsideViewModel.resumeOutside()
         stopMovingOutside()
     }
     
@@ -452,7 +458,7 @@ class OutsideViewController: UIViewController {
     }
 
     @objc func stopMovingOutside() {
-        if self.isViewLoaded && (self.view.window != nil) {
+        if self.isViewLoaded && (self.view.window != nil) || outsideViewModel.isReturnedFromSegue() {
             print("outdoor view on screen")
             // run after an animation is complete, randomize next
             cloudKitty.stopAnimating()
@@ -460,6 +466,11 @@ class OutsideViewController: UIViewController {
             if outsideViewModel.isStopped() {
                 return
             }
+
+            if outsideViewModel.isReturnedFromSegue() {
+                outsideViewModel.removeReturnFromSegue()
+            }
+
 
             var animate = outsideViewModel.randomizeAnimationType()
 
@@ -495,6 +506,8 @@ class OutsideViewController: UIViewController {
             case .sleep:
                 sleep()
             }
+
+            outsideViewModel.updateLocation(movement: animate)
         }
     }
 
@@ -512,7 +525,7 @@ class OutsideViewController: UIViewController {
     
     @IBAction func miniGameTapped(_ sender: UIButton) {
         // show mini game
-        stop()
+        outsideViewModel.stopOutside()
         
         view.bringSubviewToFront(cupsMiniGameContainer)
         cupsMiniGameContainer.animateBounce()
@@ -624,6 +637,7 @@ class OutsideViewController: UIViewController {
     }
     
     @IBAction func storeTapped(_ sender: UIButton) {
+        outsideViewModel.stopOutside()
         performSegue(withIdentifier: "goToStore", sender: Any?.self)
     }
     
@@ -740,6 +754,7 @@ class OutsideViewController: UIViewController {
     }
     
     @IBAction func basketPressed(_ sender: UIButton) {
+        outsideViewModel.stopOutside()
         performSegue(withIdentifier: "viewBasket", sender: Any?.self)
     }
     

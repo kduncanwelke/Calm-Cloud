@@ -298,7 +298,7 @@ class ViewController: UIViewController {
         
         door.isHidden = false
         openDoor.isHidden = true
-        viewModel.stop()
+        viewModel.unStop()
         viewModel.setReturnFromSegue()
         
         stopMoving()
@@ -321,7 +321,7 @@ class ViewController: UIViewController {
     @objc func closeMiniGame() {
         // close mini game container when user dismisses
         view.sendSubviewToBack(containerView)
-        viewModel.stop()
+        viewModel.unStop()
         stopMoving()
     }
     
@@ -340,6 +340,7 @@ class ViewController: UIViewController {
     // location change animations, randomized
     
     func randomMove() {
+        print("randommove")
         var randomMove = viewModel.randomMovementAnimation()
     }
     
@@ -356,6 +357,10 @@ class ViewController: UIViewController {
                     goNightNight()
                 }
                 return
+            }
+
+            if viewModel.isReturnedFromSegue() {
+                viewModel.removeReturnFromSegue()
             }
 
             viewModel.performAnimationResets(toy: toyImage, game: game)
@@ -417,6 +422,8 @@ class ViewController: UIViewController {
             case .sleep:
                 sleep()
             }
+
+            viewModel.updateLocation(movement: animate)
         }
     }
     
@@ -549,7 +556,7 @@ class ViewController: UIViewController {
         door.isHidden = true
         openDoor.isHidden = false
         FireSound.stopPlaying()
-        stopAnimations()
+        viewModel.stop()
         performSegue(withIdentifier: "goOutside", sender: Any?.self)
     }
     
@@ -559,7 +566,7 @@ class ViewController: UIViewController {
             return
         } else {
             // show mini game
-            stopAnimations()
+            viewModel.stop()
         
             view.bringSubviewToFront(containerView)
             containerView.animateBounce()
@@ -602,6 +609,7 @@ class ViewController: UIViewController {
             }
             
             insideNightOverlay.image = viewModel.configureLights().overlay
+            stringLights.image = viewModel.configureLights().lights
 
             // if music was playing, it will stop so turn off record player
             recordPlayer.stopAnimating()

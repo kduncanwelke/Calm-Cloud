@@ -26,6 +26,7 @@ extension UIView {
             self.center = destination
         }, completion: {(finished: Bool) in
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "goToSleep"), object: nil)
+            AnimationManager.location = .bed
         })
     }
     

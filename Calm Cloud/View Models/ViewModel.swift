@@ -76,6 +76,10 @@ public class ViewModel {
         StatusManager.returnedFromSegue = true
     }
 
+    func removeReturnFromSegue() {
+        StatusManager.returnedFromSegue = false
+    }
+
     func isRecentEnough(date: Date?, recentness: Int) -> Bool {
         if let chosenDate = date {
             let calendar = Calendar.current
@@ -372,32 +376,28 @@ public class ViewModel {
     }
 
     func configureLights() -> (lights: UIImage?, overlay: UIImage?) {
-        if stringLightsOn() && lightsOff() {
-            turnStringLightsOff()
-
-            if stringLightsOn() && isBurning() {
-                return (UIImage(named: "lights"), UIImage(named: "glowstarsfire"))
-            } else if stringLightsOn() {
-                return (UIImage(named: "lights"), UIImage(named: "glowstars"))
-            } else if isBurning() {
-                return (UIImage(named: "lights"), UIImage(named: "nostarsfire"))
+        if lightsOff() == false {
+            // it's light
+            if stringLightsOn() {
+                return (UIImage(named: "lightsglow"), nil)
             } else {
-                return (UIImage(named: "lights"), UIImage(named: "nightoverlay"))
-            }
-        } else if stringLightsOn() == false && lightsOff() {
-            turnStringLightsOn()
-
-            if stringLightsOn() && isBurning() {
-                return (UIImage(named: "lightsglow"), UIImage(named: "glowstarsfire"))
-            } else if stringLightsOn() {
-                return (UIImage(named: "lightsglow"), UIImage(named: "glowstars"))
-            } else if isBurning() {
-                return (UIImage(named: "lightsglow"), UIImage(named: "nostarsfire"))
-            } else {
-                return (UIImage(named: "lightsglow"), UIImage(named: "nightoverlay"))
+                return (UIImage(named: "lights"), nil)
             }
         } else {
-            return (nil, nil)
+            // it's dark
+            if stringLightsOn() && isBurning() {
+                // lights and fire
+                return (UIImage(named: "lightsglow"), UIImage(named: "glowstarsfire"))
+            } else if stringLightsOn() && isBurning() == false {
+                // lights and no fire
+                return (UIImage(named: "lightsglow"), UIImage(named: "glowstars"))
+            } else if isBurning() && stringLightsOn() == false {
+                // fire and no lights
+                return (UIImage(named: "lights"), UIImage(named: "nostarsfire"))
+            } else {
+                // no lights or fire
+                return (UIImage(named: "lights"), UIImage(named: "nightoverlay"))
+            }
         }
     }
 
