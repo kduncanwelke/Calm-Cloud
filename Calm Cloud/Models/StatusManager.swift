@@ -52,4 +52,5 @@ enum Message {
     case message
     case harvest
     case identity
+    case water
 }

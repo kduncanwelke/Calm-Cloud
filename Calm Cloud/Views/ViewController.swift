@@ -217,8 +217,10 @@ class ViewController: UIViewController {
         view.bringSubviewToFront(levelUpImage)
         levelUpImage.animateBounce()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
-            self.view.sendSubviewToBack(self.levelUpImage)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            if let levelUp = self?.levelUpImage {
+                self?.view.sendSubviewToBack(levelUp)
+            }
         }
     }
     
@@ -226,23 +228,23 @@ class ViewController: UIViewController {
         // add label feedback to activities that produce exp, near relevant image
         
         // choose whichever label is currently not visible
-        if plusEXPLabel.alpha == 0.0 {
+        if plusEXPLabel.alpha == 0.0 || plusEXPLabel.alpha < plusEXPLabelAlt.alpha {
             plusEXPLabel.center = CGPoint(x: near.frame.midX, y: near.frame.midY-30)
             plusEXPLabel.text = "+\(exp) EXP"
             plusEXPLabel.alpha = 1.0
             plusEXPLabel.isHidden = false
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
-                self.plusEXPLabel.fadeOut()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                self?.plusEXPLabel.fadeOut()
             }
-        } else if plusEXPLabelAlt.alpha == 0.0 {
+        } else {
             plusEXPLabelAlt.center = CGPoint(x: near.frame.midX, y: near.frame.midY-30)
             plusEXPLabelAlt.text = "+\(exp) EXP"
             plusEXPLabelAlt.alpha = 1.0
             plusEXPLabelAlt.isHidden = false
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
-                self.plusEXPLabelAlt.fadeOut()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                self?.plusEXPLabelAlt.fadeOut()
             }
         }
     }
@@ -341,7 +343,9 @@ class ViewController: UIViewController {
     
     func randomMove() {
         print("randommove")
-        var randomMove = viewModel.randomMovementAnimation()
+        var animate = viewModel.randomMovementAnimation()
+        doAnimation(animate: animate)
+        viewModel.updateLocation(movement: animate)
     }
     
     @objc func stopMoving() {
@@ -367,63 +371,67 @@ class ViewController: UIViewController {
             
             var animate = viewModel.randomizeAnimationType()
 
-            // switch on animation type
-            switch animate {
-            case .bounce:
-                bounce()
-            case .drink:
-                drink()
-            case .eat:
-                eat()
-            case .floatLeft:
-                floatLeft()
-            case .floatRight:
-                floatRight()
-            case .floatSleep:
-                floatSleep()
-            case .floatUp:
-                floatUp()
-            case .linger:
-                linger()
-            case .moveIntoPotty:
-                moveIntoPotty()
-            case .moveLeftToBed:
-                moveLeftToBed()
-            case .moveLeftToCenter:
-                moveLeftToCenter()
-            case .moveLeftToFood:
-                moveLeftToFood()
-            case .moveLeftToGame:
-                moveLeftToGame()
-            case .moveLeftToPotty:
-                moveLeftToPotty()
-            case .moveLeftToToy:
-                moveLeftToToy()
-            case .moveLeftToWater:
-                moveLeftToWater()
-            case .moveRightToCenter:
-                moveRightToCenter()
-            case .moveRightToFood:
-                moveRightToFood()
-            case .moveRightToPillow:
-                moveRightToPillow()
-            case .moveRightToPotty:
-                moveRightToPotty()
-            case .moveRightToToy:
-                moveRightToToy()
-            case .moveRightToWater:
-                moveRightToWater()
-            case .pause:
-                pause()
-            case .play:
-                play()
-            case .playGame:
-                playGame()
-            case .sleep:
-                sleep()
-            }
+            doAnimation(animate: animate)
 
             viewModel.updateLocation(movement: animate)
+        }
+    }
+
+    func doAnimation(animate: Animation) {
+        // switch on animation type
+        switch animate {
+        case .bounce:
+            bounce()
+        case .drink:
+            drink()
+        case .eat:
+            eat()
+        case .floatLeft:
+            floatLeft()
+        case .floatRight:
+            floatRight()
+        case .floatSleep:
+            floatSleep()
+        case .floatUp:
+            floatUp()
+        case .linger:
+            linger()
+        case .moveIntoPotty:
+            moveIntoPotty()
+        case .moveLeftToBed:
+            moveLeftToBed()
+        case .moveLeftToCenter:
+            moveLeftToCenter()
+        case .moveLeftToFood:
+            moveLeftToFood()
+        case .moveLeftToGame:
+            moveLeftToGame()
+        case .moveLeftToPotty:
+            moveLeftToPotty()
+        case .moveLeftToToy:
+            moveLeftToToy()
+        case .moveLeftToWater:
+            moveLeftToWater()
+        case .moveRightToCenter:
+            moveRightToCenter()
+        case .moveRightToFood:
+            moveRightToFood()
+        case .moveRightToPillow:
+            moveRightToPillow()
+        case .moveRightToPotty:
+            moveRightToPotty()
+        case .moveRightToToy:
+            moveRightToToy()
+        case .moveRightToWater:
+            moveRightToWater()
+        case .pause:
+            pause()
+        case .play:
+            play()
+        case .playGame:
+            playGame()
+        case .sleep:
+            sleep()
         }
     }
     
@@ -453,8 +461,14 @@ class ViewController: UIViewController {
     
     @IBAction func lightsOnOff(_ sender: UIButton) {
         if viewModel.canAccessLights() {
-            var images = viewModel.configureLights()
+            if viewModel.stringLightsOn() {
+                viewModel.turnStringLightsOff()
+            } else {
+                viewModel.turnStringLightsOn()
+            }
 
+            var images = viewModel.configureLights()
+            
             stringLights.image = images.lights
             insideNightOverlay.image = images.overlay
         } else {
@@ -556,7 +570,7 @@ class ViewController: UIViewController {
         door.isHidden = true
         openDoor.isHidden = false
         FireSound.stopPlaying()
-        viewModel.stop()
+        stopAnimations()
         performSegue(withIdentifier: "goOutside", sender: Any?.self)
     }
     
@@ -691,18 +705,26 @@ class ViewController: UIViewController {
     }
     
     @IBAction func remindersTapped(_ sender: UIButton) {
+        viewModel.stop()
+        viewModel.stopTimer()
         performSegue(withIdentifier: "visitReminders", sender: Any?.self)
     }
     
     @IBAction func favoritesTapped(_ sender: UIButton) {
+        viewModel.stop()
+        viewModel.stopTimer()
         performSegue(withIdentifier: "visitFavorites", sender: Any?.self)
     }
     
     @IBAction func activitiesTapped(_ sender: UIButton) {
+        viewModel.stop()
+        viewModel.stopTimer()
         performSegue(withIdentifier: "visitActivities", sender: Any?.self)
     }
     
     @IBAction func journalTapped(_ sender: UIButton) {
+        viewModel.stop()
+        viewModel.stopTimer()
         performSegue(withIdentifier: "visitJournal", sender: Any?.self)
     }
 }

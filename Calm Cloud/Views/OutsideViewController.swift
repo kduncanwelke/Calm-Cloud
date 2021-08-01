@@ -268,24 +268,24 @@ class OutsideViewController: UIViewController {
     func showEXP(near: UIImageView, exp: Int) {
         // show exp
         // choose whichever label is currently not visible
-        if plusEXPLabel.alpha == 0.0 {
+        if plusEXPLabel.alpha == 0.0 || plusEXPLabel.alpha < plusEXPLabelAlt.alpha {
             print("label one")
             print(plusEXPLabel.alpha)
             plusEXPLabel.center = CGPoint(x: near.frame.midX, y: near.frame.midY-30)
             plusEXPLabel.text = "+\(exp) EXP"
             plusEXPLabel.alpha = 1.0
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
-                self.plusEXPLabel.fadeOut()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                self?.plusEXPLabel.fadeOut()
             }
-        } else if plusEXPLabelAlt.alpha == 0.0 {
+        } else {
             print("label two")
             plusEXPLabelAlt.center = CGPoint(x: near.frame.midX, y: near.frame.midY-30)
             plusEXPLabelAlt.text = "+\(exp) EXP"
             plusEXPLabelAlt.alpha = 1.0
                 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
-                self.plusEXPLabelAlt.fadeOut()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                self?.plusEXPLabelAlt.fadeOut()
             }
         }
     }
@@ -327,7 +327,6 @@ class OutsideViewController: UIViewController {
 
             if let imageView = view as? UIImageView {
                 imageView.image = outsideViewModel.getStage(plot: outsideViewModel.getPlots(index: i))
-                showEXP(near: imageView, exp: 5)
             }
 
             i += 1
@@ -335,12 +334,13 @@ class OutsideViewController: UIViewController {
     }
 
     @objc func waterPlant() {
-        if let plot = outsideViewModel.getPlot() {
-            let view = container.subviews.filter { $0.tag == plot.id }.first
+        let view = container.subviews.filter { $0.tag == outsideViewModel.getPlot() }.first
+        print("plot \(outsideViewModel.getPlot())")
 
-            if let imageView = view as? UIImageView {
-                showEXP(near: imageView, exp: 5)
-            }
+        if let imageView = view as? UIImageView {
+            // show exp feedback
+            updateEXP(source: .water)
+            showEXP(near: imageView, exp: 5)
         }
     }
     
@@ -430,7 +430,7 @@ class OutsideViewController: UIViewController {
             imageToUpdate.image = outsideViewModel.getPlant()
         }
     }
-    
+
     func tappedPlant(image: UIImageView) {
         tappedImage = image
         outsideViewModel.setPlot(plot: image.tag)
@@ -442,6 +442,8 @@ class OutsideViewController: UIViewController {
                 view.bringSubviewToFront(messageContainer)
             case .harvest:
                 view.bringSubviewToFront(harvestContainer)
+            case .water:
+                return
             case .identity:
                 plantName.setTitle(outsideViewModel.getName(), for: .normal)
                 plantName.animateFadeInSlow()
@@ -454,7 +456,9 @@ class OutsideViewController: UIViewController {
     // MARK: Animation
 
     func randomMove() {
-        var randomMove = outsideViewModel.randomMovementAnimation()
+        var animate = outsideViewModel.randomMovementAnimation()
+        doAnimation(animate: animate)
+        outsideViewModel.updateLocation(movement: animate)
     }
 
     @objc func stopMovingOutside() {
@@ -474,40 +478,44 @@ class OutsideViewController: UIViewController {
 
             var animate = outsideViewModel.randomizeAnimationType()
 
-            switch animate {
-            case .bounce:
-                bounce()
-            case .floatLeft:
-                floatLeft()
-            case .floatRight:
-                floatRight()
-            case .floatSleep:
-                floatSleep()
-            case .floatUp:
-                floatUp()
-            case .moveLeftToBack:
-                moveLeftToBack()
-            case .moveLeftToCenter:
-                moveLeftToCenter()
-            case .moveLeftToPlanter:
-                moveLeftToPlanter()
-            case .moveLeftToWidePot:
-                moveLeftToWidePot()
-            case .moveRightToBack:
-                moveRightToBack()
-            case .moveRightToCenter:
-                moveRightToCenter()
-            case .moveRightToGate:
-                moveRightToGate()
-            case .moveRightToPots:
-                moveRightToPots()
-            case .pause:
-                pause()
-            case .sleep:
-                sleep()
-            }
+            doAnimation(animate: animate)
 
             outsideViewModel.updateLocation(movement: animate)
+        }
+    }
+
+    func doAnimation(animate: OutsideAnimation) {
+        switch animate {
+        case .bounce:
+            bounce()
+        case .floatLeft:
+            floatLeft()
+        case .floatRight:
+            floatRight()
+        case .floatSleep:
+            floatSleep()
+        case .floatUp:
+            floatUp()
+        case .moveLeftToBack:
+            moveLeftToBack()
+        case .moveLeftToCenter:
+            moveLeftToCenter()
+        case .moveLeftToPlanter:
+            moveLeftToPlanter()
+        case .moveLeftToWidePot:
+            moveLeftToWidePot()
+        case .moveRightToBack:
+            moveRightToBack()
+        case .moveRightToCenter:
+            moveRightToCenter()
+        case .moveRightToGate:
+            moveRightToGate()
+        case .moveRightToPots:
+            moveRightToPots()
+        case .pause:
+            pause()
+        case .sleep:
+            sleep()
         }
     }
 
@@ -630,14 +638,14 @@ class OutsideViewController: UIViewController {
             // update money inside
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [unowned self] in
-                self.earningsView.isHidden = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+                self?.earningsView.isHidden = true
             }
         }
     }
     
     @IBAction func storeTapped(_ sender: UIButton) {
-        outsideViewModel.stopOutside()
+        stop()
         performSegue(withIdentifier: "goToStore", sender: Any?.self)
     }
     
@@ -754,7 +762,7 @@ class OutsideViewController: UIViewController {
     }
     
     @IBAction func basketPressed(_ sender: UIButton) {
-        outsideViewModel.stopOutside()
+        stop()
         performSegue(withIdentifier: "viewBasket", sender: Any?.self)
     }
     

@@ -146,9 +146,10 @@ public class OutsideViewModel {
                 // cannot water wilted plant
                 return nil
             } else {
+                setPlot(plot: image.tag)
                 saveWatering(id: image.tag)
                 // no message
-                return nil
+                return .water
             }
         case .removal:
             setPlot(plot: image.tag)

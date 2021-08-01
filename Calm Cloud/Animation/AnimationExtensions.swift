@@ -77,12 +77,12 @@ extension UIView {
     func animateImageRight() {
         UIView.animate(withDuration: 0.2, animations: {
             self.transform = CGAffineTransform(translationX: -150.0, y: 0.0)
-        }, completion: { [unowned self] _ in
+        }, completion: { [weak self] _ in
             UIView.animate(withDuration: 0.2, animations: {
-                self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-            }, completion: { [unowned self] _ in
+                self?.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            }, completion: { [weak self] _ in
                 UIView.animate(withDuration: 0.2) {
-                    self.transform = CGAffineTransform.identity
+                    self?.transform = CGAffineTransform.identity
                 }
             })
         })
@@ -91,12 +91,12 @@ extension UIView {
     func animateImageLeft() {
         UIView.animate(withDuration: 0.2, animations: {
             self.transform = CGAffineTransform(translationX: 150.0, y: 0.0)
-        }, completion: { [unowned self] _ in
+        }, completion: { [weak self] _ in
             UIView.animate(withDuration: 0.2, animations: {
-                self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-            }, completion: { [unowned self] _ in
+                self?.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            }, completion: { [weak self] _ in
                 UIView.animate(withDuration: 0.2) {
-                    self.transform = CGAffineTransform.identity
+                    self?.transform = CGAffineTransform.identity
                 }
             })
         })
@@ -105,9 +105,9 @@ extension UIView {
     func animateFadeIn() {
         UIView.animate(withDuration: 0.5, animations: {
             self.alpha = 1.0
-        }, completion: { [unowned self] _ in
+        }, completion: { [weak self] _ in
             UIView.animate(withDuration: 0.5) {
-                self.alpha = 0.0
+                self?.alpha = 0.0
             }
         })
     }
@@ -115,9 +115,9 @@ extension UIView {
     func animateFadeInSlow() {
         UIView.animate(withDuration: 1.5, animations: {
             self.alpha = 1.0
-        }, completion: { [unowned self] _ in
+        }, completion: { [weak self] _ in
             UIView.animate(withDuration: 1.0) {
-                self.alpha = 0.0
+                self?.alpha = 0.0
             }
         })
     }
@@ -137,9 +137,9 @@ extension UIView {
     func animateBounce() {
         UIView.animate(withDuration: 0.2, animations: {
             self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        }, completion: { [unowned self] _ in
+        }, completion: { [weak self] _ in
             UIView.animate(withDuration: 0.2) {
-                self.transform = CGAffineTransform.identity
+                self?.transform = CGAffineTransform.identity
             }
         })
     }
@@ -147,9 +147,9 @@ extension UIView {
     func animateBounceOut() {
         UIView.animate(withDuration: 0.2, animations: {
             self.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        }, completion: { [unowned self] _ in
+        }, completion: { [weak self] _ in
             UIView.animate(withDuration: 0.2) {
-                self.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+                self?.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
             }
         })
     }

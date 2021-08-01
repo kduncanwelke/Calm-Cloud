@@ -104,8 +104,8 @@ class BuyPlantViewController: UIViewController {
             insufficientFunds.isHidden = false
             insufficientFunds.animateBounce()
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
-                self.insufficientFunds.isHidden = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+                self?.insufficientFunds.isHidden = true
             }
         } else {
             if let current = PlantManager.buying {
@@ -125,6 +125,8 @@ class BuyPlantViewController: UIViewController {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dismissWithPurchase"), object: nil)
                 
                 // reset
+                number = 0
+                stepper.value = 0
                 PlantManager.buying = nil
             } else if let current = ItemManager.buying {
                 // update total time available
@@ -152,6 +154,8 @@ class BuyPlantViewController: UIViewController {
     }
     
     @IBAction func cancelPressed(_ sender: UIButton) {
+        number = 0
+        stepper.value = 0
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dismissPurchase"), object: nil)
     }
 

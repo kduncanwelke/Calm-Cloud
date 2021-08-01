@@ -140,8 +140,8 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     
     func hideCalendar() {
         calendarView.animateBounceOut()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [unowned self] in
-            self.calendarView.isHidden = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [weak self] in
+            self?.calendarView.isHidden = true
         }
         darkOverlay.isHidden = true
     }
@@ -297,6 +297,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
     

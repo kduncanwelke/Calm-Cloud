@@ -180,6 +180,7 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     @IBAction func backTapped(_ sender: UIButton) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
     

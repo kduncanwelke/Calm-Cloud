@@ -177,12 +177,13 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
     
     @IBAction func okPressed(_ sender: UIButton) {
         tooSoonView.animateBounceOut()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [unowned self] in
-            self.tooSoonView.isHidden = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [weak self] in
+            self?.tooSoonView.isHidden = true
         }
     }
     
     @IBAction func backPressed(_ sender: UIButton) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
 

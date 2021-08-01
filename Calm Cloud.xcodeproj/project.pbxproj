@@ -29,7 +29,6 @@
 		2D3CC0E226B46940000EA922 /* OutsideVM+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CC0E126B46940000EA922 /* OutsideVM+Animation.swift */; };
 		2D3CC0E426B47345000EA922 /* ReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CC0E326B47345000EA922 /* ReminderViewModel.swift */; };
 		2D3CC0E626B475F9000EA922 /* BasketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CC0E526B475F9000EA922 /* BasketViewModel.swift */; };
-		2D3CC0E826B4A25B000EA922 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CC0E726B4A25B000EA922 /* FavoritesViewModel.swift */; };
 		2D3EB98C26AB6BE4004C6A78 /* Pods_Calm_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3EB98B26AB6BE4004C6A78 /* Pods_Calm_Cloud.framework */; };
 		2D3EB99226AB7220004C6A78 /* loire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D3EB99126AB7220004C6A78 /* loire.mp3 */; };
 		2D3EB99426AB7226004C6A78 /* you_will_know.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2D3EB99326AB7226004C6A78 /* you_will_know.mp3 */; };
@@ -152,7 +151,6 @@
 		2D3CC0E126B46940000EA922 /* OutsideVM+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OutsideVM+Animation.swift"; sourceTree = "<group>"; };
 		2D3CC0E326B47345000EA922 /* ReminderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewModel.swift; sourceTree = "<group>"; };
 		2D3CC0E526B475F9000EA922 /* BasketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewModel.swift; sourceTree = "<group>"; };
-		2D3CC0E726B4A25B000EA922 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		2D3EB98B26AB6BE4004C6A78 /* Pods_Calm_Cloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Calm_Cloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D3EB99126AB7220004C6A78 /* loire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = loire.mp3; sourceTree = "<group>"; };
 		2D3EB99326AB7226004C6A78 /* you_will_know.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = you_will_know.mp3; sourceTree = "<group>"; };
@@ -287,7 +285,6 @@
 				2DA327ED26B1E944002DFB2A /* OutsideVM+CoreData.swift */,
 				2D3CC0E326B47345000EA922 /* ReminderViewModel.swift */,
 				2D3CC0E526B475F9000EA922 /* BasketViewModel.swift */,
-				2D3CC0E726B4A25B000EA922 /* FavoritesViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -700,7 +697,6 @@
 				2D7FCABA2432506100E2DEC4 /* Photo+ScrollViewDelegate.swift in Sources */,
 				2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */,
 				2D5D6F362464830C00993969 /* MiniGameViewController.swift in Sources */,
-				2D3CC0E826B4A25B000EA922 /* FavoritesViewModel.swift in Sources */,
 				2D2EF6A4246600FF00E497DC /* InventoryViewController.swift in Sources */,
 				2D2D9FBB26B0B21F0042B6F2 /* StatusManager.swift in Sources */,
 				2D8C838F2433CDD9006711F2 /* CoreDataManager.swift in Sources */,
@@ -866,7 +862,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/ios/lib",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 2.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/GitHub/Calm-Cloud/Calm Cloud/header.h";
@@ -896,7 +892,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/ios/lib",
 				);
-				MARKETING_VERSION = 2.0.1;
+				MARKETING_VERSION = 2.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/GitHub/Calm-Cloud/Calm Cloud/header.h";
