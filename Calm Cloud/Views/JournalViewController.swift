@@ -23,17 +23,9 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var savedImage: UIImageView!
     @IBOutlet weak var viewButton: UIButton!
     
-    
     // MARK: Variables
-    
-    let calendar = Calendar.init(identifier: .gregorian)
-    var entry: JournalEntry?
-    let dateFormatter = DateFormatter()
-    var currentPage = 0
-    var days: [Int] = []
-    var direction = 0
-    var monthBeginning: Date?
-    var selectedFromCalendar = 0
+
+    private let journalViewModel = JournalViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +35,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
         collectionView.dataSource = self
         savedImage.alpha = 0.0
         textView.delegate = self
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        
+
         loadUI()
         calendarView.isHidden = true
         darkOverlay.isHidden = true
@@ -65,44 +55,10 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     // MARK: Custom functions
     
     func getCalendar() {
-        // show initial calendar page for current month
-        let today = Date()
-        days.removeAll()
-        
-        if let monthToShow = calendar.date(byAdding: .month, value: direction, to: today) {
-            let comps = calendar.dateComponents([.year, .month], from: monthToShow)
-            
-            let monthFormatter = DateFormatter()
-            monthFormatter.dateFormat = "LLLL YYYY"
-            let nameOfMonth = monthFormatter.string(from: monthToShow)
-            monthLabel.text = nameOfMonth
-            
-            if let firstOfMonth = calendar.date(from: comps) {
-                monthBeginning = firstOfMonth
-                let dayOfWeek = calendar.component(.weekday, from: firstOfMonth)
-                
-                var comps2 = DateComponents()
-                comps2.month = 1
-                comps2.day = -1
-                let endOfMonth = Calendar.current.date(byAdding: comps2, to: firstOfMonth)
-                
-                if dayOfWeek != 1 {
-                    let daysToAdd = dayOfWeek - 1
-                    for day in 1...daysToAdd {
-                        days.append(0)
-                    }
-                }
-                
-                if let end = endOfMonth {
-                    let endDay = calendar.component(.day, from: end)
-                    
-                    for day in 1...endDay {
-                        days.append(day)
-                    }
-                }
-            }
-        }
-        
+        journalViewModel.configureCalendar()
+
+        monthLabel.text = journalViewModel.getMonthName()
+
         // clear any preexisting index path selections when reloading collectionview
         if let selected = collectionView.indexPathsForSelectedItems?.first {
             collectionView.deselectItem(at: selected, animated: false)
@@ -113,27 +69,7 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     }
     
     func loadUI() {
-        if currentPage == 0 {
-            if EntryManager.loadedEntries.isEmpty {
-                // if there are no entries add a blank one
-                var managedContext = CoreDataManager.shared.managedObjectContext
-                EntryManager.loadedEntries.insert(JournalEntry(context: managedContext), at: 0)
-            } else {
-                // if the entry's first item does not match the current date there is no entry for today, so add a blank one
-                if let firstEntry = EntryManager.loadedEntries.first, let dateofEntry = firstEntry.date {
-                    let entryIsForToday = calendar.isDate(dateofEntry, inSameDayAs: Date())
-                    
-                    if entryIsForToday == false {
-                        var managedContext = CoreDataManager.shared.managedObjectContext
-                        EntryManager.loadedEntries.insert(JournalEntry(context: managedContext), at: 0)
-                    }
-                }
-            }
-        }
-        
-        if EntryManager.loadedEntries.count > 0 {
-            entry = EntryManager.loadedEntries[currentPage]
-        }
+        journalViewModel.configureEntry()
             
         displayEntry()
     }
@@ -147,19 +83,10 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     }
     
     func displayEntry() {
-        guard let currentEntry = entry, let chosenDate = currentEntry.date else {
-            saveButton.isEnabled = true
-            dateLabel.text = dateFormatter.string(from: Date())
-            textView.text = "Start typing . . ."
-            textView.isEditable = true
-            
-            return
-        }
-        
-        textView.isEditable = false
-        textView.text = currentEntry.text
-        dateLabel.text = dateFormatter.string(from: chosenDate)
-        saveButton.isEnabled = false
+        textView.isEditable = journalViewModel.isEditable()
+        textView.text = journalViewModel.getEntryText()
+        dateLabel.text = journalViewModel.getEntryDate()
+        saveButton.isEnabled = journalViewModel.saveButtonEnabled()
     }
     
     @objc func adjustForKeyboard(notification: Notification) {
@@ -181,43 +108,6 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
         textView.scrollRangeToVisible(selectedRange)
     }
     
-    func saveEntry() {
-        if textView.text != nil && textView.text != "Start typing . . ." {
-            // dismiss keyboard
-            textView.resignFirstResponder()
-            
-            var managedContext = CoreDataManager.shared.managedObjectContext
-            
-            entry?.date = Date()
-            entry?.text = textView.text
-            
-            // remove empty placeholder
-            EntryManager.loadedEntries.remove(at: 0)
-            
-            guard let newEntry = entry else { return }
-            
-            EntryManager.loadedEntries.insert(newEntry, at: 0)
-            
-            do {
-                try managedContext.save()
-                print("saved entry")
-                collectionView.reloadData()
-                saveButton.isEnabled = false
-                savedImage.animateFadeInSlow()
-            } catch {
-                // this should never be displayed but is here to cover the possibility
-                showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
-            }
-            
-            if TasksManager.journal == false {
-                TasksManager.journal = true
-                DataFunctions.saveTasks(updatingActivity: false, removeAll: false)
-            }
-        } else {
-            print("text view was empty or nil")
-        }
-    }
-
     
     /*
     // MARK: - Navigation
@@ -242,11 +132,16 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     }
     
     @IBAction func saveTapped(_ sender: UIBarButtonItem) {
-        saveEntry()
+        textView.resignFirstResponder()
+        
+        if journalViewModel.saveEntry(text: textView.text) != nil {
+            collectionView.reloadData()
+            saveButton.isEnabled = false
+            savedImage.animateFadeInSlow()
+        }
     }
     
     @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
-        
         // if text view is active and user taps off of it, dismiss
         if textView.isFirstResponder {
             textView.resignFirstResponder()
@@ -259,13 +154,13 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     
     // go left, show later month
     @IBAction func nextMonth(_ sender: UIButton) {
-        direction += 1
+        journalViewModel.increaseDirection()
         getCalendar()
     }
     
     // go right, show past month
     @IBAction func prevMonth(_ sender: UIButton) {
-        direction -= 1
+        journalViewModel.decreaseDirection()
         getCalendar()
     }
     
@@ -273,25 +168,20 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
         if collectionView.indexPathsForSelectedItems?.isEmpty ?? true {
             return
         }
-        
-        currentPage = selectedFromCalendar
-        entry = EntryManager.loadedEntries[currentPage]
+
+        journalViewModel.viewEntry()
         displayEntry()
         hideCalendar()
     }
 
     @IBAction func forwardPressed(_ sender: UIButton) {
-        if currentPage > 0 {
-            currentPage -= 1
-            entry = EntryManager.loadedEntries[currentPage]
+        if journalViewModel.goForward() {
             displayEntry()
         }
     }
     
     @IBAction func backPressed(_ sender: UIButton) {
-        if currentPage < EntryManager.loadedEntries.count - 1 {
-            currentPage += 1
-            entry = EntryManager.loadedEntries[currentPage]
+        if journalViewModel.goBackward() {
             displayEntry()
         }
     }
@@ -300,6 +190,58 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
+
+extension JournalViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return journalViewModel.getDayCount()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "calendarCell", for: indexPath) as! CalendarCollectionViewCell
+
+        cell.dateLabel.text = journalViewModel.getDateLabel(index: indexPath.row)
+        cell.backgroundColor = journalViewModel.getBackgroundColor(index: indexPath.row)
+        cell.checkMark.isHidden = journalViewModel.isCheckMarkHidden(index: indexPath.row)
+
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let tappedCell = collectionView.cellForItem(at:indexPath) as! CalendarCollectionViewCell
+
+        if journalViewModel.isDayViewable(index: indexPath.row) == false {
+            tappedCell.backgroundColor = .white
+            viewButton.isEnabled = false
+            return
+        }
+
+        if journalViewModel.selected(index: indexPath.row) {
+            tappedCell.backgroundColor = Colors.blue
+            viewButton.isEnabled = true
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let tappedCell = collectionView.cellForItem(at:indexPath) as! CalendarCollectionViewCell
+
+        tappedCell.backgroundColor = journalViewModel.getBackgroundColor(index: indexPath.row)
+        viewButton.isEnabled = false
+        collectionView.deselectItem(at: indexPath, animated: false)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let availableWidth = collectionView.frame.width
+        let maxNumColumns = 7
+        let cellWidth = (availableWidth / CGFloat(maxNumColumns)).rounded(.down)
+
+        return CGSize(width: cellWidth, height: cellWidth)
+    }
+}
+
 

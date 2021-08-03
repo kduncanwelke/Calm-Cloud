@@ -17,8 +17,7 @@ class RemoveViewController: UIViewController {
     // MARK: Variables
 
     private let viewModel = OutsideViewModel()
-    var remove = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

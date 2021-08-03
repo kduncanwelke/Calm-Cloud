@@ -22,16 +22,15 @@ class PhotoViewController: UIViewController {
     
     // MARK: Variables
     
-    var image: UIImage?
+   private let photoViewModel = PhotoViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         scrollView.delegate = self
-        
-        guard let imageToZoom = image else { return }
-        imageView.image = imageToZoom
+
+        imageView.image = photoViewModel.getPhoto()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -100,35 +99,25 @@ class PhotoViewController: UIViewController {
     
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
         // go to previous
-        if PhotoManager.currentPhotoIndex == 0 {
-            return
-        } else {
+        if photoViewModel.decreasePhotoIndex() {
             imageView.animateImageLeft()
-            PhotoManager.currentPhotoIndex -= 1
-            image = PhotoManager.photos[PhotoManager.currentPhotoIndex]
-            
-            guard let imageToZoom = image else { return }
-            imageView.image = imageToZoom
+            imageView.image = photoViewModel.getPhoto()
+        } else {
+            return
         }
     }
     
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
         // go to next
-        if PhotoManager.currentPhotoIndex == PhotoManager.photos.count - 1 {
-            return
-        } else {
+        if photoViewModel.increasePhotoIndex() {
             imageView.animateImageRight()
-            PhotoManager.currentPhotoIndex += 1
-            image = PhotoManager.photos[PhotoManager.currentPhotoIndex]
-            
-            guard let imageToZoom = image else { return }
-            imageView.image = imageToZoom
+            imageView.image = photoViewModel.getPhoto()
+        } else {
+            return
         }
     }
     
     @IBAction func dismissPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-
 }

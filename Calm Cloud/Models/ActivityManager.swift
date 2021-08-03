@@ -9,6 +9,11 @@
 import Foundation
 
 struct ActivityManager {
+
+    static var loaded: [ActivityId] = []
+    static var completion: [Int : Bool] = [:]
+    static var searchResults: [Activity] = []
+
     static let activities = [
         Activity(title: "Draw", category: .creative, id: 10),
         Activity(title: "Try breathing exercises", category: .mindfulness, id: 26),

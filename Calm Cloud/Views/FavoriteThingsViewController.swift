@@ -21,6 +21,8 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     // MARK: Variables
+
+    private let favesViewModel = FavoritesViewModel()
     
     var imagePicker = UIImagePickerController()
     var tappedImage: UIImage?
@@ -59,90 +61,6 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
         }
     }
     
-    // MARK: Custom functions
-    
-    func addImage(pickedImage: UIImage) {
-        // add picked image
-        var date = String(Date.timeIntervalSinceReferenceDate)
-        var imageID = date.replacingOccurrences(of: ".", with: "-") + ".png"
-        
-        let filePath = DocumentsManager.documentsURL.appendingPathComponent("\(imageID)")
-        
-        do {
-            if let jpgImageData = pickedImage.jpegData(compressionQuality: 1.0) {
-                try jpgImageData.write(to: filePath)
-                DocumentsManager.filePaths.append("\(imageID)")
-            }
-        } catch {
-            print("couldn't write image")
-        }
-       
-        savePhoto()
-    }
-    
-    func savePhoto() {
-        // save photo path to core data
-        var managedContext = CoreDataManager.shared.managedObjectContext
-        
-        let newPhotoSave = Photo(context: managedContext)
-        newPhotoSave.path = DocumentsManager.filePaths.last
-        PhotoManager.loadedPhotos.append(newPhotoSave)
-        
-        do {
-            try managedContext.save()
-            print("saved")
-        } catch {
-            // this should never be displayed but is here to cover the possibility
-            showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
-        }
-        
-        if TasksManager.photo == false {
-            TasksManager.photo = true
-            DataFunctions.saveTasks(updatingActivity: false, removeAll: false)
-        }
-    }
-    
-    func deletePhoto(indexes: [IndexPath]?) {
-        // delete selected photos
-        guard let indexList = indexes else { return }
-      
-        let orderedList = indexList.sorted()
-      
-        for i in orderedList {
-            var count = 0
-           
-            let imageID = DocumentsManager.filePaths[i.row]
-            let imagePath = DocumentsManager.documentsURL.appendingPathComponent(imageID)
-            
-            if DocumentsManager.fileManager.fileExists(atPath: imagePath.path) {
-                do {
-                    try DocumentsManager.fileManager.removeItem(at: imagePath)
-                    print("image deleted")
-                } catch let error {
-                    print("failed to delete with error \(error)")
-                }
-            }
-            
-            DocumentsManager.filePaths.remove(at: i.row)
-            PhotoManager.photos.remove(at: i.row)
-                                
-            var managedContext = CoreDataManager.shared.managedObjectContext
-            managedContext.delete(PhotoManager.loadedPhotos[i.row])
-            
-            do {
-                try managedContext.save()
-                print("delete successful")
-            } catch {
-                print("Failed to save")
-            }
-            
-            count += 1
-        }
-        
-        finishedDeleting = true
-        collectionView.reloadData()
-    }
-    
     // MARK: Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -168,7 +86,10 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     @IBAction func deletePhotos(_ sender: UIBarButtonItem) {
-        deletePhoto(indexes: collectionView.indexPathsForSelectedItems)
+        if let result = favesViewModel.deletePhoto(indexes: collectionView.indexPathsForSelectedItems) {
+            finishedDeleting = true
+            collectionView.reloadData()
+        }
     }
     
     @IBAction func done(_ sender: UIBarButtonItem) {
@@ -195,11 +116,80 @@ extension FavoriteThingsViewController {
             collectionView.reloadData()
             print("have image")
             print(PhotoManager.photos)
-            addImage(pickedImage: pickedImage)
+            favesViewModel.addImage(pickedImage: pickedImage)
         } else {
             print("no image")
         }
         
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension FavoriteThingsViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return favesViewModel.getPhotoCount()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCollectionViewCell
+
+        if finishedDeleting && editingPhotos == false {
+            cell.checkButton.isHidden = true
+        } else if finishedDeleting {
+            cell.checkButton.isHidden = false
+            cell.checkButton.setImage(UIImage(named: "unchecked"), for: .normal)
+            cell.image.alpha = 1.0
+        } else if editingPhotos {
+            cell.checkButton.isHidden = false
+        } else {
+            cell.checkButton.isHidden = true
+        }
+
+        cell.image.image = favesViewModel.getPhoto(index: indexPath.row)
+
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let tappedCell = collectionView.cellForItem(at:indexPath) as! PhotoCollectionViewCell
+
+        if editingPhotos {
+            finishedDeleting = false
+            if let indexList = collectionView.indexPathsForSelectedItems {
+                if indexList.contains(indexPath) {
+                    tappedCell.checkButton.setImage(UIImage(named: "correct"), for: .normal)
+                    tappedCell.image.alpha = 0.7
+                    print("selected")
+                }
+            }
+        } else {
+            tappedImage = tappedCell.image.image
+            favesViewModel.setCurrentPhotoIndex(index: indexPath.row)
+            print(PhotoManager.currentPhotoIndex )
+            performSegue(withIdentifier: "viewPhoto", sender: Any?.self)
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let tappedCell = collectionView.cellForItem(at:indexPath) as! PhotoCollectionViewCell
+
+        if editingPhotos {
+            tappedCell.checkButton.setImage(UIImage(named: "unchecked"), for: .normal)
+            tappedCell.image.alpha = 1.0
+            print("not selected")
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let availableWidth = collectionView.frame.width
+        let maxNumColumns = 3
+        let cellWidth = (availableWidth / CGFloat(maxNumColumns)).rounded(.down)
+
+        return CGSize(width: cellWidth, height: cellWidth)
     }
 }

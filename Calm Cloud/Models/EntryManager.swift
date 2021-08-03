@@ -10,4 +10,6 @@ import Foundation
 
 struct EntryManager {
     static var loadedEntries: [JournalEntry] = []
+
+    static var entry: JournalEntry?
 }

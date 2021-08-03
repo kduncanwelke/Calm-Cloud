@@ -13,4 +13,6 @@ struct PhotoManager {
     static var loadedPhotos: [Photo] = []
     static var photos: [UIImage] = []
     static var currentPhotoIndex = 0
+
+    static var image: UIImage?
 }

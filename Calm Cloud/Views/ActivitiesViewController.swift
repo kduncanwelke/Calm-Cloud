@@ -19,10 +19,8 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var minutesLeft: UILabel!
     
     // MARK: Variables
-    
-    var completion: [Int : Bool] = [:]
-    var loaded: [ActivityId] = []
-    var searchResults: [Activity] = []
+
+    private let activitiesViewModel = ActivitiesViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +34,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
         
         tableView.backgroundColor = UIColor.white
         tooSoonView.isHidden = true
-        loadCompleted()
+        activitiesViewModel.loadCompleted()
         
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.scrollToRow(at: indexPath, at: .top, animated: true)
@@ -57,78 +55,6 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
         minutesLeft.text = "\(Recentness.timeLeft) minutes left"
     }
     
-    func loadCompleted() {
-        // load completed items
-        var managedContext = CoreDataManager.shared.managedObjectContext
-        var fetchRequest = NSFetchRequest<ActivityId>(entityName: "ActivityId")
-        
-        do {
-            loaded = try managedContext.fetch(fetchRequest)
-            
-            if let lastOpened = TasksManager.lastOpened {
-                // if it's same day load activities
-                if Calendar.current.isDateInToday(lastOpened) {
-                    print("same day")
-                    // same day, no changes
-                    for item in loaded {
-                        completion[Int(item.id)] = true
-                    }
-                    
-                    if loaded.count >= 3 {
-                        if TasksManager.activities == false {
-                            TasksManager.activities = true
-                            DataFunctions.saveTasks(updatingActivity: false, removeAll: false)
-                        }
-                    }
-                }
-            } else {
-                // new day, do nothing as activities are wiped
-                print("new day")
-            }
-        } catch let error as NSError {
-            showAlert(title: "Could not retrieve data", message: "\(error.userInfo)")
-        }
-    }
-    
-    func saveCompletedActivity(id: Int) {
-        // save item that has been completed
-        var managedContext = CoreDataManager.shared.managedObjectContext
-        let activitySave = ActivityId(context: managedContext)
-        
-        activitySave.id = Int16(id)
-        
-        do {
-            try managedContext.save()
-            print("saved activity")
-        } catch let error as NSError {
-            print(error)
-            // this should never be displayed but is here to cover the possibility
-            showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
-        }
-        
-        DataFunctions.saveTasks(updatingActivity: true, removeAll: false)
-        loadCompleted()
-    }
-    
-    func deleteIncompleteActivity(id: Int) {
-        var managedContext = CoreDataManager.shared.managedObjectContext
-        var toDelete: ActivityId
-        
-        for item in loaded {
-            if item.id == Int16(id) {
-                toDelete = item
-                managedContext.delete(toDelete)
-            }
-        }
-        
-        do {
-            try managedContext.save()
-            print("delete successful")
-        } catch {
-            print("Failed to save")
-        }
-    }
-    
     // MARK: Search bar
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -146,11 +72,7 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
     
     // return search results based on title and entry body text
     func filterSearch(_ searchText: String) {
-        var activities: [Activity]
-        
-        searchResults = ActivityManager.activities.filter({(activity: Activity) -> Bool in
-            return (activity.title.lowercased().contains(searchText.lowercased())) || (activity.category.rawValue.lowercased().contains(searchText.lowercased()))
-        })
+        activitiesViewModel.getSearchResults(searchText: searchText)
         
         tableView.reloadData()
     }
@@ -186,5 +108,42 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
+}
 
+extension ActivitiesViewController: UITableViewDelegate, UITableViewDataSource, CellCheckDelegate {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        activitiesViewModel.getActivityCount(filtering: isFilteringBySearch())
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath) as! ActivityTableViewCell
+
+        cell.cellLabel.text = activitiesViewModel.getTitle(filtering: isFilteringBySearch(), index: indexPath.row)
+        cell.cellCategoryLabel.text = activitiesViewModel.getCategory(filtering: isFilteringBySearch(), index: indexPath.row)
+
+        if activitiesViewModel.checkCompleted(index: indexPath.row) {
+            cell.cellCheckButton.setImage(UIImage(named: "complete"), for: .normal)
+        } else {
+            cell.cellCheckButton.setImage(UIImage(named: "incomplete"), for: .normal)
+        }
+
+        cell.cellDelegate = self
+
+        return cell
+    }
+
+    func didChangeSelectedState(sender: ActivityTableViewCell, isChecked: Bool) {
+        let path = self.tableView.indexPath(for: sender)
+        if let selected = path {
+
+            if isChecked {
+                activitiesViewModel.checkOffActivity(index: selected.row)
+            } else {
+                activitiesViewModel.uncheckActivity(index: selected.row)
+            }
+
+            print("delegate called")
+        }
+    }
 }

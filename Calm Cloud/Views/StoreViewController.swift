@@ -21,9 +21,10 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var coin: UIImageView!
     
     // MARK: Variables
+
+    private let storeViewModel = StoreViewModel()
     
     var request: SKProductsRequest!
-    var products = [SKProduct]()
     var receipt: Receipt?
 
     override func viewDidLoad() {
@@ -42,7 +43,7 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
         
         paidImage.alpha = 0.0
         purchaseContainer.isHidden = true
-        totalCoins.text = "\(MoneyManager.total)"
+        totalCoins.text = storeViewModel.getCoinTotal()
         getProducts()
     }
     
@@ -67,20 +68,20 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
     
     @objc func dismissWithPurchase() {
         purchaseContainer.isHidden = true
-        totalCoins.text = "\(MoneyManager.total)"
+        totalCoins.text = storeViewModel.getCoinTotal()
         
         view.bringSubviewToFront(paidImage)
         paidImage.animateFadeInSlow()
     }
     
     @objc func refresh() {
-        totalCoins.text = "\(MoneyManager.total)"
+        totalCoins.text = storeViewModel.getCoinTotal()
         totalCoins.animateBounce()
         coin.animateBounce()
     }
     
     @objc func networkRestored() {
-        if products.isEmpty {
+        if storeViewModel.areThereProducts() == false {
             getProducts()
         }
         
@@ -92,14 +93,36 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
             print("refresh on load")
         }
     }
+
+    // MARK: Store functions
+
+    func validate(productIdentifiers: [String]) {
+        let productIdentifiers = Set(productIdentifiers)
+
+        request = SKProductsRequest(productIdentifiers: productIdentifiers)
+        request.delegate = self
+        request.start()
+    }
     
+    func getProducts() {
+        var isAuthorizedForPayments: Bool {
+            return SKPaymentQueue.canMakePayments()
+        }
+
+        if isAuthorizedForPayments {
+            let identifiers = storeViewModel.getProductIdentifiers()
+
+            validate(productIdentifiers: identifiers)
+        }
+    }
+
     func refreshReceipt() {
         print("Requesting refresh of receipt.")
         let refreshRequest = SKReceiptRefreshRequest()
         refreshRequest.delegate = self
         refreshRequest.start()
     }
-    
+
     func validateReceipt() {
         receipt = Receipt()
         if let receiptStatus = receipt?.status {
@@ -108,26 +131,6 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
                 return
             }
         }
-    }
-   
-    // MARK: Store functions
-    
-    func getProducts() {
-        var isAuthorizedForPayments: Bool {
-            return SKPaymentQueue.canMakePayments()
-        }
-        
-        if isAuthorizedForPayments {
-            validate(productIdentifiers: [Products.tenCoins, Products.twentyCoins, Products.thirtyCoins, Products.fortyCoins, Products.fiftyCoins, Products.seventyCoins, Products.oneHundredCoins, Products.twoHundredCoins, Products.twoHundredFiftyCoins, Products.fiveHundredCoins])
-        }
-    }
-    
-    func validate(productIdentifiers: [String]) {
-        let productIdentifiers = Set(productIdentifiers)
-        
-        request = SKProductsRequest(productIdentifiers: productIdentifiers)
-        request.delegate = self
-        request.start()
     }
 
     /*
@@ -146,32 +149,25 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         collectionView.reloadData()
         
-        if products.isEmpty == false {
+        if storeViewModel.areThereProducts() {
             collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         }
         
         // reset buying items
-        PlantManager.buying = nil
-        ItemManager.buying = nil
+        storeViewModel.resetItems()
     }
     
     @IBAction func backPressed(_ sender: UIButton) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "restart"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
 
 extension StoreViewController: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         if response.products.count == Products.productQuantities.count {
-            products = response.products
-            for product in products {
-                print(product.localizedTitle)
-                print(product.price)
-                print(product.priceLocale)
-            }
-            
+            storeViewModel.assignProducts(loadedProducts: response.products)
+
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView.reloadData()
             }
@@ -193,3 +189,82 @@ extension StoreViewController: SKProductsRequestDelegate {
         }
     }
 }
+
+extension StoreViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        storeViewModel.getItemCount(segment: segmentedControl.selectedSegmentIndex)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "storeCell", for: indexPath) as! StoreCollectionViewCell
+
+        cell.nameLabel.text = storeViewModel.getName(segment: segmentedControl.selectedSegmentIndex, index: indexPath.row)
+        cell.itemImage.image = storeViewModel.getImage(segment: segmentedControl.selectedSegmentIndex, index: indexPath.row)
+
+        let availableWidth = collectionView.frame.width
+        cell.backgroundColor = storeViewModel.setCellColor(availableWidth: availableWidth, index: indexPath.row)
+
+        cell.priceLabel.text = storeViewModel.getPrice(segment: segmentedControl.selectedSegmentIndex, index: indexPath.row)
+
+        cell.coinImage.isHidden = storeViewModel.hideCoinImage(segment: segmentedControl.selectedSegmentIndex, index: indexPath.row)
+
+        cell.area.text = storeViewModel.getAreaText(segment: segmentedControl.selectedSegmentIndex, index: indexPath.row)
+
+        cell.numberOwned.text = storeViewModel.getNumberOwned(segment: segmentedControl.selectedSegmentIndex, index: indexPath.row)
+
+        var growth = storeViewModel.showGrowthSpeed(segment: segmentedControl.selectedSegmentIndex, index: indexPath.row)
+
+        if let title = growth.title, let image = growth.image {
+            cell.growthSpeed.setTitle(growth.title, for: .normal)
+            cell.growthSpeed.setBackgroundImage(image, for: .normal)
+        } else {
+            cell.growthSpeed.isHidden = false
+        }
+
+        cell.purchaseDescription.text = storeViewModel.getDescription(segment: segmentedControl.selectedSegmentIndex, index: indexPath.row)
+
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if segmentedControl.selectedSegmentIndex == 0 || segmentedControl.selectedSegmentIndex == 1  {
+            // seedling or item purchase
+            storeViewModel.setBuying(segment: segmentedControl.selectedSegmentIndex, index: indexPath.row)
+            purchaseContainer.isHidden = false
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadUI"), object: nil)
+        } else {
+            // in coin shop view, make purchase
+            let isAuthorizedForPayments = SKPaymentQueue.canMakePayments()
+
+            if isAuthorizedForPayments && storeViewModel.areThereProducts() {
+                if NetworkMonitor.connection {
+                    storeViewModel.setBuying(segment: segmentedControl.selectedSegmentIndex, index: indexPath.row)
+                    storeViewModel.buy()
+                } else {
+                    showAlert(title: "Purchases unavailable", message: "Purchases cannot be processed without a network connection - please try again")
+                }
+            } else {
+                showAlert(title: "Payments not authorized", message: "This device is not permitted to process payments")
+            }
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let availableWidth = collectionView.frame.width
+        var maxNumColumns = 3
+
+        if (availableWidth / 3) < 160.0 {
+            maxNumColumns = 2
+        }
+
+        let cellWidth = (availableWidth / CGFloat(maxNumColumns)).rounded(.down)
+
+        return CGSize(width: cellWidth, height: 192.00)
+    }
+}
+
