@@ -12,6 +12,10 @@ import CoreData
 
 public class FavoritesViewModel {
 
+    func setPhotoForSegue(tapped: UIImage?) {
+        PhotoManager.image = tapped
+    }
+
     func getPhotoCount() -> Int {
         return PhotoManager.photos.count
     }

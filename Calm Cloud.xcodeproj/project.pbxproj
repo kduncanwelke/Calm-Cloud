@@ -21,6 +21,11 @@
 		2D2D9FB926B0B1680042B6F2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D9FB826B0B1680042B6F2 /* ViewModel.swift */; };
 		2D2D9FBB26B0B21F0042B6F2 /* StatusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D9FBA26B0B21F0042B6F2 /* StatusManager.swift */; };
 		2D2D9FBD26B0BF5C0042B6F2 /* ViewModel+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D9FBC26B0BF5C0042B6F2 /* ViewModel+CoreData.swift */; };
+		2D2E52F726BB2060007DF8A8 /* PlantPurchaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2E52F626BB2060007DF8A8 /* PlantPurchaseViewModel.swift */; };
+		2D2E52F926BB2578007DF8A8 /* DeliveryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2E52F826BB2578007DF8A8 /* DeliveryViewModel.swift */; };
+		2D2E52FB26BB26AD007DF8A8 /* TasksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2E52FA26BB26AD007DF8A8 /* TasksViewModel.swift */; };
+		2D2E52FD26BB2BDA007DF8A8 /* InventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2E52FC26BB2BDA007DF8A8 /* InventoryViewModel.swift */; };
+		2D2E52FF26BB306F007DF8A8 /* MiniGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2E52FE26BB306F007DF8A8 /* MiniGameViewModel.swift */; };
 		2D2EF6A22465F2EE00E497DC /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */; };
 		2D2EF6A4246600FF00E497DC /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EF6A3246600FF00E497DC /* InventoryViewController.swift */; };
 		2D2EF6A62466017E00E497DC /* InventoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2EF6A52466017E00E497DC /* InventoryCollectionViewCell.swift */; };
@@ -143,6 +148,11 @@
 		2D2D9FB826B0B1680042B6F2 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2D2D9FBA26B0B21F0042B6F2 /* StatusManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusManager.swift; sourceTree = "<group>"; };
 		2D2D9FBC26B0BF5C0042B6F2 /* ViewModel+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModel+CoreData.swift"; sourceTree = "<group>"; };
+		2D2E52F626BB2060007DF8A8 /* PlantPurchaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantPurchaseViewModel.swift; sourceTree = "<group>"; };
+		2D2E52F826BB2578007DF8A8 /* DeliveryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryViewModel.swift; sourceTree = "<group>"; };
+		2D2E52FA26BB26AD007DF8A8 /* TasksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewModel.swift; sourceTree = "<group>"; };
+		2D2E52FC26BB2BDA007DF8A8 /* InventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewModel.swift; sourceTree = "<group>"; };
+		2D2E52FE26BB306F007DF8A8 /* MiniGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniGameViewModel.swift; sourceTree = "<group>"; };
 		2D2EF6A12465F2EE00E497DC /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		2D2EF6A3246600FF00E497DC /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
 		2D2EF6A52466017E00E497DC /* InventoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -292,6 +302,11 @@
 				2D30E95326B9C45C0000768D /* JournalViewModel.swift */,
 				2D30E95526B9DB400000768D /* PhotoViewModel.swift */,
 				2D30E95726B9DE780000768D /* StoreViewModel.swift */,
+				2D2E52F626BB2060007DF8A8 /* PlantPurchaseViewModel.swift */,
+				2D2E52F826BB2578007DF8A8 /* DeliveryViewModel.swift */,
+				2D2E52FA26BB26AD007DF8A8 /* TasksViewModel.swift */,
+				2D2E52FC26BB2BDA007DF8A8 /* InventoryViewModel.swift */,
+				2D2E52FE26BB306F007DF8A8 /* MiniGameViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -622,12 +637,15 @@
 				2D41EF28242D5CE20058C443 /* PhotoManager.swift in Sources */,
 				2DC5606F24A271D200D5AA57 /* MiniGameTwoViewController.swift in Sources */,
 				2DCC9C7B24672031006834B0 /* PlantManager.swift in Sources */,
+				2D2E52F926BB2578007DF8A8 /* DeliveryViewModel.swift in Sources */,
 				2DC95DDD2485A9830085DD14 /* CompareImages.swift in Sources */,
 				2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */,
 				2D03D3EA25ACDDC50096A3FE /* ItemManager.swift in Sources */,
 				2DB4106524916E8C00EFD088 /* MoneyManager.swift in Sources */,
+				2D2E52FD26BB2BDA007DF8A8 /* InventoryViewModel.swift in Sources */,
 				2D2EF6A22465F2EE00E497DC /* PopUpViewController.swift in Sources */,
 				2D2D9FBD26B0BF5C0042B6F2 /* ViewModel+CoreData.swift in Sources */,
+				2D2E52FF26BB306F007DF8A8 /* MiniGameViewModel.swift in Sources */,
 				2DA08A262530D7EF00A5129F /* WeatherManager.swift in Sources */,
 				2DD2C31B246353310070934D /* Sounds.swift in Sources */,
 				2D3CC0E226B46940000EA922 /* OutsideVM+Animation.swift in Sources */,
@@ -686,9 +704,11 @@
 				2D7FCABE2432918C00E2DEC4 /* ReminderListViewController.swift in Sources */,
 				2D9B7CFD24AD17EB00CDFA8E /* Receipt.swift in Sources */,
 				2D70349E24903A7B00B952CA /* Recentness.swift in Sources */,
+				2D2E52FB26BB26AD007DF8A8 /* TasksViewModel.swift in Sources */,
 				2D3CC0E426B47345000EA922 /* ReminderViewModel.swift in Sources */,
 				2D384C21243BCA3B00D0FFEB /* PageControllerManager.swift in Sources */,
 				2DB1321924783F5500FA6D71 /* ViewController+Animations.swift in Sources */,
+				2D2E52F726BB2060007DF8A8 /* PlantPurchaseViewModel.swift in Sources */,
 				2D7FCABA2432506100E2DEC4 /* Photo+ScrollViewDelegate.swift in Sources */,
 				2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */,
 				2D5D6F362464830C00993969 /* MiniGameViewController.swift in Sources */,

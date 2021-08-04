@@ -21,11 +21,9 @@ class BuyPlantViewController: UIViewController {
     @IBOutlet weak var insufficientFunds: UIView!
     @IBOutlet weak var howManyLabel: UILabel!
     
-    
     // MARK: Variables
-    
-    var costPer = 0
-    var number = 0
+
+    private let plantPurchaseViewModel = PlantPurchaseViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,33 +34,12 @@ class BuyPlantViewController: UIViewController {
     }
     
     @objc func loadUI() {
-        if let current = PlantManager.buying {
-            costPer = current.price
-            buyingLabel.text = current.name
-            plantImage.image = current.image
-            numberLabel.text = "0"
-            totalCost.text = " 0"
-            
-            if let number = Plantings.availableSeedlings[current.plant] {
-               howManyLabel.text = "How many?\n\(number) owned"
-            } else {
-               howManyLabel.text = "How many?\n0 owned"
-            }
-            
-        } else if let current = ItemManager.buying {
-            costPer = current.price
-            buyingLabel.text = current.name
-            plantImage.image = current.image
-            numberLabel.text = "0"
-            totalCost.text = " 0"
-            
-            switch current.type {
-            case .wood:
-                 howManyLabel.text = "+ \(current.hours) hour(s) of fireplace time \n (\(Fireplace.hours) hours left)"
-            case .color:
-                howManyLabel.text = "+ \(current.hours) hour(s) of colorful fire \n (\(Fireplace.colorHours) hours left)"
-            }
-        }
+        plantPurchaseViewModel.getPrice()
+        buyingLabel.text = plantPurchaseViewModel.getName()
+        plantImage.image = plantPurchaseViewModel.getImage()
+        numberLabel.text = "0"
+        totalCost.text = " 0"
+        howManyLabel.text = plantPurchaseViewModel.getHowMany()
     }
 
     /*
@@ -78,28 +55,22 @@ class BuyPlantViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func stepperChanged(_ sender: UIStepper) {
-        number = Int(stepper.value)
-        numberLabel.text = "\(number)"
-        totalCost.text = " \(costPer * number)"
+        plantPurchaseViewModel.updateNumber(with: Int(stepper.value))
         
-        if let current = ItemManager.buying {
-            var hours = current.hours * number
-            
-            switch current.type {
-            case .wood:
-                howManyLabel.text = "+ \(hours) hour(s) of fireplace time \n (\(Fireplace.hours) hours left)"
-            case .color:
-                howManyLabel.text = "+ \(hours) hour(s) of colorful fire \n (\(Fireplace.colorHours) hours left)"
-            }
+        numberLabel.text = plantPurchaseViewModel.getNumber()
+        totalCost.text = plantPurchaseViewModel.getTotal()
+        
+        if let update = plantPurchaseViewModel.updateHowManyLabel() {
+            howManyLabel.text = update
         }
     }
     
     @IBAction func buyPressed(_ sender: UIButton) {
-        if number == 0 {
+        if plantPurchaseViewModel.zeroSelected() {
             return
         }
         
-        if costPer * number > MoneyManager.total {
+        if !plantPurchaseViewModel.sufficientFunds() {
             print("not enough funds!")
             insufficientFunds.isHidden = false
             insufficientFunds.animateBounce()
@@ -108,55 +79,21 @@ class BuyPlantViewController: UIViewController {
                 self?.insufficientFunds.isHidden = true
             }
         } else {
-            if let current = PlantManager.buying {
-            
-                // update inventory
-                if let oldCount = Plantings.availableSeedlings[current.plant] {
-                    Plantings.availableSeedlings[current.plant] = oldCount + number
-                    DataFunctions.saveInventory()
-                }
-                
-                // deduct funds
-                MoneyManager.total -= costPer * number
-                DataFunctions.saveMoney()
-                
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateCoins"), object: nil)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dismissWithPurchase"), object: nil)
-                
-                // reset
-                number = 0
-                stepper.value = 0
-                PlantManager.buying = nil
-            } else if let current = ItemManager.buying {
-                // update total time available
-                let hours = current.hours * number
-                
-                switch current.type {
-                case .wood:
-                    DataFunctions.addFuel(hours: hours, type: .wood)
-                case .color:
-                    DataFunctions.addFuel(hours: hours, type: .color)
-                }
-               
-                // deduct funds
-                MoneyManager.total -= costPer * number
-                DataFunctions.saveMoney()
-                
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateCoins"), object: nil)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dismissWithPurchase"), object: nil)
-                
-                // reset
-                ItemManager.buying = nil
-            }
+            plantPurchaseViewModel.purchase()
+
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateCoins"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dismissWithPurchase"), object: nil)
+
+            // reset
+            plantPurchaseViewModel.reset()
+            stepper.value = 0
         }
     }
     
     @IBAction func cancelPressed(_ sender: UIButton) {
-        number = 0
+        plantPurchaseViewModel.reset()
         stepper.value = 0
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dismissPurchase"), object: nil)
     }
-
 }

@@ -20,10 +20,8 @@ class MiniGameTwoViewController: UIViewController {
     @IBOutlet weak var cloudKitty: UIImageView!
     
     // MARK: Variables
-    
-    var correctPot = 0
-    var selection = 0
-    var gameEnded = false
+
+    private let miniGameViewModel = MiniGameViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,35 +35,19 @@ class MiniGameTwoViewController: UIViewController {
         cloudKitty.animationRepeatCount = 1
     }
     
-    func randomNumber() {
-        let number = Int.random(in: 1...3)
-        correctPot = number
-    }
     
     func newRound() {
-        gameEnded = false
+        miniGameViewModel.setForNewRound()
+        
         coin.isHidden = true
         leftPot.image = UIImage(named: "gamepot")
         middlePot.image = UIImage(named: "gamepot")
         rightPot.image = UIImage(named: "gamepot")
-        randomNumber()
         againButton.isHidden = true
     }
     
-    func randomCoinReward() -> Int? {
-        let chance = Int.random(in: 1...20)
-        
-        // 1 in 10 chance of getting reward
-        if chance == 7 {
-            return Int.random(in: 1...5)
-        } else {
-            return nil
-        }
-    }
-    
     func results() {
-        if let reward = randomCoinReward() {
-            MoneyManager.total += reward
+        if miniGameViewModel.addReward() {
             coin.isHidden = false
             coin.animateBounce()
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateCoins"), object: nil)
@@ -86,57 +68,57 @@ class MiniGameTwoViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func leftPotTapped(_ sender: UITapGestureRecognizer) {
-        if gameEnded == false {
-            selection = 1
+        if miniGameViewModel.isGameNotEnded() {
+            miniGameViewModel.setSelected(number: 1)
             cloudKitty.startAnimating()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
-                if self.selection == self.correctPot {
-                    self.leftPot.image = UIImage(named: "snailpot")
-                    self.results()
-                } else {
-                    self.leftPot.image = UIImage(named: "potnosnail")
+                var result = miniGameViewModel.getPotImage()
+
+                leftPot.image = result.image
+                if result.win {
+                    results()
                 }
                 
-                self.gameEnded = true
+                miniGameViewModel.endGame()
                 self.againButton.isHidden = false
             }
         }
     }
     
     @IBAction func middlePotTapped(_ sender: UITapGestureRecognizer) {
-        if gameEnded == false {
-            selection = 2
+        if miniGameViewModel.isGameNotEnded() {
+            miniGameViewModel.setSelected(number: 2)
             cloudKitty.startAnimating()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
-                if self.selection == self.correctPot {
-                    self.middlePot.image = UIImage(named: "snailpot")
-                    self.results()
-                } else {
-                    self.middlePot.image = UIImage(named: "potnosnail")
+                var result = miniGameViewModel.getPotImage()
+
+                middlePot.image = result.image
+                if result.win {
+                    results()
                 }
-                
-                self.gameEnded = true
+
+                miniGameViewModel.endGame()
                 self.againButton.isHidden = false
             }
         }
     }
     
     @IBAction func rightPotTapped(_ sender: UITapGestureRecognizer) {
-        if gameEnded == false {
-            selection = 3
+        if miniGameViewModel.isGameNotEnded() {
+            miniGameViewModel.setSelected(number: 3)
             cloudKitty.startAnimating()
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [unowned self] in
-                if self.selection == self.correctPot {
-                    self.rightPot.image = UIImage(named: "snailpot")
-                    self.results()
-                } else {
-                    self.rightPot.image = UIImage(named: "potnosnail")
+                var result = miniGameViewModel.getPotImage()
+
+                rightPot.image = result.image
+                if result.win {
+                    results()
                 }
-                
-                self.gameEnded = true
+
+                miniGameViewModel.endGame()
                 self.againButton.isHidden = false
             }
         }
@@ -149,5 +131,4 @@ class MiniGameTwoViewController: UIViewController {
     @IBAction func donePressed(_ sender: UIButton) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "hideMiniGame"), object: nil)
     }
-
 }

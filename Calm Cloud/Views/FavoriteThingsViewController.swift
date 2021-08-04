@@ -65,8 +65,7 @@ class FavoriteThingsViewController: UIViewController, UICollectionViewDelegate, 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "viewPhoto" {
-            let destinationViewController = segue.destination as? PhotoViewController
-            destinationViewController?.image = tappedImage
+            favesViewModel.setPhotoForSegue(tapped: tappedImage)
         }
     }
     

@@ -18,7 +18,10 @@ class TasksViewController: UIViewController {
     @IBOutlet weak var allComplete: UILabel!
     @IBOutlet weak var getReward: UIButton!
     @IBOutlet weak var rewardDetails: UIStackView!
-    
+
+    // MARK: Variables
+
+    private let tasksViewModel = TasksViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,37 +37,15 @@ class TasksViewController: UIViewController {
     }
     
     func toggleChecks() {
-        if TasksManager.activities {
-            activitiesComplete.image = UIImage(named: "correct")
-        } else {
-            activitiesComplete.image = UIImage(named: "unchecked")
-        }
-        
-        if TasksManager.journal {
-            journalComplete.image = UIImage(named: "correct")
-        } else {
-            journalComplete.image = UIImage(named: "unchecked")
-        }
-        
-        if TasksManager.photo {
-            photoComplete.image = UIImage(named: "correct")
-        } else {
-            photoComplete.image = UIImage(named: "unchecked")
-        }
+        activitiesComplete.image = tasksViewModel.activitiesCheck()
+        journalComplete.image = tasksViewModel.journalCheck()
+        photoComplete.image = tasksViewModel.photoCheck()
+
         print(TasksManager.rewardCollected)
-        
-        if TasksManager.activities && TasksManager.journal && TasksManager.photo && TasksManager.rewardCollected == false {
-            allComplete.isHidden = false
-            getReward.isHidden = false
-            print("get reward")
-        } else if TasksManager.activities && TasksManager.journal && TasksManager.photo && TasksManager.rewardCollected == true {
-            allComplete.isHidden = false
-            getReward.isHidden = true
-            print("reward already gotten")
-        } else {
-            allComplete.isHidden = true
-            getReward.isHidden = true
-        }
+
+        var status = tasksViewModel.toggleButtons()
+        allComplete.isHidden = status.hideComplete
+        getReward.isHidden = status.hideReward
     }
 
     /*
@@ -81,14 +62,14 @@ class TasksViewController: UIViewController {
     
     @IBAction func rewardPressed(_ sender: UIButton) {
         // add coin and exp reward
-        MoneyManager.total += 10
         allComplete.isHidden = true
+        getReward.isHidden = true
+
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateExperience"), object: nil)
-        getReward.isHidden = true
+
         rewardDetails.animateFadeInSlow()
-        TasksManager.rewardCollected = true
-        DataFunctions.saveTasks(updatingActivity: false, removeAll: false)
+        tasksViewModel.collectReward()
     }
     
     @IBAction func infoPressed(_ sender: UIButton) {

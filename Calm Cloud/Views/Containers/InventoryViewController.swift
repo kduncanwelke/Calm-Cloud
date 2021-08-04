@@ -17,7 +17,7 @@ class InventoryViewController: UIViewController {
     
     // MARK: Variables
     
-    var validSeedlings: [Seedling] = []
+    private let inventoryViewModel = InventoryViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class InventoryViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        setSeedlings()
+        plantSeedlingButton.isHidden = inventoryViewModel.setSeedlings()
     }
     
     override func viewWillLayoutSubviews() {
@@ -37,35 +37,11 @@ class InventoryViewController: UIViewController {
     
     @objc func reload() {
         // reload when re-shown
-        validSeedlings.removeAll()
-        setSeedlings()
+        inventoryViewModel.reset()
+        plantSeedlingButton.isHidden = inventoryViewModel.setSeedlings()
         collectionView.reloadData()
     }
-    
-    func setSeedlings() {
-        // show seedlings relevant to the chosen area if applicable
-        if PlantManager.area == .none {
-            plantSeedlingButton.isHidden = true
-            for seedling in Plantings.seedlings {
-                if Plantings.availableSeedlings[seedling.plant] != 0 {
-                    validSeedlings.append(seedling)
-                    print(seedling.plant)
-                }
-            }
-        } else {
-            plantSeedlingButton.isHidden = false
-            for seedling in Plantings.seedlings {
-                if seedling.allowedArea == PlantManager.area && Plantings.availableSeedlings[seedling.plant] != 0 {
-                    validSeedlings.append(seedling)
-                } else if (PlantManager.area == .rows || PlantManager.area == .planter) && Plantings.availableSeedlings[seedling.plant] != 0 {
-                    if seedling.allowedArea == .multi {
-                        validSeedlings.append(seedling)
-                    }
-                }
-            }
-        }
-    }
-    
+
     func clearSelections() {
         // clear selections so they don't stick when this view reappears
         if let selections = collectionView.indexPathsForSelectedItems {
@@ -98,15 +74,11 @@ class InventoryViewController: UIViewController {
         }
         
         // if plant count is zero, exit
-        if Plantings.availableSeedlings[PlantManager.selected] == 0 {
+        if inventoryViewModel.isCountZero() {
             return
         }
         
-        // plant selection exists and is not zero, update count
-        if let selectedSeedling = Plantings.availableSeedlings[PlantManager.selected] {
-            Plantings.availableSeedlings[PlantManager.selected] = selectedSeedling - 1
-        }
-        
+        inventoryViewModel.updatePlantCount()
         clearSelections()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "plant"), object: nil)
     }
@@ -115,53 +87,26 @@ class InventoryViewController: UIViewController {
         clearSelections()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "closeInventory"), object: nil)
     }
-    
 }
 
 extension InventoryViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return validSeedlings.count
+        return inventoryViewModel.getSeedlingCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "inventoryCell", for: indexPath) as! InventoryCollectionViewCell
-        
-        var plant: Seedling
-        plant = validSeedlings[indexPath.row]
-        
-        if let number = Plantings.availableSeedlings[plant.plant] {
-            cell.numberLabel.text = "\(number) owned"
-        }
+
+        cell.numberLabel.text = inventoryViewModel.getNumberOwned(index: indexPath.row)
         
         let availableWidth = collectionView.frame.width
-       
-        if (availableWidth / 3) < 130.0 {
-            if Colors.colorfulCells.contains(indexPath.row) {
-                cell.backgroundColor = Colors.mint
-            } else {
-                cell.backgroundColor = .white
-            }
-        } else {
-            if indexPath.row % 2 == 0 {
-                cell.backgroundColor = Colors.mint
-            } else {
-                cell.backgroundColor = .white
-            }
-        }
+        cell.backgroundColor = inventoryViewModel.getBackgroundColor(availableWidth: availableWidth, index: indexPath.row)
         
-        cell.areaLabel.text = plant.allowedArea.rawValue
-        cell.cellLabel.text = plant.name
-        cell.cellImage.image = plant.image
-        cell.growthSpeed.setTitle(plant.growthSpeed.rawValue, for: .normal)
-        
-        switch plant.growthSpeed {
-        case .fast:
-            cell.growthSpeed.setBackgroundImage(UIImage(named: "fast"), for: .normal)
-        case .medium:
-            cell.growthSpeed.setBackgroundImage(UIImage(named: "medium"), for: .normal)
-        case .slow:
-            cell.growthSpeed.setBackgroundImage(UIImage(named: "slow"), for: .normal)
-        }
+        cell.areaLabel.text = inventoryViewModel.getArea(index: indexPath.row)
+        cell.cellLabel.text = inventoryViewModel.getName(index: indexPath.row)
+        cell.cellImage.image = inventoryViewModel.getImage(index: indexPath.row)
+        cell.growthSpeed.setTitle(inventoryViewModel.getGrowthSpeed(index: indexPath.row), for: .normal)
+        cell.growthSpeed.setBackgroundImage(inventoryViewModel.getGrowthSpeedIndicator(index: indexPath.row), for: .normal)
         
         return cell
     }
@@ -170,7 +115,7 @@ extension InventoryViewController: UICollectionViewDataSource, UICollectionViewD
         let tappedCell = collectionView.cellForItem(at:indexPath) as! InventoryCollectionViewCell
         tappedCell.backgroundColor = Colors.cellSelection
         // set plant selection
-        PlantManager.selected = validSeedlings[indexPath.row].plant
+        inventoryViewModel.setSelected(index: indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

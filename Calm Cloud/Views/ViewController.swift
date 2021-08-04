@@ -441,7 +441,7 @@ class ViewController: UIViewController {
         if sender.state == .began {
             if AnimationManager.movement == .staying {
                 print("pet")
-                viewModel.stop()
+                viewModel.stopTimer()
                 cloudKitty.stopAnimating()
                 cloudKitty.animationImages = AnimationManager.petAnimation
                 cloudKitty.animationDuration = 1.0

@@ -615,7 +615,7 @@ class OutsideViewController: UIViewController {
                 cloudKitty.animationImages = AnimationManager.petAnimation
                 cloudKitty.animationDuration = 1.0
                 cloudKitty.startAnimating()
-                // hasBeenPet = true
+                viewModel.petted()
                 // add EXP?
             }
         } else if sender.state == .ended || sender.state == .cancelled {
