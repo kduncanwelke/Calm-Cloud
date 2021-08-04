@@ -2707,7 +2707,7 @@
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="calendarCell" id="fDx-Bk-DCz" customClass="CalendarCollectionViewCell" customModule="Calm_Cloud" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Vyq-qs-OkI">
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
@@ -2724,14 +2724,14 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="4VN-wi-cTQ" firstAttribute="leading" secondItem="Vyq-qs-OkI" secondAttribute="leading" constant="4" id="Kfa-1c-AxB"/>
-                                                        <constraint firstItem="4VN-wi-cTQ" firstAttribute="top" secondItem="Vyq-qs-OkI" secondAttribute="top" constant="4" id="M5a-2t-s3W"/>
-                                                        <constraint firstItem="4VN-wi-cTQ" firstAttribute="width" secondItem="Vyq-qs-OkI" secondAttribute="width" multiplier="0.4" id="dea-Qk-ZOv"/>
-                                                        <constraint firstAttribute="bottom" secondItem="1Z5-YC-vqB" secondAttribute="bottom" constant="5" id="exU-v4-lBW"/>
-                                                        <constraint firstAttribute="trailing" secondItem="1Z5-YC-vqB" secondAttribute="trailing" constant="5" id="hAY-gt-oC8"/>
-                                                    </constraints>
-                                                </collectionViewCellContentView>
+                                                </view>
+                                                <constraints>
+                                                    <constraint firstItem="4VN-wi-cTQ" firstAttribute="leading" secondItem="fDx-Bk-DCz" secondAttribute="leading" constant="4" id="Kfa-1c-AxB"/>
+                                                    <constraint firstItem="4VN-wi-cTQ" firstAttribute="top" secondItem="fDx-Bk-DCz" secondAttribute="top" constant="4" id="M5a-2t-s3W"/>
+                                                    <constraint firstItem="4VN-wi-cTQ" firstAttribute="width" secondItem="fDx-Bk-DCz" secondAttribute="width" multiplier="0.4" id="dea-Qk-ZOv"/>
+                                                    <constraint firstAttribute="bottom" secondItem="1Z5-YC-vqB" secondAttribute="bottom" constant="5" id="exU-v4-lBW"/>
+                                                    <constraint firstAttribute="trailing" secondItem="1Z5-YC-vqB" secondAttribute="trailing" constant="5" id="hAY-gt-oC8"/>
+                                                </constraints>
                                                 <size key="customSize" width="50" height="50"/>
                                                 <connections>
                                                     <outlet property="checkMark" destination="4VN-wi-cTQ" id="kXk-qO-aX2"/>
@@ -2857,12 +2857,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ciT-wE-huy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="nOQ-73-1hk">
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="nOQ-73-1hk">
                     <connections>
                         <action selector="darkLayerTapped:" destination="lT5-Xi-Vyv" id="pSW-So-1mk"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="jk1-mw-ABe">
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="jk1-mw-ABe">
                     <connections>
                         <action selector="viewTapped:" destination="lT5-Xi-Vyv" id="phJ-ii-wsZ"/>
                     </connections>

@@ -95,8 +95,6 @@ class OutsideViewController: UIViewController {
     private let viewModel = ViewModel()
     private let outsideViewModel = OutsideViewModel()
 
-    var wateringModeOn = false
-    var trowelModeOn = false
     var tappedImage: UIImageView?
     var rotated = false
     
@@ -157,6 +155,9 @@ class OutsideViewController: UIViewController {
         outsideViewModel.loadPlots()
        
         checkForPurchases()
+        // set mode to default to planting
+        outsideViewModel.setMode(button: .planting)
+        outsideViewModel.resumeOutside()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

@@ -56,7 +56,6 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     
     func getCalendar() {
         journalViewModel.configureCalendar()
-
         monthLabel.text = journalViewModel.getMonthName()
 
         // clear any preexisting index path selections when reloading collectionview
@@ -219,6 +218,8 @@ extension JournalViewController: UICollectionViewDataSource, UICollectionViewDel
         if journalViewModel.selected(index: indexPath.row) {
             tappedCell.backgroundColor = Colors.blue
             viewButton.isEnabled = true
+        } else {
+            viewButton.isEnabled = false
         }
     }
 

@@ -58,12 +58,13 @@ public class JournalViewModel {
                         if Calendar.current.isDate(date, inSameDayAs: calendarDate) {
                             print("day match found")
                             hideCheck = false
-                            break
+                            return hideCheck
                         } else {
                             print("day match not found")
                             hideCheck = true
-                            break
                         }
+                    } else {
+                        hideCheck = true
                     }
                 }
             }
@@ -90,22 +91,21 @@ public class JournalViewModel {
             components.day = days[index]
 
             if let calendarDate = calendar.date(from: components) {
-                var index = 0
-                for entry in EntryManager.loadedEntries {
+                var i = 0
 
+                for entry in EntryManager.loadedEntries {
                     if let date = entry.date {
                         if Calendar.current.isDate(date, inSameDayAs: calendarDate) {
-                            selectedFromCalendar = index
+                            selectedFromCalendar = i
                             print("match found")
                             break
                         } else {
                             selectedFromCalendar = nil
                             print("match not found")
-                            break
                         }
                     }
 
-                    index += 1
+                    i += 1
                 }
             }
         }
@@ -152,7 +152,7 @@ public class JournalViewModel {
     }
 
     func isEditable() -> Bool {
-        if let entry = EntryManager.entry {
+        if let entry = EntryManager.entry, let content = entry.text {
             return false
         } else {
             return true
