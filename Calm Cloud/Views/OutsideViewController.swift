@@ -474,6 +474,8 @@ class OutsideViewController: UIViewController {
 
             if outsideViewModel.isReturnedFromSegue() {
                 outsideViewModel.removeReturnFromSegue()
+                sleep()
+                return
             }
 
 

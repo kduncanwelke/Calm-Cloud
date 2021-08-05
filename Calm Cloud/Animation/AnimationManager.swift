@@ -149,7 +149,7 @@ struct AnimationManager {
     
     static var movement: Movement = .staying
     static var location: Location = .middle
-    static var outsideLocation: OutsideLocation = .back
+    static var outsideLocation: OutsideLocation = .gate
     
     static var mood: Mood = .happy
     

@@ -366,7 +366,7 @@ public class OutsideViewModel {
     }
 
     func setOutsidePosition() {
-        AnimationManager.outsideLocation = .back
+        AnimationManager.outsideLocation = .gate
         AnimationManager.movement = .staying
     }
 

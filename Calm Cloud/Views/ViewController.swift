@@ -365,6 +365,8 @@ class ViewController: UIViewController {
 
             if viewModel.isReturnedFromSegue() {
                 viewModel.removeReturnFromSegue()
+                sleep()
+                return
             }
 
             viewModel.performAnimationResets(toy: toyImage, game: game)
