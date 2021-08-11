@@ -106,6 +106,12 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
         let selectedRange = textView.selectedRange
         textView.scrollRangeToVisible(selectedRange)
     }
+
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.hasText {
+            saveButton.isEnabled = true
+        }
+    }
     
     
     /*
@@ -186,7 +192,6 @@ class JournalViewController: UIViewController, UICollectionViewDelegate {
     }
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
 }

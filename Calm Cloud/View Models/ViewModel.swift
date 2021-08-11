@@ -11,6 +11,25 @@ import UIKit
 
 public class ViewModel {
 
+    enum onScreen {
+        case inside
+        case outside
+    }
+
+    var visible: onScreen = .inside
+
+    func setInside() {
+        visible = .inside
+    }
+
+    func setOutside() {
+        visible = .outside
+    }
+
+    func getScreen() -> onScreen {
+        return visible
+    }
+
     // MARK: Helpers
     
     func weather() {
@@ -66,18 +85,6 @@ public class ViewModel {
 
     func getWeather() -> Weather {
         return WeatherManager.currentWeather
-    }
-
-    func isReturnedFromSegue() -> Bool {
-        return StatusManager.returnedFromSegue
-    }
-
-    func setReturnFromSegue() {
-        StatusManager.returnedFromSegue = true
-    }
-
-    func removeReturnFromSegue() {
-        StatusManager.returnedFromSegue = false
     }
 
     func isRecentEnough(date: Date?, recentness: Int) -> Bool {

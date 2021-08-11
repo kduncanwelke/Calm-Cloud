@@ -27,9 +27,9 @@ public class MiniGameViewModel {
 
     func isGameNotEnded() -> Bool {
         if gameEnded {
-            return true
-        } else {
             return false
+        } else {
+            return true
         }
     }
 

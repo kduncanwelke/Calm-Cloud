@@ -18,13 +18,17 @@ class ReminderViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var savedImage: UIImageView!
-   
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         savedImage.alpha = 0.0
         datePicker.minimumDate = Date()
+        saveButton.isEnabled = false
+
+        messageTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
 
     // MARK: Variables
@@ -77,6 +81,15 @@ class ReminderViewController: UIViewController {
         datePicker.date = Date()
         timePicker.date = Date()
         messageTextField.text = ""
+        saveButton.isEnabled = false
+    }
+
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if textField.text != "" {
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
+        }
     }
 
     /*
@@ -88,9 +101,24 @@ class ReminderViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
+
+    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
+        // if text view is active and user taps off of it, dismiss
+        if messageTextField.isFirstResponder {
+            messageTextField.resignFirstResponder()
+        }
+    }
+
     @IBAction func switchPressed(_ sender: UISwitch) {
         updateUI()
+    }
+
+    @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
+        if messageTextField.isFirstResponder {
+            messageTextField.resignFirstResponder()
+        }
+
+        resetUI()
     }
     
     @IBAction func saveTapped(_ sender: UIBarButtonItem) {
@@ -100,7 +128,6 @@ class ReminderViewController: UIViewController {
     }
     
     @IBAction func dismissPressed(_ sender: UIButton) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
 }

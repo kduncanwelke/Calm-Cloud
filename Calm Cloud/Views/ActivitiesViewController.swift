@@ -96,6 +96,10 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
     */
     
     // MARK: IBActions
+
+    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
+        searchBar.resignFirstResponder()
+    }
     
     @IBAction func okPressed(_ sender: UIButton) {
         tooSoonView.animateBounceOut()
@@ -105,7 +109,6 @@ class ActivitiesViewController: UIViewController, UISearchBarDelegate {
     }
     
     @IBAction func backPressed(_ sender: UIButton) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
 }

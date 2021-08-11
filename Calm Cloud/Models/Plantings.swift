@@ -27,7 +27,7 @@ struct Plantings {
         Plant.jade: 0,
         Plant.lemon: 0,
         Plant.pumpkin: 0,
-        Plant.redTulip: 2,
+        Plant.redTulip: 0,
         Plant.redGeranium: 0,
         Plant.yellowTulip: 0,
         Plant.pinkTulip: 0,

@@ -63,6 +63,8 @@
 		2D7FCAC02432968F00E2DEC4 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCABF2432968F00E2DEC4 /* ReminderTableViewCell.swift */; };
 		2D867DAE243E80B7005BE38F /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D867DAD243E80B7005BE38F /* Alerts.swift */; };
 		2D875E112486F9480054B737 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D875E102486F9480054B737 /* CalendarCollectionViewCell.swift */; };
+		2D88FB4626BC836200EFA8FD /* Toy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88FB4526BC836200EFA8FD /* Toy.swift */; };
+		2D88FB4926BC8A3300EFA8FD /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88FB4826BC8A3300EFA8FD /* GameLevel.swift */; };
 		2D8BA7D924B672E90020E6EF /* AppleIncRootCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 2D8BA7D824B671E00020E6EF /* AppleIncRootCertificate.cer */; };
 		2D8C838D2433CBB2006711F2 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C838B2433CBB2006711F2 /* Data.xcdatamodeld */; };
 		2D8C838F2433CDD9006711F2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C838E2433CDD9006711F2 /* CoreDataManager.swift */; };
@@ -193,6 +195,8 @@
 		2D7FCABF2432968F00E2DEC4 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
 		2D867DAD243E80B7005BE38F /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		2D875E102486F9480054B737 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		2D88FB4526BC836200EFA8FD /* Toy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Toy.swift; path = "Calm Cloud/Game/Toy.swift"; sourceTree = SOURCE_ROOT; };
+		2D88FB4826BC8A3300EFA8FD /* GameLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 		2D8BA7D824B671E00020E6EF /* AppleIncRootCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppleIncRootCertificate.cer; sourceTree = "<group>"; };
 		2D8C838C2433CBB2006711F2 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
 		2D8C838E2433CDD9006711F2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -360,9 +364,10 @@
 			isa = PBXGroup;
 			children = (
 				2D38D60224D22D3F009F82B5 /* Calm Cloud.entitlements */,
-				2D48CC39242548B200D0FBBB /* AppDelegate.swift */,
 				2D8BA7D824B671E00020E6EF /* AppleIncRootCertificate.cer */,
+				2D48CC39242548B200D0FBBB /* AppDelegate.swift */,
 				2D48CC3B242548B200D0FBBB /* SceneDelegate.swift */,
+				2D88FB4726BC836C00EFA8FD /* Game */,
 				2D2D9FB726B0B14D0042B6F2 /* View Models */,
 				2D41EF2D242D5EAF0058C443 /* Models */,
 				2DD50C1E242D58CC00073B49 /* Views */,
@@ -379,6 +384,15 @@
 				2D48CC47242548B400D0FBBB /* Info.plist */,
 			);
 			path = "Calm Cloud";
+			sourceTree = "<group>";
+		};
+		2D88FB4726BC836C00EFA8FD /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				2D88FB4526BC836200EFA8FD /* Toy.swift */,
+				2D88FB4826BC8A3300EFA8FD /* GameLevel.swift */,
+			);
+			path = Game;
 			sourceTree = "<group>";
 		};
 		2D8F9040243F9DE800211802 /* Cells */ = {
@@ -671,6 +685,7 @@
 				2D30E95626B9DB400000768D /* PhotoViewModel.swift in Sources */,
 				2D30E95826B9DE780000768D /* StoreViewModel.swift in Sources */,
 				2D9B7CFF24AD187B00CDFA8E /* StoreHelper.swift in Sources */,
+				2D88FB4626BC836200EFA8FD /* Toy.swift in Sources */,
 				2D41EF2F242D5EBB0058C443 /* DocumentsManager.swift in Sources */,
 				2DC95DDF2485AC160085DD14 /* HarvestViewController.swift in Sources */,
 				2D8C838D2433CBB2006711F2 /* Data.xcdatamodeld in Sources */,
@@ -706,6 +721,7 @@
 				2D70349E24903A7B00B952CA /* Recentness.swift in Sources */,
 				2D2E52FB26BB26AD007DF8A8 /* TasksViewModel.swift in Sources */,
 				2D3CC0E426B47345000EA922 /* ReminderViewModel.swift in Sources */,
+				2D88FB4926BC8A3300EFA8FD /* GameLevel.swift in Sources */,
 				2D384C21243BCA3B00D0FFEB /* PageControllerManager.swift in Sources */,
 				2DB1321924783F5500FA6D71 /* ViewController+Animations.swift in Sources */,
 				2D2E52F726BB2060007DF8A8 /* PlantPurchaseViewModel.swift in Sources */,
@@ -878,7 +894,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/ios/lib",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/GitHub/Calm-Cloud/Calm Cloud/header.h";
@@ -908,7 +924,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/ios/lib",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/GitHub/Calm-Cloud/Calm Cloud/header.h";

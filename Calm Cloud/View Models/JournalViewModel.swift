@@ -124,7 +124,7 @@ public class JournalViewModel {
     }
 
     func saveButtonEnabled() -> Bool {
-        if let currentEntry = EntryManager.entry {
+        if let currentEntry = EntryManager.entry, let content = currentEntry.text {
             return false
         } else {
             return true

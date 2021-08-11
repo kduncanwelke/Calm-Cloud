@@ -136,6 +136,8 @@ class OutsideViewController: UIViewController {
         
         let offset = container.frame.width / 5
         scrollView.contentOffset = CGPoint(x: offset, y: 0)
+
+        viewModel.setOutside()
         
         plusEXPLabel.alpha = 0.0
         plusEXPLabelAlt.alpha = 0.0
@@ -192,7 +194,7 @@ class OutsideViewController: UIViewController {
 
     @objc func restart() {
         outsideViewModel.resumeOutside()
-        outsideViewModel.setReturnFromSegue()
+        
         stopMovingOutside()
     }
 
@@ -352,8 +354,6 @@ class OutsideViewController: UIViewController {
     
     @objc func hideMiniGame() {
         view.sendSubviewToBack(cupsMiniGameContainer)
-        outsideViewModel.resumeOutside()
-        stopMovingOutside()
     }
     
     @objc func harvestPlant() {
@@ -463,7 +463,7 @@ class OutsideViewController: UIViewController {
     }
 
     @objc func stopMovingOutside() {
-        if self.isViewLoaded && (self.view.window != nil) || outsideViewModel.isReturnedFromSegue() {
+        if viewModel.getScreen() == .outside {
             print("outdoor view on screen")
             // run after an animation is complete, randomize next
             cloudKitty.stopAnimating()
@@ -471,13 +471,6 @@ class OutsideViewController: UIViewController {
             if outsideViewModel.isStopped() {
                 return
             }
-
-            if outsideViewModel.isReturnedFromSegue() {
-                outsideViewModel.removeReturnFromSegue()
-                sleep()
-                return
-            }
-
 
             var animate = outsideViewModel.randomizeAnimationType()
 
@@ -536,8 +529,6 @@ class OutsideViewController: UIViewController {
     
     @IBAction func miniGameTapped(_ sender: UIButton) {
         // show mini game
-        outsideViewModel.stopOutside()
-        
         view.bringSubviewToFront(cupsMiniGameContainer)
         cupsMiniGameContainer.animateBounce()
     }
@@ -622,7 +613,7 @@ class OutsideViewController: UIViewController {
                 // add EXP?
             }
         } else if sender.state == .ended || sender.state == .cancelled {
-            stopMovingOutside()
+            sleep()
         }
     }
     
@@ -648,7 +639,6 @@ class OutsideViewController: UIViewController {
     }
     
     @IBAction func storeTapped(_ sender: UIButton) {
-        stop()
         performSegue(withIdentifier: "goToStore", sender: Any?.self)
     }
     
@@ -765,13 +755,12 @@ class OutsideViewController: UIViewController {
     }
     
     @IBAction func basketPressed(_ sender: UIButton) {
-        stop()
         performSegue(withIdentifier: "viewBasket", sender: Any?.self)
     }
     
     @IBAction func returnPressed(_ sender: UIButton) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         stop()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
     

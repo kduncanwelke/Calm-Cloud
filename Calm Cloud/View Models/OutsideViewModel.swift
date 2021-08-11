@@ -353,18 +353,6 @@ public class OutsideViewModel {
 
     // MARK: Animation
 
-    func isReturnedFromSegue() -> Bool {
-        return StatusManager.returnedFromSegueOutside
-    }
-
-    func setReturnFromSegue() {
-        StatusManager.returnedFromSegueOutside = true
-    }
-
-    func removeReturnFromSegue() {
-        StatusManager.returnedFromSegueOutside = false
-    }
-
     func setOutsidePosition() {
         AnimationManager.outsideLocation = .gate
         AnimationManager.movement = .staying

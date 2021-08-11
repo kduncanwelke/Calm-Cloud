@@ -857,6 +857,7 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                                         <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="highlightsToday" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </datePicker>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="8ck-yK-YlA">
@@ -865,6 +866,7 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                                         <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="highlightsToday" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </datePicker>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="KRC-c0-j2S">
@@ -916,6 +918,11 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Add New Reminder" id="xUY-bw-irk">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="3hZ-NU-tw5">
+                                            <connections>
+                                                <action selector="cancelTapped:" destination="bEO-pA-db8" id="auL-0k-liS"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="mDX-6C-Sbd">
                                             <connections>
                                                 <action selector="saveTapped:" destination="bEO-pA-db8" id="S2A-dd-fOQ"/>
@@ -934,6 +941,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tUj-Kb-gsL"/>
                         <color key="backgroundColor" red="1" green="0.88149459279999998" blue="0.95206307000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="8ck-yK-YlA" firstAttribute="leading" secondItem="tUj-Kb-gsL" secondAttribute="leading" id="2hi-XV-g3V"/>
                             <constraint firstItem="4si-Tq-Gdz" firstAttribute="centerX" secondItem="4UY-fX-ooc" secondAttribute="centerX" id="3Fz-rD-dRv"/>
@@ -962,17 +970,26 @@
                             <constraint firstItem="RvM-tl-mgU" firstAttribute="leading" secondItem="tUj-Kb-gsL" secondAttribute="leading" id="r0I-ku-rgc"/>
                             <constraint firstItem="4si-Tq-Gdz" firstAttribute="centerY" secondItem="4UY-fX-ooc" secondAttribute="centerY" id="rDC-7Y-Wky"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="0ty-y0-ZJl" appends="YES" id="KG3-py-uCh"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="FfG-fX-0OO"/>
                     <connections>
                         <outlet property="dailySwitch" destination="bav-Bh-Tv3" id="sE6-Gv-r74"/>
                         <outlet property="datePicker" destination="8ck-yK-YlA" id="48e-se-tO8"/>
                         <outlet property="messageTextField" destination="SAp-c9-PAC" id="HWt-uh-PIH"/>
+                        <outlet property="saveButton" destination="mDX-6C-Sbd" id="ROh-tj-75m"/>
                         <outlet property="savedImage" destination="4si-Tq-Gdz" id="rxC-PS-dYM"/>
                         <outlet property="timePicker" destination="RvM-tl-mgU" id="G7W-i6-Dbb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bsc-kn-fBD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="0ty-y0-ZJl">
+                    <connections>
+                        <action selector="viewTapped:" destination="bEO-pA-db8" id="7BW-kg-EZe"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1688" y="141"/>
         </scene>
@@ -991,7 +1008,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="AIw-qB-L0o">
                                 <rect key="frame" x="20" y="110.99999999999999" width="335" height="38.333333333333329"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="These soothing activities can be completed on a daily basis " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyF-ma-xie">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="These soothing activities can be completed daily (pull down on table to search)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyF-ma-xie">
                                         <rect key="frame" x="8" y="0.0" width="319.33333333333331" height="38.333333333333336"/>
                                         <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
                                         <color key="textColor" systemColor="darkTextColor"/>
@@ -1004,10 +1021,16 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="wnt-l8-lmf">
+                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search by category or name" id="wnt-l8-lmf">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <textInputTraits key="textInputTraits"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="searchField.textColor">
+                                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="activityCell" rowHeight="100" id="Itf-hV-wc3" customClass="ActivityTableViewCell" customModule="Calm_Cloud" customModuleProvider="target">
@@ -1145,6 +1168,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ae5-tF-p0m"/>
                         <color key="backgroundColor" red="1" green="0.88149459279999998" blue="0.95206307000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="AIw-qB-L0o" firstAttribute="top" secondItem="MRf-q9-kaA" secondAttribute="bottom" constant="23" id="2Vh-7B-NPp"/>
                             <constraint firstItem="AIw-qB-L0o" firstAttribute="top" secondItem="XS3-i8-zad" secondAttribute="bottom" constant="23" id="5Og-EL-p1r"/>
@@ -1166,6 +1190,9 @@
                             <constraint firstAttribute="trailing" secondItem="AIw-qB-L0o" secondAttribute="trailing" constant="20" id="nWp-s7-skf"/>
                             <constraint firstItem="HC8-Bn-cu2" firstAttribute="top" secondItem="AIw-qB-L0o" secondAttribute="bottom" constant="25" id="rf0-nK-1Do"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="JRD-Fz-KJV" appends="YES" id="NC5-YU-gRo"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="P0M-n2-OIh"/>
                     <connections>
@@ -1176,6 +1203,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3lZ-IO-pel" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="JRD-Fz-KJV">
+                    <connections>
+                        <action selector="viewTapped:" destination="d0I-XO-ZvT" id="lND-48-cfs"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-196" y="830"/>
         </scene>
@@ -3447,7 +3479,7 @@
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="afu-cr-XzG">
                                         <rect key="frame" x="0.0" y="53.333333333333343" width="335" height="32"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.37647059560000001" green="0.58431375029999999" blue="0.68627452850000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <segments>
                                             <segment title="Seedings"/>
                                             <segment title="Items"/>
@@ -3728,7 +3760,7 @@
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="yGk-lw-t0m">
                                         <rect key="frame" x="0.0" y="58.666666666666657" width="335" height="32"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.37647059560000001" green="0.58431375029999999" blue="0.68627452850000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <segments>
                                             <segment title="Honor Stand"/>
                                             <segment title="Donate"/>

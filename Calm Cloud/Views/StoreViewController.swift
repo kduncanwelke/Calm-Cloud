@@ -158,7 +158,6 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
     }
     
     @IBAction func backPressed(_ sender: UIButton) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "restart"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
 }

@@ -28,7 +28,6 @@ class BasketViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
         basketViewModel.performDataLoads()
         
         addedImage.alpha = 0.0
@@ -114,7 +113,6 @@ class BasketViewController: UIViewController {
     }
     
     @IBAction func backTapped(_ sender: UIButton) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "restart"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
 }

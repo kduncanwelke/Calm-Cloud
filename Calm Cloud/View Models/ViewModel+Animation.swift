@@ -14,10 +14,6 @@ extension ViewModel {
     // MARK: Animation
 
     func performAnimationResets(toy: UIImageView, game: UIImageView) {
-        if StatusManager.returnedFromSegue {
-            StatusManager.returnedFromSegue = false
-        }
-
         if toy.isAnimating {
             toy.stopAnimating()
         }

@@ -91,7 +91,8 @@ class ViewController: UIViewController {
         plusEXPLabel.alpha = 0.0
         plusEXPLabelAlt.alpha = 0.0
         weather.isHidden = true
-       
+
+        viewModel.setInside()
         viewModel.loadPhotos()
         viewModel.loadEntries()
         viewModel.loadCare()
@@ -288,6 +289,9 @@ class ViewController: UIViewController {
     
     @objc func returnIndoors() {
         // hide open door and restart animation when returning indoors
+        viewModel.setInside()
+        viewModel.unStop()
+
         fireplace.image = viewModel.setFireAppearance()
         
         // restart fire sound if on
@@ -300,8 +304,6 @@ class ViewController: UIViewController {
         
         door.isHidden = false
         openDoor.isHidden = true
-        viewModel.unStop()
-        viewModel.setReturnFromSegue()
         
         stopMoving()
     }
@@ -323,8 +325,6 @@ class ViewController: UIViewController {
     @objc func closeMiniGame() {
         // close mini game container when user dismisses
         view.sendSubviewToBack(containerView)
-        viewModel.unStop()
-        stopMoving()
     }
     
     @objc func closeTasks() {
@@ -349,7 +349,7 @@ class ViewController: UIViewController {
     }
     
     @objc func stopMoving() {
-        if (self.isViewLoaded && (self.view.window != nil)) || viewModel.isReturnedFromSegue() {
+        if viewModel.getScreen() == .inside {
             print("indoor view on screen")
             // current animation stopped, randomize next
             print("stop moving called")
@@ -360,12 +360,6 @@ class ViewController: UIViewController {
                 if viewModel.lightsOff() {
                     goNightNight()
                 }
-                return
-            }
-
-            if viewModel.isReturnedFromSegue() {
-                viewModel.removeReturnFromSegue()
-                sleep()
                 return
             }
 
@@ -456,7 +450,7 @@ class ViewController: UIViewController {
                 // if petting while lights are off, go back to sleep
                 goToSleep()
             } else {
-                stopMoving()
+                sleep()
             }
         }
     }
@@ -569,6 +563,7 @@ class ViewController: UIViewController {
     
     @IBAction func doorTapped(_ sender: UITapGestureRecognizer) {
         // go outside
+        viewModel.setOutside()
         door.isHidden = true
         openDoor.isHidden = false
         FireSound.stopPlaying()
@@ -582,8 +577,6 @@ class ViewController: UIViewController {
             return
         } else {
             // show mini game
-            viewModel.stop()
-        
             view.bringSubviewToFront(containerView)
             containerView.animateBounce()
         }
@@ -707,26 +700,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func remindersTapped(_ sender: UIButton) {
-        viewModel.stop()
-        viewModel.stopTimer()
         performSegue(withIdentifier: "visitReminders", sender: Any?.self)
     }
     
     @IBAction func favoritesTapped(_ sender: UIButton) {
-        viewModel.stop()
-        viewModel.stopTimer()
         performSegue(withIdentifier: "visitFavorites", sender: Any?.self)
     }
     
     @IBAction func activitiesTapped(_ sender: UIButton) {
-        viewModel.stop()
-        viewModel.stopTimer()
         performSegue(withIdentifier: "visitActivities", sender: Any?.self)
     }
     
     @IBAction func journalTapped(_ sender: UIButton) {
-        viewModel.stop()
-        viewModel.stopTimer()
         performSegue(withIdentifier: "visitJournal", sender: Any?.self)
     }
 }
