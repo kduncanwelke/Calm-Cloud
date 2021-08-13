@@ -142,7 +142,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2e-Zd-1In">
-                                        <rect key="frame" x="23.333333333333332" y="0.0" width="15.999999999999996" height="39.666666666666664"/>
+                                        <rect key="frame" x="23.333333333333329" y="0.0" width="15.999999999999996" height="39.666666666666664"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
                                         <color key="textColor" systemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -601,6 +601,7 @@
                         <segue destination="ggj-zc-xge" kind="show" identifier="visitReminders" id="Ev2-J4-hde"/>
                         <segue destination="d0I-XO-ZvT" kind="show" identifier="visitActivities" id="Dj4-t0-7jW"/>
                         <segue destination="5Xa-cm-e5B" kind="show" identifier="goOutside" id="AK7-z9-76K"/>
+                        <segue destination="Ihd-A9-UEY" kind="show" identifier="goToGame" id="VBx-a8-Gmt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -991,7 +992,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1688" y="141"/>
+            <point key="canvasLocation" x="1847" y="165"/>
         </scene>
         <!--Activities View Controller-->
         <scene sceneID="gRT-n5-FTF">
@@ -2901,6 +2902,22 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="969.56521739130437" y="-558.48214285714278"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="Ss6-sf-aUZ">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="Ihd-A9-UEY" customClass="GameViewController" customModule="Calm_Cloud" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WZb-zx-NDa" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="HES-eO-2Gg"/>
+                        <color key="backgroundColor" red="1" green="0.88235294819999999" blue="0.9529411793" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fpu-JA-V8a"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Cc-Pt-EtM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1748" y="-533"/>
         </scene>
         <!--Mini Game View Controller-->
         <scene sceneID="HqE-r6-dnU">

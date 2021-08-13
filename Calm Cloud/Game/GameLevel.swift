@@ -7,7 +7,6 @@
 //
 
 import Foundation
-/*
 
 let totalColumns = 9
 let totalRows = 9
@@ -44,4 +43,4 @@ class GameLevel {
 
           return set
     }
-}*/
+}

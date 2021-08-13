@@ -15,6 +15,8 @@
 		2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D11FD6824367EA900EC89D9 /* Journal+TextViewDelegate.swift */; };
 		2D14EBDC243E752B004CB7E2 /* ReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EBDB243E752B004CB7E2 /* ReminderManager.swift */; };
 		2D14EBDE243E7740004CB7E2 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14EBDD243E7740004CB7E2 /* NotificationManager.swift */; };
+		2D20C6A726C70CD40057EDD2 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D20C6A626C70CD40057EDD2 /* GameScene.swift */; };
+		2D20C6A926C713A80057EDD2 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D20C6A826C713A80057EDD2 /* GameViewController.swift */; };
 		2D25AFF82489A126003BDBE6 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D25AFF72489A126003BDBE6 /* BasketViewController.swift */; };
 		2D26545E2440F6EE00FBFF74 /* OutsideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */; };
 		2D2654612441165800FBFF74 /* CellCheckDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2654602441165800FBFF74 /* CellCheckDelegate.swift */; };
@@ -34,6 +36,7 @@
 		2D30E95426B9C45C0000768D /* JournalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D30E95326B9C45C0000768D /* JournalViewModel.swift */; };
 		2D30E95626B9DB400000768D /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D30E95526B9DB400000768D /* PhotoViewModel.swift */; };
 		2D30E95826B9DE780000768D /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D30E95726B9DE780000768D /* StoreViewModel.swift */; };
+		2D32F84026C5CF3600078D82 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32F83F26C5CF3600078D82 /* Array2D.swift */; };
 		2D384C21243BCA3B00D0FFEB /* PageControllerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C20243BCA3B00D0FFEB /* PageControllerManager.swift */; };
 		2D384C23243BCB5E00D0FFEB /* EntryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D384C22243BCB5E00D0FFEB /* EntryManager.swift */; };
 		2D3CC0E226B46940000EA922 /* OutsideVM+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3CC0E126B46940000EA922 /* OutsideVM+Animation.swift */; };
@@ -144,6 +147,8 @@
 		2D11FD6824367EA900EC89D9 /* Journal+TextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journal+TextViewDelegate.swift"; sourceTree = "<group>"; };
 		2D14EBDB243E752B004CB7E2 /* ReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManager.swift; sourceTree = "<group>"; };
 		2D14EBDD243E7740004CB7E2 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		2D20C6A626C70CD40057EDD2 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		2D20C6A826C713A80057EDD2 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		2D25AFF72489A126003BDBE6 /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutsideViewController.swift; sourceTree = "<group>"; };
 		2D2654602441165800FBFF74 /* CellCheckDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellCheckDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +168,7 @@
 		2D30E95326B9C45C0000768D /* JournalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewModel.swift; sourceTree = "<group>"; };
 		2D30E95526B9DB400000768D /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		2D30E95726B9DE780000768D /* StoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
+		2D32F83F26C5CF3600078D82 /* Array2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
 		2D384C20243BCA3B00D0FFEB /* PageControllerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControllerManager.swift; sourceTree = "<group>"; };
 		2D384C22243BCB5E00D0FFEB /* EntryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryManager.swift; sourceTree = "<group>"; };
 		2D38D60224D22D3F009F82B5 /* Calm Cloud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Calm Cloud.entitlements"; sourceTree = "<group>"; };
@@ -391,6 +397,8 @@
 			children = (
 				2D88FB4526BC836200EFA8FD /* Toy.swift */,
 				2D88FB4826BC8A3300EFA8FD /* GameLevel.swift */,
+				2D32F83F26C5CF3600078D82 /* Array2D.swift */,
+				2D20C6A626C70CD40057EDD2 /* GameScene.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -461,6 +469,7 @@
 				2D8F9040243F9DE800211802 /* Cells */,
 				2D48CC3D242548B200D0FBBB /* ViewController.swift */,
 				2DB1321824783F5500FA6D71 /* ViewController+Animations.swift */,
+				2D20C6A826C713A80057EDD2 /* GameViewController.swift */,
 				2D26545D2440F6EE00FBFF74 /* OutsideViewController.swift */,
 				2DB1321A247843AD00FA6D71 /* Outside+Animations.swift */,
 				2DB781702477034000EDCAF9 /* Containers */,
@@ -656,6 +665,7 @@
 				2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */,
 				2D03D3EA25ACDDC50096A3FE /* ItemManager.swift in Sources */,
 				2DB4106524916E8C00EFD088 /* MoneyManager.swift in Sources */,
+				2D32F84026C5CF3600078D82 /* Array2D.swift in Sources */,
 				2D2E52FD26BB2BDA007DF8A8 /* InventoryViewModel.swift in Sources */,
 				2D2EF6A22465F2EE00E497DC /* PopUpViewController.swift in Sources */,
 				2D2D9FBD26B0BF5C0042B6F2 /* ViewModel+CoreData.swift in Sources */,
@@ -666,6 +676,7 @@
 				2D14EBDE243E7740004CB7E2 /* NotificationManager.swift in Sources */,
 				2D07E98924A150E900FD6E66 /* RemoveViewController.swift in Sources */,
 				2D9B7CFB24AD15FF00CDFA8E /* StoreObserver.swift in Sources */,
+				2D20C6A926C713A80057EDD2 /* GameViewController.swift in Sources */,
 				2D30E95226B9BC880000768D /* ActivitiesViewModel.swift in Sources */,
 				2DFD54B124660B100096FD5C /* Plantings.swift in Sources */,
 				2DB1321B247843AD00FA6D71 /* Outside+Animations.swift in Sources */,
@@ -726,6 +737,7 @@
 				2DB1321924783F5500FA6D71 /* ViewController+Animations.swift in Sources */,
 				2D2E52F726BB2060007DF8A8 /* PlantPurchaseViewModel.swift in Sources */,
 				2D7FCABA2432506100E2DEC4 /* Photo+ScrollViewDelegate.swift in Sources */,
+				2D20C6A726C70CD40057EDD2 /* GameScene.swift in Sources */,
 				2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */,
 				2D5D6F362464830C00993969 /* MiniGameViewController.swift in Sources */,
 				2D30E95026B9BA3A0000768D /* FavoritesViewModel.swift in Sources */,
