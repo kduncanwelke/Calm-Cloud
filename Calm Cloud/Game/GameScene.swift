@@ -11,6 +11,8 @@ import SpriteKit
 
 class GameScene: SKScene {
 
+    var swipeHandler: ((Swap) -> Void)?
+
     var level: GameLevel!
 
     let tileWidth: CGFloat = 40.0
@@ -27,9 +29,9 @@ class GameScene: SKScene {
 
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         // FIXME: proper background for game
-        let background = SKSpriteNode(imageNamed: "idea")
-        background.size = self.size
-        addChild(background)
+        //let background = SKSpriteNode(imageNamed: "idea")
+        //background.size = self.size
+        //addChild(background)
 
         addChild(gameLayer)
         let layerPosition = CGPoint(x: -tileWidth * CGFloat(totalColumns)/2, y: -tileHeight * CGFloat(totalRows)/2)
@@ -49,6 +51,43 @@ class GameScene: SKScene {
             toyLayer.addChild(sprite)
             toy.sprite = sprite
         }
+    }
+
+    func animate(_ swap: Swap, completion: @escaping () -> Void) {
+        guard let spriteA = swap.toyA.sprite, let spriteB = swap.toyB.sprite else { return }
+
+        // put one sprite above the other
+        spriteA.zPosition = 100
+        spriteB.zPosition = 90
+
+        let duration: TimeInterval = 0.3
+
+        // create movements
+        let moveA = SKAction.move(to: spriteB.position, duration: duration)
+        moveA.timingMode = .easeOut
+        spriteA.run(moveA, completion: completion)
+
+        let moveB = SKAction.move(to: spriteA.position, duration: duration)
+        moveB.timingMode = .easeOut
+        spriteB.run(moveB)
+    }
+
+    func animateInvalidSwap(_ swap: Swap, completion: @escaping () -> Void) {
+        guard let spriteA = swap.toyA.sprite, let spriteB = swap.toyB.sprite else { return }
+
+        spriteA.zPosition = 100
+        spriteB.zPosition = 90
+
+        let duration: TimeInterval = 0.2
+
+        let moveA = SKAction.move(to: spriteB.position, duration: duration)
+        moveA.timingMode = .easeOut
+
+        let moveB = SKAction.move(to: spriteA.position, duration: duration)
+        moveB.timingMode = .easeOut
+
+        spriteA.run(SKAction.sequence([moveA, moveB]), completion: completion)
+        spriteB.run(SKAction.sequence([moveB, moveA]))
     }
 
     private func pointFor(column: Int, row: Int) -> CGPoint {
@@ -79,6 +118,12 @@ class GameScene: SKScene {
         // swap items
         if let toToy = level.toy(atColumn: toColumn, row: toRow), let fromToy = level.toy(atColumn: columnSwipe, row: rowSwipe) {
             print("swapping \(toToy) and \(fromToy)")
+
+            // use closure to communicate successful swap
+            if let handler = swipeHandler {
+                let swap = Swap(toyA: fromToy, toyB: toToy)
+                handler(swap)
+            }
         }
     }
 

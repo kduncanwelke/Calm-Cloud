@@ -119,6 +119,7 @@
 		2DD7C97224D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD7C97124D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 */; };
 		2DD7C97424D09E2E0008C79F /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7C97324D09E2E0008C79F /* InfoViewController.swift */; };
 		2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */; };
+		2DDC059F26D0361000E2EE11 /* Swap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC059E26D0361000E2EE11 /* Swap.swift */; };
 		2DDEA32B242A98E800717E8C /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEA32A242A98E800717E8C /* AnimationManager.swift */; };
 		2DFD54B124660B100096FD5C /* Plantings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFD54B024660B100096FD5C /* Plantings.swift */; };
 /* End PBXBuildFile section */
@@ -259,6 +260,7 @@
 		2DD7C97124D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Blastwave_FX_NightCornField_S011AM.8.mp3; sourceTree = "<group>"; };
 		2DD7C97324D09E2E0008C79F /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTimer.swift; sourceTree = "<group>"; };
+		2DDC059E26D0361000E2EE11 /* Swap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swap.swift; sourceTree = "<group>"; };
 		2DDEA32A242A98E800717E8C /* AnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
 		2DFD54B024660B100096FD5C /* Plantings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plantings.swift; sourceTree = "<group>"; };
 		7342098CA9156F3920FAC3AF /* Pods-Calm Cloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calm Cloud.debug.xcconfig"; path = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.debug.xcconfig"; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				2D88FB4526BC836200EFA8FD /* Toy.swift */,
+				2DDC059E26D0361000E2EE11 /* Swap.swift */,
 				2D88FB4826BC8A3300EFA8FD /* GameLevel.swift */,
 				2D32F83F26C5CF3600078D82 /* Array2D.swift */,
 				2D20C6A626C70CD40057EDD2 /* GameScene.swift */,
@@ -736,6 +739,7 @@
 				2D384C21243BCA3B00D0FFEB /* PageControllerManager.swift in Sources */,
 				2DB1321924783F5500FA6D71 /* ViewController+Animations.swift in Sources */,
 				2D2E52F726BB2060007DF8A8 /* PlantPurchaseViewModel.swift in Sources */,
+				2DDC059F26D0361000E2EE11 /* Swap.swift in Sources */,
 				2D7FCABA2432506100E2DEC4 /* Photo+ScrollViewDelegate.swift in Sources */,
 				2D20C6A726C70CD40057EDD2 /* GameScene.swift in Sources */,
 				2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */,

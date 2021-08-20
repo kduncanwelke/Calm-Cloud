@@ -26,6 +26,8 @@ class GameViewController: UIViewController {
         scene = GameScene(size: spriteKitView.bounds.size)
         scene.scaleMode = .aspectFill
 
+        scene.swipeHandler = handleSwipe(_:)
+        
         spriteKitView.presentScene(scene)
 
         level = GameLevel()
@@ -41,6 +43,24 @@ class GameViewController: UIViewController {
 
     func beginGame() {
         shuffle()
+    }
+
+    func handleSwipe(_ swap: Swap) {
+        // perform swap in model
+        view.isUserInteractionEnabled = false
+
+        if level.isPossibleSwap(swap) {
+            level.performSwap(swap)
+
+            // animate swap
+            scene.animate(swap) {
+                self.view.isUserInteractionEnabled = true
+            }
+        } else {
+            scene.animateInvalidSwap(swap) {
+                self.view.isUserInteractionEnabled = true
+            }
+        }
     }
 
     /*
