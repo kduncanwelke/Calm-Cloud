@@ -44,13 +44,29 @@ public class OutsideViewModel {
 
         for seedling in Plantings.seedlings {
             if seedling.plant == Plant(rawValue: Int(plant.plant))! {
+                PlantManager.selected = seedling.plant
                 Plantings.currentPlantName = seedling.name
+                break
             }
         }
 
+        // add this check for bugged plants with no mature date
+        if plant.mature == nil {
+            var managedContext = CoreDataManager.shared.managedObjectContext
+            plant.mature = Date()
+
+            do {
+                try managedContext.save()
+                print("saved plant mature date")
+            } catch {
+                // this should never be displayed but is here to cover the possibility
+                //showAlert(title: "Save failed", message: "Notice: Data has not successfully been saved.")
+            }
+        }
+
+        print("plant mature date \(plant.mature)")
         let daysLeft = PlantManager.checkDiff(date: plant.mature)
-        print(daysLeft)
-        var days = 5 - daysLeft
+        var days = 7 - daysLeft
 
         return (Plantings.currentPlantName, days)
     }
@@ -133,7 +149,6 @@ public class OutsideViewModel {
                 // harvest prompt for mature plants
                 print("mature plant")
                 setPlot(plot: image.tag)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
                 return .harvest
             } else {
                 // otherwise simply show identification
@@ -222,11 +237,11 @@ public class OutsideViewModel {
 
         // show more crowded image if more quantity
         for (type, quantity) in Harvested.inStand {
-            if honorStandImages[index].image == nil {
-                if quantity > 0 {
-                    honorStandImages[index].image = Harvested.getStandImage(plant: type)
-                    index += 1
-                }
+            print("\(type) \(quantity)")
+            if honorStandImages[index].image == nil && quantity > 0 {
+                honorStandImages[index].image = Harvested.getStandImage(plant: type)
+                print("got honor stand image")
+                index += 1
             }
         }
 

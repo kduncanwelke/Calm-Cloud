@@ -173,6 +173,7 @@ struct DataFunctions {
         
         Harvested.loaded.removeAll()
         Harvested.loaded = resave
+        loadHonorStand()
     }
     
     static func loadHarvest() {

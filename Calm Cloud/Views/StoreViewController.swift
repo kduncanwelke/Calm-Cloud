@@ -216,8 +216,9 @@ extension StoreViewController: UICollectionViewDataSource, UICollectionViewDeleg
         if let title = growth.title, let image = growth.image {
             cell.growthSpeed.setTitle(growth.title, for: .normal)
             cell.growthSpeed.setBackgroundImage(image, for: .normal)
-        } else {
             cell.growthSpeed.isHidden = false
+        } else {
+            cell.growthSpeed.isHidden = true
         }
 
         cell.purchaseDescription.text = storeViewModel.getDescription(segment: segmentedControl.selectedSegmentIndex, index: indexPath.row)

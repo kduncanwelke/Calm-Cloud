@@ -65,11 +65,11 @@ class TasksViewController: UIViewController {
         allComplete.isHidden = true
         getReward.isHidden = true
 
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateExperience"), object: nil)
-
         rewardDetails.animateFadeInSlow()
         tasksViewModel.collectReward()
+
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateExperience"), object: nil)
     }
     
     @IBAction func infoPressed(_ sender: UIButton) {

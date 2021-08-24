@@ -57,6 +57,7 @@ extension OutsideViewModel {
         newPlot.id = Int16(id)
         newPlot.plant = Int16(plant)
         newPlot.date = Date()
+        newPlot.mature = nil
 
         Plantings.plantings.append(newPlot)
 
@@ -117,27 +118,30 @@ extension OutsideViewModel {
                 // if it's a new day, plants can be watered
                 plot.consecutiveWaterings += 1
             } else {
-                    let differenceFromNowToLastWatering = PlantManager.checkDiff(date: lastWatered)
+                let differenceFromNowToLastWatering = PlantManager.checkDiff(date: lastWatered)
 
-                    // if plot was last watered 12 hours or more ago and that last watering was within the current day, add to waterings
-                    if differenceFromNowToLastWatering >= 12 && Calendar.current.isDateInToday(lastWatered) {
+                // if plot was last watered 12 hours or more ago and that last watering was within the current day, add to waterings
+                if differenceFromNowToLastWatering >= 12 && Calendar.current.isDateInToday(lastWatered) {
+                    plot.consecutiveWaterings += 1
+                } else if let prevWatered = plot.prevWatered {
+                    let differenceFromNowToPrevWatering = PlantManager.checkDiff(date: prevWatered)
+
+                    // if plot was last watered less than 12 hours ago and that last watering was within the current day, add to waterings
+                    if differenceFromNowToPrevWatering <= 12 && Calendar.current.isDateInToday(prevWatered) {
                         plot.consecutiveWaterings += 1
-                    } else if let prevWatered = plot.prevWatered {
-                        let differenceFromNowToPrevWatering = PlantManager.checkDiff(date: prevWatered)
-
-                        // if plot was last watered less than 12 hours ago and that last watering was within the current day, add to waterings
-                        if differenceFromNowToPrevWatering <= 12 && Calendar.current.isDateInToday(prevWatered) {
-                            plot.consecutiveWaterings += 1
-                        }
                     }
                 }
             }
+        }
 
-            plot.prevWatered = plot.lastWatered
-            plot.lastWatered = Date()
+        plot.prevWatered = plot.lastWatered
+        plot.lastWatered = Date()
 
-            // update images
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadPlants"), object: nil)
+        // update images
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadPlants"), object: nil)
+
+        // use to set stage for current plant
+        getStage(plot: plot)
         } else {
             print("no need for water")
             return
@@ -145,6 +149,7 @@ extension OutsideViewModel {
 
         if PlantManager.currentStage == .seven && plot.mature == nil {
             plot.mature = Date()
+            print("set mature date")
         }
 
         // exp gain from watering

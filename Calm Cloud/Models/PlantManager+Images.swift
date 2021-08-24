@@ -1589,7 +1589,7 @@ extension PlantManager {
                 }
             case .seven:
                 if needsWater {
-                    return #imageLiteral(resourceName: "redgeranium.png")
+                    return #imageLiteral(resourceName: "redgeranium7")
                 } else {
                     return #imageLiteral(resourceName: "redgeranium7water.png")
                 }

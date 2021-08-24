@@ -18,6 +18,8 @@ public class BasketViewModel {
     }
 
     func loadItems() {
+        Harvested.itemsToShow.removeAll()
+
         for (plant, number) in Harvested.basketCounts {
             if number != 0 {
                 for item in Harvested.basketItems {
@@ -67,9 +69,12 @@ public class BasketViewModel {
     func randomEXP() -> Int {
         var exp = 0
 
+        print("number donated \(numberDonated)")
+
         for _ in 1...numberDonated {
             let randomEXP = Int.random(in: 5...15)
             exp += randomEXP
+            print("random exp")
         }
 
         LevelManager.currentEXP += exp
@@ -79,6 +84,8 @@ public class BasketViewModel {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromBasket"), object: nil)
 
         DataFunctions.saveLevel()
+
+        numberDonated = 0
 
         return exp
     }
@@ -131,8 +138,6 @@ public class BasketViewModel {
         } else if segment == 1 {
             if numberDonated != 0 {
                 DataFunctions.saveHarvest()
-
-                numberDonated = 0
 
                 return (false, true)
             } else {

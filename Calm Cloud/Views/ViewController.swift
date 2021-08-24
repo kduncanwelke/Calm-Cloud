@@ -265,11 +265,11 @@ class ViewController: UIViewController {
     }
     
     @objc func updateMoney() {
-        coinCount.text = viewModel.getCoins()
-        coinImage.animateBounce()
-        
         // resave money
         viewModel.saveMoney()
+
+        coinCount.text = viewModel.getCoins()
+        coinImage.animateBounce()
     }
     
     @objc func updateExperience() {
@@ -572,16 +572,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func miniGameTapped(_ sender: UIButton) {
-        /*if viewModel.lightsOff() {
+        if viewModel.lightsOff() {
             // don't allow mini game when lights are off
             return
         } else {
             // show mini game
             view.bringSubviewToFront(containerView)
             containerView.animateBounce()
-        }*/
+        }
 
-        performSegue(withIdentifier: "goToGame", sender: Any?.self)
+        //performSegue(withIdentifier: "goToGame", sender: Any?.self)
     }
     
     @IBAction func lightsOffTapped(_ sender: UIButton) {

@@ -155,6 +155,7 @@ class OutsideViewController: UIViewController {
         loadUI()
         outsideViewModel.loadInventory()
         outsideViewModel.loadPlots()
+        DataFunctions.loadHonorStand()
        
         checkForPurchases()
         // set mode to default to planting
@@ -442,6 +443,7 @@ class OutsideViewController: UIViewController {
             case .message:
                 view.bringSubviewToFront(messageContainer)
             case .harvest:
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
                 view.bringSubviewToFront(harvestContainer)
             case .water:
                 return
@@ -568,6 +570,8 @@ class OutsideViewController: UIViewController {
             normalText.alpha = 0.0
         }
 
+        view.sendSubviewToBack(removeContainer)
+
         outsideViewModel.setMode(button: .planting)
     }
     
@@ -583,6 +587,11 @@ class OutsideViewController: UIViewController {
             waterText.alpha = 0.0
         }
 
+        view.sendSubviewToBack(messageContainer)
+        view.sendSubviewToBack(harvestContainer)
+        view.sendSubviewToBack(removeContainer)
+        view.sendSubviewToBack(inventoryContainer)
+
         outsideViewModel.setMode(button: .watering)
     }
     
@@ -597,6 +606,10 @@ class OutsideViewController: UIViewController {
         case .removal:
             removeText.alpha = 0.0
         }
+
+        view.sendSubviewToBack(messageContainer)
+        view.sendSubviewToBack(harvestContainer)
+        view.sendSubviewToBack(inventoryContainer)
 
         outsideViewModel.setMode(button: .removal)
     }
