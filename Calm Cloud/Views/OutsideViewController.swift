@@ -639,11 +639,14 @@ class OutsideViewController: UIViewController {
 
             coinCount.text = viewModel.getCoins()
             coinImage.animateBounce()
+            
+            outsideViewModel.addEarnings()
 
             honorStandMoney.isHidden = true
 
             // update money inside
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
+            updateCoins()
 
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
                 self?.earningsView.isHidden = true
