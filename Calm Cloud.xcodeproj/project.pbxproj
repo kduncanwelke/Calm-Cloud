@@ -121,6 +121,7 @@
 		2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */; };
 		2DDC059F26D0361000E2EE11 /* Swap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC059E26D0361000E2EE11 /* Swap.swift */; };
 		2DDEA32B242A98E800717E8C /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEA32A242A98E800717E8C /* AnimationManager.swift */; };
+		2DF43F2C26D951C500D69E66 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF43F2B26D951C500D69E66 /* Chain.swift */; };
 		2DFD54B124660B100096FD5C /* Plantings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFD54B024660B100096FD5C /* Plantings.swift */; };
 /* End PBXBuildFile section */
 
@@ -262,6 +263,7 @@
 		2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTimer.swift; sourceTree = "<group>"; };
 		2DDC059E26D0361000E2EE11 /* Swap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swap.swift; sourceTree = "<group>"; };
 		2DDEA32A242A98E800717E8C /* AnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
+		2DF43F2B26D951C500D69E66 /* Chain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
 		2DFD54B024660B100096FD5C /* Plantings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plantings.swift; sourceTree = "<group>"; };
 		7342098CA9156F3920FAC3AF /* Pods-Calm Cloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calm Cloud.debug.xcconfig"; path = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.debug.xcconfig"; sourceTree = "<group>"; };
 		E37AE3B8A5B8DED3AE9FFF65 /* Pods-Calm Cloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calm Cloud.release.xcconfig"; path = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.release.xcconfig"; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 				2D88FB4826BC8A3300EFA8FD /* GameLevel.swift */,
 				2D32F83F26C5CF3600078D82 /* Array2D.swift */,
 				2D20C6A626C70CD40057EDD2 /* GameScene.swift */,
+				2DF43F2B26D951C500D69E66 /* Chain.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				2DC5606F24A271D200D5AA57 /* MiniGameTwoViewController.swift in Sources */,
 				2DCC9C7B24672031006834B0 /* PlantManager.swift in Sources */,
 				2D2E52F926BB2578007DF8A8 /* DeliveryViewModel.swift in Sources */,
+				2DF43F2C26D951C500D69E66 /* Chain.swift in Sources */,
 				2DC95DDD2485A9830085DD14 /* CompareImages.swift in Sources */,
 				2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */,
 				2D03D3EA25ACDDC50096A3FE /* ItemManager.swift in Sources */,

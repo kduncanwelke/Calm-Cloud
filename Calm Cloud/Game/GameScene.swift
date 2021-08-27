@@ -53,6 +53,8 @@ class GameScene: SKScene {
         }
     }
 
+    // MARK: Animations
+
     func animate(_ swap: Swap, completion: @escaping () -> Void) {
         guard let spriteA = swap.toyA.sprite, let spriteB = swap.toyB.sprite else { return }
 
@@ -88,6 +90,76 @@ class GameScene: SKScene {
 
         spriteA.run(SKAction.sequence([moveA, moveB]), completion: completion)
         spriteB.run(SKAction.sequence([moveB, moveA]))
+    }
+
+    func animateMatchedCookies(for chains: Set<Chain>, completion: @escaping () -> Void) {
+        for chain in chains {
+            for toy in chain.toys {
+                if let sprite = toy.sprite {
+                    if sprite.action(forKey: "removing") == nil {
+                        let scaleAction = SKAction.scale(to: 0.1, duration: 0.3)
+                        scaleAction.timingMode = .easeOut
+
+                        sprite.run(SKAction.sequence([scaleAction, SKAction.removeFromParent()]), withKey: "removing")
+                    }
+                }
+            }
+        }
+
+        run(SKAction.wait(forDuration: 0.3), completion: completion)
+    }
+
+    func animateFallingCookies(in columns: [[Toy]], completion: @escaping () -> Void) {
+        var longestDuration: TimeInterval = 0
+
+        for array in columns {
+            for (index, toy) in array.enumerated() {
+                let newPosition = pointFor(column: toy.column, row: toy.row)
+                let delay = 0.05 + 0.15 * TimeInterval(index)
+
+                let sprite = toy.sprite! // we know it exists
+
+                let duration = TimeInterval(((sprite.position.y - newPosition.y) / tileHeight) * 0.1)
+                longestDuration = max(longestDuration, duration + delay)
+
+                let moveAction = SKAction.move(to: newPosition, duration: duration)
+                moveAction.timingMode = .easeOut
+
+                sprite.run(SKAction.sequence([SKAction.wait(forDuration: delay), SKAction.group([moveAction])]))
+            }
+        }
+
+        run(SKAction.wait(forDuration: longestDuration), completion: completion)
+    }
+
+    func animateNewCookies(in columns: [[Toy]], completion: @escaping () -> Void) {
+        var longestDuration: TimeInterval = 0
+
+        for array in columns {
+            let startRow = array[0].row + 1
+
+            for (index, toy) in array.enumerated() {
+                let sprite = SKSpriteNode(imageNamed: toy.toyType.spriteName)
+                sprite.size = CGSize(width: tileWidth, height: tileHeight)
+                sprite.position = pointFor(column: toy.column, row: startRow)
+
+                toyLayer.addChild(sprite)
+                toy.sprite = sprite
+
+                let delay = 0.1 + 0.2 * TimeInterval(array.count - index - 1)
+                let duration = TimeInterval(startRow - toy.row) * 0.1
+                longestDuration = max(longestDuration, duration + delay)
+
+                let newPosition = pointFor(column: toy.column, row: toy.row)
+                let moveAction = SKAction.move(to: newPosition, duration: longestDuration)
+                moveAction.timingMode = .easeOut
+
+                sprite.alpha = 0
+                sprite.run(SKAction.sequence([SKAction.wait(forDuration: delay), SKAction.group([SKAction.fadeIn(withDuration: 0.05), moveAction])]))
+            }
+        }
+
+        run(SKAction.wait(forDuration: longestDuration), completion: completion)
     }
 
     private func pointFor(column: Int, row: Int) -> CGPoint {
