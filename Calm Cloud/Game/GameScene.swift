@@ -28,17 +28,12 @@ class GameScene: SKScene {
         super.init(size: size)
 
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        // FIXME: proper background for game
-        //let background = SKSpriteNode(imageNamed: "idea")
-        //background.size = self.size
-        //addChild(background)
-
         addChild(gameLayer)
         let layerPosition = CGPoint(x: -tileWidth * CGFloat(totalColumns)/2, y: -tileHeight * CGFloat(totalRows)/2)
         toyLayer.position = layerPosition
 
         gameLayer.addChild(toyLayer)
-
+        let _ = SKLabelNode(fontNamed: "GillSans-BoldItalic")
     }
 
     // MARK: Logic
@@ -54,6 +49,23 @@ class GameScene: SKScene {
     }
 
     // MARK: Animations
+
+    func animateScore(for chain: Chain) {
+        guard let firstSprite = chain.firstToy().sprite, let lastSprite = chain.lastToy().sprite else { return }
+
+        let centerpoint = CGPoint(x: (firstSprite.position.x + lastSprite.position.x)/2, y: (firstSprite.position.y + lastSprite.position.y)/2 - 8)
+
+        let scoreLabel = SKLabelNode(fontNamed: "GillSans-BoldItalic")
+        scoreLabel.fontSize = 16
+        scoreLabel.text = "\(chain.score)"
+        scoreLabel.position = centerpoint
+        scoreLabel.zPosition = 300
+        toyLayer.addChild(scoreLabel)
+
+        let moveAction = SKAction.move(by: CGVector(dx: 0, dy: 3), duration: 0.7)
+        moveAction.timingMode = .easeOut
+        scoreLabel.run(SKAction.sequence([moveAction, SKAction.removeFromParent()]))
+    }
 
     func animate(_ swap: Swap, completion: @escaping () -> Void) {
         guard let spriteA = swap.toyA.sprite, let spriteB = swap.toyB.sprite else { return }
@@ -94,6 +106,8 @@ class GameScene: SKScene {
 
     func animateMatchedCookies(for chains: Set<Chain>, completion: @escaping () -> Void) {
         for chain in chains {
+            animateScore(for: chain)
+
             for toy in chain.toys {
                 if let sprite = toy.sprite {
                     if sprite.action(forKey: "removing") == nil {

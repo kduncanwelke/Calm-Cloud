@@ -121,6 +121,13 @@
 		2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */; };
 		2DDC059F26D0361000E2EE11 /* Swap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC059E26D0361000E2EE11 /* Swap.swift */; };
 		2DDEA32B242A98E800717E8C /* AnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDEA32A242A98E800717E8C /* AnimationManager.swift */; };
+		2DE1C87726DD4E18008B3D95 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1C87626DD4E18008B3D95 /* Tile.swift */; };
+		2DE1C87926DD4F9C008B3D95 /* LevelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1C87826DD4F9C008B3D95 /* LevelData.swift */; };
+		2DE1C87B26DD5529008B3D95 /* level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1C87A26DD5528008B3D95 /* level_1.json */; };
+		2DE1C88126DD5BD8008B3D95 /* level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1C88026DD5BD8008B3D95 /* level_2.json */; };
+		2DE1C88726DD5DEF008B3D95 /* level_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1C88626DD5DEF008B3D95 /* level_3.json */; };
+		2DE1C88926DD5E69008B3D95 /* level_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1C88826DD5E69008B3D95 /* level_4.json */; };
+		2DE1C88B26DD5ECF008B3D95 /* level_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 2DE1C88A26DD5ECF008B3D95 /* level_5.json */; };
 		2DF43F2C26D951C500D69E66 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF43F2B26D951C500D69E66 /* Chain.swift */; };
 		2DFD54B124660B100096FD5C /* Plantings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFD54B024660B100096FD5C /* Plantings.swift */; };
 /* End PBXBuildFile section */
@@ -263,6 +270,13 @@
 		2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTimer.swift; sourceTree = "<group>"; };
 		2DDC059E26D0361000E2EE11 /* Swap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swap.swift; sourceTree = "<group>"; };
 		2DDEA32A242A98E800717E8C /* AnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationManager.swift; sourceTree = "<group>"; };
+		2DE1C87626DD4E18008B3D95 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		2DE1C87826DD4F9C008B3D95 /* LevelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelData.swift; sourceTree = "<group>"; };
+		2DE1C87A26DD5528008B3D95 /* level_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_1.json; sourceTree = "<group>"; };
+		2DE1C88026DD5BD8008B3D95 /* level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_2.json; sourceTree = "<group>"; };
+		2DE1C88626DD5DEF008B3D95 /* level_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_3.json; sourceTree = "<group>"; };
+		2DE1C88826DD5E69008B3D95 /* level_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_4.json; sourceTree = "<group>"; };
+		2DE1C88A26DD5ECF008B3D95 /* level_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_5.json; sourceTree = "<group>"; };
 		2DF43F2B26D951C500D69E66 /* Chain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
 		2DFD54B024660B100096FD5C /* Plantings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plantings.swift; sourceTree = "<group>"; };
 		7342098CA9156F3920FAC3AF /* Pods-Calm Cloud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calm Cloud.debug.xcconfig"; path = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.debug.xcconfig"; sourceTree = "<group>"; };
@@ -400,11 +414,18 @@
 			isa = PBXGroup;
 			children = (
 				2D88FB4526BC836200EFA8FD /* Toy.swift */,
+				2DE1C87626DD4E18008B3D95 /* Tile.swift */,
+				2DE1C87826DD4F9C008B3D95 /* LevelData.swift */,
 				2DDC059E26D0361000E2EE11 /* Swap.swift */,
 				2D88FB4826BC8A3300EFA8FD /* GameLevel.swift */,
 				2D32F83F26C5CF3600078D82 /* Array2D.swift */,
 				2D20C6A626C70CD40057EDD2 /* GameScene.swift */,
 				2DF43F2B26D951C500D69E66 /* Chain.swift */,
+				2DE1C87A26DD5528008B3D95 /* level_1.json */,
+				2DE1C88026DD5BD8008B3D95 /* level_2.json */,
+				2DE1C88626DD5DEF008B3D95 /* level_3.json */,
+				2DE1C88826DD5E69008B3D95 /* level_4.json */,
+				2DE1C88A26DD5ECF008B3D95 /* level_5.json */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -601,11 +622,16 @@
 				2D7E2AF324477CFA006C76BD /* Assets.xcassets in Resources */,
 				2D3EB99426AB7226004C6A78 /* you_will_know.mp3 in Resources */,
 				2DB63952252F91E600D8ECE0 /* weather-wind-trees-bushes-countryside.mp3 in Resources */,
+				2DE1C88926DD5E69008B3D95 /* level_4.json in Resources */,
 				2D48CC41242548B200D0FBBB /* Main.storyboard in Resources */,
 				2DD2C319246352F40070934D /* audio_hero_NightAmbienceCalm+PE011801.mp3 in Resources */,
 				2D3EB99226AB7220004C6A78 /* loire.mp3 in Resources */,
 				2D00EEB92494200E000DA1C8 /* audio_hero_ForestDay_DIGIX05_11_362.mp3 in Resources */,
+				2DE1C88726DD5DEF008B3D95 /* level_3.json in Resources */,
+				2DE1C88126DD5BD8008B3D95 /* level_2.json in Resources */,
+				2DE1C88B26DD5ECF008B3D95 /* level_5.json in Resources */,
 				2DD7C97224D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 in Resources */,
+				2DE1C87B26DD5529008B3D95 /* level_1.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,6 +720,7 @@
 				2DD7C97424D09E2E0008C79F /* InfoViewController.swift in Sources */,
 				2DB2858526B34313005E0528 /* Random.swift in Sources */,
 				2DC5EBCB2474886300741E5E /* Colors.swift in Sources */,
+				2DE1C87926DD4F9C008B3D95 /* LevelData.swift in Sources */,
 				2D9B7D0A24AD342900CDFA8E /* NetworkMonitor.swift in Sources */,
 				2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */,
 				2D8F904B243FC5B900211802 /* ActivityManager.swift in Sources */,
@@ -753,6 +780,7 @@
 				2D2D9FBB26B0B21F0042B6F2 /* StatusManager.swift in Sources */,
 				2D8C838F2433CDD9006711F2 /* CoreDataManager.swift in Sources */,
 				2D7FCAC02432968F00E2DEC4 /* ReminderTableViewCell.swift in Sources */,
+				2DE1C87726DD4E18008B3D95 /* Tile.swift in Sources */,
 				2D25AFF82489A126003BDBE6 /* BasketViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

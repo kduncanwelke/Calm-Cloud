@@ -17,6 +17,8 @@ class Chain: Hashable, CustomStringConvertible {
     var toys: [Toy] = []
     var chainType: ChainType
 
+    var score = 0
+
     enum ChainType: CustomStringConvertible {
         case horizontal
         case vertical

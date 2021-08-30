@@ -11,10 +11,21 @@ import SpriteKit
 
 class GameViewController: UIViewController {
 
+    // MARK: Outlets
+
+    @IBOutlet weak var currentScore: UILabel!
+    @IBOutlet weak var currentMoves: UILabel!
+    @IBOutlet weak var gameOver: UIView!
+    @IBOutlet weak var result: UILabel!
+    @IBOutlet weak var playAgain: UIButton!
+
+
     // MARK: Variables
 
     var scene: GameScene!
     var level: GameLevel!
+    var movesLeft = 0
+    var score = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,15 +36,21 @@ class GameViewController: UIViewController {
 
         scene = GameScene(size: spriteKitView.bounds.size)
         scene.scaleMode = .aspectFill
+        scene.backgroundColor = Colors.pink
 
         scene.swipeHandler = handleSwipe(_:)
         
         spriteKitView.presentScene(scene)
 
-        level = GameLevel()
+        level = GameLevel(filename: "level_5")
         scene.level = level
 
         beginGame()
+    }
+
+    func updateLabels() {
+        currentScore.text = "\(score)/\(level.targetScore)"
+        currentMoves.text = "\(movesLeft)"
     }
 
     func shuffle() {
@@ -42,7 +59,23 @@ class GameViewController: UIViewController {
     }
 
     func beginGame() {
+        movesLeft = level.maximumMoves
+        score = 0
+        updateLabels()
+        level.resetCombo()
         shuffle()
+    }
+
+    func beginNextTurn() {
+        level.resetCombo()
+        level.detectPossibleSwaps()
+        decrementMoves()
+        view.isUserInteractionEnabled = true
+    }
+
+    func decrementMoves() {
+        movesLeft -= 1
+        updateLabels()
     }
 
     func handleSwipe(_ swap: Swap) {
@@ -64,14 +97,25 @@ class GameViewController: UIViewController {
     func handleMatches() {
         let chains = level.removeMatches()
 
+        if chains.count == 0 {
+            beginNextTurn()
+            return
+        }
+
         scene.animateMatchedCookies(for: chains) {
+            for chain in chains {
+                self.score += chain.score
+            }
+
+            self.updateLabels()
+
             let columns = self.level.fillHoles()
 
             self.scene.animateFallingCookies(in: columns) {
                 let columns = self.level.topUp()
 
                 self.scene.animateNewCookies(in: columns) {
-                    self.view.isUserInteractionEnabled = true
+                    self.handleMatches()
                 }
             }
         }
@@ -87,4 +131,16 @@ class GameViewController: UIViewController {
     }
     */
 
+    // MARK: IBOutlets
+
+    @IBAction func playAgainPressed(_ sender: UIButton) {
+    }
+
+    @IBAction func quitPressed(_ sender: UIButton) {
+    }
+
+    @IBAction func backPressed(_ sender: UIButton) {
+        // TO DO: confirm quit
+        self.dismiss(animated: true, completion: nil)
+    }
 }
