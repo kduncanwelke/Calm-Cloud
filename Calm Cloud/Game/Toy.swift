@@ -41,11 +41,11 @@ enum ToyType: Int {
     case lime
     case lobelia
     case orange
-    case pumpkin
-    case tomato
+    case daisy
+    case tulip
 
     var spriteName: String {
-        let spriteNames = ["lemonsprite", "limesprite", "lobeliasprite", "orangesprite", "pumpkinsprite", "tomatosprite"]
+        let spriteNames = ["lemonsprite", "limesprite", "lobeliasprite", "orangesprite", "daisysprite", "tulipsprite"]
 
         return spriteNames[rawValue-1]
     }

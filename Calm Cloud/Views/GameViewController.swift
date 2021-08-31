@@ -19,7 +19,6 @@ class GameViewController: UIViewController {
     @IBOutlet weak var result: UILabel!
     @IBOutlet weak var playAgain: UIButton!
 
-
     // MARK: Variables
 
     var scene: GameScene!
@@ -45,6 +44,7 @@ class GameViewController: UIViewController {
         level = GameLevel(filename: "level_5")
         scene.level = level
 
+        scene.addTiles()
         beginGame()
     }
 
@@ -54,6 +54,7 @@ class GameViewController: UIViewController {
     }
 
     func shuffle() {
+        scene.removeSprites()
         let newToys = level.shuffle()
         scene.addSprites(for: newToys)
     }
@@ -73,9 +74,23 @@ class GameViewController: UIViewController {
         view.isUserInteractionEnabled = true
     }
 
+    func showGameOver() {
+        gameOver.isHidden = false
+        // TO DO: check if player has enough plays to play again
+        scene.isUserInteractionEnabled = false
+    }
+
     func decrementMoves() {
         movesLeft -= 1
         updateLabels()
+
+        if score >= level.targetScore {
+            result.text = "Success!"
+            showGameOver()
+        } else if movesLeft == 0 {
+            result.text = "Fail :("
+            showGameOver()
+        }
     }
 
     func handleSwipe(_ swap: Swap) {
@@ -134,13 +149,19 @@ class GameViewController: UIViewController {
     // MARK: IBOutlets
 
     @IBAction func playAgainPressed(_ sender: UIButton) {
+        // TO DO: check available plays
+        gameOver.isHidden = true
+        scene.isUserInteractionEnabled = true
+        beginGame()
     }
 
     @IBAction func quitPressed(_ sender: UIButton) {
+        gameOver.isHidden = true
+        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func backPressed(_ sender: UIButton) {
-        // TO DO: confirm quit
+        // TO DO: confirm quit if playing
         self.dismiss(animated: true, completion: nil)
     }
 }

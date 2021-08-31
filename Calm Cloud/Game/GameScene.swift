@@ -23,6 +23,7 @@ class GameScene: SKScene {
 
     let gameLayer = SKNode()
     let toyLayer = SKNode()
+    let tileLayer = SKNode()
 
     override init(size: CGSize) {
         super.init(size: size)
@@ -30,9 +31,11 @@ class GameScene: SKScene {
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         addChild(gameLayer)
         let layerPosition = CGPoint(x: -tileWidth * CGFloat(totalColumns)/2, y: -tileHeight * CGFloat(totalRows)/2)
+        tileLayer.position = layerPosition
+        gameLayer.addChild(tileLayer)
         toyLayer.position = layerPosition
-
         gameLayer.addChild(toyLayer)
+
         let _ = SKLabelNode(fontNamed: "GillSans-BoldItalic")
     }
 
@@ -45,6 +48,28 @@ class GameScene: SKScene {
             sprite.position = pointFor(column: toy.column, row: toy.row)
             toyLayer.addChild(sprite)
             toy.sprite = sprite
+
+            sprite.alpha = 0
+            sprite.xScale = 0.5
+            sprite.yScale = 0.5
+            sprite.run(SKAction.sequence([SKAction.wait(forDuration: 0.25, withRange: 0.5), SKAction.group([SKAction.fadeIn(withDuration: 0.25), SKAction.scale(to: 1.0, duration: 0.25)])]))
+        }
+    }
+
+    func removeSprites() {
+        toyLayer.removeAllChildren()
+    }
+
+    func addTiles() {
+        for row in 0..<totalRows {
+            for column in 0..<totalColumns {
+                if level.tileAt(column: column, row: row) != nil {
+                    let tileNode = SKSpriteNode(imageNamed: "bluetile")
+                    tileNode.size = CGSize(width: tileWidth, height: tileHeight)
+                    tileNode.position = pointFor(column: column, row: row)
+                    tileLayer.addChild(tileNode)
+                }
+            }
         }
     }
 
