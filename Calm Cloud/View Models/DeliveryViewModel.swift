@@ -74,8 +74,8 @@ public class DeliveryViewModel {
             return "White Tulip"
         case .pepper:
             return "Bell Pepper"
-        case .tomato:
-            return "Grape Tomato"
+        case .cherryTomato:
+            return "Cherry Tomato"
         case .kale:
             return "Kale"
         case .daffodil:
@@ -112,6 +112,14 @@ public class DeliveryViewModel {
             return "Blue Petunia"
         case .eggplant:
             return "Eggplant"
+        case .beans:
+            return "Beans"
+        case .corn:
+            return "Corn"
+        case .sunflower:
+            return "Sunflower"
+        case .tomato:
+            return "Tomato"
         default:
             return ""
         }

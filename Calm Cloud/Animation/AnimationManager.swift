@@ -211,6 +211,7 @@ enum OutsideLocation {
     case front
     case back
     case gate
+    case path
     case pot
     case pots
 }
@@ -255,6 +256,7 @@ enum OutsideAnimation {
     case moveRightToBack
     case moveRightToCenter
     case moveRightToGate
+    case moveRightToPath
     case moveRightToPots
 
     case floatUp

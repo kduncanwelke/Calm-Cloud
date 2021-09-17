@@ -54,6 +54,12 @@ class OutsideViewController: UIViewController {
     
     @IBOutlet weak var tallPotPlot: UIImageView!
     @IBOutlet weak var smallPotPlot: UIImageView!
+
+    @IBOutlet weak var tallPlot1: UIImageView!
+
+    @IBOutlet weak var tallPlot2: UIImageView!
+    
+    @IBOutlet weak var tallPlot3: UIImageView!
     
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var expLabel: UILabel!
@@ -249,6 +255,8 @@ class OutsideViewController: UIViewController {
     }
     
     @objc func loadHonorStand() {
+        DataFunctions.loadHonorStand()
+        
         var result = outsideViewModel.configureHonorStand(honorStandImages: honorStandImages)
 
         honorStandMoney.isHidden = result.hidden
@@ -510,6 +518,8 @@ class OutsideViewController: UIViewController {
             moveRightToGate()
         case .moveRightToPots:
             moveRightToPots()
+        case .moveRightToPath:
+            moveRightToPath()
         case .pause:
             pause()
         case .sleep:
@@ -769,7 +779,19 @@ class OutsideViewController: UIViewController {
     @IBAction func smallPotPlotTapped(_ sender: UITapGestureRecognizer) {
         tappedPlant(image: smallPotPlot)
     }
-    
+
+    @IBAction func tallPlot1Tapped(_ sender: UITapGestureRecognizer) {
+        tappedPlant(image: tallPlot1)
+    }
+
+    @IBAction func tallPlot2Tapped(_ sender: UITapGestureRecognizer) {
+        tappedPlant(image: tallPlot2)
+    }
+
+    @IBAction func tallPlot3Tapped(_ sender: Any) {
+        tappedPlant(image: tallPlot3)
+    }
+
     @IBAction func basketPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "viewBasket", sender: Any?.self)
     }

@@ -35,7 +35,7 @@ struct Harvested {
         Plant.strawberry: 0,
         Plant.watermelon: 0,
         Plant.pepper: 0,
-        Plant.tomato: 0,
+        Plant.cherryTomato: 0,
         Plant.kale: 0,
         Plant.orange: 0,
         Plant.zinnia: 0,
@@ -54,20 +54,26 @@ struct Harvested {
         Plant.cauliflower: 0,
         Plant.eggplant: 0,
         Plant.daffodil: 0,
+        Plant.beans: 0,
+        Plant.corn: 0,
+        Plant.sunflower: 0,
+        Plant.tomato: 0,
     ]
     
     // list of all possible basket items
     static var basketItems: [BasketItem] = [
+        BasketItem(name: "Beans", plant: .beans),
         BasketItem(name: "Bell peppers", plant: .pepper),
         BasketItem(name: "Black petunia cuttings", plant: .blackPetunia),
         BasketItem(name: "Blue petunia cuttings", plant: .bluePetunia),
         BasketItem(name: "Carrots", plant: .carrot),
         BasketItem(name: "Cauliflower", plant: .cauliflower),
+        BasketItem(name: "Cherry tomatoes", plant: .cherryTomato),
+        BasketItem(name: "Corn", plant: .corn),
         BasketItem(name: "Daffodil", plant: .daffodil),
         BasketItem(name: "Daisy cuttings", plant: .daisy),
         BasketItem(name: "Eggplant", plant: .eggplant),
         BasketItem(name: "Fushsia zinnia cuttings", plant: .zinnia),
-        BasketItem(name: "Grape tomatoes", plant: .tomato),
         BasketItem(name: "Jade cuttings", plant: .jade),
         BasketItem(name: "Kale", plant: .kale),
         BasketItem(name: "Lavendar zinnia cuttings", plant: .lavendarZinnia),
@@ -88,7 +94,9 @@ struct Harvested {
         BasketItem(name: "Strawberries", plant: .strawberry),
         BasketItem(name: "Striped petunia cuttings", plant: .stripedPetunia),
         BasketItem(name: "Summer Squash", plant: .squash),
+        BasketItem(name: "Sunflower seeds", plant: .sunflower),
         BasketItem(name: "Tiger aloe", plant: .aloe),
+        BasketItem(name: "Tomatoes", plant: .tomato),
         BasketItem(name: "Watermelons", plant: .watermelon),
         BasketItem(name: "White petunia cuttings", plant: .whitePetunia),
         BasketItem(name: "White tulip cuttings", plant: .whiteTulip),
@@ -115,7 +123,7 @@ struct Harvested {
         Plant.strawberry: 0,
         Plant.watermelon: 0,
         Plant.pepper: 0,
-        Plant.tomato: 0,
+        Plant.cherryTomato: 0,
         Plant.kale: 0,
         Plant.orange: 0,
         Plant.daffodil: 0,
@@ -134,6 +142,10 @@ struct Harvested {
         Plant.daisy: 0,
         Plant.cauliflower: 0,
         Plant.eggplant: 0,
+        Plant.beans: 0,
+        Plant.corn: 0,
+        Plant.sunflower: 0,
+        Plant.tomato: 0,
     ]
     
     static func getStandImage(plant: Plant) -> UIImage {
@@ -172,8 +184,8 @@ struct Harvested {
             return #imageLiteral(resourceName: "watermelonsale.png")
         case .pepper:
             return #imageLiteral(resourceName: "peppersale.png")
-        case .tomato:
-            return #imageLiteral(resourceName: "tomatosale.png")
+        case .cherryTomato:
+            return #imageLiteral(resourceName: "tomatosale")
         case .kale:
             return #imageLiteral(resourceName: "kalesale.png")
         case .orange:
@@ -210,6 +222,14 @@ struct Harvested {
             return #imageLiteral(resourceName: "cauliflowersale.png")
         case .eggplant:
             return #imageLiteral(resourceName: "eggplantsale.png")
+        case .corn:
+            return #imageLiteral(resourceName: "cornsale")
+        case .beans:
+            return #imageLiteral(resourceName: "beansale")
+        case .sunflower:
+            return #imageLiteral(resourceName: "sunflowersale")
+        case .tomato:
+            return #imageLiteral(resourceName: "tomatosale-1")
         }
     }
     

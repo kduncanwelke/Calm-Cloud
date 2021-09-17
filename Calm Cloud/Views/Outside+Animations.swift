@@ -44,7 +44,7 @@ extension OutsideViewController {
         print("left to back")
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.startAnimating()
-        let centerDestination = CGPoint(x: container.frame.width/2, y: (container.frame.height/3)*1.52)
+        let centerDestination = CGPoint(x: container.frame.width/2.67, y: (container.frame.height/3)*1.52)
         cloudKitty.outsideMove(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
     }
     
@@ -52,7 +52,7 @@ extension OutsideViewController {
         print("left to planter")
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.startAnimating()
-        let planterDestination = CGPoint(x: container.frame.width/4, y: (container.frame.height/3)*2)
+        let planterDestination = CGPoint(x: container.frame.width/5.33, y: (container.frame.height/3)*2)
         cloudKitty.outsideMove(to: planterDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
     }
     
@@ -60,7 +60,7 @@ extension OutsideViewController {
         print("left to wide pot")
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.startAnimating()
-        let potDestination = CGPoint(x: container.frame.width/4, y: (container.frame.height/3)*2.4)
+        let potDestination = CGPoint(x: container.frame.width/5.33, y: (container.frame.height/3)*2.4)
         cloudKitty.outsideMove(to: potDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
     }
     
@@ -68,7 +68,7 @@ extension OutsideViewController {
         print("left to center")
         cloudKitty.animationImages = AnimationManager.movingLeftAnimation
         cloudKitty.startAnimating()
-        let centerDestination = CGPoint(x: container.frame.width/3, y: (container.frame.height/3)*2.35)
+        let centerDestination = CGPoint(x: container.frame.width/4, y: (container.frame.height/3)*2.35)
         cloudKitty.outsideMove(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
     }
     
@@ -78,7 +78,7 @@ extension OutsideViewController {
         print("float right")
         cloudKitty.animationImages = AnimationManager.upsideDownRight
         cloudKitty.startAnimating()
-        let ceilingDestination = CGPoint(x: container.frame.width/1.12, y: container.frame.height/6)
+        let ceilingDestination = CGPoint(x: container.frame.width/1.49, y: container.frame.height/6)
         cloudKitty.outsideMove(to: ceilingDestination, duration: 4.0, options: UIView.AnimationOptions.curveEaseOut)
     }
     
@@ -86,7 +86,7 @@ extension OutsideViewController {
         print("right to back")
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
-        let centerDestination = CGPoint(x: container.frame.width/2, y: (container.frame.height/3)*1.52)
+        let centerDestination = CGPoint(x: container.frame.width/2.67, y: (container.frame.height/3)*1.52)
         cloudKitty.outsideMove(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
     }
     
@@ -94,7 +94,7 @@ extension OutsideViewController {
         print("right to gate")
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
-        let gateDestination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*1.5)
+        let gateDestination = CGPoint(x: container.frame.width/1.57, y: (container.frame.height/3)*1.5)
         cloudKitty.outsideMove(to: gateDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
     }
     
@@ -102,15 +102,23 @@ extension OutsideViewController {
         print("right to center")
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
-        let centerDestination = CGPoint(x: container.frame.width/3, y: (container.frame.height/3)*2.35)
+        let centerDestination = CGPoint(x: container.frame.width/4, y: (container.frame.height/3)*2.35)
         cloudKitty.outsideMove(to: centerDestination, duration: 2, options: UIView.AnimationOptions.curveEaseOut)
+    }
+
+    func moveRightToPath() {
+        print("right to pots")
+        cloudKitty.animationImages = AnimationManager.movingRightAnimation
+        cloudKitty.startAnimating()
+        let pathDestination = CGPoint(x: container.frame.width/1.57, y: (container.frame.height/3)*2.35)
+        cloudKitty.outsideMove(to: pathDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
     }
     
     func moveRightToPots() {
         print("right to pots")
         cloudKitty.animationImages = AnimationManager.movingRightAnimation
         cloudKitty.startAnimating()
-        let potsDestination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*2.4)
+        let potsDestination = CGPoint(x: container.frame.width/1.12, y: (container.frame.height/3)*2.4)
         cloudKitty.outsideMove(to: potsDestination, duration: 3.0, options: UIView.AnimationOptions.curveEaseOut)
     }
     
@@ -150,17 +158,19 @@ extension OutsideViewController {
         case .ceiling:
             destination = CGPoint(x: container.frame.width/2, y: container.frame.height/6)
         case .back:
-            destination = CGPoint(x: container.frame.width/2, y: (container.frame.height/3)*1.52)
+            destination = CGPoint(x: container.frame.width/2.67, y: (container.frame.height/3)*1.52)
         case .front:
-            destination = CGPoint(x: container.frame.width/3, y: (container.frame.height/3)*2.35)
+            destination = CGPoint(x: container.frame.width/4, y: (container.frame.height/3)*2.35)
         case .gate:
-            destination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*1.5)
+            destination = CGPoint(x: container.frame.width/1.57, y: (container.frame.height/3)*1.5)
+        case .path:
+            destination = CGPoint(x: container.frame.width/1.12, y: (container.frame.height/3)*2.4)
         case .planter:
-            destination = CGPoint(x: container.frame.width/4, y: (container.frame.height/3)*2)
+            destination = CGPoint(x: container.frame.width/5.33, y: (container.frame.height/3)*2)
         case .pot:
-            destination = CGPoint(x: container.frame.width/4, y: (container.frame.height/3)*2.4)
+            destination = CGPoint(x: container.frame.width/5.33, y: (container.frame.height/3)*2.4)
         case .pots:
-            destination = CGPoint(x: container.frame.width/1.18, y: (container.frame.height/3)*2.4)
+            destination = CGPoint(x: container.frame.width/1.57, y: (container.frame.height/3)*2.4)
         }
         
         let floatDestination = CGPoint(x: destination.x, y: destination.y-20)

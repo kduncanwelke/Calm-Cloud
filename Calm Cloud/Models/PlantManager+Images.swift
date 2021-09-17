@@ -943,55 +943,55 @@ extension PlantManager {
     
     // MARK: Grape Tomato
     
-    static var tomato: UIImage {
+    static var cherryTomato: UIImage {
         get {
             switch PlantManager.currentStage {
             case .zero:
                 return #imageLiteral(resourceName: "emptyplot.png")
             case .one:
                 if needsWater {
-                    return #imageLiteral(resourceName: "tomato1.png")
+                    return #imageLiteral(resourceName: "cherrytomato1")
                 } else {
-                    return #imageLiteral(resourceName: "tomato1water.png")
+                    return #imageLiteral(resourceName: "cherrytomato1water")
                 }
             case .two:
                 if needsWater {
-                    return #imageLiteral(resourceName: "tomato2.png")
+                    return #imageLiteral(resourceName: "cherrytomato2")
                 } else {
-                    return #imageLiteral(resourceName: "tomato2water.png")
+                    return #imageLiteral(resourceName: "cherrytomato2water")
                 }
             case .three:
                 if needsWater {
-                    return #imageLiteral(resourceName: "tomato3.png")
+                    return #imageLiteral(resourceName: "cherrytomato3")
                 } else {
-                    return #imageLiteral(resourceName: "tomato3water.png")
+                    return #imageLiteral(resourceName: "cherrytomato3water")
                 }
             case .four:
                 if needsWater {
-                    return #imageLiteral(resourceName: "tomato4.png")
+                    return #imageLiteral(resourceName: "cherrytomato4")
                 } else {
-                    return #imageLiteral(resourceName: "tomato4water.png")
+                    return #imageLiteral(resourceName: "cherrytomato4water")
                 }
             case .five:
                 if needsWater {
-                    return #imageLiteral(resourceName: "tomato5.png")
+                    return #imageLiteral(resourceName: "cherrytomato5")
                 } else {
-                    return #imageLiteral(resourceName: "tomato5water.png")
+                    return #imageLiteral(resourceName: "cherrytomato5water")
                 }
             case .six:
                 if needsWater {
-                    return #imageLiteral(resourceName: "tomato6.png")
+                    return #imageLiteral(resourceName: "cherrytomato6")
                 } else {
-                    return #imageLiteral(resourceName: "tomato6water.png")
+                    return #imageLiteral(resourceName: "cherrytomato6water")
                 }
             case .seven:
                 if needsWater {
-                    return #imageLiteral(resourceName: "tomato7.png")
+                    return #imageLiteral(resourceName: "cherrytomato7")
                 } else {
-                    return #imageLiteral(resourceName: "tomato7water.png")
+                    return #imageLiteral(resourceName: "cherrytomato7water")
                 }
             case .eight:
-                return #imageLiteral(resourceName: "tomato8.png")
+                return #imageLiteral(resourceName: "cherrytomato8")
             }
         }
     }
@@ -1925,6 +1925,220 @@ extension PlantManager {
                 }
             case .eight:
                 return #imageLiteral(resourceName: "purplepetunia8.png")
+            }
+        }
+    }
+
+    // MARK: Tall plot
+
+    static var beans: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplottall")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "bean1")
+                } else {
+                    return #imageLiteral(resourceName: "beans1water")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "beans2")
+                } else {
+                    return #imageLiteral(resourceName: "beans2water")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "beans3")
+                } else {
+                    return #imageLiteral(resourceName: "beans3water")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "beans4")
+                } else {
+                    return #imageLiteral(resourceName: "beans4water")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "beans5")
+                } else {
+                    return #imageLiteral(resourceName: "beans5water")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "beans6")
+                } else {
+                    return #imageLiteral(resourceName: "beans6water")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "beans7")
+                } else {
+                    return #imageLiteral(resourceName: "beans7water")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "beans8")
+            }
+        }
+    }
+
+    static var corn: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplottall")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "corn1")
+                } else {
+                    return #imageLiteral(resourceName: "corn1water")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "corn2")
+                } else {
+                    return #imageLiteral(resourceName: "corn2water")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "corn3")
+                } else {
+                    return #imageLiteral(resourceName: "corn3water")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "corn4")
+                } else {
+                    return #imageLiteral(resourceName: "corn4water")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "corn5")
+                } else {
+                    return #imageLiteral(resourceName: "corn5water")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "corn6")
+                } else {
+                    return #imageLiteral(resourceName: "corn6water")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "corn7")
+                } else {
+                    return #imageLiteral(resourceName: "corn7water")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "corn8")
+            }
+        }
+    }
+
+    static var sunflower: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplottall")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "sunflower1")
+                } else {
+                    return #imageLiteral(resourceName: "sunflower1water")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "sunflower2")
+                } else {
+                    return #imageLiteral(resourceName: "sunflower2water")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "sunflower3")
+                } else {
+                    return #imageLiteral(resourceName: "sunflower3water")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "sunflower4")
+                } else {
+                    return #imageLiteral(resourceName: "sunflower4water")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "sunflower5")
+                } else {
+                    return #imageLiteral(resourceName: "sunflower5water")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "sunflower6")
+                } else {
+                    return #imageLiteral(resourceName: "sunflower6water")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "sunflower7")
+                } else {
+                    return #imageLiteral(resourceName: "sunflower7water")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "sunflower8")
+            }
+        }
+    }
+
+    static var tomato: UIImage {
+        get {
+            switch PlantManager.currentStage {
+            case .zero:
+                return #imageLiteral(resourceName: "emptyplottall")
+            case .one:
+                if needsWater {
+                    return #imageLiteral(resourceName: "tomato1")
+                } else {
+                    return #imageLiteral(resourceName: "tomato1water")
+                }
+            case .two:
+                if needsWater {
+                    return #imageLiteral(resourceName: "tomato2")
+                } else {
+                    return #imageLiteral(resourceName: "tomato2water")
+                }
+            case .three:
+                if needsWater {
+                    return #imageLiteral(resourceName: "tomato3")
+                } else {
+                    return #imageLiteral(resourceName: "tomato3water")
+                }
+            case .four:
+                if needsWater {
+                    return #imageLiteral(resourceName: "tomato4")
+                } else {
+                    return #imageLiteral(resourceName: "tomato4water")
+                }
+            case .five:
+                if needsWater {
+                    return #imageLiteral(resourceName: "tomato5")
+                } else {
+                    return #imageLiteral(resourceName: "tomato5water")
+                }
+            case .six:
+                if needsWater {
+                    return #imageLiteral(resourceName: "tomato6")
+                } else {
+                    return #imageLiteral(resourceName: "tomato6water")
+                }
+            case .seven:
+                if needsWater {
+                    return #imageLiteral(resourceName: "tomato7")
+                } else {
+                    return #imageLiteral(resourceName: "tomato7water")
+                }
+            case .eight:
+                return #imageLiteral(resourceName: "tomato8")
             }
         }
     }

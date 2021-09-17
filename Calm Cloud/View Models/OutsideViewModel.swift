@@ -108,11 +108,14 @@ public class OutsideViewModel {
         } else if selectedPlot == 21 {
             PlantManager.area = .tallPot
             print("tall pot")
+        } else if selectedPlot >= 22 && selectedPlot < 28 {
+            PlantManager.area = .vegetablePlot
+            print("vegetable plot")
         } else if selectedPlot == 28 {
             PlantManager.area = .smallPot
             print("small pot")
         } else {
-            PlantManager.area = .vegetablePlot
+            PlantManager.area = .tall
             print("vegetable plot")
         }
     }

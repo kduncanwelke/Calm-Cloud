@@ -19,7 +19,7 @@ extension OutsideViewModel {
         if move {
             switch AnimationManager.outsideLocation {
             case .back:
-                animations = [.moveRightToGate, .moveLeftToCenter, .moveLeftToWidePot, .moveLeftToPlanter]
+                animations = [.moveRightToGate, .moveLeftToCenter, .moveLeftToWidePot, .moveLeftToPlanter, .moveRightToPath]
                 return animations.randomElement() ?? .moveRightToGate
             case .ceiling:
                 animations = [.moveLeftToPlanter, .moveRightToBack, .moveRightToGate, .moveLeftToCenter]
@@ -28,8 +28,11 @@ extension OutsideViewModel {
                 animations = [.moveRightToBack, .moveLeftToPlanter, .moveLeftToWidePot, .moveRightToGate]
                 return animations.randomElement() ?? .moveRightToBack
             case .gate:
-                animations = [.moveLeftToPlanter, .moveLeftToCenter, .moveLeftToWidePot, .moveLeftToBack]
+                animations = [.moveLeftToPlanter, .moveLeftToCenter, .moveLeftToWidePot, .moveLeftToBack, .moveRightToPath]
                 return animations.randomElement() ?? .moveLeftToPlanter
+            case .path:
+                animations = [.moveLeftToBack, .moveLeftToCenter, .moveRightToGate]
+                return animations.randomElement() ?? .moveLeftToBack
             case .planter:
                 animations = [.moveRightToBack, .moveRightToGate, .moveRightToCenter, .moveLeftToWidePot]
                 return animations.randomElement() ?? .moveRightToBack
@@ -65,6 +68,9 @@ extension OutsideViewModel {
             case .gate:
                 animations = [.bounce, .pause]
                 return animations.randomElement() ?? .bounce
+            case .path:
+                animations = [.bounce, .pause]
+                return animations.randomElement() ?? .bounce
             case .planter:
                 animations = [.pause, .bounce]
                 return animations.randomElement() ?? .pause
@@ -95,6 +101,8 @@ extension OutsideViewModel {
                 AnimationManager.outsideLocation = .pot
             case .moveLeftToPlanter:
                 AnimationManager.outsideLocation = .planter
+            case .moveRightToPath:
+                AnimationManager.outsideLocation = .path
             default:
                 return
         }
