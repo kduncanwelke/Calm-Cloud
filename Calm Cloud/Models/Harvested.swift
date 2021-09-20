@@ -285,6 +285,8 @@ struct Harvested {
                 }
             }
             
+            DataFunctions.saveHonorStandItems()
+            
             return income
         } else {
             // if same day exit

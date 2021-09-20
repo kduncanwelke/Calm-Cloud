@@ -185,6 +185,7 @@ struct DataFunctions {
             Harvested.loaded = try managedContext.fetch(fetchRequest)
             
             for item in Harvested.loaded {
+                print("harvested")
                 print(item.id)
                 print(item.quantity)
                 Harvested.basketCounts[Plant(rawValue: Int(item.id))!] = Int(item.quantity)

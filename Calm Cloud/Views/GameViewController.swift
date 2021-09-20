@@ -13,44 +13,58 @@ class GameViewController: UIViewController {
 
     // MARK: Outlets
 
+    @IBOutlet weak var gameInfoStackView: UIStackView!
     @IBOutlet weak var currentScore: UILabel!
     @IBOutlet weak var currentMoves: UILabel!
+    @IBOutlet weak var modeSelection: UIStackView!
+    @IBOutlet weak var modeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var modeDescription: UILabel!
+
+    @IBOutlet weak var areYouSureDescription: UILabel!
+    @IBOutlet weak var confirmQuit: UIButton!
+    @IBOutlet weak var clouds: UILabel!
+    @IBOutlet weak var selectLabel: UILabel!
+    @IBOutlet weak var beginGameButton: UIButton!
     @IBOutlet weak var gameOver: UIView!
     @IBOutlet weak var result: UILabel!
     @IBOutlet weak var playAgain: UIButton!
+    @IBOutlet weak var areYouSure: UIView!
+    @IBOutlet weak var plays: UILabel!
+    @IBOutlet weak var playTimer: UILabel!
+    @IBOutlet weak var gameView: SKView!
 
     // MARK: Variables
 
     var scene: GameScene!
     var level: GameLevel!
-    var movesLeft = 0
-    var score = 0
+    private let gameViewModel = GameViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let spriteKitView = view as! SKView
+        let spriteKitView = gameView as SKView
         spriteKitView.isMultipleTouchEnabled = false
 
         scene = GameScene(size: spriteKitView.bounds.size)
-        scene.scaleMode = .aspectFill
+        scene.scaleMode = .resizeFill
         scene.backgroundColor = Colors.pink
 
         scene.swipeHandler = handleSwipe(_:)
         
         spriteKitView.presentScene(scene)
 
-        level = GameLevel(filename: "level_5")
+        level = gameViewModel.getGameLevel()
         scene.level = level
 
         scene.addTiles()
-        beginGame()
+        scene.isUserInteractionEnabled = false
     }
 
     func updateLabels() {
-        currentScore.text = "\(score)/\(level.targetScore)"
-        currentMoves.text = "\(movesLeft)"
+        currentScore.text = gameViewModel.getCurrentScore()
+        currentMoves.text = gameViewModel.getCurrentMoves()
+        plays.text = gameViewModel.getCurrentPlays()
     }
 
     func shuffle() {
@@ -60,11 +74,31 @@ class GameViewController: UIViewController {
     }
 
     func beginGame() {
-        movesLeft = level.maximumMoves
-        score = 0
+        level = gameViewModel.getGameLevel()
+        level = gameViewModel.getGameLevel()
+        scene.level = level
+
+        gameInfoStackView.isHidden = false
+        selectLabel.isHidden = true
+        modeDescription.isHidden = true
+        modeSegmentedControl.isHidden = true
+
+        switch gameViewModel.getMode() {
+        case .normal:
+            clouds.isHidden = false
+            plays.isHidden = false
+            playTimer.isHidden = false
+        case .zen:
+            clouds.isHidden = true
+            plays.isHidden = true
+            playTimer.isHidden = true
+        }
+
+        gameViewModel.startGame()
         updateLabels()
         level.resetCombo()
         shuffle()
+        scene.isUserInteractionEnabled = true
     }
 
     func beginNextTurn() {
@@ -74,22 +108,45 @@ class GameViewController: UIViewController {
         view.isUserInteractionEnabled = true
     }
 
+    func quitThisGame() {
+        gameViewModel.terminateGame()
+        clouds.isHidden = true
+        plays.isHidden = true
+        playTimer.isHidden = true
+        beginGameButton.isHidden = false
+        gameInfoStackView.isHidden = true
+        selectLabel.isHidden = false
+        modeDescription.isHidden = false
+        modeSegmentedControl.isHidden = false
+        scene.isUserInteractionEnabled = false
+    }
+
     func showGameOver() {
+        gameViewModel.gameOver()
         gameOver.isHidden = false
-        // TO DO: check if player has enough plays to play again
+
+        if gameViewModel.canPlayAgain() {
+            playAgain.isEnabled = true
+            playAgain.alpha = 1.0
+        } else {
+            playAgain.isEnabled = false
+            playAgain.alpha = 0.5
+        }
+
         scene.isUserInteractionEnabled = false
     }
 
     func decrementMoves() {
-        movesLeft -= 1
-        updateLabels()
+        switch gameViewModel.getMode() {
+        case .normal:
+            if let text = gameViewModel.decreaseMoves() {
+                result.text = text
+                showGameOver()
+            }
 
-        if score >= level.targetScore {
-            result.text = "Success!"
-            showGameOver()
-        } else if movesLeft == 0 {
-            result.text = "Fail :("
-            showGameOver()
+            updateLabels()
+        case .zen:
+            updateLabels()
         }
     }
 
@@ -119,7 +176,7 @@ class GameViewController: UIViewController {
 
         scene.animateMatchedCookies(for: chains) {
             for chain in chains {
-                self.score += chain.score
+                self.gameViewModel.addToScore(value: chain.score)
             }
 
             self.updateLabels()
@@ -148,8 +205,23 @@ class GameViewController: UIViewController {
 
     // MARK: IBOutlets
 
+    @IBAction func modeChanged(_ sender: UISegmentedControl) {
+        gameViewModel.changeMode(segment: modeSegmentedControl.selectedSegmentIndex)
+
+        switch gameViewModel.getMode() {
+        case .normal:
+            modeDescription.text = "Use Clouds to play levels and win rewards!"
+        case .zen:
+            modeDescription.text = "Play endlessly without rewards for relaxation"
+        }
+    }
+
+    @IBAction func beginGamePressed(_ sender: UIButton) {
+        beginGameButton.isHidden = true
+        beginGame()
+    }
+
     @IBAction func playAgainPressed(_ sender: UIButton) {
-        // TO DO: check available plays
         gameOver.isHidden = true
         scene.isUserInteractionEnabled = true
         beginGame()
@@ -157,11 +229,23 @@ class GameViewController: UIViewController {
 
     @IBAction func quitPressed(_ sender: UIButton) {
         gameOver.isHidden = true
-        self.dismiss(animated: true, completion: nil)
+        quitThisGame()
+    }
+
+    @IBAction func resumeGame(_ sender: UIButton) {
+        areYouSure.isHidden = true
+    }
+
+    @IBAction func quitGame(_ sender: UIButton) {
+        areYouSure.isHidden = true
+        quitThisGame()
     }
 
     @IBAction func backPressed(_ sender: UIButton) {
-        // TO DO: confirm quit if playing
-        self.dismiss(animated: true, completion: nil)
+        if gameViewModel.isGameInProgress {
+            areYouSure.isHidden = false
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }

@@ -261,8 +261,6 @@ public class OutsideViewModel {
             MoneyManager.earnings += income
 
             if income != 0 {
-                //DataFunctions.saveMoney()
-                //DataFunctions.saveHonorStandItems()
                 return false
             } else {
                 return true

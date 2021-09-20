@@ -66,6 +66,7 @@
 		2D7FCAC02432968F00E2DEC4 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCABF2432968F00E2DEC4 /* ReminderTableViewCell.swift */; };
 		2D867DAE243E80B7005BE38F /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D867DAD243E80B7005BE38F /* Alerts.swift */; };
 		2D875E112486F9480054B737 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D875E102486F9480054B737 /* CalendarCollectionViewCell.swift */; };
+		2D87EAE226F91A1400B5BF21 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D87EAE126F91A1400B5BF21 /* GameViewModel.swift */; };
 		2D88FB4626BC836200EFA8FD /* Toy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88FB4526BC836200EFA8FD /* Toy.swift */; };
 		2D88FB4926BC8A3300EFA8FD /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D88FB4826BC8A3300EFA8FD /* GameLevel.swift */; };
 		2D8BA7D924B672E90020E6EF /* AppleIncRootCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 2D8BA7D824B671E00020E6EF /* AppleIncRootCertificate.cer */; };
@@ -210,6 +211,7 @@
 		2D7FCABF2432968F00E2DEC4 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
 		2D867DAD243E80B7005BE38F /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		2D875E102486F9480054B737 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		2D87EAE126F91A1400B5BF21 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		2D88FB4526BC836200EFA8FD /* Toy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Toy.swift; path = "Calm Cloud/Game/Toy.swift"; sourceTree = SOURCE_ROOT; };
 		2D88FB4826BC8A3300EFA8FD /* GameLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 		2D8BA7D824B671E00020E6EF /* AppleIncRootCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppleIncRootCertificate.cer; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				2D2D9FB826B0B1680042B6F2 /* ViewModel.swift */,
 				2D2D9FBC26B0BF5C0042B6F2 /* ViewModel+CoreData.swift */,
 				2DB2858626B34CA7005E0528 /* ViewModel+Animation.swift */,
+				2D87EAE126F91A1400B5BF21 /* GameViewModel.swift */,
 				2DA327EB26B1E6E6002DFB2A /* OutsideViewModel.swift */,
 				2D3CC0E126B46940000EA922 /* OutsideVM+Animation.swift */,
 				2DA327ED26B1E944002DFB2A /* OutsideVM+CoreData.swift */,
@@ -720,6 +723,7 @@
 				2DD7C97424D09E2E0008C79F /* InfoViewController.swift in Sources */,
 				2DB2858526B34313005E0528 /* Random.swift in Sources */,
 				2DC5EBCB2474886300741E5E /* Colors.swift in Sources */,
+				2D87EAE226F91A1400B5BF21 /* GameViewModel.swift in Sources */,
 				2DE1C87926DD4F9C008B3D95 /* LevelData.swift in Sources */,
 				2D9B7D0A24AD342900CDFA8E /* NetworkMonitor.swift in Sources */,
 				2D11FD6924367EA900EC89D9 /* Journal+TextViewDelegate.swift in Sources */,
