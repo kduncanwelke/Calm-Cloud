@@ -60,6 +60,10 @@ class GameScene: SKScene {
         toyLayer.removeAllChildren()
     }
 
+    func removeTiles() {
+        tileLayer.removeAllChildren()
+    }
+
     func addTiles() {
         for row in 0..<totalRows {
             for column in 0..<totalColumns {

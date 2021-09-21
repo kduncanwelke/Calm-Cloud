@@ -56,6 +56,7 @@
 		2D5D6F362464830C00993969 /* MiniGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5D6F352464830C00993969 /* MiniGameViewController.swift */; };
 		2D60022E24A65DE0002188B1 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60022D24A65DE0002188B1 /* StoreViewController.swift */; };
 		2D60023224A66113002188B1 /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D60023124A66113002188B1 /* StoreCollectionViewCell.swift */; };
+		2D680B1526FA7A69009C4E37 /* PlaysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D680B1426FA7A69009C4E37 /* PlaysModel.swift */; };
 		2D70349C2490053200B952CA /* QuantityChangeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70349B2490053200B952CA /* QuantityChangeDelegate.swift */; };
 		2D70349E24903A7B00B952CA /* Recentness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70349D24903A7B00B952CA /* Recentness.swift */; };
 		2D7E2AF324477CFA006C76BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D7E2AF224477CFA006C76BD /* Assets.xcassets */; };
@@ -201,6 +202,7 @@
 		2D5D6F352464830C00993969 /* MiniGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniGameViewController.swift; sourceTree = "<group>"; };
 		2D60022D24A65DE0002188B1 /* StoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		2D60023124A66113002188B1 /* StoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		2D680B1426FA7A69009C4E37 /* PlaysModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaysModel.swift; sourceTree = "<group>"; };
 		2D70349B2490053200B952CA /* QuantityChangeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityChangeDelegate.swift; sourceTree = "<group>"; };
 		2D70349D24903A7B00B952CA /* Recentness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recentness.swift; sourceTree = "<group>"; };
 		2D7E2AF224477CFA006C76BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				2D88FB4526BC836200EFA8FD /* Toy.swift */,
+				2D680B1426FA7A69009C4E37 /* PlaysModel.swift */,
 				2DE1C87626DD4E18008B3D95 /* Tile.swift */,
 				2DE1C87826DD4F9C008B3D95 /* LevelData.swift */,
 				2DDC059E26D0361000E2EE11 /* Swap.swift */,
@@ -764,6 +767,7 @@
 				2D875E112486F9480054B737 /* CalendarCollectionViewCell.swift in Sources */,
 				2D70349C2490053200B952CA /* QuantityChangeDelegate.swift in Sources */,
 				2D48CC3C242548B200D0FBBB /* SceneDelegate.swift in Sources */,
+				2D680B1526FA7A69009C4E37 /* PlaysModel.swift in Sources */,
 				2D3CC0E626B475F9000EA922 /* BasketViewModel.swift in Sources */,
 				2D7FCABE2432918C00E2DEC4 /* ReminderListViewController.swift in Sources */,
 				2D9B7CFD24AD17EB00CDFA8E /* Receipt.swift in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G7016" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ActivityId" representedClassName="ActivityId" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
@@ -47,6 +47,10 @@
     <entity name="Photo" representedClassName="Photo" syncable="YES" codeGenerationType="class">
         <attribute name="path" attributeType="String" customClassName="[String]"/>
     </entity>
+    <entity name="Plays" representedClassName="Plays" syncable="YES" codeGenerationType="class">
+        <attribute name="clouds" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="lastUsed" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
     <entity name="Plot" representedClassName="Plot" syncable="YES" codeGenerationType="class">
         <attribute name="consecutiveWaterings" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
@@ -67,7 +71,7 @@
         <element name="ActivityId" positionX="-63" positionY="27" width="128" height="58"/>
         <element name="Care" positionX="-63" positionY="27" width="128" height="88"/>
         <element name="DailyTasks" positionX="-63" positionY="54" width="128" height="118"/>
-        <element name="Fuel" positionX="-63" positionY="54" width="128" height="73"/>
+        <element name="Fuel" positionX="-63" positionY="54" width="128" height="59"/>
         <element name="HarvestedItem" positionX="-63" positionY="54" width="128" height="73"/>
         <element name="HonorStandItem" positionX="-63" positionY="54" width="128" height="73"/>
         <element name="InventoryItem" positionX="-63" positionY="45" width="128" height="73"/>
@@ -77,5 +81,6 @@
         <element name="Photo" positionX="-63" positionY="-18" width="128" height="58"/>
         <element name="Plot" positionX="-63" positionY="27" width="128" height="148"/>
         <element name="Reminder" positionX="-63" positionY="0" width="128" height="118"/>
+        <element name="Plays" positionX="-63" positionY="63" width="128" height="59"/>
     </elements>
 </model>

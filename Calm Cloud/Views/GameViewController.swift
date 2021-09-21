@@ -32,6 +32,8 @@ class GameViewController: UIViewController {
     @IBOutlet weak var plays: UILabel!
     @IBOutlet weak var playTimer: UILabel!
     @IBOutlet weak var gameView: SKView!
+    @IBOutlet weak var backButton: UIButton!
+    
 
     // MARK: Variables
 
@@ -43,11 +45,13 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        gameViewModel.loadPlays()
+        
         let spriteKitView = gameView as SKView
         spriteKitView.isMultipleTouchEnabled = false
 
         scene = GameScene(size: spriteKitView.bounds.size)
-        scene.scaleMode = .resizeFill
+        scene.scaleMode = .aspectFit
         scene.backgroundColor = Colors.pink
 
         scene.swipeHandler = handleSwipe(_:)
@@ -64,7 +68,7 @@ class GameViewController: UIViewController {
     func updateLabels() {
         currentScore.text = gameViewModel.getCurrentScore()
         currentMoves.text = gameViewModel.getCurrentMoves()
-        plays.text = gameViewModel.getCurrentPlays()
+        plays.text = "\(gameViewModel.getCurrentClouds())"
     }
 
     func shuffle() {
@@ -74,9 +78,11 @@ class GameViewController: UIViewController {
     }
 
     func beginGame() {
-        level = gameViewModel.getGameLevel()
+        scene.removeTiles()
+
         level = gameViewModel.getGameLevel()
         scene.level = level
+        scene.addTiles()
 
         gameInfoStackView.isHidden = false
         selectLabel.isHidden = true
@@ -217,8 +223,12 @@ class GameViewController: UIViewController {
     }
 
     @IBAction func beginGamePressed(_ sender: UIButton) {
-        beginGameButton.isHidden = true
-        beginGame()
+        if gameViewModel.canPlayAgain() {
+            beginGameButton.isHidden = true
+            beginGame()
+        } else {
+            // TO DO: show message
+        }
     }
 
     @IBAction func playAgainPressed(_ sender: UIButton) {
