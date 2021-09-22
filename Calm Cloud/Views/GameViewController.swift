@@ -63,6 +63,8 @@ class GameViewController: UIViewController {
 
         scene.addTiles()
         scene.isUserInteractionEnabled = false
+
+        updateLabels()
     }
 
     func updateLabels() {
@@ -105,6 +107,7 @@ class GameViewController: UIViewController {
         level.resetCombo()
         shuffle()
         scene.isUserInteractionEnabled = true
+        backButton.setTitle("Quit", for: .normal)
     }
 
     func beginNextTurn() {
@@ -116,8 +119,7 @@ class GameViewController: UIViewController {
 
     func quitThisGame() {
         gameViewModel.terminateGame()
-        clouds.isHidden = true
-        plays.isHidden = true
+        backButton.setTitle("Back", for: .normal)
         playTimer.isHidden = true
         beginGameButton.isHidden = false
         gameInfoStackView.isHidden = true

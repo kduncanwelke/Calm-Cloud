@@ -79,7 +79,8 @@ extension OutsideViewModel {
 
         guard let toDelete = planting else {
             print("didn't get item to delete")
-            return }
+            return
+        }
 
         managedContext.delete(toDelete)
 
@@ -113,7 +114,7 @@ extension OutsideViewModel {
             // plant getting new watering date
             print("new watering date")
 
-           if let lastWatered = plot.lastWatered {
+            if let lastWatered = plot.lastWatered {
                 if Calendar.current.isDateInToday(lastWatered) == false {
                 // if it's a new day, plants can be watered
                 plot.consecutiveWaterings += 1
@@ -132,24 +133,22 @@ extension OutsideViewModel {
                     }
                 }
             }
-        }
+            }
 
-        plot.prevWatered = plot.lastWatered
-        plot.lastWatered = Date()
+            plot.prevWatered = plot.lastWatered
+            plot.lastWatered = Date()
 
-        // update images
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadPlants"), object: nil)
+            // update images
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadPlants"), object: nil)
 
-        // use to set stage for current plant
-        getStage(plot: plot)
+            if let currentStage = getStage(plot: plot) {
+                // determine maturity state, set if plant is mature and has no date
+                // remove mature date if erroneously set too soon
+                plot.mature = PlantManager.checkForValidMatureDate(currentStage: currentStage, plot: plot)
+            }
         } else {
             print("no need for water")
             return
-        }
-
-        if PlantManager.currentStage == .seven && plot.mature == nil {
-            plot.mature = Date()
-            print("set mature date")
         }
 
         // exp gain from watering

@@ -15,21 +15,20 @@ struct Recentness {
         if let savedDate = TasksManager.lastOpened {
         // check when last viewed
         let calendar = Calendar.current
-        
-        let prevComponents = calendar.dateComponents([.hour, .minute], from: savedDate)
-        let nowComponents = calendar.dateComponents([.hour, .minute], from: Date())
-            print(savedDate)
-        print(Date())
-        let difference = calendar.dateComponents([.minute], from: prevComponents, to: nowComponents).minute!
+
+        let difference = calendar.dateComponents([.minute], from: savedDate, to: Date())
+        print(difference.minute)
+
+        guard let diff = difference.minute else { return false }
             print(difference)
-            if difference >= 15 {
+            if diff >= 15 {
                 // last completed item was more than 15 minutes ago
                 timeLeft = 0
                 TasksManager.lastOpened = Date()
                 return true
             } else {
                 // last completed item was within 15 minutes
-                timeLeft = 15 - difference
+                timeLeft = 15 - diff
                 return false
             }
         }

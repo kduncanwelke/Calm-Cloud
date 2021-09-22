@@ -58,7 +58,7 @@ public class GameViewModel {
     }
 
     func getCurrentClouds() -> Int {
-        return PlaysModel.clouds ?? 5
+        return PlaysModel.clouds
     }
 
     func isInGame() -> Bool {
@@ -147,41 +147,40 @@ public class GameViewModel {
         // check time ellapsed since last play was used, to credit new plays every 15 minutes up, to five plays total
         let calendar = Calendar.current
 
-        let prevComponents = calendar.dateComponents([.hour, .minute], from: savedDate)
-        let nowComponents = calendar.dateComponents([.hour, .minute], from: Date())
-            print(savedDate)
-            print(Date())
-        let difference = calendar.dateComponents([.minute], from: prevComponents, to: nowComponents).minute!
-            print(difference)
-            if (difference / 15) >= 1 {
-                // last play more than 15 minutes ago
-                // credit clouds for plays, 5 at most
-                var numberToAdd = min(difference/15, 5)
+        let difference = calendar.dateComponents([.minute], from: savedDate, to: Date())
+        print(difference.minute)
 
-                if numberToAdd + PlaysModel.clouds <= 5 {
-                    PlaysModel.clouds += numberToAdd
-                } else {
-                    PlaysModel.clouds = 5
-                }
+        guard let diff = difference.minute else { return }
 
-                // resave
-                var managedContext = CoreDataManager.shared.managedObjectContext
+        if (diff / 15) >= 1 {
+            // last play more than 15 minutes ago
+            // credit clouds for plays, 5 at most
+            var numberToAdd = min(diff/15, 5)
 
-                guard let playsLoaded = PlaysModel.loadedPlays else { return }
-                    playsLoaded.clouds = Int16(PlaysModel.clouds)
-                    PlaysModel.loadedPlays = playsLoaded
-
-                    do {
-                        try managedContext.save()
-                        print("play credit resave successful")
-                    } catch {
-                        // this should never be displayed but is here to cover the possibility
-                        print("play credit not resaved")
-                    }
-                } else {
-                    // not enough time has passed, do nothing
-                }
+            if numberToAdd + PlaysModel.clouds <= 5 {
+                PlaysModel.clouds += numberToAdd
+            } else {
+                PlaysModel.clouds = 5
             }
+
+            // resave
+            var managedContext = CoreDataManager.shared.managedObjectContext
+
+            guard let playsLoaded = PlaysModel.loadedPlays else { return }
+                playsLoaded.clouds = Int16(PlaysModel.clouds)
+                PlaysModel.loadedPlays = playsLoaded
+
+                do {
+                    try managedContext.save()
+                    print("play credit resave successful")
+                } catch {
+                    // this should never be displayed but is here to cover the possibility
+                    print("play credit not resaved")
+                }
+            } else {
+                // not enough time has passed, do nothing
+            }
+        }
     }
 
     func savePlays() {

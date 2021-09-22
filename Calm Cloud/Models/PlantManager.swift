@@ -61,6 +61,69 @@ struct PlantManager {
             return 0
         }
     }
+
+    static func checkDiff(plantDate: Date?, matureDate: Date?) -> Int? {
+        if let plant = plantDate, let mature = matureDate {
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.day], from: plant, to: mature)
+            let diff = components.day
+
+            if let difference = diff {
+                print("mature diff \(difference)")
+                return difference
+            } else {
+                print("difference zero")
+                return 0
+            }
+        } else {
+            print("date nil")
+            return nil
+        }
+    }
+
+    static func checkForValidMatureDate(currentStage: UIImage, plot: Plot) -> Date? {
+        if currentStage.isMatch(with: PlantManager.maturePlants) {
+            switch Plant(rawValue: Int(plot.plant)) {
+            // fast
+            case .geranium, .redTulip, .redGeranium, .yellowTulip, .pinkTulip, .whiteTulip, .daffodil, .aloe, .purplePetunia, .whitePetunia, .stripedPetunia, .blackPetunia, .bluePetunia, .beans:
+                if let diff = checkDiff(plantDate: plot.date, matureDate: plot.mature) {
+                    if diff >= 7 {
+                        return plot.mature
+                    } else {
+                        return nil
+                    }
+                } else {
+                    return Date()
+                }
+            // medium
+            case .jade, .chard, .carrot, .strawberry, .pepper, .cherryTomato, .zinnia, .lavendarZinnia, .salmonZinnia, .lobelia, .marigold, .paddle, .daisy, .cauliflower, .corn:
+                if let diff = checkDiff(plantDate: plot.date, matureDate: plot.mature) {
+                    if diff >= 10 {
+                        return plot.mature
+                    } else {
+                        return nil
+                    }
+                } else {
+                    return Date()
+                }
+            // slow
+            case .lemon, .pumpkin, .lime, .squash, .watermelon, .kale, .orange, .eggplant, .tomato, .sunflower:
+                if let diff = checkDiff(plantDate: plot.date, matureDate: plot.mature) {
+                    if diff >= 14 {
+                        return plot.mature
+                    } else {
+                        return nil
+                    }
+                } else {
+                    return Date()
+                }
+            default:
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
     
     static func getStage(halfDaysOfCare: Int?, plant: Plant, lastWatered: Date?, mature: Date?) -> UIImage? {
         // used for if plant has beeen removed by harvesting or wilting
@@ -104,6 +167,20 @@ struct PlantManager {
                     stage = 6
                 } else if halfDaysCaredFor >= 12 {
                     stage = 7
+                } else if let matureDate = mature {
+                    // if plant has reached maturity, check how many days have passed
+                    // additional check to be sure plant hasn't been wilted prematurely
+                    if halfDaysCaredFor >= 12 {
+                        print("mature")
+                        // if seven days have passed, plant reaches wilting stage
+                        if checkDiff(date: matureDate) > 7 {
+                            stage = 8
+                        } else {
+                            stage = 7
+                        }
+                    } else {
+                        stage = 7
+                    }
                 } else {
                     stage = 0
                 }
@@ -123,6 +200,20 @@ struct PlantManager {
                     stage = 6
                 } else if halfDaysCaredFor >= 20 {
                     stage = 7
+                } else if let matureDate = mature {
+                    // if plant has reached maturity, check how many days have passed
+                    // additional check to be sure plant hasn't been wilted prematurely
+                    if halfDaysCaredFor >= 20 {
+                        print("mature")
+                        // if seven days have passed, plant reaches wilting stage
+                        if checkDiff(date: matureDate) > 7 {
+                            stage = 8
+                        } else {
+                            stage = 7
+                        }
+                    } else {
+                        stage = 7
+                    }
                 } else {
                     stage = 0
                 }
@@ -142,6 +233,20 @@ struct PlantManager {
                     stage = 6
                 } else if halfDaysCaredFor >= 24 {
                     stage = 7
+                } else if let matureDate = mature {
+                    // if plant has reached maturity, check how many days have passed
+                    // additional check to be sure plant hasn't been wilted prematurely
+                    if halfDaysCaredFor >= 24 {
+                        print("mature")
+                        // if seven days have passed, plant reaches wilting stage
+                        if checkDiff(date: matureDate) > 7 {
+                            stage = 8
+                        } else {
+                            stage = 7
+                        }
+                    } else {
+                        stage = 7
+                    }
                 } else {
                     stage = 0
                 }
@@ -151,15 +256,6 @@ struct PlantManager {
         } else {
             return nil
         }
-        
-        // if plant has reached maturity, check how many days have passed
-        if let matureDate = mature {
-            print("mature")
-            // if seven days have passed, plant reaches wilting stage
-            if checkDiff(date: matureDate) > 7 {
-                stage = 8
-            }
-        } 
         
         // set current stage to use for plant
         PlantManager.currentStage = Stage.init(rawValue: stage)!
