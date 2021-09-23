@@ -346,10 +346,12 @@ class OutsideViewController: UIViewController {
     }
 
     @objc func waterPlant() {
-        let view = container.subviews.filter { $0.tag == outsideViewModel.getPlot() }.first
-        print("plot \(outsideViewModel.getPlot())")
+        let view = container.subviews.filter { $0.tag == outsideViewModel.getPlotNum() }.first
+        print("plot \(outsideViewModel.getPlotNum())")
 
-        if let imageView = view as? UIImageView {
+        if let imageView = view as? UIImageView, let plot = outsideViewModel.getPlot() {
+            // update image
+            imageView.image = outsideViewModel.getStage(plot: plot)
             // show exp feedback
             updateEXP(source: .water)
             showEXP(near: imageView, exp: 5)
@@ -429,7 +431,7 @@ class OutsideViewController: UIViewController {
         var imageToUpdate: UIImageView
         updateEXP(source: .planting)
 
-        let view = container.subviews.filter { $0.tag == outsideViewModel.getPlot() }.first
+        let view = container.subviews.filter { $0.tag == outsideViewModel.getPlotNum() }.first
 
         if let imageView = view as? UIImageView {
             imageToUpdate = imageView

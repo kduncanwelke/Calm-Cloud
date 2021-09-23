@@ -107,9 +107,6 @@ extension OutsideViewModel {
             plot.lastWatered = Date()
             plot.consecutiveWaterings = 1
             print("new watering")
-
-            // update images
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadPlants"), object: nil)
         } else if PlantManager.needsWatering(date: plot.lastWatered) {
             // plant getting new watering date
             print("new watering date")
@@ -137,9 +134,6 @@ extension OutsideViewModel {
 
             plot.prevWatered = plot.lastWatered
             plot.lastWatered = Date()
-
-            // update images
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadPlants"), object: nil)
 
             if let currentStage = getStage(plot: plot) {
                 // determine maturity state, set if plant is mature and has no date

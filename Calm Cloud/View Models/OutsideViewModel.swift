@@ -120,7 +120,7 @@ public class OutsideViewModel {
         }
     }
 
-    func getPlot() -> Int {
+    func getPlotNum() -> Int {
         return Plantings.currentPlot
     }
 
