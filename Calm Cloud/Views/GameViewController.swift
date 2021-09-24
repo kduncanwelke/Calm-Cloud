@@ -26,6 +26,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var selectLabel: UILabel!
     @IBOutlet weak var beginGameButton: UIButton!
     @IBOutlet weak var gameOver: UIView!
+    @IBOutlet weak var noClouds: UIView!
     @IBOutlet weak var result: UILabel!
     @IBOutlet weak var playAgain: UIButton!
     @IBOutlet weak var areYouSure: UIView!
@@ -33,8 +34,8 @@ class GameViewController: UIViewController {
     @IBOutlet weak var playTimer: UILabel!
     @IBOutlet weak var gameView: SKView!
     @IBOutlet weak var backButton: UIButton!
-    
 
+    
     // MARK: Variables
 
     var scene: GameScene!
@@ -45,6 +46,8 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(addCloud), name: NSNotification.Name(rawValue: "addCloud"), object: nil)
+
         gameViewModel.loadPlays()
         
         let spriteKitView = gameView as SKView
@@ -65,6 +68,22 @@ class GameViewController: UIViewController {
         scene.isUserInteractionEnabled = false
 
         updateLabels()
+        checkTimer()
+    }
+
+    @objc func addCloud() {
+        gameViewModel.savePlays(fromTimer: true)
+        checkTimer()
+    }
+
+    func checkTimer() {
+        if gameViewModel.startCloudTimer() {
+            CloudsTimer.beginTimer(label: playTimer)
+            updateLabels()
+        } else {
+            plays.text = "\(gameViewModel.getCurrentClouds())"
+            playTimer.text = "Clouds Full"
+        }
     }
 
     func updateLabels() {
@@ -91,7 +110,7 @@ class GameViewController: UIViewController {
         modeDescription.isHidden = true
         modeSegmentedControl.isHidden = true
 
-        switch gameViewModel.getMode() {
+        /*switch gameViewModel.getMode() {
         case .normal:
             clouds.isHidden = false
             plays.isHidden = false
@@ -100,7 +119,7 @@ class GameViewController: UIViewController {
             clouds.isHidden = true
             plays.isHidden = true
             playTimer.isHidden = true
-        }
+        }*/
 
         gameViewModel.startGame()
         updateLabels()
@@ -120,7 +139,6 @@ class GameViewController: UIViewController {
     func quitThisGame() {
         gameViewModel.terminateGame()
         backButton.setTitle("Back", for: .normal)
-        playTimer.isHidden = true
         beginGameButton.isHidden = false
         gameInfoStackView.isHidden = true
         selectLabel.isHidden = false
@@ -201,15 +219,19 @@ class GameViewController: UIViewController {
         }
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "visitStore" {
+            if let destination = segue.destination as? StoreViewController {
+                destination.selectedIndex = 1
+            }
+        }
     }
-    */
+
 
     // MARK: IBOutlets
 
@@ -230,6 +252,7 @@ class GameViewController: UIViewController {
             beginGame()
         } else {
             // TO DO: show message
+            noClouds.isHidden = false
         }
     }
 
@@ -253,10 +276,20 @@ class GameViewController: UIViewController {
         quitThisGame()
     }
 
+    @IBAction func visitStore(_ sender: UIButton) {
+        noClouds.isHidden = true
+        performSegue(withIdentifier: "visitStore", sender: Any?.self)
+    }
+
+    @IBAction func closeNoClouds(_ sender: UIButton) {
+        noClouds.isHidden = true
+    }
+
     @IBAction func backPressed(_ sender: UIButton) {
         if gameViewModel.isGameInProgress {
             areYouSure.isHidden = false
         } else {
+            gameViewModel.stopTimer()
             self.dismiss(animated: true, completion: nil)
         }
     }

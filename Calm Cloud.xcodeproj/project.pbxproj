@@ -48,6 +48,7 @@
 		2D41EF28242D5CE20058C443 /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D41EF27242D5CE20058C443 /* PhotoManager.swift */; };
 		2D41EF2F242D5EBB0058C443 /* DocumentsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D41EF2E242D5EBB0058C443 /* DocumentsManager.swift */; };
 		2D41EF31242D607C0058C443 /* FavoriteThingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D41EF30242D607C0058C443 /* FavoriteThingsViewController.swift */; };
+		2D426A9326FE75EC00A26B58 /* CloudsTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D426A9226FE75EC00A26B58 /* CloudsTimer.swift */; };
 		2D48CC3A242548B200D0FBBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48CC39242548B200D0FBBB /* AppDelegate.swift */; };
 		2D48CC3C242548B200D0FBBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48CC3B242548B200D0FBBB /* SceneDelegate.swift */; };
 		2D48CC3E242548B200D0FBBB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48CC3D242548B200D0FBBB /* ViewController.swift */; };
@@ -192,6 +193,7 @@
 		2D41EF27242D5CE20058C443 /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		2D41EF2E242D5EBB0058C443 /* DocumentsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentsManager.swift; sourceTree = "<group>"; };
 		2D41EF30242D607C0058C443 /* FavoriteThingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteThingsViewController.swift; sourceTree = "<group>"; };
+		2D426A9226FE75EC00A26B58 /* CloudsTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudsTimer.swift; sourceTree = "<group>"; };
 		2D48CC36242548B200D0FBBB /* Calm Cloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calm Cloud.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D48CC39242548B200D0FBBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D48CC3B242548B200D0FBBB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				2D9B7CFC24AD17EB00CDFA8E /* Receipt.swift */,
 				2D9B7CFE24AD187B00CDFA8E /* StoreHelper.swift */,
 				2D9B7D0024AD18CF00CDFA8E /* ReceiptItem.swift */,
+				2D426A9226FE75EC00A26B58 /* CloudsTimer.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -711,6 +714,7 @@
 				2D2E52FF26BB306F007DF8A8 /* MiniGameViewModel.swift in Sources */,
 				2DA08A262530D7EF00A5129F /* WeatherManager.swift in Sources */,
 				2DD2C31B246353310070934D /* Sounds.swift in Sources */,
+				2D426A9326FE75EC00A26B58 /* CloudsTimer.swift in Sources */,
 				2D3CC0E226B46940000EA922 /* OutsideVM+Animation.swift in Sources */,
 				2D14EBDE243E7740004CB7E2 /* NotificationManager.swift in Sources */,
 				2D07E98924A150E900FD6E66 /* RemoveViewController.swift in Sources */,
@@ -950,7 +954,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/ios/lib",
 				);
-				MARKETING_VERSION = 2.1.2;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/GitHub/Calm-Cloud/Calm Cloud/header.h";
@@ -980,7 +984,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/ios/lib",
 				);
-				MARKETING_VERSION = 2.1.2;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/GitHub/Calm-Cloud/Calm Cloud/header.h";

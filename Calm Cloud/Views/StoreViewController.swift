@@ -26,6 +26,7 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
     
     var request: SKProductsRequest!
     var receipt: Receipt?
+    var selectedIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,7 @@ class StoreViewController: UIViewController, UICollectionViewDelegate {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        segmentedControl.selectedSegmentIndex = selectedIndex
         
         paidImage.alpha = 0.0
         purchaseContainer.isHidden = true

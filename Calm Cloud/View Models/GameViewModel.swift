@@ -57,6 +57,22 @@ public class GameViewModel {
         }
     }
 
+    func startCloudTimer() -> Bool {
+        if PlaysModel.clouds == 5 {
+            return false
+        } else {
+            return true
+        }
+    }
+
+    func stopTimer() {
+        if let status = CloudsTimer.timer?.isValid {
+            if status {
+                CloudsTimer.stop()
+            }
+        }
+    }
+
     func getCurrentClouds() -> Int {
         return PlaysModel.clouds
     }
@@ -69,7 +85,7 @@ public class GameViewModel {
         switch gameMode {
         case .normal:
             PlaysModel.clouds -= 1
-            savePlays()
+            savePlays(fromTimer: false)
             movesLeft = currentLevel.maximumMoves
             isGameInProgress = true
             score = 0
@@ -183,7 +199,7 @@ public class GameViewModel {
         }
     }
 
-    func savePlays() {
+    func savePlays(fromTimer: Bool) {
         var managedContext = CoreDataManager.shared.managedObjectContext
 
         // save anew if it doesn't exist (like on app initial launch)
@@ -209,8 +225,14 @@ public class GameViewModel {
         }
 
         // otherwise rewrite data
+        // if updated from timer set last used date anew so clouds aren't credited twice
         // save last used date at four clouds, as this will be the oldest date for tracking play crediting
-        if PlaysModel.clouds == 4 {
+        if fromTimer {
+            if PlaysModel.clouds < 5 {
+                PlaysModel.lastUsed = Date()
+                PlaysModel.clouds += 1
+            }
+        } else if PlaysModel.clouds == 4 {
             PlaysModel.lastUsed = Date()
         }
 
