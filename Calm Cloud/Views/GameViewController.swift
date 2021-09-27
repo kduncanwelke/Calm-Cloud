@@ -27,7 +27,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var beginGameButton: UIButton!
     @IBOutlet weak var gameOver: UIView!
     @IBOutlet weak var noClouds: UIView!
-    @IBOutlet weak var result: UILabel!
+    @IBOutlet weak var result: UIImageView!
     @IBOutlet weak var playAgain: UIButton!
     @IBOutlet weak var areYouSure: UIView!
     @IBOutlet weak var plays: UILabel!
@@ -77,12 +77,17 @@ class GameViewController: UIViewController {
     }
 
     func checkTimer() {
-        if gameViewModel.startCloudTimer() {
+        if gameViewModel.startCloudTimer() && !gameViewModel.isTimerRunning() {
             CloudsTimer.beginTimer(label: playTimer)
             updateLabels()
         } else {
             plays.text = "\(gameViewModel.getCurrentClouds())"
-            playTimer.text = "Clouds Full"
+
+            if gameViewModel.areCloudsFull() {
+                playTimer.text = "Full"
+            } else {
+                playTimer.text = "-:--"
+            }
         }
     }
 
@@ -109,24 +114,14 @@ class GameViewController: UIViewController {
         selectLabel.isHidden = true
         modeDescription.isHidden = true
         modeSegmentedControl.isHidden = true
-
-        /*switch gameViewModel.getMode() {
-        case .normal:
-            clouds.isHidden = false
-            plays.isHidden = false
-            playTimer.isHidden = false
-        case .zen:
-            clouds.isHidden = true
-            plays.isHidden = true
-            playTimer.isHidden = true
-        }*/
-
+        
         gameViewModel.startGame()
         updateLabels()
         level.resetCombo()
         shuffle()
         scene.isUserInteractionEnabled = true
         backButton.setTitle("Quit", for: .normal)
+        checkTimer()
     }
 
     func beginNextTurn() {
@@ -165,8 +160,8 @@ class GameViewController: UIViewController {
     func decrementMoves() {
         switch gameViewModel.getMode() {
         case .normal:
-            if let text = gameViewModel.decreaseMoves() {
-                result.text = text
+            if let messageImage = gameViewModel.decreaseMoves() {
+                result.image = messageImage
                 showGameOver()
             }
 

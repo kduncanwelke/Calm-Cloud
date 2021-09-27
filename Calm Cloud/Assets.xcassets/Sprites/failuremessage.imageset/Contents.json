@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "pumpkinsprite.png",
+      "filename" : "failuremessage.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

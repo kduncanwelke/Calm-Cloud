@@ -31,9 +31,9 @@ class CloudsTimer {
                 stop()
             } else if seconds < 60 {
                 if seconds < 10 {
-                    label.text = "0:0\(seconds) to next cloud"
+                    label.text = "0:0\(seconds)"
                 } else {
-                    label.text = "0:\(Int(seconds)) to next cloud"
+                    label.text = "0:\(Int(seconds))"
                 }
             } else if seconds >= 3600 {
                 let minute = Int(seconds / 60)
@@ -41,26 +41,26 @@ class CloudsTimer {
 
                 if minute < 10 {
                     if second < 10 {
-                        label.text = "\(minute):0\(second) to next cloud"
+                        label.text = "\(minute):0\(second)"
                         print("sec")
                     } else {
-                        label.text = "\(minute):\(second) to next cloud"
+                        label.text = "\(minute):\(second)"
                         print("minute")
                     }
                 }
 
                 if minute > 10 && second < 10 {
-                    label.text = "\(minute):0\(second) to next cloud"
+                    label.text = "\(minute):0\(second)"
                 } else if minute > 10 && second > 10 {
-                    label.text = "\(minute):\(second) to next cloud"
+                    label.text = "\(minute):\(second)"
                 }
             } else {
                 let minute = seconds / 60
                 let second = seconds % 60
                 if second < 10 {
-                    label.text = "\(minute):0\(second) to next cloud"
+                    label.text = "\(minute):0\(second)"
                 } else {
-                    label.text = "\(minute):\(second) to next cloud"
+                    label.text = "\(minute):\(second)"
                 }
             }
         }

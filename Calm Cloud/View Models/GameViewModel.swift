@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 public class GameViewModel {
 
@@ -65,6 +66,14 @@ public class GameViewModel {
         }
     }
 
+    func isTimerRunning() -> Bool {
+        if let status = CloudsTimer.timer?.isValid {
+            return status
+        } else {
+            return false
+        }
+    }
+
     func stopTimer() {
         if let status = CloudsTimer.timer?.isValid {
             if status {
@@ -75,6 +84,14 @@ public class GameViewModel {
 
     func getCurrentClouds() -> Int {
         return PlaysModel.clouds
+    }
+
+    func areCloudsFull() -> Bool {
+        if PlaysModel.clouds == 5 {
+            return true
+        } else {
+            return false
+        }
     }
 
     func isInGame() -> Bool {
@@ -122,15 +139,15 @@ public class GameViewModel {
         score += value
     }
 
-    func decreaseMoves() -> String? {
+    func decreaseMoves() -> UIImage? {
         switch gameMode {
         case .normal:
             movesLeft -= 1
 
             if score >= currentLevel.targetScore {
-                return "Success!"
+                return UIImage(named: "winmessage")
             } else if movesLeft == 0 {
-                return "Fail :("
+                return UIImage(named: "failuremessage")
             } else {
                 return nil
             }
