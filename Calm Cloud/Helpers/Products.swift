@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 struct Products {
+    public static let fillClouds = "1a"
     public static let tenCoins = "a"
     public static let twentyCoins = "b"
     public static let thirtyCoins = "c"
@@ -32,6 +33,7 @@ struct Products {
         "h": 200,
         "i": 250,
         "j": 500,
+        "1a": 0,
     ]
     
     public static let productImages: [String: UIImage] = [
@@ -45,5 +47,6 @@ struct Products {
         "h" : #imageLiteral(resourceName: "twohundredcoins.png"),
         "i" : #imageLiteral(resourceName: "twohundredfiftycoins.png"),
         "j" : #imageLiteral(resourceName: "fivehundredcoins.png"),
+        "1a": #imageLiteral(resourceName: "restoreplays"),
     ]
 }

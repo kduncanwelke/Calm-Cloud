@@ -48,6 +48,8 @@ class GameViewController: UIViewController {
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(addCloud), name: NSNotification.Name(rawValue: "addCloud"), object: nil)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshClouds), name: NSNotification.Name(rawValue: "refreshClouds"), object: nil)
+
         gameViewModel.loadPlays()
         
         let spriteKitView = gameView as SKView
@@ -69,6 +71,11 @@ class GameViewController: UIViewController {
 
         updateLabels()
         checkTimer()
+    }
+
+    @objc func refreshClouds() {
+        gameViewModel.stopTimer()
+        playTimer.text = "Full"
     }
 
     @objc func addCloud() {
@@ -222,7 +229,7 @@ class GameViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "visitStore" {
             if let destination = segue.destination as? StoreViewController {
-                destination.selectedIndex = 1
+                destination.selectedIndex = 2
             }
         }
     }

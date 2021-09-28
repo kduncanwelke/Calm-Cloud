@@ -3949,7 +3949,7 @@
                                         <segments>
                                             <segment title="Seedings"/>
                                             <segment title="Items"/>
-                                            <segment title="Coins"/>
+                                            <segment title="Purchases"/>
                                         </segments>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>

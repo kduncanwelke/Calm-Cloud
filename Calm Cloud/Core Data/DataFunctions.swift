@@ -663,4 +663,40 @@ struct DataFunctions {
             print("no fuel not resaved")
         }
     }
+
+    static func saveClouds() {
+        var managedContext = CoreDataManager.shared.managedObjectContext
+
+        // save anew if it doesn't exist (like on app initial launch)
+        guard let playsLoaded = PlaysModel.loadedPlays else {
+            let playsSave = Plays(context: managedContext)
+
+            playsSave.clouds = Int16(PlaysModel.clouds)
+
+            PlaysModel.loadedPlays = playsSave
+
+            do {
+                try managedContext.save()
+                print("saved plays")
+            } catch {
+                // this should never be displayed but is here to cover the possibility
+                print("plays not saved")
+            }
+
+            return
+        }
+
+        // otherwise rewrite data
+        playsLoaded.clouds = Int16(PlaysModel.clouds)
+    
+        PlaysModel.loadedPlays = playsLoaded
+
+        do {
+            try managedContext.save()
+            print("resave successful")
+        } catch {
+            // this should never be displayed but is here to cover the possibility
+            print("plays not resaved")
+        }
+    }
 }
