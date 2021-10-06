@@ -36,7 +36,7 @@ class GameScene: SKScene {
         toyLayer.position = layerPosition
         gameLayer.addChild(toyLayer)
 
-        let _ = SKLabelNode(fontNamed: "GillSans-BoldItalic")
+        let _ = SKLabelNode(fontNamed: "Helvetica-Bold")
     }
 
     // MARK: Logic
@@ -68,7 +68,7 @@ class GameScene: SKScene {
         for row in 0..<totalRows {
             for column in 0..<totalColumns {
                 if level.tileAt(column: column, row: row) != nil {
-                    let tileNode = SKSpriteNode(imageNamed: "bluetile")
+                    let tileNode = SKSpriteNode(imageNamed: "tilegreen")
                     tileNode.size = CGSize(width: tileWidth, height: tileHeight)
                     tileNode.position = pointFor(column: column, row: row)
                     tileLayer.addChild(tileNode)
@@ -84,8 +84,8 @@ class GameScene: SKScene {
 
         let centerpoint = CGPoint(x: (firstSprite.position.x + lastSprite.position.x)/2, y: (firstSprite.position.y + lastSprite.position.y)/2 - 8)
 
-        let scoreLabel = SKLabelNode(fontNamed: "GillSans-BoldItalic")
-        scoreLabel.fontSize = 16
+        let scoreLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
+        scoreLabel.fontSize = 14
         scoreLabel.text = "\(chain.score)"
         scoreLabel.position = centerpoint
         scoreLabel.zPosition = 300
@@ -134,6 +134,7 @@ class GameScene: SKScene {
     }
 
     func animateMatchedCookies(for chains: Set<Chain>, completion: @escaping () -> Void) {
+        print("matched cookies")
         for chain in chains {
             animateScore(for: chain)
 
@@ -153,6 +154,7 @@ class GameScene: SKScene {
     }
 
     func animateFallingCookies(in columns: [[Toy]], completion: @escaping () -> Void) {
+        print("falling cookies")
         var longestDuration: TimeInterval = 0
 
         for array in columns {
@@ -176,6 +178,7 @@ class GameScene: SKScene {
     }
 
     func animateNewCookies(in columns: [[Toy]], completion: @escaping () -> Void) {
+        print("new cookies")
         var longestDuration: TimeInterval = 0
 
         for array in columns {
@@ -194,7 +197,7 @@ class GameScene: SKScene {
                 longestDuration = max(longestDuration, duration + delay)
 
                 let newPosition = pointFor(column: toy.column, row: toy.row)
-                let moveAction = SKAction.move(to: newPosition, duration: longestDuration)
+                let moveAction = SKAction.move(to: newPosition, duration: duration)
                 moveAction.timingMode = .easeOut
 
                 sprite.alpha = 0
@@ -220,6 +223,7 @@ class GameScene: SKScene {
     }
 
     private func trySwap(horizontal: Int, vertical: Int) {
+        print("swap")
         guard let columnSwipe = swipeFromColumn, let rowSwipe = swipeFromRow else { return }
 
         // get target location

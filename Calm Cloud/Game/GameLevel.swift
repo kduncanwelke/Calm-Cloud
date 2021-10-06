@@ -55,9 +55,9 @@ class GameLevel {
     }
 
     private func calculateScores(for chains: Set<Chain>) {
-        // three-toy chain is 60 points, 60 more for each added
+        // three-toy chain is 50 points, 50 more for each added
         for chain in chains {
-            chain.score = 60 * (chain.length - 2) * comboMultiplier
+            chain.score = 50 * (chain.length - 2) * comboMultiplier
             comboMultiplier += 1
         }
     }
@@ -69,12 +69,26 @@ class GameLevel {
     func shuffle() -> Set<Toy> {
         var set: Set<Toy>
 
-        repeat {
+        switch PlaysModel.mode {
+        case .normal:
+            // don't check for zero swaps, game is lost if there are none
             set = createInitialToys()
             detectPossibleSwaps()
 
-            print("possible swaps: \(possibleSwaps)")
-        } while possibleSwaps.count == 0
+            // if out of swaps game ends
+            if possibleSwaps.count == 0 {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "outOfSwaps"), object: nil)
+            }
+        case .zen:
+            // make sure there always are possible swaps
+            repeat {
+                set = createInitialToys()
+                detectPossibleSwaps()
+
+                print("possible swaps: \(possibleSwaps)")
+            } while possibleSwaps.count == 0
+
+        }
 
         return set
     }

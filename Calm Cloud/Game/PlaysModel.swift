@@ -14,4 +14,5 @@ struct PlaysModel {
     static var loadedPlays: Plays?
     static var clouds = 5
     static var lastUsed: Date?
+    static var mode: GameMode = .normal
 }

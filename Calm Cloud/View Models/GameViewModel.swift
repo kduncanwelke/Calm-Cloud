@@ -10,17 +10,17 @@ import Foundation
 import CoreData
 import UIKit
 
+enum GameMode: Int {
+    case normal
+    case zen
+}
+
 public class GameViewModel {
 
     var gameMode: GameMode = .normal
     var movesLeft = 0
     var score = 0
     var isGameInProgress = false
-
-    enum GameMode: Int {
-        case normal
-        case zen
-    }
 
     var currentLevel = GameLevel(filename: "level_1")
 
@@ -38,6 +38,7 @@ public class GameViewModel {
 
     func changeMode(segment: Int) {
         gameMode = GameMode(rawValue: segment) ?? .normal
+        PlaysModel.mode = gameMode
     }
 
     func getCurrentScore() -> String {

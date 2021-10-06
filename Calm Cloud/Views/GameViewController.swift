@@ -50,6 +50,8 @@ class GameViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(refreshClouds), name: NSNotification.Name(rawValue: "refreshClouds"), object: nil)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(outOfSwaps), name: NSNotification.Name(rawValue: "outOfSwaps"), object: nil)
+
         gameViewModel.loadPlays()
         
         let spriteKitView = gameView as SKView
@@ -71,6 +73,10 @@ class GameViewController: UIViewController {
 
         updateLabels()
         checkTimer()
+    }
+
+    @objc func outOfSwaps() {
+        showGameOver()
     }
 
     @objc func refreshClouds() {
