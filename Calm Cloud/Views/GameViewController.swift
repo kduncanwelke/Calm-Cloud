@@ -22,7 +22,6 @@ class GameViewController: UIViewController {
 
     @IBOutlet weak var areYouSureDescription: UILabel!
     @IBOutlet weak var confirmQuit: UIButton!
-    @IBOutlet weak var clouds: UILabel!
     @IBOutlet weak var selectLabel: UILabel!
     @IBOutlet weak var beginGameButton: UIButton!
     @IBOutlet weak var gameOver: UIView!
@@ -53,6 +52,7 @@ class GameViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(outOfSwaps), name: NSNotification.Name(rawValue: "outOfSwaps"), object: nil)
 
         gameViewModel.loadPlays()
+        level = gameViewModel.getGameLevel()
         
         let spriteKitView = gameView as SKView
         spriteKitView.isMultipleTouchEnabled = false
@@ -65,7 +65,6 @@ class GameViewController: UIViewController {
         
         spriteKitView.presentScene(scene)
 
-        level = gameViewModel.getGameLevel()
         scene.level = level
 
         scene.addTiles()
@@ -76,7 +75,7 @@ class GameViewController: UIViewController {
     }
 
     @objc func outOfSwaps() {
-        showGameOver()
+        showGameOver(noMoves: true)
     }
 
     @objc func refreshClouds() {
@@ -120,14 +119,15 @@ class GameViewController: UIViewController {
         scene.removeTiles()
 
         level = gameViewModel.getGameLevel()
-        scene.level = level
-        scene.addTiles()
 
         gameInfoStackView.isHidden = false
         selectLabel.isHidden = true
         modeDescription.isHidden = true
         modeSegmentedControl.isHidden = true
-        
+
+        scene.level = level
+        scene.addTiles()
+
         gameViewModel.startGame()
         updateLabels()
         level.resetCombo()
@@ -155,9 +155,13 @@ class GameViewController: UIViewController {
         scene.isUserInteractionEnabled = false
     }
 
-    func showGameOver() {
+    func showGameOver(noMoves: Bool) {
         gameViewModel.gameOver()
         gameOver.isHidden = false
+
+        if noMoves {
+            result.image = UIImage(named: "nomoves")
+        }
 
         if gameViewModel.canPlayAgain() {
             playAgain.isEnabled = true
@@ -175,7 +179,7 @@ class GameViewController: UIViewController {
         case .normal:
             if let messageImage = gameViewModel.decreaseMoves() {
                 result.image = messageImage
-                showGameOver()
+                showGameOver(noMoves: false)
             }
 
             updateLabels()

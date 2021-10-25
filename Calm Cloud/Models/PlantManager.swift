@@ -166,11 +166,7 @@ struct PlantManager {
                 } else if halfDaysCaredFor > 10 && halfDaysCaredFor <= 12 {
                     stage = 6
                 } else if halfDaysCaredFor >= 12 {
-                    stage = 7
-                } else if let matureDate = mature {
-                    // if plant has reached maturity, check how many days have passed
-                    // additional check to be sure plant hasn't been wilted prematurely
-                    if halfDaysCaredFor >= 12 {
+                    if let matureDate = mature {
                         print("mature")
                         // if seven days have passed, plant reaches wilting stage
                         if checkDiff(date: matureDate) > 7 {
@@ -199,11 +195,7 @@ struct PlantManager {
                 } else if halfDaysCaredFor > 16 && halfDaysCaredFor <= 20 {
                     stage = 6
                 } else if halfDaysCaredFor >= 20 {
-                    stage = 7
-                } else if let matureDate = mature {
-                    // if plant has reached maturity, check how many days have passed
-                    // additional check to be sure plant hasn't been wilted prematurely
-                    if halfDaysCaredFor >= 20 {
+                    if let matureDate = mature {
                         print("mature")
                         // if seven days have passed, plant reaches wilting stage
                         if checkDiff(date: matureDate) > 7 {
@@ -232,11 +224,7 @@ struct PlantManager {
                 } else if halfDaysCaredFor > 20 && halfDaysCaredFor <= 24 {
                     stage = 6
                 } else if halfDaysCaredFor >= 24 {
-                    stage = 7
-                } else if let matureDate = mature {
-                    // if plant has reached maturity, check how many days have passed
-                    // additional check to be sure plant hasn't been wilted prematurely
-                    if halfDaysCaredFor >= 24 {
+                    if let matureDate = mature {
                         print("mature")
                         // if seven days have passed, plant reaches wilting stage
                         if checkDiff(date: matureDate) > 7 {

@@ -3049,7 +3049,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                     </imageView>
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Uy1-K6-dFS">
-                                        <rect key="frame" x="57.666666666666657" y="129.99999999999997" width="260" height="60"/>
+                                        <rect key="frame" x="57.666666666666657" y="124.99999999999997" width="260" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xlx-gk-3zm">
                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="60"/>
@@ -3085,7 +3085,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="MbG-mN-pcJ" firstAttribute="top" secondItem="urx-Di-D0v" secondAttribute="top" id="1DR-ZE-OLl"/>
-                                    <constraint firstItem="Uy1-K6-dFS" firstAttribute="top" secondItem="urx-Di-D0v" secondAttribute="top" constant="130" id="1Dz-v1-pjG"/>
+                                    <constraint firstItem="Uy1-K6-dFS" firstAttribute="top" secondItem="urx-Di-D0v" secondAttribute="top" constant="125" id="1Dz-v1-pjG"/>
                                     <constraint firstAttribute="trailing" secondItem="MbG-mN-pcJ" secondAttribute="trailing" id="3iq-Qw-VVb"/>
                                     <constraint firstItem="Uy1-K6-dFS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="urx-Di-D0v" secondAttribute="leading" constant="30" id="DDr-dc-LS8"/>
                                     <constraint firstItem="MbG-mN-pcJ" firstAttribute="leading" secondItem="urx-Di-D0v" secondAttribute="leading" id="MPf-nF-p9u"/>
@@ -5069,7 +5069,7 @@
         <image name="buttonbackground" width="700" height="350"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="closedbox" width="609" height="446"/>
-        <image name="cloud" width="300" height="221"/>
+        <image name="cloud" width="530" height="381"/>
         <image name="cloudkitty" width="1518" height="1039"/>
         <image name="cloudkittyright" width="1518" height="1039"/>
         <image name="coin" width="300" height="300"/>
