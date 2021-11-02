@@ -36,7 +36,7 @@ public class StoreViewModel {
     }
 
     func getProductIdentifiers() -> [String] {
-        return [Products.fillClouds, Products.tenCoins, Products.twentyCoins, Products.thirtyCoins, Products.fortyCoins, Products.fiftyCoins, Products.seventyCoins, Products.oneHundredCoins, Products.twoHundredCoins, Products.twoHundredFiftyCoins, Products.fiveHundredCoins]
+        return [Products.tenCoins, Products.twentyCoins, Products.thirtyCoins, Products.fortyCoins, Products.fiftyCoins, Products.seventyCoins, Products.oneHundredCoins, Products.twoHundredCoins, Products.twoHundredFiftyCoins, Products.fiveHundredCoins]
     }
 
     func getItemCount(segment: Int) -> Int {

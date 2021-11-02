@@ -179,6 +179,7 @@ class GameViewController: UIViewController {
         case .normal:
             if let messageImage = gameViewModel.decreaseMoves() {
                 result.image = messageImage
+                gameOver.isHidden = false
                 showGameOver(noMoves: false)
             }
 

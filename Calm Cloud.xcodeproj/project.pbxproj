@@ -337,9 +337,9 @@
 				2D30E95126B9BC880000768D /* ActivitiesViewModel.swift */,
 				2D30E95326B9C45C0000768D /* JournalViewModel.swift */,
 				2D30E95526B9DB400000768D /* PhotoViewModel.swift */,
-				2D30E95726B9DE780000768D /* StoreViewModel.swift */,
 				2D2E52F626BB2060007DF8A8 /* PlantPurchaseViewModel.swift */,
 				2D2E52F826BB2578007DF8A8 /* DeliveryViewModel.swift */,
+				2D30E95726B9DE780000768D /* StoreViewModel.swift */,
 				2D2E52FA26BB26AD007DF8A8 /* TasksViewModel.swift */,
 				2D2E52FC26BB2BDA007DF8A8 /* InventoryViewModel.swift */,
 				2D2E52FE26BB306F007DF8A8 /* MiniGameViewModel.swift */,
@@ -954,7 +954,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/ios/lib",
 				);
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/GitHub/Calm-Cloud/Calm Cloud/header.h";
@@ -984,7 +984,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/ios/lib",
 				);
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/kateduncan-welke/Documents/GitHub/Calm-Cloud/Calm Cloud/header.h";

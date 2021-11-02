@@ -81,7 +81,8 @@ public class OutsideViewModel {
 
     func harvest() {
         // update count and save
-        Harvested.basketCounts[PlantManager.selected]! += 1
+        var randomNumber = PlantManager.randomQuantity()
+        Harvested.basketCounts[PlantManager.selected]! += randomNumber
         DataFunctions.saveHarvest()
     }
 

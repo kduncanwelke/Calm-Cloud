@@ -98,9 +98,30 @@ public class BasketViewModel {
 
             switch direction {
             case .down:
-                numberSentToStand -= 1
+                if let oldCount = Harvested.basketCounts[item.plant], let oldStandCount = Harvested.inStand[item.plant] {
+                    let newCount = oldCount + 1
+                    Harvested.basketCounts[item.plant] = newCount
+
+                    let newStandCount = oldStandCount + 1
+                    Harvested.inStand[item.plant] = newStandCount
+               
+                    numberSentToStand -= 1
+                }
             case .up:
-                numberSentToStand += 1
+                if let oldCount = Harvested.basketCounts[item.plant], let oldStandCount = Harvested.inStand[item.plant]  {
+                    let newCount = oldCount - 1
+
+                    let newStandCount = oldStandCount - 1
+                    Harvested.inStand[item.plant] = newStandCount
+
+                    if newCount > 0 {
+                        Harvested.basketCounts[item.plant] = newCount
+                    } else {
+                        Harvested.basketCounts[item.plant] = 0
+                    }
+
+                    numberSentToStand += 1
+                }
             }
         } else if segment == 1 {
             switch direction {
