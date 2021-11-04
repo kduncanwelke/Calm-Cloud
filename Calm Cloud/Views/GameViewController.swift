@@ -25,6 +25,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var selectLabel: UILabel!
     @IBOutlet weak var beginGameButton: UIButton!
     @IBOutlet weak var gameOver: UIView!
+    @IBOutlet weak var winnings: UILabel!
     @IBOutlet weak var noClouds: UIView!
     @IBOutlet weak var result: UIImageView!
     @IBOutlet weak var playAgain: UIButton!
@@ -167,6 +168,7 @@ class GameViewController: UIViewController {
             playAgain.isEnabled = true
             playAgain.alpha = 1.0
         } else {
+            winnings.text = ""
             playAgain.isEnabled = false
             playAgain.alpha = 0.5
         }
@@ -177,10 +179,17 @@ class GameViewController: UIViewController {
     func decrementMoves() {
         switch gameViewModel.getMode() {
         case .normal:
-            if let messageImage = gameViewModel.decreaseMoves() {
-                result.image = messageImage
+            if let image = gameViewModel.decreaseMoves().image, let won = gameViewModel.decreaseMoves().won {
+                result.image = image
+
+                if won {
+                    print("won")
+                    winnings.text = "\(gameViewModel.giveCoins()) coins and \(gameViewModel.giveEXP())EXP won!"
+                }
+
                 gameOver.isHidden = false
                 showGameOver(noMoves: false)
+                return
             }
 
             updateLabels()

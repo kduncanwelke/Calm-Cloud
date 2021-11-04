@@ -102,7 +102,6 @@ public class GameViewModel {
     func startGame() {
         switch gameMode {
         case .normal:
-            PlaysModel.clouds -= 1
             savePlays(fromTimer: false)
             movesLeft = currentLevel.maximumMoves
             isGameInProgress = true
@@ -140,21 +139,59 @@ public class GameViewModel {
         score += value
     }
 
-    func decreaseMoves() -> UIImage? {
+    func decreaseMoves() -> (image: UIImage?, won: Bool?) {
         switch gameMode {
         case .normal:
             movesLeft -= 1
 
             if score >= currentLevel.targetScore {
-                return UIImage(named: "winmessage")
+                return (UIImage(named: "winmessage"), true)
             } else if movesLeft == 0 {
-                return UIImage(named: "failuremessage")
+                return (UIImage(named: "failuremessage"), false)
             } else {
-                return nil
+                return (nil, nil)
             }
         case .zen:
-            return nil
+            return (nil, nil)
         }
+    }
+
+    func giveEXP() -> Int {
+        var randomPercent = Int.random(in: 10...15)
+
+        var exp = Int(LevelManager.maxEXP/randomPercent)
+
+        saveEXP(exp: exp)
+        return exp
+    }
+
+    func giveCoins() -> Int {
+        var randomCoins = Int.random(in: 1...5)
+
+        MoneyManager.total += randomCoins
+        
+        DataFunctions.saveMoney()
+
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateMoney"), object: nil)
+
+        return randomCoins
+    }
+
+    func saveEXP(exp: Int) {
+        LevelManager.currentEXP += exp
+        print("adding \(exp) EXP")
+
+        if LevelManager.currentEXP >= LevelManager.maxEXP {
+            LevelManager.currentLevel += 1
+
+            LevelManager.calculateLevel()
+
+            DataFunctions.saveLevel()
+        } else {
+            DataFunctions.saveLevel()
+        }
+
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromOutside"), object: nil)
     }
 
     func loadPlays() {
@@ -167,6 +204,8 @@ public class GameViewModel {
                 PlaysModel.loadedPlays = plays
                 PlaysModel.clouds = Int(plays.clouds)
                 PlaysModel.lastUsed = plays.lastUsed
+
+                print("clouds loaded: \(PlaysModel.clouds)")
 
                 creditPlays()
             }
@@ -181,6 +220,7 @@ public class GameViewModel {
         // check time ellapsed since last play was used, to credit new plays every 15 minutes up, to five plays total
         let calendar = Calendar.current
 
+        print("credit plays")
         let difference = calendar.dateComponents([.minute], from: savedDate, to: Date())
         print(difference.minute)
 
@@ -193,8 +233,6 @@ public class GameViewModel {
 
             if numberToAdd + PlaysModel.clouds <= 5 {
                 PlaysModel.clouds += numberToAdd
-            } else {
-                PlaysModel.clouds = 5
             }
 
             // resave
@@ -250,18 +288,25 @@ public class GameViewModel {
                 PlaysModel.lastUsed = Date()
                 PlaysModel.clouds += 1
             }
-        } else if PlaysModel.clouds == 4 {
-            PlaysModel.lastUsed = Date()
+        } else {
+            PlaysModel.clouds -= 1
+
+            if PlaysModel.clouds == 4 {
+                PlaysModel.lastUsed = Date()
+            }
         }
 
+        print("save info")
+        print(PlaysModel.clouds)
         playsLoaded.clouds = Int16(PlaysModel.clouds)
+        print(playsLoaded.clouds)
         playsLoaded.lastUsed = PlaysModel.lastUsed
 
         PlaysModel.loadedPlays = playsLoaded
 
         do {
             try managedContext.save()
-            print("resave successful")
+            print("plays resave successful")
         } catch {
             // this should never be displayed but is here to cover the possibility
             print("plays not resaved")

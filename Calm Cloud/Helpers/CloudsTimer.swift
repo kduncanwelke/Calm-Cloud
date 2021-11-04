@@ -28,7 +28,7 @@ class CloudsTimer {
             seconds -= 1
 
             if seconds <= 0 {
-                stop()
+                add()
             } else if seconds < 60 {
                 if seconds < 10 {
                     label.text = "0:0\(seconds)"
@@ -69,6 +69,11 @@ class CloudsTimer {
     }
 
     static func stop() {
+        timer?.invalidate()
+        seconds = 900
+    }
+
+    static func add() {
         timer?.invalidate()
         seconds = 900
 

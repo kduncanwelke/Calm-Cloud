@@ -94,8 +94,6 @@ public class BasketViewModel {
         let item = Harvested.itemsToShow[index]
 
         if segment == 0 {
-            Harvested.inStand[item.plant] = number
-
             switch direction {
             case .down:
                 if let oldCount = Harvested.basketCounts[item.plant], let oldStandCount = Harvested.inStand[item.plant] {
