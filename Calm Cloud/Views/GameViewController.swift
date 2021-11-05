@@ -50,8 +50,6 @@ class GameViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(refreshClouds), name: NSNotification.Name(rawValue: "refreshClouds"), object: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(outOfSwaps), name: NSNotification.Name(rawValue: "outOfSwaps"), object: nil)
-
         gameViewModel.loadPlays()
         level = gameViewModel.getGameLevel()
         
@@ -75,7 +73,7 @@ class GameViewController: UIViewController {
         checkTimer()
     }
 
-    @objc func outOfSwaps() {
+    func outOfSwaps() {
         showGameOver(noMoves: true)
     }
 
@@ -140,8 +138,19 @@ class GameViewController: UIViewController {
 
     func beginNextTurn() {
         level.resetCombo()
-        level.detectPossibleSwaps()
         decrementMoves()
+
+        // if no swaps, shuffle on zen mode, end on normal
+        if level.detectPossibleSwaps() {
+            print("no swaps")
+            switch gameViewModel.getMode() {
+            case .normal:
+                outOfSwaps()
+            case .zen:
+                shuffle()
+            }
+        }
+
         view.isUserInteractionEnabled = true
     }
 
@@ -168,7 +177,6 @@ class GameViewController: UIViewController {
             playAgain.isEnabled = true
             playAgain.alpha = 1.0
         } else {
-            winnings.text = ""
             playAgain.isEnabled = false
             playAgain.alpha = 0.5
         }
@@ -222,7 +230,7 @@ class GameViewController: UIViewController {
             return
         }
 
-        scene.animateMatchedCookies(for: chains) {
+        scene.animateMatchedToys(for: chains) {
             for chain in chains {
                 self.gameViewModel.addToScore(value: chain.score)
             }
@@ -231,10 +239,10 @@ class GameViewController: UIViewController {
 
             let columns = self.level.fillHoles()
 
-            self.scene.animateFallingCookies(in: columns) {
+            self.scene.animateFallingToys(in: columns) {
                 let columns = self.level.topUp()
 
-                self.scene.animateNewCookies(in: columns) {
+                self.scene.animateNewToys(in: columns) {
                     self.handleMatches()
                 }
             }

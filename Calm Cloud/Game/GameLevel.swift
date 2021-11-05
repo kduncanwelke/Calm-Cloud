@@ -69,26 +69,12 @@ class GameLevel {
     func shuffle() -> Set<Toy> {
         var set: Set<Toy>
 
-        switch PlaysModel.mode {
-        case .normal:
-            // don't check for zero swaps, game is lost if there are none
+        repeat {
             set = createInitialToys()
             detectPossibleSwaps()
 
-            // if out of swaps game ends
-            if possibleSwaps.count == 0 {
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "outOfSwaps"), object: nil)
-            }
-        case .zen:
-            // make sure there always are possible swaps
-            repeat {
-                set = createInitialToys()
-                detectPossibleSwaps()
-
-                print("possible swaps: \(possibleSwaps)")
-            } while possibleSwaps.count == 0
-
-        }
+            print("possible swaps: \(possibleSwaps)")
+        } while possibleSwaps.count == 0
 
         return set
     }
@@ -174,7 +160,7 @@ class GameLevel {
         return set
     }
 
-    func detectPossibleSwaps() {
+    func detectPossibleSwaps() -> Bool {
         var set: Set<Swap> = []
 
         for row in 0..<totalRows {
@@ -230,6 +216,12 @@ class GameLevel {
         }
 
         possibleSwaps = set
+
+        if possibleSwaps.isEmpty {
+            return true
+        } else {
+            return false
+        }
     }
 
     func isPossibleSwap(_ swap: Swap) -> Bool {

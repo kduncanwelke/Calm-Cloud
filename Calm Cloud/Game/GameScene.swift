@@ -133,8 +133,8 @@ class GameScene: SKScene {
         spriteB.run(SKAction.sequence([moveB, moveA]))
     }
 
-    func animateMatchedCookies(for chains: Set<Chain>, completion: @escaping () -> Void) {
-        print("matched cookies")
+    func animateMatchedToys(for chains: Set<Chain>, completion: @escaping () -> Void) {
+        print("matched toys")
         for chain in chains {
             animateScore(for: chain)
 
@@ -153,8 +153,8 @@ class GameScene: SKScene {
         run(SKAction.wait(forDuration: 0.3), completion: completion)
     }
 
-    func animateFallingCookies(in columns: [[Toy]], completion: @escaping () -> Void) {
-        print("falling cookies")
+    func animateFallingToys(in columns: [[Toy]], completion: @escaping () -> Void) {
+        print("falling toys")
         var longestDuration: TimeInterval = 0
 
         for array in columns {
@@ -177,8 +177,8 @@ class GameScene: SKScene {
         run(SKAction.wait(forDuration: longestDuration), completion: completion)
     }
 
-    func animateNewCookies(in columns: [[Toy]], completion: @escaping () -> Void) {
-        print("new cookies")
+    func animateNewToys(in columns: [[Toy]], completion: @escaping () -> Void) {
+        print("new toys")
         var longestDuration: TimeInterval = 0
 
         for array in columns {
