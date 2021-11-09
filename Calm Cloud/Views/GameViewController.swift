@@ -193,10 +193,15 @@ class GameViewController: UIViewController {
                 if won {
                     print("won")
                     winnings.text = "\(gameViewModel.giveCoins()) coins and \(gameViewModel.giveEXP())EXP won!"
+                    showGameOver(noMoves: false)
+                } else {
+                    print("lost")
+                    winnings.text = ""
+                    showGameOver(noMoves: true)
                 }
 
                 gameOver.isHidden = false
-                showGameOver(noMoves: false)
+
                 return
             }
 

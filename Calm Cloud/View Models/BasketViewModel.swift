@@ -97,23 +97,37 @@ public class BasketViewModel {
             switch direction {
             case .down:
                 if let oldCount = Harvested.basketCounts[item.plant], let oldStandCount = Harvested.inStand[item.plant] {
-                    let newCount = oldCount + 1
-                    Harvested.basketCounts[item.plant] = newCount
 
-                    let newStandCount = oldStandCount + 1
-                    Harvested.inStand[item.plant] = newStandCount
+                    // put item back into basket
+                    let newBasketCount = oldCount + 1
+                    Harvested.basketCounts[item.plant] = newBasketCount
+
+                    // decrease number in stand
+                    let newStandCount = oldStandCount - 1
+
+                    if newStandCount > 0 {
+                        Harvested.inStand[item.plant] = newStandCount
+                    } else {
+                        Harvested.inStand[item.plant] = 0
+                    }
+
+                    print("basket count \(newBasketCount)")
+                    print("stand count \(newStandCount)")
                
                     numberSentToStand -= 1
                 }
             case .up:
                 if let oldCount = Harvested.basketCounts[item.plant], let oldStandCount = Harvested.inStand[item.plant]  {
-                    let newCount = oldCount - 1
 
-                    let newStandCount = oldStandCount - 1
+                    // take item out of basket
+                    let newBasketCount = oldCount - 1
+
+                    // increase number in stand
+                    let newStandCount = oldStandCount + 1
                     Harvested.inStand[item.plant] = newStandCount
 
-                    if newCount > 0 {
-                        Harvested.basketCounts[item.plant] = newCount
+                    if newBasketCount > 0 {
+                        Harvested.basketCounts[item.plant] = newBasketCount
                     } else {
                         Harvested.basketCounts[item.plant] = 0
                     }
@@ -125,12 +139,14 @@ public class BasketViewModel {
             switch direction {
                 case .down:
                 if let oldCount = Harvested.basketCounts[item.plant] {
+                    // put back in basket
                     let newCount = oldCount + 1
                     Harvested.basketCounts[item.plant] = newCount
                     numberDonated -= 1
                 }
                 case .up:
                 if let oldCount = Harvested.basketCounts[item.plant] {
+                    // remove from basket
                     let newCount = oldCount - 1
 
                     if newCount > 0 {

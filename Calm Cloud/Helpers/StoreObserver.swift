@@ -36,7 +36,7 @@ class StoreObserver: NSObject, SKPaymentTransactionObserver {
                 print("purchase succeeded")
                 
                 if StoreObserver.isCloudsPurchase {
-                    PlaysModel.clouds = 5
+                    PlaysModel.clouds += 5
                     DataFunctions.saveClouds()
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshClouds"), object: nil)
                 } else {

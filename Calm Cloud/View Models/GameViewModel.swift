@@ -59,6 +59,14 @@ public class GameViewModel {
         }
     }
 
+    func isOutOfMoves() -> Bool {
+        if movesLeft == 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+
     func startCloudTimer() -> Bool {
         if PlaysModel.clouds == 5 {
             return false
@@ -142,13 +150,15 @@ public class GameViewModel {
     func decreaseMoves() -> (image: UIImage?, won: Bool?) {
         switch gameMode {
         case .normal:
-            movesLeft -= 1
-
             if score >= currentLevel.targetScore {
+                print("won game")
                 return (UIImage(named: "winmessage"), true)
-            } else if movesLeft == 0 {
+            } else if isOutOfMoves() {
+                print("out of moves")
                 return (UIImage(named: "failuremessage"), false)
             } else {
+                movesLeft -= 1
+                print("nothing")
                 return (nil, nil)
             }
         case .zen:
@@ -166,7 +176,7 @@ public class GameViewModel {
     }
 
     func giveCoins() -> Int {
-        var randomCoins = Int.random(in: 1...5)
+        var randomCoins = Int.random(in: 2...5)
 
         MoneyManager.total += randomCoins
         
@@ -230,9 +240,14 @@ public class GameViewModel {
             // last play more than 15 minutes ago
             // credit clouds for plays, 5 at most
             var numberToAdd = min(diff/15, 5)
+            print("adding \(numberToAdd)")
 
             if numberToAdd + PlaysModel.clouds <= 5 {
                 PlaysModel.clouds += numberToAdd
+            } else if PlaysModel.clouds > 5 {
+                // do nothing, player purchased clouds that put them over the usual five
+            } else {
+                PlaysModel.clouds = 5
             }
 
             // resave
