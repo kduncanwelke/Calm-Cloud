@@ -147,7 +147,16 @@ public class GameViewModel {
         score += value
     }
 
-    func decreaseMoves() -> (image: UIImage?, won: Bool?) {
+    func useMove() {
+        switch gameMode {
+        case .normal:
+            movesLeft -= 1
+        case .zen:
+            return
+        }
+    }
+
+    func moveFeedback() -> (image: UIImage?, won: Bool?) {
         switch gameMode {
         case .normal:
             if score >= currentLevel.targetScore {
@@ -157,7 +166,6 @@ public class GameViewModel {
                 print("out of moves")
                 return (UIImage(named: "failuremessage"), false)
             } else {
-                movesLeft -= 1
                 print("nothing")
                 return (nil, nil)
             }
@@ -176,7 +184,7 @@ public class GameViewModel {
     }
 
     func giveCoins() -> Int {
-        var randomCoins = Int.random(in: 2...5)
+        var randomCoins = Int.random(in: 5...15)
 
         MoneyManager.total += randomCoins
         

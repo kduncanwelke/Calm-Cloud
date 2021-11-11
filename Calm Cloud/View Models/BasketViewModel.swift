@@ -98,6 +98,7 @@ public class BasketViewModel {
             case .down:
                 if let oldCount = Harvested.basketCounts[item.plant], let oldStandCount = Harvested.inStand[item.plant] {
 
+                    print("decrease")
                     // put item back into basket
                     let newBasketCount = oldCount + 1
                     Harvested.basketCounts[item.plant] = newBasketCount
@@ -110,15 +111,17 @@ public class BasketViewModel {
                     } else {
                         Harvested.inStand[item.plant] = 0
                     }
+               
+                    numberSentToStand -= 1
 
                     print("basket count \(newBasketCount)")
                     print("stand count \(newStandCount)")
-               
-                    numberSentToStand -= 1
+                    print("sent to stand \(numberSentToStand)")
                 }
             case .up:
-                if let oldCount = Harvested.basketCounts[item.plant], let oldStandCount = Harvested.inStand[item.plant]  {
+                if let oldCount = Harvested.basketCounts[item.plant], let oldStandCount = Harvested.inStand[item.plant] {
 
+                    print("increase")
                     // take item out of basket
                     let newBasketCount = oldCount - 1
 
@@ -133,6 +136,10 @@ public class BasketViewModel {
                     }
 
                     numberSentToStand += 1
+
+                    print("basket count \(newBasketCount)")
+                    print("stand count \(newStandCount)")
+                    print("sent to stand \(numberSentToStand)")
                 }
             }
         } else if segment == 1 {
@@ -143,6 +150,9 @@ public class BasketViewModel {
                     let newCount = oldCount + 1
                     Harvested.basketCounts[item.plant] = newCount
                     numberDonated -= 1
+
+                    print("new basket count \(newCount)")
+                    print("number donated \(numberDonated)")
                 }
                 case .up:
                 if let oldCount = Harvested.basketCounts[item.plant] {
@@ -156,6 +166,9 @@ public class BasketViewModel {
                     }
 
                     numberDonated += 1
+
+                    print("new basket count \(newCount)")
+                    print("number donated \(numberDonated)")
                 }
             }
         }

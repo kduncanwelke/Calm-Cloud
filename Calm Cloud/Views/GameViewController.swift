@@ -74,7 +74,7 @@ class GameViewController: UIViewController {
     }
 
     func outOfSwaps() {
-        showGameOver(noMoves: true)
+        showGameOver(noSwaps: true)
     }
 
     @objc func refreshClouds() {
@@ -165,12 +165,13 @@ class GameViewController: UIViewController {
         scene.isUserInteractionEnabled = false
     }
 
-    func showGameOver(noMoves: Bool) {
+    func showGameOver(noSwaps: Bool) {
         gameViewModel.gameOver()
         gameOver.isHidden = false
 
-        if noMoves {
-            result.image = UIImage(named: "nomoves")
+        if noSwaps {
+            winnings.text = "No available swaps!"
+            result.image = UIImage(named: "failuremessage")
         }
 
         if gameViewModel.canPlayAgain() {
@@ -185,24 +186,24 @@ class GameViewController: UIViewController {
     }
 
     func decrementMoves() {
+        gameViewModel.useMove()
+
         switch gameViewModel.getMode() {
         case .normal:
-            if let image = gameViewModel.decreaseMoves().image, let won = gameViewModel.decreaseMoves().won {
+            if let image = gameViewModel.moveFeedback().image, let won = gameViewModel.moveFeedback().won {
                 result.image = image
 
                 if won {
                     print("won")
                     winnings.text = "\(gameViewModel.giveCoins()) coins and \(gameViewModel.giveEXP())EXP won!"
-                    showGameOver(noMoves: false)
+                    showGameOver(noSwaps: false)
                 } else {
                     print("lost")
-                    winnings.text = ""
-                    showGameOver(noMoves: true)
+                    winnings.text = "No more moves left!"
+                    showGameOver(noSwaps: false)
                 }
 
                 gameOver.isHidden = false
-
-                return
             }
 
             updateLabels()

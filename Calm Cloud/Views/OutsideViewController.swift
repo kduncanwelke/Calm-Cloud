@@ -803,5 +803,4 @@ class OutsideViewController: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
