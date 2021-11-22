@@ -77,7 +77,7 @@ class CloudsTimer {
         timer?.invalidate()
         seconds = 900
 
-        if PlaysModel.clouds != 5 {
+        if PlaysModel.clouds < 5 {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addCloud"), object: nil)
         }
     }

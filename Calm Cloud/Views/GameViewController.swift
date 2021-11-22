@@ -34,6 +34,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var playTimer: UILabel!
     @IBOutlet weak var gameView: SKView!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var reshuffled: UIView!
 
     
     // MARK: Variables
@@ -148,6 +149,7 @@ class GameViewController: UIViewController {
                 outOfSwaps()
             case .zen:
                 shuffle()
+                reshuffled.isHidden = false
             }
         }
 
@@ -287,7 +289,6 @@ class GameViewController: UIViewController {
             beginGameButton.isHidden = true
             beginGame()
         } else {
-            // TO DO: show message
             noClouds.isHidden = false
         }
     }
@@ -296,6 +297,10 @@ class GameViewController: UIViewController {
         gameOver.isHidden = true
         scene.isUserInteractionEnabled = true
         beginGame()
+    }
+
+    @IBAction func reshuffleDismiss(_ sender: UIButton) {
+        reshuffled.isHidden = true
     }
 
     @IBAction func quitPressed(_ sender: UIButton) {

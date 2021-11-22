@@ -68,7 +68,7 @@ public class GameViewModel {
     }
 
     func startCloudTimer() -> Bool {
-        if PlaysModel.clouds == 5 {
+        if PlaysModel.clouds >= 5 {
             return false
         } else {
             return true
@@ -96,7 +96,7 @@ public class GameViewModel {
     }
 
     func areCloudsFull() -> Bool {
-        if PlaysModel.clouds == 5 {
+        if PlaysModel.clouds >= 5 {
             return true
         } else {
             return false
