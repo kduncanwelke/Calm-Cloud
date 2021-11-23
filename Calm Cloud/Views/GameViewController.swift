@@ -74,10 +74,6 @@ class GameViewController: UIViewController {
         checkTimer()
     }
 
-    func outOfSwaps() {
-        showGameOver(noSwaps: true)
-    }
-
     @objc func refreshClouds() {
         gameViewModel.stopTimer()
         playTimer.text = "Full"
@@ -98,6 +94,11 @@ class GameViewController: UIViewController {
             if gameViewModel.areCloudsFull() {
                 playTimer.text = "Full"
             } else {
+                // timer may be running, stop and restart
+                // to prevent blank timer feedback when timer is running and user went away from garden game view
+                gameViewModel.stopTimer()
+                CloudsTimer.beginTimer(label: playTimer)
+                updateLabels()
                 playTimer.text = "-:--"
             }
         }
@@ -146,7 +147,8 @@ class GameViewController: UIViewController {
             print("no swaps")
             switch gameViewModel.getMode() {
             case .normal:
-                outOfSwaps()
+                shuffle()
+                reshuffled.isHidden = false
             case .zen:
                 shuffle()
                 reshuffled.isHidden = false
@@ -167,14 +169,9 @@ class GameViewController: UIViewController {
         scene.isUserInteractionEnabled = false
     }
 
-    func showGameOver(noSwaps: Bool) {
+    func showGameOver() {
         gameViewModel.gameOver()
         gameOver.isHidden = false
-
-        if noSwaps {
-            winnings.text = "No available swaps!"
-            result.image = UIImage(named: "failuremessage")
-        }
 
         if gameViewModel.canPlayAgain() {
             playAgain.isEnabled = true
@@ -198,11 +195,11 @@ class GameViewController: UIViewController {
                 if won {
                     print("won")
                     winnings.text = "\(gameViewModel.giveCoins()) coins and \(gameViewModel.giveEXP())EXP won!"
-                    showGameOver(noSwaps: false)
+                    showGameOver()
                 } else {
                     print("lost")
-                    winnings.text = "No more moves left!"
-                    showGameOver(noSwaps: false)
+                    winnings.text = "No more moves left! Game over!"
+                    showGameOver()
                 }
 
                 gameOver.isHidden = false

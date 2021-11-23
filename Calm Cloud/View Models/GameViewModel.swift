@@ -25,7 +25,7 @@ public class GameViewModel {
     var currentLevel = GameLevel(filename: "level_1")
 
     func getGameLevel() -> GameLevel {
-        var randomLevel = Int.random(in: 1...5)
+        var randomLevel = Int.random(in: 1...10)
 
         var level = GameLevel(filename: "level_\(randomLevel)")
         currentLevel = level
