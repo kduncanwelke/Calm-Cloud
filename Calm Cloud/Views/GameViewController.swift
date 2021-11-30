@@ -51,6 +51,9 @@ class GameViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(refreshClouds), name: NSNotification.Name(rawValue: "refreshClouds"), object: nil)
 
+        gameViewModel.loadSounds()
+        gameViewModel.startMusic()
+
         gameViewModel.loadPlays()
         level = gameViewModel.getGameLevel()
         
@@ -328,6 +331,7 @@ class GameViewController: UIViewController {
             areYouSure.isHidden = false
         } else {
             gameViewModel.stopTimer()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "resumeSound"), object: nil)
             self.dismiss(animated: true, completion: nil)
         }
     }

@@ -32,6 +32,16 @@ public class GameViewModel {
         return currentLevel
     }
 
+    func startMusic() {
+        Sound.loadSound(resourceName: Sounds.gameMusic.resourceName, type: Sounds.gameMusic.type)
+        Sound.startPlaying()
+    }
+
+    func loadSounds() {
+        SoundEffect.loadSound(number: &Sounds.pop.number, resourceName: Sounds.pop.resourceName, type: Sounds.pop.type)
+        SoundEffect.loadSound(number: &Sounds.gameOver.number, resourceName: Sounds.gameOver.resourceName, type: Sounds.gameOver.type)
+    }
+
     func getMode() -> GameMode {
         return gameMode
     }
@@ -140,6 +150,7 @@ public class GameViewModel {
     }
 
     func gameOver() {
+        SoundEffect.playSound(number: Sounds.gameOver.number)
         isGameInProgress = false
     }
 

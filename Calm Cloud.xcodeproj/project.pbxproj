@@ -124,6 +124,10 @@
 		2DD50C1B242D47B200073B49 /* AnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C1A242D47B200073B49 /* AnimationExtensions.swift */; };
 		2DD50C1D242D535F00073B49 /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C1C242D535F00073B49 /* JournalViewController.swift */; };
 		2DD50C21242D58F600073B49 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */; };
+		2DD65AF727568FEA005E6EC9 /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD65AF627568FEA005E6EC9 /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 */; };
+		2DD65AFB2756933E005E6EC9 /* zapsplat_multimedia_notification_digital_bell_warm_success_53924.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD65AFA2756933E005E6EC9 /* zapsplat_multimedia_notification_digital_bell_warm_success_53924.mp3 */; };
+		2DD65B052756ADD0005E6EC9 /* zapsplat_multimedia_cell_phone_smart_screen_button_press_click_feedback_002_60931.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD65B042756ADD0005E6EC9 /* zapsplat_multimedia_cell_phone_smart_screen_button_press_click_feedback_002_60931.mp3 */; };
+		2DD65B072756B117005E6EC9 /* music_zapsplat_game_music_childrens_soft_arp_warm_fun_001.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD65B062756B117005E6EC9 /* music_zapsplat_game_music_childrens_soft_arp_warm_fun_001.mp3 */; };
 		2DD7C97224D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2DD7C97124D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 */; };
 		2DD7C97424D09E2E0008C79F /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD7C97324D09E2E0008C79F /* InfoViewController.swift */; };
 		2DDA8C002450B7A20025950B /* AnimationTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */; };
@@ -281,6 +285,10 @@
 		2DD50C1A242D47B200073B49 /* AnimationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtensions.swift; sourceTree = "<group>"; };
 		2DD50C1C242D535F00073B49 /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		2DD50C20242D58F600073B49 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		2DD65AF627568FEA005E6EC9 /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3; sourceTree = "<group>"; };
+		2DD65AFA2756933E005E6EC9 /* zapsplat_multimedia_notification_digital_bell_warm_success_53924.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zapsplat_multimedia_notification_digital_bell_warm_success_53924.mp3; sourceTree = "<group>"; };
+		2DD65B042756ADD0005E6EC9 /* zapsplat_multimedia_cell_phone_smart_screen_button_press_click_feedback_002_60931.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = zapsplat_multimedia_cell_phone_smart_screen_button_press_click_feedback_002_60931.mp3; sourceTree = "<group>"; };
+		2DD65B062756B117005E6EC9 /* music_zapsplat_game_music_childrens_soft_arp_warm_fun_001.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music_zapsplat_game_music_childrens_soft_arp_warm_fun_001.mp3; sourceTree = "<group>"; };
 		2DD7C97124D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Blastwave_FX_NightCornField_S011AM.8.mp3; sourceTree = "<group>"; };
 		2DD7C97324D09E2E0008C79F /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		2DDA8BFF2450B7A20025950B /* AnimationTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTimer.swift; sourceTree = "<group>"; };
@@ -505,6 +513,10 @@
 				2DB63953252F929100D8ECE0 /* spa_snowstorm_ambience_snow_falling_on_ground_with_wind.mp3 */,
 				2DB63951252F91E600D8ECE0 /* weather-wind-trees-bushes-countryside.mp3 */,
 				2D3EB99326AB7226004C6A78 /* you_will_know.mp3 */,
+				2DD65AF627568FEA005E6EC9 /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 */,
+				2DD65B062756B117005E6EC9 /* music_zapsplat_game_music_childrens_soft_arp_warm_fun_001.mp3 */,
+				2DD65AFA2756933E005E6EC9 /* zapsplat_multimedia_notification_digital_bell_warm_success_53924.mp3 */,
+				2DD65B042756ADD0005E6EC9 /* zapsplat_multimedia_cell_phone_smart_screen_button_press_click_feedback_002_60931.mp3 */,
 				2D3EB99126AB7220004C6A78 /* loire.mp3 */,
 				2DD7C97124D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 */,
 				2DB6394D252F871900D8ECE0 /* zapsplat_horror_graveyard_ambience_night_wind_owls_43583.mp3 */,
@@ -634,12 +646,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DB63956252F982900D8ECE0 /* west_wolf_Rear_Street_City_Rain_With_Thunders.mp3 in Resources */,
+				2DD65AF727568FEA005E6EC9 /* music_zapsplat_game_music_zen_calm_soft_arpeggios_013.mp3 in Resources */,
 				2D9463A025B8D7D300B3D878 /* tspt_city_spring_indoor_ambience_loop_019.mp3 in Resources */,
 				2DB63954252F929100D8ECE0 /* spa_snowstorm_ambience_snow_falling_on_ground_with_wind.mp3 in Resources */,
 				2DB63950252F899B00D8ECE0 /* kedr_sfx_stockholm_roomtone_flat_day_closed_window_ac_hum_calm_street_sounds_behind_wall.mp3 in Resources */,
 				2D8BA7D924B672E90020E6EF /* AppleIncRootCertificate.cer in Resources */,
 				2DAEFB3D25A913EB00FB4D38 /* audio_hero_FireMediumRoarHiss_PE052201_358.mp3 in Resources */,
+				2DD65AFB2756933E005E6EC9 /* zapsplat_multimedia_notification_digital_bell_warm_success_53924.mp3 in Resources */,
 				2D48CC46242548B400D0FBBB /* LaunchScreen.storyboard in Resources */,
+				2DD65B072756B117005E6EC9 /* music_zapsplat_game_music_childrens_soft_arp_warm_fun_001.mp3 in Resources */,
 				2D034260273B248E0037B049 /* level_7.json in Resources */,
 				2DB6394E252F871900D8ECE0 /* zapsplat_horror_graveyard_ambience_night_wind_owls_43583.mp3 in Resources */,
 				2D034266273B26830037B049 /* level_10.json in Resources */,
@@ -659,6 +674,7 @@
 				2DE1C88126DD5BD8008B3D95 /* level_2.json in Resources */,
 				2D034264273B25DC0037B049 /* level_9.json in Resources */,
 				2DE1C88B26DD5ECF008B3D95 /* level_5.json in Resources */,
+				2DD65B052756ADD0005E6EC9 /* zapsplat_multimedia_cell_phone_smart_screen_button_press_click_feedback_002_60931.mp3 in Resources */,
 				2DD7C97224D08CAA0008C79F /* Blastwave_FX_NightCornField_S011AM.8.mp3 in Resources */,
 				2DE1C87B26DD5529008B3D95 /* level_1.json in Resources */,
 			);

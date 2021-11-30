@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import AudioToolbox
 
 class Sound {
     var resourceName: String
@@ -39,7 +40,6 @@ class Sound {
     static func stopPlaying() {
         calmMusicPlayer?.stop()
     }
-    
 }
 
 class FireSound {
@@ -72,8 +72,30 @@ class FireSound {
     static func stopPlaying() {
         firePlayer?.stop()
     }
-    
 }
+
+class SoundEffect {
+    var number: SystemSoundID
+    var resourceName: String
+    var type: String
+
+    init(number: SystemSoundID, resourceName: String, type: String) {
+        self.number = number
+        self.resourceName = resourceName
+        self.type = type
+    }
+
+    static func loadSound(number: inout SystemSoundID, resourceName: String, type: String) {
+        let path = Bundle.main.path(forResource: resourceName, ofType: type)
+        let soundURL = URL(fileURLWithPath: path!)
+        AudioServicesCreateSystemSoundID(soundURL as CFURL, &number)
+    }
+
+    static func playSound(number: SystemSoundID) {
+        AudioServicesPlaySystemSound(number)
+    }
+}
+
 
 struct Sounds {
     // SPRING/SUMMER
@@ -104,6 +126,12 @@ struct Sounds {
     
     // music
     static let music = Sound(resourceName: "loire", type: "mp3")
+
+    // game
+    static let gameMusic = Sound(resourceName: "music_zapsplat_game_music_childrens_soft_arp_warm_fun_001", type: "mp3")
+
+    static let pop = SoundEffect(number: 1, resourceName: "zapsplat_multimedia_cell_phone_smart_screen_button_press_click_feedback_002_60931", type: "mp3")
+    static let gameOver = SoundEffect(number: 2, resourceName: "zapsplat_multimedia_notification_digital_bell_warm_success_53924", type: "mp3")
 }
 
 // Forest Autumn Ambience, Outdoor Owl Night Ambience, Rain Ambience, and Wind Ambience by Zapsplat
@@ -114,3 +142,4 @@ struct Sounds {
 // Indoor Ambience by The Sound Pack Tree on Zapsplat
 // Cornfield Ambience by BlastWave FX on Zapsplat
 // Loire and You Will Know by Taylor Howard on Zapsplat
+// Calm game music and pop by Zapsplat

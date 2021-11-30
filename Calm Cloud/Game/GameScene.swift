@@ -80,6 +80,8 @@ class GameScene: SKScene {
     // MARK: Animations
 
     func animateScore(for chain: Chain) {
+        SoundEffect.playSound(number: Sounds.pop.number)
+        
         guard let firstSprite = chain.firstToy().sprite, let lastSprite = chain.lastToy().sprite else { return }
 
         let centerpoint = CGPoint(x: (firstSprite.position.x + lastSprite.position.x)/2, y: (firstSprite.position.y + lastSprite.position.y)/2 - 8)

@@ -66,7 +66,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(stopMoving), name: NSNotification.Name(rawValue: "stopMoving"), object: nil)
-        
+
+        NotificationCenter.default.addObserver(self, selector: #selector(resumeSound), name: NSNotification.Name(rawValue: "resumeSound"), object: nil)
+
         NotificationCenter.default.addObserver(self, selector: #selector(returnIndoors), name: NSNotification.Name(rawValue: "returnIndoors"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(goToSleep), name: NSNotification.Name(rawValue: "goToSleep"), object: nil)
@@ -131,6 +133,10 @@ class ViewController: UIViewController {
     }
     
     // MARK: Custom functions
+
+    @objc func resumeSound() {
+        viewModel.setAmbientSound()
+    }
     
     func stopAnimations() {
         cloudKitty.stopAnimating()
