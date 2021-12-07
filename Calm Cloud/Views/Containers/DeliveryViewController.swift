@@ -13,6 +13,7 @@ class DeliveryViewController: UIViewController {
     // MARK: IBOutlets
     
     @IBOutlet weak var seedlingMessage: UILabel!
+    @IBOutlet weak var okButton: UIButton!
 
     // MARK: Variables
 
@@ -26,7 +27,13 @@ class DeliveryViewController: UIViewController {
     }
     
     @objc func loadDelivery() {
+        okButton.isHidden = true
+        
         seedlingMessage.text = deliveryViewModel.randomSeeds()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+            self?.okButton.isHidden = false
+        }
     }
 
     /*

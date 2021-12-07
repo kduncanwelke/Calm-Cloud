@@ -651,11 +651,11 @@ class ViewController: UIViewController {
     @IBAction func boxTapped(_ sender: UITapGestureRecognizer) {
         // open package for more seedlings
         boxInside.image = UIImage(named: "openedbox")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadDelivery"), object: nil)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [unowned self] in
             // show message with received seedlings
             self.view.bringSubviewToFront(self.receivedPackageContainer)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadDelivery"), object: nil)
             self.receivedPackageContainer.animateBounce()
         }
     }

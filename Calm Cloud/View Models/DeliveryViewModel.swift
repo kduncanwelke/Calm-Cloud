@@ -14,7 +14,7 @@ public class DeliveryViewModel {
     var number = 0
 
     func randomSeeds() -> String {
-        let random = Int.random(in: 0...34)
+        let random = Int.random(in: 0...38)
         let type = Plant(rawValue: random)
         selected = type
 
@@ -25,8 +25,10 @@ public class DeliveryViewModel {
             number = Int.random(in: 1...2)
         }
 
-        let name = getName()
         add()
+
+        let name = getName()
+
         return "x\(number) \(name) Seedlings"
     }
 

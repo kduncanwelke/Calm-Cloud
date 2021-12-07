@@ -51,6 +51,15 @@ public class GameViewModel {
         PlaysModel.mode = gameMode
     }
 
+    func getModeText() -> String {
+        switch gameMode {
+        case .normal:
+            return "Normal Mode"
+        case .zen:
+            return "Zen Mode"
+        }
+    }
+
     func getCurrentScore() -> String {
         switch gameMode {
         case .normal:

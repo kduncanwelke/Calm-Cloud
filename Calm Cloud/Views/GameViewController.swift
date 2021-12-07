@@ -13,6 +13,7 @@ class GameViewController: UIViewController {
 
     // MARK: Outlets
 
+    @IBOutlet weak var tileImage: UIImageView!
     @IBOutlet weak var gameInfoStackView: UIStackView!
     @IBOutlet weak var currentScore: UILabel!
     @IBOutlet weak var currentMoves: UILabel!
@@ -51,6 +52,8 @@ class GameViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(refreshClouds), name: NSNotification.Name(rawValue: "refreshClouds"), object: nil)
 
+        tileImage.image = UIImage(named: "cloudkittysmallpink")?.resizableImage(withCapInsets: .zero)
+
         gameViewModel.loadSounds()
         gameViewModel.startMusic()
 
@@ -62,7 +65,8 @@ class GameViewController: UIViewController {
 
         scene = GameScene(size: spriteKitView.bounds.size)
         scene.scaleMode = .aspectFit
-        scene.backgroundColor = Colors.pink
+        spriteKitView.allowsTransparency = true
+        scene.backgroundColor = UIColor.clear
 
         scene.swipeHandler = handleSwipe(_:)
         
@@ -125,7 +129,7 @@ class GameViewController: UIViewController {
         level = gameViewModel.getGameLevel()
 
         gameInfoStackView.isHidden = false
-        selectLabel.isHidden = true
+        selectLabel.text = gameViewModel.getModeText()
         modeDescription.isHidden = true
         modeSegmentedControl.isHidden = true
 
@@ -166,7 +170,7 @@ class GameViewController: UIViewController {
         backButton.setTitle("Back", for: .normal)
         beginGameButton.isHidden = false
         gameInfoStackView.isHidden = true
-        selectLabel.isHidden = false
+        selectLabel.text = "Select Mode"
         modeDescription.isHidden = false
         modeSegmentedControl.isHidden = false
         scene.isUserInteractionEnabled = false
