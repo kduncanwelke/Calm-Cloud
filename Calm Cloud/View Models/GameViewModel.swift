@@ -225,11 +225,11 @@ public class GameViewModel {
             LevelManager.calculateLevel()
 
             DataFunctions.saveLevel()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromGame"), object: nil)
         } else {
             DataFunctions.saveLevel()
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateFromGame"), object: nil)
         }
-
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateLevelFromOutside"), object: nil)
     }
 
     func loadPlays() {

@@ -80,6 +80,10 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(closeDelivery), name: NSNotification.Name(rawValue: "closeDelivery"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateLevelFromOutside), name: NSNotification.Name(rawValue: "updateLevelFromOutside"), object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(updateFromGame), name: NSNotification.Name(rawValue: "updateFromGame"), object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLevelFromGame), name: NSNotification.Name(rawValue: "updateLevelFromGame"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(levelUp), name: NSNotification.Name(rawValue: "levelUp"), object: nil)
         
@@ -281,6 +285,23 @@ class ViewController: UIViewController {
     @objc func updateExperience() {
         // update exp from tasks reward
         updateEXP(source: .reward)
+    }
+
+    @objc func updateFromGame() {
+        // refresh these level labels when exp is gained from game
+        updateLevel()
+    }
+
+    @objc func updateLevelFromGame() {
+        // update ui with level info and save
+        levelLabel.text = viewModel.getLevel()
+        showLevelUp()
+        levelLabel.animateBounce()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
+            self.receivePackage()
+        }
+
+        updateLevel()
     }
     
     @objc func updateLevelFromOutside() {
