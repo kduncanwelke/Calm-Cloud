@@ -159,6 +159,7 @@ struct DataFunctions {
                 if Int(item.id) == type.rawValue {
                     item.quantity = Int16(quantity)
                     resave.append(item)
+                    print(item)
                 }
             }
         }
@@ -255,7 +256,8 @@ struct DataFunctions {
             }
             
             DataFunctions.saveHarvest()
-            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadHonorStand"), object: nil)
+
             return
         }
         
@@ -267,21 +269,6 @@ struct DataFunctions {
             item.quantity = Int16(quantity!)
             
             resave.append(item)
-            
-            // update quantity in basket
-            if let oldCount = Harvested.basketCounts[Plant(rawValue: Int(item.id))!], let number = quantity {
-                var newCount: Int {
-                    get {
-                        if oldCount - number > 0 {
-                            return oldCount - number
-                        } else {
-                            return 0
-                        }
-                    }
-                }
-                
-                Harvested.basketCounts[Plant(rawValue: Int(item.id))!] = newCount
-            }
         }
         
         do {
@@ -294,6 +281,8 @@ struct DataFunctions {
         
         Harvested.stand.removeAll()
         Harvested.stand = resave
+
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadHonorStand"), object: nil)
         DataFunctions.saveHarvest()
     }
     

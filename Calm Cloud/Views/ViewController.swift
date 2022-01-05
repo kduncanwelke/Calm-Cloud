@@ -116,6 +116,8 @@ class ViewController: UIViewController {
 
         loadUI()
         viewModel.setMood()
+
+        print("view did load")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -315,6 +317,7 @@ class ViewController: UIViewController {
     }
     
     @objc func returnIndoors() {
+        print("return indoors")
         // hide open door and restart animation when returning indoors
         viewModel.setInside()
         viewModel.unStop()

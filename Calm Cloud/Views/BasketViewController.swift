@@ -100,11 +100,7 @@ class BasketViewController: UIViewController {
             expLabel.text = "+\(basketViewModel.randomEXP())EXP"
             donatedView.animateFadeInSlow()
         }
-        
-        // send notification here so if user both donates and puts in the honor stand
-        // the honor stand will still update
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadHonorStand"), object: nil)
-        
+
         reset()
     }
     

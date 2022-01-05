@@ -20,14 +20,9 @@ public class BasketViewModel {
     func loadItems() {
         Harvested.itemsToShow.removeAll()
 
-        for (plant, number) in Harvested.basketCounts {
-            if number != 0 {
-                for item in Harvested.basketItems {
-                    if item.plant == plant {
-                        Harvested.itemsToShow.append(item)
-                        break
-                    }
-                }
+        for basketObject in Harvested.basketItems {
+            if Harvested.basketCounts[basketObject.plant] != 0 {
+                Harvested.itemsToShow.append(basketObject)
             }
         }
     }
@@ -178,7 +173,7 @@ public class BasketViewModel {
         if segment == 0 {
             if numberSentToStand != 0 {
                 DataFunctions.saveHonorStandItems()
-            
+
                 return (true, false)
             } else {
                 return (false, false)
@@ -186,6 +181,7 @@ public class BasketViewModel {
         } else if segment == 1 {
             if numberDonated != 0 {
                 DataFunctions.saveHarvest()
+                loadItems()
 
                 return (false, true)
             } else {

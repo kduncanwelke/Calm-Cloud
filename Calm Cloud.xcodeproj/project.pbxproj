@@ -424,7 +424,6 @@
 				2D48CC3F242548B200D0FBBB /* Main.storyboard */,
 				2D9B7D0824AD268A00CDFA8E /* header.h */,
 				2D8C838B2433CBB2006711F2 /* Data.xcdatamodeld */,
-				2D8C838E2433CDD9006711F2 /* CoreDataManager.swift */,
 				2DB132172478372D00FA6D71 /* Core Data */,
 				2DD2C317246352C70070934D /* Sounds */,
 				2D7E2AF224477CFA006C76BD /* Assets.xcassets */,
@@ -479,6 +478,7 @@
 		2DB132172478372D00FA6D71 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				2D8C838E2433CDD9006711F2 /* CoreDataManager.swift */,
 				2DB13215247835C100FA6D71 /* DataFunctions.swift */,
 			);
 			path = "Core Data";
