@@ -102,7 +102,6 @@ class OutsideViewController: UIViewController {
     private let outsideViewModel = OutsideViewModel()
 
     var tappedImage: UIImageView?
-    var rotated = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -182,6 +181,7 @@ class OutsideViewController: UIViewController {
         if self.isViewLoaded && (self.view.window != nil) {
             print("view will transition outside")
             cloudKitty.stopAnimating()
+            cloudKitty.layer.removeAllAnimations()
             viewModel.stopTimer()
             randomMove()
         }

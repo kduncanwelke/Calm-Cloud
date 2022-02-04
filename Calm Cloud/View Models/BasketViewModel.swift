@@ -13,10 +13,6 @@ public class BasketViewModel {
     var numberDonated = 0
     var numberSentToStand = 0
 
-    func performDataLoads() {
-        DataFunctions.loadHarvest()
-    }
-
     func loadItems() {
         Harvested.itemsToShow.removeAll()
 

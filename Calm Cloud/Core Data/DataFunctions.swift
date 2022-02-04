@@ -153,15 +153,19 @@ struct DataFunctions {
         
         // otherwise rewrite data
         var resave: [HarvestedItem] = []
+
+        for item in Harvested.loaded {
+            // remove all loaded
+            managedContext.delete(item)
+        }
         
         for (type, quantity) in Harvested.basketCounts {
-            for item in Harvested.loaded {
-                if Int(item.id) == type.rawValue {
-                    item.quantity = Int16(quantity)
-                    resave.append(item)
-                    print(item)
-                }
-            }
+            let harvestSave = HarvestedItem(context: managedContext)
+
+            harvestSave.id = Int16(type.rawValue)
+            harvestSave.quantity = Int16(quantity)
+
+            resave.append(harvestSave)
         }
         
         do {
@@ -171,25 +175,39 @@ struct DataFunctions {
             // this should never be displayed but is here to cover the possibility
             print("failed to save harvest")
         }
-        
+
         Harvested.loaded.removeAll()
         Harvested.loaded = resave
-        loadHonorStand()
     }
     
     static func loadHarvest() {
         // load harvest inventory
         var managedContext = CoreDataManager.shared.managedObjectContext
         var fetchRequest = NSFetchRequest<HarvestedItem>(entityName: "HarvestedItem")
-        
+
         do {
+            Harvested.loaded.removeAll()
             Harvested.loaded = try managedContext.fetch(fetchRequest)
-            
+
+            var count = 0
+            print("harvest list \(Harvested.loaded.count)")
             for item in Harvested.loaded {
                 print("harvested")
                 print(item.id)
                 print(item.quantity)
-                Harvested.basketCounts[Plant(rawValue: Int(item.id))!] = Int(item.quantity)
+
+                if let currentPlant = Plant(rawValue: Int(item.id)) {
+                    var oldCount = Harvested.basketCounts[currentPlant] ?? 0
+
+                    // there may be excess items saved due to a bug
+                    // only add harvested counts if existing count is 0
+                    // to prevent crediting plants multiple times
+                    // and to get back lost plants from excess harvest saves
+                    if oldCount == 0 {
+                        Harvested.basketCounts[currentPlant] = Int(item.quantity) + oldCount
+                    }
+                }
+
             }
             
             // if no harvest loaded, set all counts to zero

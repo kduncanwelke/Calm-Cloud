@@ -28,7 +28,7 @@ class BasketViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        basketViewModel.performDataLoads()
+        DataFunctions.loadHarvest()
         
         addedImage.alpha = 0.0
         donatedView.alpha = 0.0
@@ -158,4 +158,5 @@ extension BasketViewController: UITableViewDelegate, UITableViewDataSource, Quan
     }
 
 }
+
 

@@ -16,7 +16,9 @@ extension UIView {
         UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
             self.center = destination
         }, completion: {(finished: Bool) in
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "stopMoving"), object: nil)
+            if finished {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "stopMoving"), object: nil)
+            }
         })
     }
     
@@ -25,8 +27,10 @@ extension UIView {
         UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
             self.center = destination
         }, completion: {(finished: Bool) in
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "goToSleep"), object: nil)
-            AnimationManager.location = .bed
+            if finished {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "goToSleep"), object: nil)
+                AnimationManager.location = .bed
+            }
         })
     }
     
@@ -35,7 +39,9 @@ extension UIView {
         UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
             self.center = destination
         }, completion: {(finished: Bool) in
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "moveToPotty"), object: nil)
+            if finished {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "moveToPotty"), object: nil)
+            }
         })
     }
 
@@ -57,7 +63,9 @@ extension UIView {
         UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
             self.center = destination
         }, completion: {(finished: Bool) in
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "stopMovingOutside"), object: nil)
+            if finished {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "stopMovingOutside"), object: nil)
+            }
         })
     }
     

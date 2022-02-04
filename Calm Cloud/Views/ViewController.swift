@@ -133,6 +133,7 @@ class ViewController: UIViewController {
         if self.isViewLoaded && (self.view.window != nil) {
             print("view will transition inside")
             cloudKitty.stopAnimating()
+            cloudKitty.layer.removeAllAnimations()
             viewModel.stopTimer()
             randomMove()
         }
@@ -394,7 +395,7 @@ class ViewController: UIViewController {
             }
 
             viewModel.performAnimationResets(toy: toyImage, game: game)
-            
+
             var animate = viewModel.randomizeAnimationType()
 
             doAnimation(animate: animate)
