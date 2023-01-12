@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -20,13 +20,13 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		6AEA48F623AE3E560A172FE23FB7C453 /* Pods-Calm Cloud-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BF9F64FE947774B60B6C5E80AB2083B /* Pods-Calm Cloud-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1607B1631F2A2AFE2C480A98B7001EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		FBC9D86F7D3B7CA1B6816C8D469796B2 /* Pods-Calm Cloud-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADABA5E1F53F04D17024761CCD60F27 /* Pods-Calm Cloud-dummy.m */; };
+		AB69947D92C4AAC1EBAE726626A1BBFB /* Pods-Calm Cloud-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADABA5E1F53F04D17024761CCD60F27 /* Pods-Calm Cloud-dummy.m */; };
+		D7BD28EE4083AAB9EAE3DD7575664E9C /* Pods-Calm Cloud-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BF9F64FE947774B60B6C5E80AB2083B /* Pods-Calm Cloud-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F49CA3EB22EA9578FB8E73B1391FF294 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		01D657C102E670ACAECF84B4ED8777D7 /* PBXContainerItemProxy */ = {
+		97913DD1BAE124FBC5083D449A6A8DEB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -41,7 +41,7 @@
 		254EA46B2A17D1B78A16F8086E31517A /* Pods-Calm Cloud.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Calm Cloud.modulemap"; sourceTree = "<group>"; };
 		2CCA7252863D9F2D3DED3AD01DECAE96 /* Pods-Calm Cloud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Calm Cloud.release.xcconfig"; sourceTree = "<group>"; };
 		3E81523424CCDCAC9B2EC4E1525F2F0E /* Pods-Calm Cloud-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Calm Cloud-acknowledgements.markdown"; sourceTree = "<group>"; };
-		689A69B97C4F2D7A01FAC87430BD2030 /* Pods_Calm_Cloud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Calm_Cloud.framework; path = "Pods-Calm Cloud.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		689A69B97C4F2D7A01FAC87430BD2030 /* Pods-Calm Cloud */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Calm Cloud"; path = Pods_Calm_Cloud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		8BD7E1004DA8014ABFCB4FBB3D682795 /* Pods-Calm Cloud-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Calm Cloud-acknowledgements.plist"; sourceTree = "<group>"; };
 		9ADABA5E1F53F04D17024761CCD60F27 /* Pods-Calm Cloud-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Calm Cloud-dummy.m"; sourceTree = "<group>"; };
@@ -55,11 +55,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A07FD601E479DE8AF7FDB7958F49CD4E /* Frameworks */ = {
+		E63DEE5261027D6CCEFD3AAB19515694 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1607B1631F2A2AFE2C480A98B7001EB /* Foundation.framework in Frameworks */,
+				F49CA3EB22EA9578FB8E73B1391FF294 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,14 +83,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/OpenSSL-Universal";
-			sourceTree = "<group>";
-		};
-		444E5AF2FFBAB72DF26526614129B4DF /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				689A69B97C4F2D7A01FAC87430BD2030 /* Pods_Calm_Cloud.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		4E62780B97D6C66BACF776DF12651B8A /* OpenSSL-Universal */ = {
@@ -119,6 +111,14 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		75673C31D5F8BB7A1B27844F0C0A378D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				689A69B97C4F2D7A01FAC87430BD2030 /* Pods-Calm Cloud */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		8479BAA8FF147F675C3CCF6774776249 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,7 +133,7 @@
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				8479BAA8FF147F675C3CCF6774776249 /* Pods */,
-				444E5AF2FFBAB72DF26526614129B4DF /* Products */,
+				75673C31D5F8BB7A1B27844F0C0A378D /* Products */,
 				5BFACD9F0A8B6720B39747505DB31570 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -166,11 +166,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		03C2C73C148E25B3771231989FE1F432 /* Headers */ = {
+		3AA2F9C2463791CD8109E2EE6378F277 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AEA48F623AE3E560A172FE23FB7C453 /* Pods-Calm Cloud-umbrella.h in Headers */,
+				D7BD28EE4083AAB9EAE3DD7575664E9C /* Pods-Calm Cloud-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,21 +179,21 @@
 /* Begin PBXNativeTarget section */
 		6AC86F7EB7B7C2B7C485DC2AEA9D11CE /* Pods-Calm Cloud */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EF5CA082D062669E8072BFF40B784BFF /* Build configuration list for PBXNativeTarget "Pods-Calm Cloud" */;
+			buildConfigurationList = 06EC1D1ACAE5AA81BC19A16AFA56083D /* Build configuration list for PBXNativeTarget "Pods-Calm Cloud" */;
 			buildPhases = (
-				03C2C73C148E25B3771231989FE1F432 /* Headers */,
-				3D19FD75320DA63D760E25A71908E151 /* Sources */,
-				A07FD601E479DE8AF7FDB7958F49CD4E /* Frameworks */,
-				51B0C9B54247C66B4052EFC79B573DBF /* Resources */,
+				3AA2F9C2463791CD8109E2EE6378F277 /* Headers */,
+				2F145DD18FEC4BA5364C6A792DD09887 /* Sources */,
+				E63DEE5261027D6CCEFD3AAB19515694 /* Frameworks */,
+				8B5B95A411496F4AEBD57F104B3D7A41 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7669A743B4E2110B7568F03F4FE9C4D9 /* PBXTargetDependency */,
+				AD4EDC53DD4588E23382E9FD89498C20 /* PBXTargetDependency */,
 			);
 			name = "Pods-Calm Cloud";
-			productName = "Pods-Calm Cloud";
-			productReference = 689A69B97C4F2D7A01FAC87430BD2030 /* Pods_Calm_Cloud.framework */;
+			productName = Pods_Calm_Cloud;
+			productReference = 689A69B97C4F2D7A01FAC87430BD2030 /* Pods-Calm Cloud */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -202,19 +202,19 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 444E5AF2FFBAB72DF26526614129B4DF /* Products */;
+			productRefGroup = 75673C31D5F8BB7A1B27844F0C0A378D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -225,7 +225,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		51B0C9B54247C66B4052EFC79B573DBF /* Resources */ = {
+		8B5B95A411496F4AEBD57F104B3D7A41 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -255,26 +255,101 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3D19FD75320DA63D760E25A71908E151 /* Sources */ = {
+		2F145DD18FEC4BA5364C6A792DD09887 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBC9D86F7D3B7CA1B6816C8D469796B2 /* Pods-Calm Cloud-dummy.m in Sources */,
+				AB69947D92C4AAC1EBAE726626A1BBFB /* Pods-Calm Cloud-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		7669A743B4E2110B7568F03F4FE9C4D9 /* PBXTargetDependency */ = {
+		AD4EDC53DD4588E23382E9FD89498C20 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "OpenSSL-Universal";
 			target = B9ED5194E665042005069EF06C82A050 /* OpenSSL-Universal */;
-			targetProxy = 01D657C102E670ACAECF84B4ED8777D7 /* PBXContainerItemProxy */;
+			targetProxy = 97913DD1BAE124FBC5083D449A6A8DEB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		209D16B60F2A2309F5C1224714A8E3AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D20CAFB1FED248B7ED7EDBE09BD2751E /* Pods-Calm Cloud.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2657DB8B4570116435DBAD66B0F46FF1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CCA7252863D9F2D3DED3AD01DECAE96 /* Pods-Calm Cloud.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		2B9E26EAE2CD392AD762421F663075A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -420,81 +495,6 @@
 			};
 			name = Release;
 		};
-		BB5613AEAE8E129112409CF80755388B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CCA7252863D9F2D3DED3AD01DECAE96 /* Pods-Calm Cloud.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		D3B8B3F464CB1CB6C0812A0EE69E5023 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D20CAFB1FED248B7ED7EDBE09BD2751E /* Pods-Calm Cloud.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Calm Cloud/Pods-Calm Cloud.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		F70FB2C772CB3A9B68A75AA06B76A888 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CBA942D70B67070CCEF49DF777ACD982 /* OpenSSL-Universal.debug.xcconfig */;
@@ -514,6 +514,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		06EC1D1ACAE5AA81BC19A16AFA56083D /* Build configuration list for PBXNativeTarget "Pods-Calm Cloud" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				209D16B60F2A2309F5C1224714A8E3AC /* Debug */,
+				2657DB8B4570116435DBAD66B0F46FF1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -528,15 +537,6 @@
 			buildConfigurations = (
 				F70FB2C772CB3A9B68A75AA06B76A888 /* Debug */,
 				45843BD8C9A61FAA80B9C1553E421D86 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EF5CA082D062669E8072BFF40B784BFF /* Build configuration list for PBXNativeTarget "Pods-Calm Cloud" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D3B8B3F464CB1CB6C0812A0EE69E5023 /* Debug */,
-				BB5613AEAE8E129112409CF80755388B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
