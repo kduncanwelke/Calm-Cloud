@@ -988,15 +988,15 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/ios/lib",
+					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework",
 				);
 				MARKETING_VERSION = 3.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)/Documents/GitHub/Calm-Cloud/Calm Cloud/header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Calm Cloud/header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/OpenSSL-Universal/ios/include";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework";
 			};
 			name = Debug;
 		};
@@ -1018,15 +1018,15 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/ios/lib",
+					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework",
 				);
 				MARKETING_VERSION = 3.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kduncan-welke.CalmCloud";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(inherited)/Documents/GitHub/Calm-Cloud/Calm Cloud/header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Calm Cloud/header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/OpenSSL-Universal/ios/include";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework";
 			};
 			name = Release;
 		};
