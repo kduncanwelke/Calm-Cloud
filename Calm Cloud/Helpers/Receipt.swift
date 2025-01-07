@@ -266,22 +266,22 @@ class Receipt {
     
     private func hashy() -> Data? {
         guard let identifierData = getIdentifier() else { return nil }
-        var ctx = SHA_CTX()
-        SHA1_Init(&ctx)
+        var ctx = SHA256_CTX()
+        SHA256_Init(&ctx)
         
         guard let opaque = opaqueData, let bundle = bundleIdData else { return nil }
         
         let identifierBytes: [UInt8] = .init(identifierData)
-        SHA1_Update(&ctx, identifierBytes, identifierData.count)
+        SHA256_Update(&ctx, identifierBytes, identifierData.count)
         
         let opaqueBytes: [UInt8] = .init(opaque)
-        SHA1_Update(&ctx, opaqueBytes, opaque.count)
+        SHA256_Update(&ctx, opaqueBytes, opaque.count)
         
         let bundleBytes: [UInt8] = .init(bundle)
-        SHA1_Update(&ctx, bundleBytes, bundle.count)
+        SHA256_Update(&ctx, bundleBytes, bundle.count)
         
         var hash: [UInt8] = .init(repeating: 0, count: 20)
-        SHA1_Final(&hash, &ctx)
+        SHA256_Final(&hash, &ctx)
         
         return Data(bytes: hash, count: 20)
     }

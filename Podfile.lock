@@ -1,5 +1,5 @@
 PODS:
-  - OpenSSL-Universal (1.1.1100)
+  - OpenSSL-Universal (1.1.2200)
 
 DEPENDENCIES:
   - OpenSSL-Universal
@@ -9,7 +9,7 @@ SPEC REPOS:
     - OpenSSL-Universal
 
 SPEC CHECKSUMS:
-  OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
+  OpenSSL-Universal: 6e1ae0555546e604dbc632a2b9a24a9c46c41ef6
 
 PODFILE CHECKSUM: fff4a696705ac7415b046c983e288ea814fba216
 
