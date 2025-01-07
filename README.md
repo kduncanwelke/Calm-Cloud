@@ -2,7 +2,7 @@
 A calming, whimsical world.
 [Visit on the App Store](https://apps.apple.com/us/app/id1503747823)
 
-![Screenshot of the app Calm Cloud](https://i.ibb.co/qkD414s/Screen-Shot-2020-08-05-at-2-29-28-PM.png)
+![Screenshot of the app Calm Cloud](https://kduncanwelkecom.ipage.com/Calm%20Cloud%20Preview.png)
 
 ## Description
 Calm Cloud invites you to enter into the calming, whimsical world of Zen, the cloud kitty! Ease your mind by caring for Zen daily, completing simple tasks, and growing and harvesting plants in the outdoor garden!
